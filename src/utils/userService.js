@@ -107,12 +107,12 @@ export const getUserCart = async (userId) => {
 export const addToUserCart = async (userId, productId, product, quantity = 1) => {
   try {
     // Check if item already exists
-    const { data: existing } = await supabase
+    const { data: existing, error: checkError } = await supabase
       .from('cart_items')
       .select('*')
       .eq('user_id', userId)
       .eq('product_id', productId)
-      .single();
+      .maybeSingle();
 
     if (existing) {
       // Update quantity
@@ -144,6 +144,7 @@ export const addToUserCart = async (userId, productId, product, quantity = 1) =>
       return { data, error: null };
     }
   } catch (error) {
+    console.error('Error adding to cart:', error);
     return { data: null, error };
   }
 };

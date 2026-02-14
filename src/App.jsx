@@ -91,27 +91,37 @@ function AppContent() {
 
   // Add to cart
   const addToCart = async (productId, product) => {
-    if (user?.id) {
-      // Save to database for authenticated users
-      await addToUserCart(user.id, productId, product, 1);
-      await loadUserCart();
-      showToast('Added to cart!');
-    } else {
-      // Use localStorage for non-authenticated users
-      const existingItem = cartItems.find(item => item.productId === productId);
-      
-      if (existingItem) {
-        setCartItems(cartItems.map(item =>
-          item.productId === productId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ));
+    try {
+      if (user?.id) {
+        // Save to database for authenticated users
+        const { error } = await addToUserCart(user.id, productId, product, 1);
+        if (error) {
+          console.error('Failed to add to cart:', error);
+          showToast('Failed to add to cart. Please try again.');
+          return;
+        }
+        await loadUserCart();
+        showToast('Added to cart!');
       } else {
-        setCartItems([...cartItems, { productId, product, quantity: 1, id: Date.now() }]);
+        // Use localStorage for non-authenticated users
+        const existingItem = cartItems.find(item => item.productId === productId);
+        
+        if (existingItem) {
+          setCartItems(cartItems.map(item =>
+            item.productId === productId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ));
+        } else {
+          setCartItems([...cartItems, { productId, product, quantity: 1, id: Date.now() }]);
+        }
+        showToast('Added to cart!');
       }
-      showToast('Added to cart!');
+      setIsCartOpen(true);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      showToast('Error adding to cart. Please try again.');
     }
-    setIsCartOpen(true);
   };
 
   // Update cart quantity
