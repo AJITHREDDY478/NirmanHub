@@ -113,16 +113,34 @@ export default function ThreeBackground() {
     animate();
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
-      objects.forEach(({ mesh }) => {
-        mesh.geometry.dispose();
-        mesh.material.dispose();
-      });
-      renderer.dispose();
-      if (renderer.domElement && renderer.domElement.parentNode) {
-        renderer.domElement.parentNode.removeChild(renderer.domElement);
+      try {
+        // Cancel animation
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+
+        // Remove event listeners
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('resize', handleResize);
+
+        // Dispose geometries and materials
+        objects.forEach(({ mesh }) => {
+          if (mesh.geometry) mesh.geometry.dispose();
+          if (mesh.material) mesh.material.dispose();
+        });
+
+        // Dispose renderer
+        if (renderer) {
+          renderer.dispose();
+          
+          // Safely remove canvas from DOM
+          if (renderer.domElement && 
+              renderer.domElement.parentNode === container) {
+            container.removeChild(renderer.domElement);
+          }
+        }
+      } catch (error) {
+        console.warn('ThreeBackground cleanup error:', error);
       }
     };
   }, []);
