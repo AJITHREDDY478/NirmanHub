@@ -228,6 +228,21 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                   </svg>
                   <span className="text-slate-700 group-hover:text-amber-600 font-medium">Address Book</span>
                 </Link>
+                {user && (
+                  <Link
+                    to="/products/upload"
+                    onClick={() => {
+                      setShowAccountMenu(false);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                  >
+                    <svg className="w-5 h-5 text-slate-600 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span className="text-slate-700 group-hover:text-amber-600 font-medium">Upload Products</span>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -22,6 +22,7 @@ import CustomOrderPage from './pages/CustomOrderPage';
 import OrdersPage from './pages/OrdersPage';
 import WishlistPage from './pages/WishlistPage';
 import AddressPage from './pages/AddressPage';
+import ProductUploadPage from './pages/ProductUploadPage';
 
 function AppContent() {
   const { user } = useAuth();
@@ -253,6 +254,7 @@ function AppContent() {
           addToRecentlyViewed={addToRecentlyViewed}
         />} />
         <Route path="/address" element={<AddressPage showToast={showToast} />} />
+        <Route path="/products/upload" element={<ProductUploadPage showToast={showToast} />} />
       </Routes>
 
       <Cart
