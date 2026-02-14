@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import PromoBanner from './components/PromoBanner';
 import Cart from './components/Cart';
@@ -10,6 +10,7 @@ import WhatsAppChat from './components/WhatsAppChat';
 import FloatingCart from './components/FloatingCart';
 import AuthModal from './components/AuthModal';
 import CheckoutModals from './components/CheckoutModals';
+import { getUserCart, addToUserCart, updateCartItemQuantity, removeFromUserCart, clearUserCart } from './utils/userService';
 
 import HomePage from './pages/HomePage';
 import CategoriesPage from './pages/CategoriesPage';
@@ -22,7 +23,8 @@ import OrdersPage from './pages/OrdersPage';
 import WishlistPage from './pages/WishlistPage';
 import AddressPage from './pages/AddressPage';
 
-function App() {
+function AppContent() {
+  const { user } = useAuth();
   const [cartItems, setCartItems] = useState(() => {
     const saved = localStorage.getItem('cartItems');
     return saved ? JSON.parse(saved) : [];
@@ -40,11 +42,44 @@ function App() {
   const [toast, setToast] = useState({ show: false, message: '' });
   const [authModal, setAuthModal] = useState({ show: false, type: 'login' });
   const [checkoutStep, setCheckoutStep] = useState(null); // 'address' or 'payment'
+  const [cartLoading, setCartLoading] = useState(false);
 
-  // Save to localStorage whenever state changes
+  // Load cart from database when user logs in
   useEffect(() => {
+    if (user?.id) {
+      loadUserCart();
+      localStorage.removeItem('cartItems'); // Clear localStorage after loading from DB
+    } else {
+      // When user logs out, switch back to localStorage
+      const saved = localStorage.getItem('cartItems');
+      setCartItems(saved ? JSON.parse(saved) : []);
+    }
+  }, [user?.id]);
+
+  const loadUserCart = async () => {
+    setCartLoading(true);
+    const { data, error } = await getUserCart(user.id);
+    if (!error && data) {
+      const formattedCart = data.map(item => ({
+        id: item.id,
+        productId: item.product_id,
+        product: item.product_data,
+        quantity: item.quantity,
+        dbId: item.id // Store database ID
+      }));
+      setCartItems(formattedCart);
+    }
+    setCartLoading(false);
+  };
+
+  // Save to localStorage when offline, or to database when logged in
+  useEffect(() => {
+    if (user?.id) {
+      // Don't auto-save to localStorage when logged in
+      return;
+    }
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+  }, [cartItems, user?.id]);
 
   useEffect(() => {
     localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
@@ -55,25 +90,32 @@ function App() {
   }, [recentlyViewed]);
 
   // Add to cart
-  const addToCart = (productId, product) => {
-    const existingItem = cartItems.find(item => item.productId === productId);
-    
-    if (existingItem) {
-      setCartItems(cartItems.map(item =>
-        item.productId === productId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
+  const addToCart = async (productId, product) => {
+    if (user?.id) {
+      // Save to database for authenticated users
+      await addToUserCart(user.id, productId, product, 1);
+      await loadUserCart();
+      showToast('Added to cart!');
     } else {
-      setCartItems([...cartItems, { productId, product, quantity: 1, id: Date.now() }]);
+      // Use localStorage for non-authenticated users
+      const existingItem = cartItems.find(item => item.productId === productId);
+      
+      if (existingItem) {
+        setCartItems(cartItems.map(item =>
+          item.productId === productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ));
+      } else {
+        setCartItems([...cartItems, { productId, product, quantity: 1, id: Date.now() }]);
+      }
+      showToast('Added to cart!');
     }
-    
-    showToast('Added to cart!');
     setIsCartOpen(true);
   };
 
   // Update cart quantity
-  const updateCartQuantity = (itemId, delta) => {
+  const updateCartQuantity = async (itemId, delta) => {
     const item = cartItems.find(i => i.id === itemId);
     if (!item) return;
 
@@ -84,14 +126,31 @@ function App() {
       return;
     }
 
-    setCartItems(cartItems.map(i =>
-      i.id === itemId ? { ...i, quantity: newQty } : i
-    ));
+    if (user?.id && item.dbId) {
+      // Update in database
+      await updateCartItemQuantity(user.id, item.dbId, newQty);
+      await loadUserCart();
+    } else {
+      // Update in localStorage
+      setCartItems(cartItems.map(i =>
+        i.id === itemId ? { ...i, quantity: newQty } : i
+      ));
+    }
   };
 
   // Remove from cart
-  const removeFromCart = (itemId) => {
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+  const removeFromCart = async (itemId) => {
+    const item = cartItems.find(i => i.id === itemId);
+    if (!item) return;
+
+    if (user?.id && item.dbId) {
+      // Remove from database
+      await removeFromUserCart(user.id, item.dbId);
+      await loadUserCart();
+    } else {
+      // Remove from localStorage
+      setCartItems(cartItems.filter(item => item.id !== itemId));
+    }
     showToast('Removed from cart');
   };
 
@@ -141,95 +200,104 @@ function App() {
   };
 
   return (
-    <AuthProvider>
-      <Router basename={import.meta.env.BASE_URL}>
-        <div className="h-full w-full relative bg-slate-50 overflow-x-hidden">
-          <PromoBanner />
-          <Navbar
-            cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-            onOpenCart={() => setIsCartOpen(true)}
-            onOpenSearch={() => setIsSearchOpen(true)}
-            onShowAuth={(type) => setAuthModal({ show: true, type })}
-          />
-        
-        <Routes>
-          <Route path="/" element={<HomePage 
-            addToCart={addToCart}
-            toggleWishlist={toggleWishlist}
-            wishlistItems={wishlistItems}
-            recentlyViewed={recentlyViewed}
-            addToRecentlyViewed={addToRecentlyViewed}
-          />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/products" element={<CategoriesPage />} />
-          <Route path="/department/:departmentId" element={<DepartmentPage
-            addToCart={addToCart}
-            toggleWishlist={toggleWishlist}
-            wishlistItems={wishlistItems}
-          />} />
-          <Route path="/product/:productId" element={<ProductPage
-            addToCart={addToCart}
-            toggleWishlist={toggleWishlist}
-            wishlistItems={wishlistItems}
-            addToRecentlyViewed={addToRecentlyViewed}
-          />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/custom-order" element={<CustomOrderPage showToast={showToast} />} />
-          <Route path="/contact" element={<ContactPage showToast={showToast} />} />
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="/wishlist" element={<WishlistPage
-            wishlistItems={wishlistItems}
-            toggleWishlist={toggleWishlist}
-            removeFromWishlist={removeFromWishlist}
-            addToCart={addToCart}
-            addToRecentlyViewed={addToRecentlyViewed}
-          />} />
-          <Route path="/address" element={<AddressPage showToast={showToast} />} />
-        </Routes>
-
-        <Cart
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
-          cartItems={cartItems}
-          updateQuantity={updateCartQuantity}
-          removeItem={removeFromCart}
-          onCheckout={startCheckout}
-        />
-
-        <SearchOverlay
-          isOpen={isSearchOpen}
-          onClose={() => setIsSearchOpen(false)}
-          addToRecentlyViewed={addToRecentlyViewed}
-        />
-
-        <AuthModal
-          isOpen={authModal.show}
-          type={authModal.type}
-          onClose={() => setAuthModal({ show: false, type: 'login' })}
-          onSwitchType={(type) => setAuthModal({ show: true, type })}
-          showToast={showToast}
-        />
-
-        <CheckoutModals
-          step={checkoutStep}
-          onClose={() => setCheckoutStep(null)}
-          cartItems={cartItems}
-          onComplete={() => {
-            setCheckoutStep(null);
-            setCartItems([]);
-            showToast('Order placed successfully!');
-          }}
-          showToast={showToast}
-        />
-
-        <Toast show={toast.show} message={toast.message} />
-        <FloatingCart 
+    <Router basename={import.meta.env.BASE_URL}>
+      <div className="h-full w-full relative bg-slate-50 overflow-x-hidden">
+        <PromoBanner />
+        <Navbar
           cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
           onOpenCart={() => setIsCartOpen(true)}
+          onOpenSearch={() => setIsSearchOpen(true)}
+          onShowAuth={(type) => setAuthModal({ show: true, type })}
         />
-        <WhatsAppChat />
-      </div>
-      </Router>
+      
+      <Routes>
+        <Route path="/" element={<HomePage 
+          addToCart={addToCart}
+          toggleWishlist={toggleWishlist}
+          wishlistItems={wishlistItems}
+          recentlyViewed={recentlyViewed}
+          addToRecentlyViewed={addToRecentlyViewed}
+        />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/products" element={<CategoriesPage />} />
+        <Route path="/department/:departmentId" element={<DepartmentPage
+          addToCart={addToCart}
+          toggleWishlist={toggleWishlist}
+          wishlistItems={wishlistItems}
+        />} />
+        <Route path="/product/:productId" element={<ProductPage
+          addToCart={addToCart}
+          toggleWishlist={toggleWishlist}
+          wishlistItems={wishlistItems}
+          addToRecentlyViewed={addToRecentlyViewed}
+        />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/custom-order" element={<CustomOrderPage showToast={showToast} />} />
+        <Route path="/contact" element={<ContactPage showToast={showToast} />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/wishlist" element={<WishlistPage
+          wishlistItems={wishlistItems}
+          toggleWishlist={toggleWishlist}
+          removeFromWishlist={removeFromWishlist}
+          addToCart={addToCart}
+          addToRecentlyViewed={addToRecentlyViewed}
+        />} />
+        <Route path="/address" element={<AddressPage showToast={showToast} />} />
+      </Routes>
+
+      <Cart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cartItems={cartItems}
+        updateQuantity={updateCartQuantity}
+        removeItem={removeFromCart}
+        onCheckout={startCheckout}
+      />
+
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        addToRecentlyViewed={addToRecentlyViewed}
+      />
+
+      <AuthModal
+        isOpen={authModal.show}
+        type={authModal.type}
+        onClose={() => setAuthModal({ show: false, type: 'login' })}
+        onSwitchType={(type) => setAuthModal({ show: true, type })}
+        showToast={showToast}
+      />
+
+      <CheckoutModals
+        step={checkoutStep}
+        onClose={() => setCheckoutStep(null)}
+        cartItems={cartItems}
+        onComplete={async () => {
+          setCheckoutStep(null);
+          if (user?.id) {
+            await clearUserCart(user.id);
+          }
+          setCartItems([]);
+          showToast('Order placed successfully!');
+        }}
+        showToast={showToast}
+      />
+
+      <Toast show={toast.show} message={toast.message} />
+      <FloatingCart 
+        cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+        onOpenCart={() => setIsCartOpen(true)}
+      />
+      <WhatsAppChat />
+    </div>
+    </Router>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
     </AuthProvider>
   );
 }
