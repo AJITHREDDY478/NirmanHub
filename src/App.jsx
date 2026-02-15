@@ -222,105 +222,105 @@ function AppContent() {
   };
 
   return (
-    <Router basename={import.meta.env.BASE_URL}>
-      <div className="h-full w-full relative bg-slate-50 overflow-x-hidden">
-        <PromoBanner />
-        <Navbar
-          cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-          onOpenCart={() => setIsCartOpen(true)}
-          onOpenSearch={() => setIsSearchOpen(true)}
-          onShowAuth={(type) => setAuthModal({ show: true, type })}
-        />
-      
-      <Routes>
-        <Route path="/" element={<HomePage 
-          addToCart={addToCart}
-          toggleWishlist={toggleWishlist}
-          wishlistItems={wishlistItems}
-          recentlyViewed={recentlyViewed}
-          addToRecentlyViewed={addToRecentlyViewed}
-        />} />
-        <Route path="/categories" element={<CategoriesPage />} />
-        <Route path="/products" element={<CategoriesPage />} />
-        <Route path="/department/:departmentId" element={<DepartmentPage
-          addToCart={addToCart}
-          toggleWishlist={toggleWishlist}
-          wishlistItems={wishlistItems}
-        />} />
-        <Route path="/product/:productId" element={<ProductPage
-          addToCart={addToCart}
-          toggleWishlist={toggleWishlist}
-          wishlistItems={wishlistItems}
-          addToRecentlyViewed={addToRecentlyViewed}
-        />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/custom-order" element={<CustomOrderPage showToast={showToast} />} />
-        <Route path="/contact" element={<ContactPage showToast={showToast} />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/wishlist" element={<WishlistPage
-          wishlistItems={wishlistItems}
-          toggleWishlist={toggleWishlist}
-          removeFromWishlist={removeFromWishlist}
-          addToCart={addToCart}
-          addToRecentlyViewed={addToRecentlyViewed}
-        />} />
-        <Route path="/address" element={<AddressPage showToast={showToast} />} />
-        <Route path="/products/upload" element={<ProductUploadPage showToast={showToast} />} />
-      </Routes>
-
-      <Cart
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        updateQuantity={updateCartQuantity}
-        removeItem={removeFromCart}
-        onCheckout={startCheckout}
-      />
-
-      <SearchOverlay
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        addToRecentlyViewed={addToRecentlyViewed}
-      />
-
-      <AuthModal
-        isOpen={authModal.show}
-        type={authModal.type}
-        onClose={() => setAuthModal({ show: false, type: 'login' })}
-        onSwitchType={(type) => setAuthModal({ show: true, type })}
-        showToast={showToast}
-      />
-
-      <CheckoutModals
-        step={checkoutStep}
-        onClose={() => setCheckoutStep(null)}
-        cartItems={cartItems}
-        onComplete={async () => {
-          setCheckoutStep(null);
-          if (user?.id) {
-            await clearUserCart(user.id);
-          }
-          setCartItems([]);
-          showToast('Order placed successfully!');
-        }}
-        showToast={showToast}
-      />
-
-      <Toast show={toast.show} message={toast.message} />
-      <FloatingCart 
+    <div className="h-full w-full relative bg-slate-50 overflow-x-hidden">
+      <PromoBanner />
+      <Navbar
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onOpenCart={() => setIsCartOpen(true)}
+        onOpenSearch={() => setIsSearchOpen(true)}
+        onShowAuth={(type) => setAuthModal({ show: true, type })}
       />
-      <WhatsAppChat />
-    </div>
-    </Router>
+    
+    <Routes>
+      <Route path="/" element={<HomePage 
+        addToCart={addToCart}
+        toggleWishlist={toggleWishlist}
+        wishlistItems={wishlistItems}
+        recentlyViewed={recentlyViewed}
+        addToRecentlyViewed={addToRecentlyViewed}
+      />} />
+      <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/products" element={<CategoriesPage />} />
+      <Route path="/department/:departmentId" element={<DepartmentPage
+        addToCart={addToCart}
+        toggleWishlist={toggleWishlist}
+        wishlistItems={wishlistItems}
+      />} />
+      <Route path="/product/:productId" element={<ProductPage
+        addToCart={addToCart}
+        toggleWishlist={toggleWishlist}
+        wishlistItems={wishlistItems}
+        addToRecentlyViewed={addToRecentlyViewed}
+      />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/custom-order" element={<CustomOrderPage showToast={showToast} />} />
+      <Route path="/contact" element={<ContactPage showToast={showToast} />} />
+      <Route path="/orders" element={<OrdersPage />} />
+      <Route path="/wishlist" element={<WishlistPage
+        wishlistItems={wishlistItems}
+        toggleWishlist={toggleWishlist}
+        removeFromWishlist={removeFromWishlist}
+        addToCart={addToCart}
+        addToRecentlyViewed={addToRecentlyViewed}
+      />} />
+      <Route path="/address" element={<AddressPage showToast={showToast} />} />
+      <Route path="/products/upload" element={<ProductUploadPage showToast={showToast} />} />
+    </Routes>
+
+    <Cart
+      isOpen={isCartOpen}
+      onClose={() => setIsCartOpen(false)}
+      cartItems={cartItems}
+      updateQuantity={updateCartQuantity}
+      removeItem={removeFromCart}
+      onCheckout={startCheckout}
+    />
+
+    <SearchOverlay
+      isOpen={isSearchOpen}
+      onClose={() => setIsSearchOpen(false)}
+      addToRecentlyViewed={addToRecentlyViewed}
+    />
+
+    <AuthModal
+      isOpen={authModal.show}
+      type={authModal.type}
+      onClose={() => setAuthModal({ show: false, type: 'login' })}
+      onSwitchType={(type) => setAuthModal({ show: true, type })}
+      showToast={showToast}
+    />
+
+    <CheckoutModals
+      step={checkoutStep}
+      onClose={() => setCheckoutStep(null)}
+      cartItems={cartItems}
+      onComplete={async () => {
+        setCheckoutStep(null);
+        if (user?.id) {
+          await clearUserCart(user.id);
+        }
+        setCartItems([]);
+        showToast('Order placed successfully!');
+      }}
+      showToast={showToast}
+    />
+
+    <Toast show={toast.show} message={toast.message} />
+    <FloatingCart 
+      cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+      onOpenCart={() => setIsCartOpen(true)}
+    />
+    <WhatsAppChat />
+  </div>
   );
 }
 
 function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <Router basename={import.meta.env.BASE_URL}>
+        <AppContent />
+      </Router>
     </AuthProvider>
   );
 }
