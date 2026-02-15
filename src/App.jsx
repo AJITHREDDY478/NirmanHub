@@ -26,6 +26,8 @@ import ProductUploadPage from './pages/ProductUploadPage';
 
 function AppContent() {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [cartItems, setCartItems] = useState(() => {
     const saved = localStorage.getItem('cartItems');
     return saved ? JSON.parse(saved) : [];
@@ -56,6 +58,15 @@ function AppContent() {
       setCartItems(saved ? JSON.parse(saved) : []);
     }
   }, [user?.id]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get('redirect');
+    if (redirect) {
+      const normalized = redirect.replace(/^\/+/, '');
+      navigate(`/${normalized}`, { replace: true });
+    }
+  }, [location.search, navigate]);
 
   const loadUserCart = async () => {
     setCartLoading(true);
