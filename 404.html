@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NirmanaHub</title>
+    <script>
+      // Redirect all 404s to index.html for SPA routing.
+      (function () {
+        var base = '/NirmanHub/';
+        var path = window.location.pathname;
+        if (!path.startsWith(base)) {
+          window.location.replace(base);
+          return;
+        }
+        var redirectUrl = base + '?redirect=' + encodeURIComponent(path.replace(base, '') + window.location.search + window.location.hash);
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
