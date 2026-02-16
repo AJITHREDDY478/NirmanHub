@@ -40,6 +40,11 @@ CREATE INDEX IF NOT EXISTS idx_catalog_parent_id ON catalog_entities(parent_id);
 -- Enable RLS
 ALTER TABLE catalog_entities ENABLE ROW LEVEL SECURITY;
 
+-- Allow public read access to all active items
+CREATE POLICY "Anyone can view active items" ON catalog_entities
+  FOR SELECT
+  USING (is_active = true);
+
 -- Users can only see and manage their own catalog items
 CREATE POLICY "Users can view their own catalog items" ON catalog_entities
   FOR SELECT

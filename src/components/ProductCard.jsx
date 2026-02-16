@@ -47,11 +47,15 @@ export default function ProductCard({
       {/* Image Container */}
       <div className="relative w-full overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
         <motion.div
-          className="aspect-[4/3] flex items-center justify-center text-4xl sm:text-5xl"
+          className="aspect-[4/3] flex items-center justify-center text-4xl sm:text-5xl overflow-hidden"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         >
-          {product.emoji}
+          {product.image ? (
+            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+          ) : (
+            product.emoji
+          )}
         </motion.div>
 
         {/* Badges Container */}

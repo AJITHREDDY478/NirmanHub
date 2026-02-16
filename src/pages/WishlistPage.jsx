@@ -1,19 +1,26 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { products } from '../data/products';
+import { getAllProducts } from '../utils/catalogService';
 import ProductCard from '../components/ProductCard';
 
 export default function WishlistPage({ wishlistItems, toggleWishlist, removeFromWishlist, addToCart, addToRecentlyViewed }) {
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      const { data } = await getAllProducts();
+      setAllProducts(data);
+      setLoading(false);
+    };
+    fetchProducts();
+  }, []);
   
-  // Debug logging
-  console.log('WishlistPage - wishlistItems:', wishlistItems);
-  console.log('WishlistPage - products available:', products.length);
-  
-  const wishlistProducts = products.filter(p => wishlistItems.includes(p.id));
-  console.log('WishlistPage - filtered wishlistProducts:', wishlistProducts);
+  const wishlistProducts = allProducts.filter(p => wishlistItems.includes(p.id));
 
   const handleSelectAll = () => {
     if (selectedItems.length === wishlistProducts.length) {
@@ -51,7 +58,12 @@ export default function WishlistPage({ wishlistItems, toggleWishlist, removeFrom
           <p className="text-slate-600">{wishlistProducts.length} items saved</p>
         </div>
 
-        {wishlistProducts.length > 0 ? (
+        {loading ? (
+          <div className="text-center py-16">
+            <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-slate-600">Loading wishlist...</p>
+          </div>
+        ) : wishlistProducts.length > 0 ? (
           <>
             {/* Selection Controls */}
             <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white rounded-xl p-4 shadow-sm border border-slate-200">

@@ -1,18 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { products } from '../data/products';
+import { searchProducts, getAllProducts } from '../utils/catalogService';
 
 export default function SearchOverlay({ isOpen, onClose, addToRecentlyViewed }) {
   const [query, setQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const filteredProducts = query.trim()
-    ? products.filter(p =>
-        p.name.toLowerCase().includes(query.toLowerCase()) ||
-        p.department.toLowerCase().includes(query.toLowerCase()) ||
-        p.subcategory.toLowerCase().includes(query.toLowerCase())
-      )
-    : [];
+  // Fetch all products when overlay opens
+  useEffect(() => {
+    if (isOpen && allProducts.length === 0) {
+      const fetchProducts = async () => {
+        const { data } = await getAllProducts();
+        setAllProducts(data);
+      };
+      fetchProducts();
+    }
+  }, [isOpen]);
+
+  // Filter products based on query
+  useEffect(() => {
+    if (!query.trim()) {
+      setFilteredProducts([]);
+      return;
+    }
+    
+    const searchQuery = query.toLowerCase();
+    const filtered = allProducts.filter(p =>
+      p.name.toLowerCase().includes(searchQuery) ||
+      (p.department && p.department.toLowerCase().includes(searchQuery)) ||
+      (p.subcategory && p.subcategory.toLowerCase().includes(searchQuery))
+    );
+    setFilteredProducts(filtered);
+  }, [query, allProducts]);
 
   const handleProductClick = (productId) => {
     addToRecentlyViewed(productId);
@@ -59,14 +81,18 @@ export default function SearchOverlay({ isOpen, onClose, addToRecentlyViewed }) 
                     onClick={() => handleProductClick(p.id)}
                     className="p-3 sm:p-4 hover:bg-slate-50 cursor-pointer flex items-center gap-3 sm:gap-4 transition-colors animate-fade-in touch-manipulation"
                   >
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
-                      {p.emoji}
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0 overflow-hidden">
+                      {p.image ? (
+                        <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                      ) : (
+                        p.emoji
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="font-medium text-sm sm:text-base text-slate-800 truncate">{p.name}</h4>
-                      <p className="text-xs sm:text-sm text-slate-500 truncate">{p.department} / {p.subcategory}</p>
+                      <p className="text-xs sm:text-sm text-slate-500 truncate">{p.department || 'General'} / {p.subcategory || 'Other'}</p>
                     </div>
-                    <span className="font-bold text-sm sm:text-base text-amber-600 flex-shrink-0">₹{p.price.toLocaleString()}</span>
+                    <span className="font-bold text-sm sm:text-base text-amber-600 flex-shrink-0">₹{p.price?.toLocaleString() || 0}</span>
                   </div>
                 ))
               )}

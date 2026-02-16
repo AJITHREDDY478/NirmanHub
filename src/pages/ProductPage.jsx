@@ -1,22 +1,65 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { getProductById, getAllProducts } from '../utils/catalogService';
 import { renderStars, formatPrice } from '../utils/helpers';
 
 export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, addToRecentlyViewed }) {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const product = products.find(p => p.id === productId);
+  const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedTab, setSelectedTab] = useState('description');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  // Get all images for product
+  const productImages = useMemo(() => {
+    if (!product) return [];
+    const images = [];
+    if (product.image) images.push(product.image);
+    if (product.additionalImages && Array.isArray(product.additionalImages)) {
+      images.push(...product.additionalImages);
+    }
+    return images;
+  }, [product]);
 
   useEffect(() => {
-    if (product) {
-      addToRecentlyViewed(product.id);
-    }
-    // Scroll to top when product changes
+    setSelectedImageIndex(0); // Reset image selection when product changes
+  }, [productId]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      const { data } = await getProductById(productId);
+      setProduct(data);
+      
+      if (data) {
+        addToRecentlyViewed(data.id);
+        // Fetch related products
+        const { data: allProducts } = await getAllProducts();
+        const related = allProducts.filter(p => 
+          p.category === data.category && p.id !== data.id
+        ).slice(0, 4);
+        setRelatedProducts(related);
+      }
+      setLoading(false);
+    };
+    
+    fetchProduct();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [product, productId]);
+  }, [productId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-slate-600">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -29,10 +72,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
     );
   }
 
-  const relatedProducts = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
-
   return (
-    <div className="min-h-screen bg-slate-50 pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <div className="mb-6 sm:mb-8 text-xs sm:text-sm text-slate-600">
@@ -46,9 +86,35 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Product Image */}
           <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl md:rounded-3xl flex items-center justify-center text-6xl sm:text-7xl md:text-9xl shadow-2xl md:sticky md:top-24">
-              {product.emoji}
+            <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl md:rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden">
+              {productImages.length > 0 ? (
+                <img src={productImages[selectedImageIndex]} alt={product.name} className="w-full h-full object-contain" />
+              ) : product.emoji ? (
+                <span className="text-6xl sm:text-7xl md:text-9xl">{product.emoji}</span>
+              ) : (
+                <span className="text-6xl">📦</span>
+              )}
             </div>
+            
+            {/* Image Thumbnails - Only show if more than 1 image */}
+            {productImages.length > 1 && (
+              <div className="flex gap-2 mt-4 justify-center">
+                {productImages.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                      selectedImageIndex === index 
+                        ? 'border-amber-500 ring-2 ring-amber-200' 
+                        : 'border-slate-200 hover:border-slate-300'
+                    }`}
+                  >
+                    <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+            
             {product.isNew && (
               <span className="absolute top-6 left-6 px-4 py-2 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-sm font-bold rounded-full animate-badge-pulse">NEW</span>
             )}
@@ -106,14 +172,14 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="flex flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
               <button onClick={() => addToCart(product.id, product, quantity)} className="flex-1 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-bold text-sm sm:text-base rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-2 touch-manipulation">
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                 </svg>
                 Add to Cart
               </button>
-              <button onClick={() => toggleWishlist(product.id)} className={`sm:px-6 py-3 sm:py-4 border-2 rounded-xl transition-all transform hover:scale-105 touch-manipulation ${wishlistItems.includes(product.id) ? 'bg-red-50 border-red-500 text-red-500' : 'border-slate-300 text-slate-600 hover:border-amber-500 hover:text-amber-600'}`}>
+              <button onClick={() => toggleWishlist(product.id)} className={`px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-xl transition-all transform hover:scale-105 touch-manipulation flex items-center justify-center ${wishlistItems.includes(product.id) ? 'bg-red-50 border-red-500 text-red-500' : 'border-slate-300 text-slate-600 hover:border-amber-500 hover:text-amber-600'}`}>
                 <svg className={`w-6 h-6 ${wishlistItems.includes(product.id) ? 'fill-current' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                 </svg>
@@ -235,8 +301,12 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
               {relatedProducts.map(relProduct => (
                 <div key={relProduct.id} onClick={() => navigate(`/product/${relProduct.id}`)} className="product-card bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-lg cursor-pointer touch-manipulation">
                   <div className="relative">
-                    <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-4xl sm:text-5xl md:text-6xl product-image">
-                      {relProduct.emoji}
+                    <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center product-image overflow-hidden">
+                      {relProduct.image ? (
+                        <img src={relProduct.image} alt={relProduct.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-4xl sm:text-5xl md:text-6xl">{relProduct.emoji}</span>
+                      )}
                     </div>
                     {relProduct.isNew && (
                       <span className="absolute top-3 left-3 px-3 py-1 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-xs font-bold rounded-full">NEW</span>
@@ -256,6 +326,5 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
           </div>
         )}
       </div>
-    </div>
   );
 }

@@ -1,6 +1,196 @@
 import { supabase } from './supabase';
 
 /**
+ * Get all public products (items)
+ */
+export const getAllProducts = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .select('*')
+      .eq('type', 'Item')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    
+    // Transform to match UI expected format
+    const products = (data || []).map(item => ({
+      id: item.id,
+      name: item.name,
+      price: item.discount_price || item.original_price,
+      originalPrice: item.discount_price ? item.original_price : null,
+      description: item.description,
+      department: item.item_details_data?.department || 'General',
+      subcategory: item.item_details_data?.subcategory || 'Other',
+      category: item.item_details_data?.category || item.item_details_data?.department || 'General',
+      emoji: item.item_details_data?.emoji || '📦',
+      image: item.image_url,
+      isNew: item.item_details_data?.isNew || false,
+      rating: item.item_details_data?.rating || 4.5,
+      reviews: item.item_details_data?.reviews || 0,
+      stock: item.stock_quantity,
+      printingTime: item.printing_time
+    }));
+    
+    return { data: products, error: null };
+  } catch (error) {
+    console.error('Error fetching all products:', error);
+    return { data: [], error };
+  }
+};
+
+/**
+ * Get product by ID
+ */
+export const getProductById = async (productId) => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .select('*')
+      .eq('id', productId)
+      .eq('type', 'Item')
+      .single();
+
+    if (error) throw error;
+    
+    if (!data) return { data: null, error: null };
+    
+    // Transform to match UI expected format
+    const product = {
+      id: data.id,
+      name: data.name,
+      price: data.discount_price || data.original_price,
+      originalPrice: data.discount_price ? data.original_price : null,
+      description: data.description,
+      department: data.item_details_data?.department || 'General',
+      subcategory: data.item_details_data?.subcategory || 'Other',
+      category: data.item_details_data?.category || data.item_details_data?.department || 'General',
+      emoji: data.item_details_data?.emoji || '📦',
+      image: data.image_url,
+      additionalImages: data.item_details_data?.additionalImages || [],
+      isNew: data.item_details_data?.isNew || false,
+      rating: data.item_details_data?.rating || 4.5,
+      reviews: data.item_details_data?.reviews || 0,
+      stock: data.stock_quantity,
+      printingTime: data.printing_time
+    };
+    
+    return { data: product, error: null };
+  } catch (error) {
+    console.error('Error fetching product by ID:', error);
+    return { data: null, error };
+  }
+};
+
+/**
+ * Search products by name or description
+ */
+export const searchProducts = async (searchTerm) => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .select('*')
+      .eq('type', 'Item')
+      .eq('is_active', true)
+      .or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    
+    // Transform to match UI expected format
+    const products = (data || []).map(item => ({
+      id: item.id,
+      name: item.name,
+      price: item.discount_price || item.original_price,
+      originalPrice: item.discount_price ? item.original_price : null,
+      description: item.description,
+      department: item.item_details_data?.department || 'General',
+      subcategory: item.item_details_data?.subcategory || 'Other',
+      category: item.item_details_data?.category || item.item_details_data?.department || 'General',
+      emoji: item.item_details_data?.emoji || '📦',
+      image: item.image_url,
+      isNew: item.item_details_data?.isNew || false,
+      rating: item.item_details_data?.rating || 4.5,
+      reviews: item.item_details_data?.reviews || 0,
+      stock: item.stock_quantity,
+      printingTime: item.printing_time
+    }));
+    
+    return { data: products, error: null };
+  } catch (error) {
+    console.error('Error searching products:', error);
+    return { data: [], error };
+  }
+};
+
+/**
+ * Get products by department
+ */
+export const getProductsByDepartment = async (departmentName) => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .select('*')
+      .eq('type', 'Item')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    
+    // Filter by department from item_details_data
+    const filteredData = (data || []).filter(item => 
+      item.item_details_data?.department?.toLowerCase() === departmentName.toLowerCase()
+    );
+    
+    // Transform to match UI expected format
+    const products = filteredData.map(item => ({
+      id: item.id,
+      name: item.name,
+      price: item.discount_price || item.original_price,
+      originalPrice: item.discount_price ? item.original_price : null,
+      description: item.description,
+      department: item.item_details_data?.department || 'General',
+      subcategory: item.item_details_data?.subcategory || 'Other',
+      category: item.item_details_data?.category || item.item_details_data?.department || 'General',
+      emoji: item.item_details_data?.emoji || '📦',
+      image: item.image_url,
+      isNew: item.item_details_data?.isNew || false,
+      rating: item.item_details_data?.rating || 4.5,
+      reviews: item.item_details_data?.reviews || 0,
+      stock: item.stock_quantity,
+      printingTime: item.printing_time
+    }));
+    
+    return { data: products, error: null };
+  } catch (error) {
+    console.error('Error fetching products by department:', error);
+    return { data: [], error };
+  }
+};
+
+/**
+ * Get all departments
+ */
+export const getAllDepartments = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .select('*')
+      .eq('type', 'DepartmentGroup')
+      .is('parent_id', null)
+      .eq('is_active', true)
+      .order('name', { ascending: true });
+
+    if (error) throw error;
+    return { data: data || [], error: null };
+  } catch (error) {
+    console.error('Error fetching departments:', error);
+    return { data: [], error };
+  }
+};
+
+/**
  * Upload image to Supabase Storage
  */
 export const uploadImage = async (userId, file) => {
@@ -9,14 +199,14 @@ export const uploadImage = async (userId, file) => {
     const fileName = `${userId}/${Date.now()}.${fileExt}`;
     
     const { data, error } = await supabase.storage
-      .from('catalog-images')
+      .from('NirmanHub')
       .upload(fileName, file);
 
     if (error) throw error;
 
     // Get public URL
     const { data: { publicUrl } } = supabase.storage
-      .from('catalog-images')
+      .from('NirmanHub')
       .getPublicUrl(fileName);
 
     return { url: publicUrl, error: null };

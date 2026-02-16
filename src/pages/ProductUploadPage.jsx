@@ -15,8 +15,8 @@ import * as XLSX from 'xlsx';
 export default function ProductUploadPage({ showToast }) {
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [imageFile, setImageFile] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [products, setProducts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   
@@ -159,15 +159,26 @@ export default function ProductUploadPage({ showToast }) {
 
 
   const handleImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImagePreview(e.target?.result);
-      };
-      reader.readAsDataURL(file);
+    const files = Array.from(e.target.files || []);
+    if (files.length > 0) {
+      // Limit to 5 images
+      const newFiles = files.slice(0, 5 - imageFiles.length);
+      setImageFiles(prev => [...prev, ...newFiles].slice(0, 5));
+      
+      // Generate previews
+      newFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImagePreviews(prev => [...prev, e.target?.result].slice(0, 5));
+        };
+        reader.readAsDataURL(file);
+      });
     }
+  };
+
+  const removeImage = (index) => {
+    setImageFiles(prev => prev.filter((_, i) => i !== index));
+    setImagePreviews(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleInputChange = (e) => {
@@ -207,8 +218,8 @@ export default function ProductUploadPage({ showToast }) {
       printing_time: '',
       is_active: true
     });
-    setImageFile(null);
-    setImagePreview(null);
+    setImageFiles([]);
+    setImagePreviews([]);
     setShowForm(false);
   };
 
@@ -225,16 +236,22 @@ export default function ProductUploadPage({ showToast }) {
 
     try {
       let imageUrl = null;
+      let additionalImages = [];
 
-      // Upload image if provided
-      if (imageFile) {
-        const { url, error } = await uploadImage(user.id, imageFile);
-        if (error) {
-          showToast('Failed to upload image');
-          setLoading(false);
-          return;
+      // Upload images if provided
+      if (imageFiles.length > 0) {
+        for (let i = 0; i < imageFiles.length; i++) {
+          const { url, error } = await uploadImage(user.id, imageFiles[i]);
+          if (error) {
+            showToast(`Failed to upload image ${i + 1}`);
+            continue;
+          }
+          if (i === 0) {
+            imageUrl = url; // First image is the main image
+          } else {
+            additionalImages.push(url);
+          }
         }
-        imageUrl = url;
       }
 
       // Find subdepartment ID if department and subdepartment are selected
@@ -262,7 +279,12 @@ export default function ProductUploadPage({ showToast }) {
         stock_quantity: formData.stock_quantity,
         printing_time: formData.printing_time,
         is_active: formData.is_active,
-        image_url: imageUrl
+        image_url: imageUrl,
+        item_details_data: {
+          department: formData.department,
+          subcategory: formData.subdepartment,
+          additionalImages: additionalImages
+        }
       });
 
       if (error) {
@@ -288,8 +310,8 @@ export default function ProductUploadPage({ showToast }) {
         department: '',
         subdepartment: ''
       });
-      setImageFile(null);
-      setImagePreview(null);
+      setImageFiles([]);
+      setImagePreviews([]);
       setShowForm(false);
       
       // Reload products
@@ -1233,35 +1255,54 @@ export default function ProductUploadPage({ showToast }) {
               {/* Image Upload */}
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Product Image
+                  Product Images <span className="text-slate-500 font-normal">(up to 5 images)</span>
                 </label>
                 <div className="border-2 border-dashed border-slate-300 rounded-lg p-6">
-                  {imagePreview ? (
-                    <div className="text-center">
-                      <img src={imagePreview} alt="Preview" className="max-h-48 mx-auto mb-4 rounded" />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setImageFile(null);
-                          setImagePreview(null);
-                        }}
-                        className="text-sm text-red-600 hover:text-red-700"
-                      >
-                        Remove Image
-                      </button>
+                  {/* Image Previews Grid */}
+                  {imagePreviews.length > 0 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-4">
+                      {imagePreviews.map((preview, index) => (
+                        <div key={index} className="relative group">
+                          <img 
+                            src={preview} 
+                            alt={`Preview ${index + 1}`} 
+                            className="w-full aspect-square object-cover rounded-lg border border-slate-200" 
+                          />
+                          {index === 0 && (
+                            <span className="absolute top-1 left-1 px-2 py-0.5 bg-blue-500 text-white text-xs rounded">
+                              Main
+                            </span>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
                     </div>
-                  ) : (
+                  )}
+                  
+                  {/* Upload Button */}
+                  {imageFiles.length < 5 && (
                     <label className="cursor-pointer">
                       <input
                         type="file"
                         accept="image/*"
+                        multiple
                         onChange={handleImageChange}
                         className="hidden"
                       />
-                      <div className="text-center py-8">
+                      <div className="text-center py-6 hover:bg-slate-50 rounded-lg transition-colors">
                         <div className="text-4xl mb-2">📸</div>
-                        <p className="text-slate-600">Click to upload or drag and drop</p>
-                        <p className="text-sm text-slate-500">PNG, JPG, GIF up to 10MB</p>
+                        <p className="text-slate-600">
+                          {imagePreviews.length > 0 ? 'Add more images' : 'Click to upload or drag and drop'}
+                        </p>
+                        <p className="text-sm text-slate-500">
+                          PNG, JPG, GIF up to 10MB • {5 - imageFiles.length} slots remaining
+                        </p>
                       </div>
                     </label>
                   )}

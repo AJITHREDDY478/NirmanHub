@@ -245,6 +245,7 @@ function AppContent() {
         addToCart={addToCart}
         toggleWishlist={toggleWishlist}
         wishlistItems={wishlistItems}
+        addToRecentlyViewed={addToRecentlyViewed}
       />} />
       <Route path="/product/:productId" element={<ProductPage
         addToCart={addToCart}

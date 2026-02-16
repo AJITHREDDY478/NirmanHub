@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { products } from '../data/products';
+import { getAllProducts } from '../utils/catalogService';
 import ThreeBackground from '../components/ThreeBackground';
 import Product3DViewer from '../components/Product3DViewer';
 import Footer from '../components/Footer';
@@ -9,6 +9,7 @@ import ProductCard from '../components/ProductCard';
 
 export default function HomePage({ addToCart, toggleWishlist, wishlistItems, recentlyViewed, addToRecentlyViewed }) {
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [modelIndex, setModelIndex] = useState(0);
   const navigate = useNavigate();
   
@@ -34,8 +35,12 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
   ];
   
   useEffect(() => {
-    setFeaturedProducts(products.slice(0, 8));
-
+    const fetchProducts = async () => {
+      const { data } = await getAllProducts();
+      setAllProducts(data);
+      setFeaturedProducts(data.slice(0, 8));
+    };
+    fetchProducts();
   }, []);
 
   const modelSpotlights = [
@@ -343,7 +348,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Link
-                  to={`/products?category=${category.name}`}
+                  to={`/department/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
                   className="group h-full"
                 >
                   <motion.div
@@ -472,7 +477,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
               >
                 <div className="flex gap-6 pb-6">
                   {recentlyViewed.slice(0, 12).map((productId, index) => {
-                    const product = products.find(p => p.id === productId);
+                    const product = allProducts.find(p => p.id === productId);
                     if (!product) return null;
                     
                     return (
