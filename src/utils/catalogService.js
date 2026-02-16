@@ -184,3 +184,141 @@ export const getItemsByParent = async (parentId) => {
     return { data: [], error };
   }
 };
+
+/**
+ * Create a department (DepartmentGroup with no parent)
+ */
+export const createDepartment = async (userId, name, lookupCode) => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .insert([{
+        user_id: userId,
+        name,
+        lookup_code: lookupCode,
+        type: 'DepartmentGroup',
+        parent_id: null,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    console.error('Error creating department:', error);
+    return { data: null, error };
+  }
+};
+
+/**
+ * Create a subdepartment (DepartmentGroup with parent_id)
+ */
+export const createSubdepartment = async (userId, name, lookupCode, parentDepartmentId) => {
+  try {
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .insert([{
+        user_id: userId,
+        name,
+        lookup_code: lookupCode,
+        type: 'DepartmentGroup',
+        parent_id: parentDepartmentId,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    console.error('Error creating subdepartment:', error);
+    return { data: null, error };
+  }
+};
+
+/**
+ * Get department hierarchy for user
+ * Returns departments with their subdepartments nested
+ */
+export const getDepartmentHierarchy = async (userId) => {
+  try {
+    // Get all departments (no parent)
+    const { data: departments, error: deptError } = await supabase
+      .from('catalog_entities')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('type', 'DepartmentGroup')
+      .is('parent_id', null)
+      .eq('is_active', true)
+      .order('name', { ascending: true });
+
+    if (deptError) throw deptError;
+
+    // For each department, get subdepartments
+    const hierarchy = await Promise.all(
+      departments.map(async (dept) => {
+        const { data: subdepts, error: subError } = await supabase
+          .from('catalog_entities')
+          .select('*')
+          .eq('user_id', userId)
+          .eq('type', 'DepartmentGroup')
+          .eq('parent_id', dept.id)
+          .eq('is_active', true)
+          .order('name', { ascending: true });
+
+        if (subError) throw subError;
+
+        return {
+          ...dept,
+          subdepartments: subdepts || []
+        };
+      })
+    );
+
+    return { data: hierarchy, error: null };
+  } catch (error) {
+    console.error('Error fetching department hierarchy:', error);
+    return { data: [], error };
+  }
+};
+
+/**
+ * Find subdepartment ID by department and subdepartment names
+ */
+export const findSubdepartmentId = async (userId, departmentName, subdepartmentName) => {
+  try {
+    // First find the department
+    const { data: dept, error: deptError } = await supabase
+      .from('catalog_entities')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('type', 'DepartmentGroup')
+      .eq('name', departmentName)
+      .is('parent_id', null)
+      .single();
+
+    if (deptError || !dept) return { data: null, error: deptError };
+
+    // Then find the subdepartment under that department
+    const { data: subdept, error: subError } = await supabase
+      .from('catalog_entities')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('type', 'DepartmentGroup')
+      .eq('name', subdepartmentName)
+      .eq('parent_id', dept.id)
+      .single();
+
+    if (subError) return { data: null, error: subError };
+
+    return { data: subdept?.id || null, error: null };
+  } catch (error) {
+    console.error('Error finding subdepartment:', error);
+    return { data: null, error };
+  }
+};

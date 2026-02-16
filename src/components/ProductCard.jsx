@@ -130,15 +130,24 @@ export default function ProductCard({
 
         {/* Pricing */}
         <div className="mb-3">
-          <div className="flex items-baseline gap-2">
-            <span className={`text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}>
-              ₹{product.price.toLocaleString()}
-            </span>
-            {product.originalPrice && (
-              <span className={`text-xs sm:text-sm line-through ${darkMode ? 'text-white/50' : 'text-slate-400'}`}>
+          {product.originalPrice && discount > 0 && (
+            <div className="flex items-center gap-1.5 mb-2 text-xs font-semibold">
+              <span className="text-green-600 flex items-center">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                {discount}%
+              </span>
+              <span className={`line-through ${darkMode ? 'text-white/50' : 'text-slate-400'}`}>
                 ₹{product.originalPrice.toLocaleString()}
               </span>
-            )}
+              <span className={`font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                ₹{product.price.toLocaleString()}
+              </span>
+            </div>
+          )}
+          <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'}`}>
+            ₹{product.price.toLocaleString()}
           </div>
         </div>
 

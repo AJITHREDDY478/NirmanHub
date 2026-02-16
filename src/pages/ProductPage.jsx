@@ -67,17 +67,17 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
             </div>
 
             <div className="mb-6 sm:mb-8">
-              <div className="flex items-baseline gap-2 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                 <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-600">{formatPrice(product.price)}</span>
                 {product.originalPrice && (
-                  <span className="text-lg sm:text-xl text-slate-400 line-through">{formatPrice(product.originalPrice)}</span>
+                  <>
+                    <span className="text-lg sm:text-xl text-slate-400 line-through">{formatPrice(product.originalPrice)}</span>
+                    <span className="px-3 py-1.5 bg-gradient-to-r from-red-500 to-orange-600 text-white text-sm font-bold rounded-full shadow-md">
+                      {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
+                    </span>
+                  </>
                 )}
               </div>
-              {product.originalPrice && (
-                <span className="inline-block mt-2 px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
-                  Save {Math.round((1 - product.price / product.originalPrice) * 100)}%
-                </span>
-              )}
             </div>
 
             <p className="text-slate-600 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed">

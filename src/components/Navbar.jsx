@@ -39,17 +39,18 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
   }, []);
 
   return (
-    <nav className={`sticky top-0 z-50 glass transition-all duration-300 py-3 md:py-4 px-4 md:px-6 ${isShrunk ? 'navbar-shrink shadow-lg' : ''}`}>
+    <nav className={`sticky top-0 z-50 transition-all duration-300 px-4 md:px-6 ${isShrunk ? 'py-2 md:py-3' : 'py-3 md:py-4'} bg-white/70 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_10px_30px_rgba(15,23,42,0.08)]`}>
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-amber-400/40 via-teal-400/40 to-amber-400/40"></div>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-to-br from-amber-500 to-teal-500 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 md:w-11 md:h-11 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-teal-500 flex items-center justify-center shadow-lg shadow-amber-500/25 ring-1 ring-white/80 transform group-hover:scale-110 transition-transform duration-300">
             <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="logo-text font-display font-bold text-lg md:text-xl bg-gradient-to-r from-amber-600 to-teal-600 bg-clip-text text-transparent transition-all duration-300">
+            <span className="logo-text font-display font-bold text-lg md:text-xl bg-gradient-to-r from-amber-600 via-orange-500 to-teal-600 bg-clip-text text-transparent transition-all duration-300">
               NirmanaHub
             </span>
             <span className="hidden md:inline text-[11px] text-slate-500/80 tracking-[0.12em] uppercase">
@@ -59,11 +60,11 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
         </Link>
 
         {/* Nav Links (Desktop) */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link to="/" className="tab-underline text-slate-700 hover:text-amber-600 transition-colors font-medium">
+        <div className="hidden md:flex items-center gap-3">
+          <Link to="/" className="px-4 py-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-amber-100/60 transition-all font-semibold">
             Home
           </Link>
-          <Link to="/categories" className="tab-underline text-slate-700 hover:text-amber-600 transition-colors font-medium">
+          <Link to="/categories" className="px-4 py-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-amber-100/60 transition-all font-semibold">
             Categories
           </Link>
           <div 
@@ -71,7 +72,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
             onMouseEnter={() => setShowGiftsMenu(true)}
             onMouseLeave={() => setShowGiftsMenu(false)}
           >
-            <button className="tab-underline text-slate-700 hover:text-amber-600 transition-colors font-medium flex items-center gap-1">
+            <button className="px-4 py-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-amber-100/60 transition-all font-semibold flex items-center gap-1">
               Gifts
               <svg className={`w-4 h-4 transition-transform ${showGiftsMenu ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
@@ -79,7 +80,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
             </button>
             
             {/* Gifts Mega Menu */}
-            <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[600px] bg-white rounded-2xl shadow-2xl border border-slate-200 transition-all duration-300 ${showGiftsMenu ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+            <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[640px] bg-white rounded-3xl shadow-[0_30px_60px_rgba(15,23,42,0.18)] border border-slate-200 transition-all duration-300 ${showGiftsMenu ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
               <div className="p-6 grid grid-cols-2 gap-8">
                 {/* Shop By Occasion */}
                 <div>
@@ -126,7 +127,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           <div className="relative group">
             <button
               onClick={onOpenSearch}
-              className="p-2 rounded-full hover:bg-amber-100 transition-all duration-300 ripple-effect touch-manipulation"
+              className="p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-amber-50 transition-all duration-300 ripple-effect touch-manipulation shadow-sm"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 group-hover:text-amber-600 transform group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -138,14 +139,14 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           <div className="relative account-menu-container">
             <button
               onClick={() => setShowAccountMenu(!showAccountMenu)}
-              className="p-2 rounded-full hover:bg-amber-100 transition-all duration-300 ripple-effect touch-manipulation group"
+              className="p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-amber-50 transition-all duration-300 ripple-effect touch-manipulation group shadow-sm"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 group-hover:text-amber-600 transform group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </button>
             
-            <div className={`absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 transition-all duration-300 ${
+            <div className={`absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-[0_25px_50px_rgba(15,23,42,0.18)] border border-slate-200 transition-all duration-300 ${
               showAccountMenu ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95'
             }`}>
               <div className="p-4 border-b border-slate-200">
@@ -228,7 +229,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                   </svg>
                   <span className="text-slate-700 group-hover:text-amber-600 font-medium">Address Book</span>
                 </Link>
-                {user && (
+                {user && user.email === 'ajithreddy478@gmail.com' && (
                   <Link
                     to="/products/upload"
                     onClick={() => {
@@ -238,7 +239,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 transition-colors group"
                   >
                     <svg className="w-5 h-5 text-slate-600 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                     <span className="text-slate-700 group-hover:text-amber-600 font-medium">Upload Products</span>
                   </Link>
@@ -250,7 +251,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full hover:bg-amber-100 transition-all touch-manipulation mobile-menu-button"
+            className="md:hidden p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-amber-50 transition-all touch-manipulation mobile-menu-button shadow-sm"
           >
             <svg className="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -265,32 +266,32 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
 
       {/* Mobile Menu */}
       <div className={`md:hidden absolute left-0 right-0 top-full transition-all duration-300 mobile-menu-container ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className="mx-4 my-3 rounded-2xl bg-white/95 backdrop-blur-lg shadow-2xl border border-slate-200/60 px-4 py-4 space-y-1 text-center">
+        <div className="mx-4 my-3 rounded-2xl bg-white/95 backdrop-blur-xl shadow-[0_25px_50px_rgba(15,23,42,0.18)] border border-slate-200/60 px-4 py-4 space-y-1 text-center">
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
           >
             Home
           </Link>
           <Link
             to="/categories"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
           >
             Categories
           </Link>
           <Link
             to="/about"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
           >
             About
           </Link>
           <Link
             to="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
           >
             Contact
           </Link>
