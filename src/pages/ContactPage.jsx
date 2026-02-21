@@ -150,7 +150,7 @@ export default function ContactPage({ showToast }) {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-xl text-slate-800 mb-3">Visit Our Studio</h3>
-                  <p className="text-slate-600 font-medium mb-1">NirmanaHub Innovation Center</p>
+                  <p className="text-slate-600 font-medium mb-1">NirmanHub Innovation Center</p>
                   <p className="text-slate-600">3rd Floor, Tech Park Building</p>
                   <p className="text-slate-600">MG Road, Koramangala</p>
                   <p className="text-slate-600">Bangalore, Karnataka 560095</p>
@@ -194,13 +194,13 @@ export default function ContactPage({ showToast }) {
                 <div className="flex-1">
                   <h3 className="font-bold text-xl text-slate-800 mb-3">Email Us</h3>
                   <p className="text-slate-600 mb-1">
-                    <span className="font-medium">General:</span> info@nirmanahub.com
+                    <span className="font-medium">General:</span> info@nirmanhub.com
                   </p>
                   <p className="text-slate-600 mb-1">
-                    <span className="font-medium">Custom Orders:</span> custom@nirmanahub.com
+                    <span className="font-medium">Custom Orders:</span> custom@nirmanhub.com
                   </p>
                   <p className="text-slate-600 mb-1">
-                    <span className="font-medium">Support:</span> support@nirmanahub.com
+                    <span className="font-medium">Support:</span> support@nirmanhub.com
                   </p>
                   <p className="text-slate-500 text-sm mt-3">We reply within 24 hours</p>
                 </div>

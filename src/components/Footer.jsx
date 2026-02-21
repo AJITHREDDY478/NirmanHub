@@ -12,7 +12,7 @@ export default function Footer() {
                 <span className="text-white text-xl">🏗️</span>
               </div>
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                NirmanaHub
+                NirmanHub
               </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -90,7 +90,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-800">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-            <p>&copy; 2026 NirmanaHub. All rights reserved.</p>
+            <p>&copy; 2026 NirmanHub. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

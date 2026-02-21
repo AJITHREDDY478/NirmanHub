@@ -106,7 +106,7 @@ export default function WhatsAppChat() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg">NirmanaHub Support</h3>
+                  <h3 className="text-white font-bold text-lg">NirmanHub Support</h3>
                   <p className="text-white/90 text-sm flex items-center gap-1.5">
                     <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse"></span>
                     Online now
@@ -132,7 +132,7 @@ export default function WhatsAppChat() {
                   <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 inline-block max-w-[90%]">
                     <p className="text-slate-800 text-base mb-1.5">👋 Hello!</p>
                     <p className="text-slate-600 text-sm leading-relaxed">
-                      Welcome to <span className="font-semibold text-green-600">NirmanaHub</span>! How can we help you today?
+                      Welcome to <span className="font-semibold text-green-600">NirmanHub</span>! How can we help you today?
                     </p>
                   </div>
                   <p className="text-xs text-slate-400 mt-1.5 ml-1">Just now</p>

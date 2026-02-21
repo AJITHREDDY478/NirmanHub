@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { getAllProducts } from '../utils/catalogService';
+import { getAllProducts, getAllDepartments } from '../utils/catalogService';
 import ThreeBackground from '../components/ThreeBackground';
 import Product3DViewer from '../components/Product3DViewer';
 import Footer from '../components/Footer';
@@ -10,8 +10,16 @@ import ProductCard from '../components/ProductCard';
 export default function HomePage({ addToCart, toggleWishlist, wishlistItems, recentlyViewed, addToRecentlyViewed }) {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [modelIndex, setModelIndex] = useState(0);
   const navigate = useNavigate();
+  
+  // Helper to check if URL is a video
+  const isVideoUrl = (url) => {
+    if (!url) return false;
+    const videoExtensions = ['.mp4', '.webm', '.mov'];
+    return videoExtensions.some(ext => url.toLowerCase().includes(ext));
+  };
   
   // Handle product view with navigation and tracking
   const handleViewProduct = (productId) => {
@@ -19,28 +27,27 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
     navigate(`/product/${productId}`);
   };
   
-  const categories = [
-    { id: 1, name: 'Gifts & Personalized', icon: '🎁', color: 'from-pink-400 to-red-500', textColor: 'text-pink-600', count: 287 },
-    { id: 2, name: 'Electronics & Gadgets', icon: '⚡', color: 'from-yellow-400 to-orange-500', textColor: 'text-orange-600', count: 156 },
-    { id: 3, name: 'Home & Living', icon: '🏠', color: 'from-green-400 to-emerald-500', textColor: 'text-green-600', count: 312 },
-    { id: 4, name: 'Wedding & Events', icon: '💍', color: 'from-purple-400 to-pink-500', textColor: 'text-purple-600', count: 189 },
-    { id: 5, name: 'Toys & Kids', icon: '🧸', color: 'from-blue-400 to-cyan-500', textColor: 'text-blue-600', count: 234 },
-    { id: 6, name: '3D Printed Toys', icon: '🎮', color: 'from-indigo-400 to-blue-500', textColor: 'text-indigo-600', count: 198 },
-    { id: 7, name: '3D Printed Electronics', icon: '🔌', color: 'from-amber-400 to-yellow-500', textColor: 'text-amber-600', count: 142 },
-    { id: 8, name: '3D Decor & Art', icon: '🎨', color: 'from-rose-400 to-pink-500', textColor: 'text-rose-600', count: 267 },
-    { id: 9, name: 'Miniatures & Models', icon: '🏗️', color: 'from-slate-400 to-gray-500', textColor: 'text-slate-600', count: 156 },
-    { id: 10, name: 'Keychains & Accessories', icon: '🔑', color: 'from-teal-400 to-emerald-500', textColor: 'text-teal-600', count: 189 },
-    { id: 11, name: 'Figurines & Collectibles', icon: '🗿', color: 'from-orange-400 to-red-500', textColor: 'text-orange-600', count: 234 },
-    { id: 12, name: 'Custom Designs', icon: '✨', color: 'from-violet-400 to-purple-500', textColor: 'text-violet-600', count: 512 },
-  ];
-  
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
+      // Fetch products
       const { data } = await getAllProducts();
       setAllProducts(data);
       setFeaturedProducts(data.slice(0, 8));
+      
+      // Fetch departments for categories
+      const { data: depts } = await getAllDepartments();
+      const formattedCategories = (depts || []).map((dept, index) => ({
+        id: dept.id,
+        name: dept.name,
+        icon: dept.item_details_data?.icon || '📦',
+        image: dept.image_url,
+        color: dept.item_details_data?.color || 'from-blue-400 to-cyan-500',
+        textColor: 'text-slate-600',
+        count: 0 // Can be computed from products if needed
+      }));
+      setCategories(formattedCategories);
     };
-    fetchProducts();
+    fetchData();
   }, []);
 
   const modelSpotlights = [
@@ -123,33 +130,6 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 </Link>
               </motion.div>
 
-              {/* Trust Indicators */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="mt-12 flex flex-wrap items-center gap-8"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 border-2 border-white"></div>
-                    ))}
-                  </div>
-                  <div className="ml-2 text-sm">
-                    <p className="font-semibold text-slate-900">2,500+ users</p>
-                    <p className="text-slate-600">joined this month</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-2 text-amber-500">
-                  <span className="text-2xl">★★★★★</span>
-                  <div className="ml-1 text-sm">
-                    <p className="font-semibold text-slate-900">4.9/5.0</p>
-                    <p className="text-slate-600">from 1,200+ reviews</p>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
 
             {/* Right: 3D Service Box */}
@@ -291,51 +271,96 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
       </section>
 
       {/* Horizontal Animated Product Strip */}
-      <section className="py-6 bg-white border-y border-slate-200 overflow-hidden">
-        <div className="flex gap-8 animate-scroll">
-          {categories.concat(categories).map((category, index) => (
-            <motion.div
-              key={`${category.id}-${index}`}
-              whileHover={{ scale: 1.05, y: -4 }}
-              className="flex-shrink-0 group cursor-pointer"
-            >
-              <div className="flex items-center gap-4 px-6 py-4 bg-slate-50 rounded-2xl border border-slate-200 group-hover:border-blue-300 group-hover:shadow-lg transition-all">
-                <div className="text-4xl">{category.icon}</div>
-                <div>
-                  <h4 className="font-semibold text-slate-900">{category.name}</h4>
-                  <p className="text-sm text-slate-600">{category.count} products</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+      {categories.length > 0 && (
+        <section className="py-6 bg-white border-y border-slate-200 overflow-hidden">
+          <div className="flex gap-8 animate-scroll">
+            {categories.concat(categories).map((category, index) => (
+              <motion.div
+                key={`${category.id}-${index}`}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="flex-shrink-0 group cursor-pointer"
+              >
+                <Link to={`/department/${category.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <div className="flex items-center gap-4 px-6 py-4 bg-slate-50 rounded-2xl border border-slate-200 group-hover:border-blue-300 group-hover:shadow-lg transition-all">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} p-0.5`}>
+                      <div className="w-full h-full rounded-lg overflow-hidden bg-white flex items-center justify-center">
+                        {category.image ? (
+                          isVideoUrl(category.image) ? (
+                            <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+                          ) : (
+                            <img src={category.image} alt={category.name} className="w-8 h-8 object-contain" />
+                          )
+                        ) : (
+                          <span className="text-2xl">{category.icon}</span>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-900">{category.name}</h4>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Featured Products */}
+      <section className="py-10 sm:py-16 px-4 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Featured Models</h2>
+            <p className="text-slate-600 text-base sm:text-lg px-4">Handpicked selections from our premium collection</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={addToCart}
+                onToggleWishlist={toggleWishlist}
+                isWishlisted={wishlistItems.includes(product.id)}
+                onViewDetails={handleViewProduct}
+              />
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-purple-500/50">
+              View All Products
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Categories - Modern Redesign */}
-      <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-white to-slate-50">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12 sm:mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            >
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Shop by Category
-              </span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto"
-            >
-              Explore our premium collection of 3D printed products across diverse categories
-            </motion.p>
-          </div>
+      {categories.length > 0 && (
+        <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-slate-50 to-white">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12 sm:mb-16">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+              >
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Shop by Category
+                </span>
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto"
+              >
+                Explore our premium collection of 3D printed products across diverse categories
+              </motion.p>
+            </div>
 
           {/* Category Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
@@ -356,24 +381,29 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                     transition={{ duration: 0.3 }}
                     className="h-full p-5 sm:p-6 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 flex flex-col items-center text-center cursor-pointer"
                   >
-                    {/* Icon Container */}
+                    {/* Icon/Image Container */}
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: 5 }}
                       transition={{ duration: 0.3 }}
-                      className={`w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${category.color} shadow-lg flex items-center justify-center transform transition-all`}
+                      className={`w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${category.color} shadow-lg p-0.5 transform transition-all`}
                     >
-                      <span className="text-2xl sm:text-4xl filter drop-shadow-lg">{category.icon}</span>
+                      <div className="w-full h-full rounded-lg sm:rounded-xl overflow-hidden bg-white flex items-center justify-center">
+                        {category.image ? (
+                          isVideoUrl(category.image) ? (
+                            <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+                          ) : (
+                            <img src={category.image} alt={category.name} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+                          )
+                        ) : (
+                          <span className="text-2xl sm:text-4xl filter drop-shadow-lg">{category.icon}</span>
+                        )}
+                      </div>
                     </motion.div>
 
                     {/* Title */}
                     <h3 className="font-bold text-sm sm:text-base text-slate-900 mb-1 sm:mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all">
                       {category.name}
                     </h3>
-
-                    {/* Product Count */}
-                    <p className="text-xs sm:text-sm text-slate-500 group-hover:text-slate-700 transition-colors">
-                      {category.count} products
-                    </p>
 
                     {/* Bottom Accent */}
                     <div className="mt-3 sm:mt-4 w-full h-1 bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-0 group-hover:opacity-100 rounded-full transition-all"></div>
@@ -403,35 +433,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
           </motion.div>
         </div>
       </section>
-
-      {/* Featured Products */}
-      <section className="py-10 sm:py-16 px-4 bg-gradient-to-b from-slate-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Featured Models</h2>
-            <p className="text-slate-600 text-base sm:text-lg px-4">Handpicked selections from our premium collection</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={addToCart}
-                onToggleWishlist={toggleWishlist}
-                isWishlisted={wishlistItems.includes(product.id)}
-                onViewDetails={handleViewProduct}
-              />
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-purple-500/50">
-              View All Products
-            </Link>
-          </div>
-        </div>
-      </section>
+      )}
 
       {/* Recently Viewed - Premium Section */}
       {recentlyViewed && recentlyViewed.length > 0 && (

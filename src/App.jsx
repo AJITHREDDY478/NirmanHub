@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, useNavigationType } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import PromoBanner from './components/PromoBanner';
@@ -28,6 +28,7 @@ function AppContent() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const navigationType = useNavigationType();
   const [cartItems, setCartItems] = useState(() => {
     const saved = localStorage.getItem('cartItems');
     return saved ? JSON.parse(saved) : [];
@@ -59,10 +60,85 @@ function AppContent() {
     }
   }, [user?.id]);
 
+  // Global scroll position save/restore
+  const scrollPositionsRef = useRef({});
+  const currentPathRef = useRef(location.pathname);
+  const redirectHandledRef = useRef(false);
+
+  // Save scroll position continuously on scroll events (not on navigation)
+  const isNavigatingRef = useRef(false);
+  
   useEffect(() => {
+    const handleScroll = () => {
+      // Don't save during navigation (prevents ProductPage scrollTo(0) from overwriting)
+      if (isNavigatingRef.current) return;
+      scrollPositionsRef.current[currentPathRef.current] = window.scrollY;
+    };
+
+    // Save immediately when clicking (before navigation happens)
+    const handleClick = (e) => {
+      // Check if click is on a link or inside a link
+      const link = e.target.closest('a, [role="link"], .cursor-pointer');
+      if (link) {
+        // Mark navigation starting - block scroll saves for 500ms
+        scrollPositionsRef.current[currentPathRef.current] = window.scrollY;
+        isNavigatingRef.current = true;
+        setTimeout(() => { isNavigatingRef.current = false; }, 500);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('click', handleClick, { capture: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClick, { capture: true });
+    };
+  }, []);
+
+  // Handle route changes - restore scroll on POP, scroll to top on PUSH
+  useEffect(() => {
+    const savedY = scrollPositionsRef.current[location.pathname];
+    
+    // Update current path reference AFTER we read the saved position
+    currentPathRef.current = location.pathname;
+
+    // On browser back/forward (POP), restore scroll after content renders
+    if (navigationType === 'POP') {
+      if (savedY !== undefined && savedY > 0) {
+        // Temporarily disable smooth scroll for instant jump
+        document.documentElement.style.scrollBehavior = 'auto';
+
+        const tryRestore = (attempts = 0) => {
+          // Wait until page is tall enough to scroll to saved position, or give up after 2s
+          if (document.documentElement.scrollHeight >= savedY + window.innerHeight || attempts > 20) {
+            window.scrollTo(0, savedY);
+            // Re-enable smooth scroll after a tick
+            requestAnimationFrame(() => {
+              document.documentElement.style.scrollBehavior = '';
+            });
+          } else {
+            setTimeout(() => tryRestore(attempts + 1), 100);
+          }
+        };
+        tryRestore();
+      }
+    } else if (navigationType === 'PUSH') {
+      // For new navigations (not product page which handles its own), scroll to top
+      if (!location.pathname.startsWith('/product/')) {
+        window.scrollTo(0, 0);
+      }
+    }
+  }, [location.pathname, navigationType]);
+
+  useEffect(() => {
+    // Only handle redirect once per session to avoid history issues
+    if (redirectHandledRef.current) return;
+    
     const params = new URLSearchParams(location.search);
     const redirect = params.get('redirect');
     if (redirect) {
+      redirectHandledRef.current = true;
       const normalized = redirect.replace(/^\/+/, '');
       navigate(`/${normalized}`, { replace: true });
     }
@@ -222,7 +298,7 @@ function AppContent() {
   };
 
   return (
-    <div className="h-full w-full relative bg-slate-50 overflow-x-hidden">
+    <div className="min-h-screen w-full relative bg-slate-50 overflow-x-hidden">
       <PromoBanner />
       <Navbar
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}

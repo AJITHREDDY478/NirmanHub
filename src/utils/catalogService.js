@@ -29,6 +29,10 @@ export const getAllProducts = async () => {
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
+      // Pass through structured specifications/customization so UI can read them
+      specifications: item.item_details_data?.specifications || null,
+      customizationOptions: item.item_details_data?.customizationOptions || null,
+      whyChoose: item.item_details_data?.whyChoose || null,
       stock: item.stock_quantity,
       printingTime: item.printing_time
     }));
@@ -59,6 +63,7 @@ export const getProductById = async (productId) => {
     // Transform to match UI expected format
     const product = {
       id: data.id,
+      lookupCode: data.lookup_code,
       name: data.name,
       price: data.discount_price || data.original_price,
       originalPrice: data.discount_price ? data.original_price : null,
@@ -72,6 +77,9 @@ export const getProductById = async (productId) => {
       isNew: data.item_details_data?.isNew || false,
       rating: data.item_details_data?.rating || 4.5,
       reviews: data.item_details_data?.reviews || 0,
+      specifications: data.item_details_data?.specifications || null,
+      customizationOptions: data.item_details_data?.customizationOptions || null,
+      whyChoose: data.item_details_data?.whyChoose || null,
       stock: data.stock_quantity,
       printingTime: data.printing_time
     };
@@ -113,6 +121,9 @@ export const searchProducts = async (searchTerm) => {
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
+      specifications: item.item_details_data?.specifications || null,
+      customizationOptions: item.item_details_data?.customizationOptions || null,
+      whyChoose: item.item_details_data?.whyChoose || null,
       stock: item.stock_quantity,
       printingTime: item.printing_time
     }));
@@ -378,7 +389,7 @@ export const getItemsByParent = async (parentId) => {
 /**
  * Create a department (DepartmentGroup with no parent)
  */
-export const createDepartment = async (userId, name, lookupCode) => {
+export const createDepartment = async (userId, name, lookupCode, icon = null, imageUrl = null, color = null) => {
   try {
     const { data, error } = await supabase
       .from('catalog_entities')
@@ -389,6 +400,8 @@ export const createDepartment = async (userId, name, lookupCode) => {
         type: 'DepartmentGroup',
         parent_id: null,
         is_active: true,
+        image_url: imageUrl,
+        item_details_data: { icon, color },
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       }])
@@ -510,5 +523,42 @@ export const findSubdepartmentId = async (userId, departmentName, subdepartmentN
   } catch (error) {
     console.error('Error finding subdepartment:', error);
     return { data: null, error };
+  }
+};
+
+/**
+ * Get the next incremental product lookup code
+ * Returns codes like PROD-0001, PROD-0002, etc.
+ */
+export const getNextProductLookupCode = async () => {
+  try {
+    // Get the highest existing product lookup code
+    const { data, error } = await supabase
+      .from('catalog_entities')
+      .select('lookup_code')
+      .eq('type', 'Item')
+      .like('lookup_code', 'PROD-%')
+      .order('lookup_code', { ascending: false })
+      .limit(1);
+
+    if (error) throw error;
+
+    let nextNumber = 1;
+    if (data && data.length > 0) {
+      // Extract the number from the last lookup code (e.g., PROD-0005 -> 5)
+      const lastCode = data[0].lookup_code;
+      const match = lastCode.match(/PROD-(\d+)/);
+      if (match) {
+        nextNumber = parseInt(match[1], 10) + 1;
+      }
+    }
+
+    // Format with leading zeros (PROD-0001, PROD-0002, etc.)
+    const nextCode = `PROD-${String(nextNumber).padStart(4, '0')}`;
+    return { data: nextCode, error: null };
+  } catch (error) {
+    console.error('Error generating next product lookup code:', error);
+    // Fallback to timestamp-based code if there's an error
+    return { data: `PROD-${Date.now()}`, error };
   }
 };

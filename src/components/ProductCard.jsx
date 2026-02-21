@@ -47,7 +47,7 @@ export default function ProductCard({
       {/* Image Container */}
       <div className="relative w-full overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
         <motion.div
-          className="aspect-[4/3] flex items-center justify-center text-4xl sm:text-5xl overflow-hidden"
+          className="aspect-square flex items-center justify-center text-4xl sm:text-5xl overflow-hidden"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         >
@@ -121,23 +121,12 @@ export default function ProductCard({
           {product.name}
         </h3>
 
-        {/* Rating */}
-        <div className="flex items-center gap-2 mb-2">
-          <div className={`flex text-xs ${darkMode ? 'text-yellow-400' : 'text-yellow-500'}`}>
-            {'★'.repeat(Math.floor(product.rating))}
-            {'☆'.repeat(5 - Math.floor(product.rating))}
-          </div>
-          <span className={`text-xs ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
-            ({product.reviews})
-          </span>
-        </div>
-
         {/* Pricing */}
-        <div className="mb-3">
-          {product.originalPrice && discount > 0 && (
-            <div className="flex items-center gap-1.5 mb-2 text-xs font-semibold">
+        <div className="mb-2">
+          {product.originalPrice && discount > 0 ? (
+            <div className="flex items-center gap-1.5 text-sm font-semibold flex-wrap">
               <span className="text-green-600 flex items-center">
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 {discount}%
@@ -145,14 +134,15 @@ export default function ProductCard({
               <span className={`line-through ${darkMode ? 'text-white/50' : 'text-slate-400'}`}>
                 ₹{product.originalPrice.toLocaleString()}
               </span>
-              <span className={`font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              <span className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'}`}>
                 ₹{product.price.toLocaleString()}
               </span>
             </div>
+          ) : (
+            <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'}`}>
+              ₹{product.price.toLocaleString()}
+            </div>
           )}
-          <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'}`}>
-            ₹{product.price.toLocaleString()}
-          </div>
         </div>
 
         {/* Add to Cart Button */}
@@ -171,13 +161,6 @@ export default function ProductCard({
           </svg>
           Add to Cart
         </motion.button>
-
-        {/* Click to View Hint */}
-        <p className={`text-center text-xs mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity ${
-          darkMode ? 'text-white/40' : 'text-slate-400'
-        }`}>
-          Click to view details
-        </p>
       </div>
     </motion.div>
   );

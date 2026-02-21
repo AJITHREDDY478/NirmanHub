@@ -51,7 +51,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           </div>
           <div className="flex flex-col leading-tight">
             <span className="logo-text font-display font-bold text-lg md:text-xl bg-gradient-to-r from-amber-600 via-orange-500 to-teal-600 bg-clip-text text-transparent transition-all duration-300">
-              NirmanaHub
+              NirmanHub
             </span>
             <span className="hidden md:inline text-[11px] text-slate-500/80 tracking-[0.12em] uppercase">
               Creating Memories, Layer by Layer.

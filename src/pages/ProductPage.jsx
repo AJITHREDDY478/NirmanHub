@@ -1,7 +1,8 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getProductById, getAllProducts } from '../utils/catalogService';
 import { renderStars, formatPrice } from '../utils/helpers';
+import ProductCard from '../components/ProductCard';
 
 export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, addToRecentlyViewed }) {
   const { productId } = useParams();
@@ -12,6 +13,10 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
   const [quantity, setQuantity] = useState(1);
   const [selectedTab, setSelectedTab] = useState('description');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
+  // Touch/swipe handling refs
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   // Get all images for product
   const productImages = useMemo(() => {
@@ -23,6 +28,34 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
     }
     return images;
   }, [product]);
+
+  // Swipe handlers for image navigation
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX.current - touchEndX.current;
+    
+    if (Math.abs(diff) > swipeThreshold && productImages.length > 1) {
+      if (diff > 0) {
+        // Swipe left - next image
+        setSelectedImageIndex(prev => 
+          prev < productImages.length - 1 ? prev + 1 : 0
+        );
+      } else {
+        // Swipe right - previous image
+        setSelectedImageIndex(prev => 
+          prev > 0 ? prev - 1 : productImages.length - 1
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     setSelectedImageIndex(0); // Reset image selection when product changes
@@ -85,14 +118,48 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
 
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Product Image */}
-          <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl md:rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden">
+          <div className="relative group">
+            <div 
+              className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl md:rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {productImages.length > 0 ? (
-                <img src={productImages[selectedImageIndex]} alt={product.name} className="w-full h-full object-contain" />
+                <img 
+                  src={productImages[selectedImageIndex]} 
+                  alt={product.name} 
+                  className="w-full h-full object-contain select-none pointer-events-none" 
+                  draggable="false"
+                />
               ) : product.emoji ? (
                 <span className="text-6xl sm:text-7xl md:text-9xl">{product.emoji}</span>
               ) : (
                 <span className="text-6xl">📦</span>
+              )}
+              
+              {/* Navigation Arrows */}
+              {productImages.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setSelectedImageIndex(prev => prev > 0 ? prev - 1 : productImages.length - 1)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                    aria-label="Previous image"
+                  >
+                    <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => setSelectedImageIndex(prev => prev < productImages.length - 1 ? prev + 1 : 0)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                    aria-label="Next image"
+                  >
+                    <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
               )}
             </div>
             
@@ -124,13 +191,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
           <div>
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-3 sm:mb-4">{product.name}</h1>
             
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center">
-                {renderStars(product.rating)}
-              </div>
-              <span className="text-slate-600">{product.rating}</span>
-              <span className="text-slate-400">({product.reviews} reviews)</span>
-            </div>
+            {/* Reviews removed per product owner request. */}
 
             <div className="mb-6 sm:mb-8">
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -212,18 +273,18 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
 
         {/* Tabs */}
         <div className="mb-12 md:mb-16">
-          <div className="flex gap-4 sm:gap-6 md:gap-8 border-b border-slate-200 mb-6 sm:mb-8 overflow-x-auto no-scrollbar">
-            <button onClick={() => setSelectedTab('description')} className={`pb-3 sm:pb-4 font-semibold text-sm sm:text-base whitespace-nowrap transition-colors relative touch-manipulation ${selectedTab === 'description' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
+          <div className="flex border-b border-slate-200 mb-6 sm:mb-8">
+            <button onClick={() => setSelectedTab('description')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'description' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
               Description
               {selectedTab === 'description' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
             </button>
-            <button onClick={() => setSelectedTab('specs')} className={`pb-4 font-semibold transition-colors relative ${selectedTab === 'specs' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
-              Specifications
+            <button onClick={() => setSelectedTab('specs')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'specs' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
+              Specification
               {selectedTab === 'specs' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
             </button>
-            <button onClick={() => setSelectedTab('reviews')} className={`pb-4 font-semibold transition-colors relative ${selectedTab === 'reviews' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
-              Reviews
-              {selectedTab === 'reviews' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
+            <button onClick={() => setSelectedTab('customization')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'customization' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
+              Customization
+              {selectedTab === 'customization' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
             </button>
           </div>
 
@@ -253,41 +314,36 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
                   <span className="text-sm text-slate-500">Category</span>
                   <p className="font-semibold text-slate-800">{product.category}</p>
                 </div>
-                <div className="border border-slate-200 rounded-lg p-4">
-                  <span className="text-sm text-slate-500">Product ID</span>
-                  <p className="font-semibold text-slate-800">#{product.id}</p>
-                </div>
-                <div className="border border-slate-200 rounded-lg p-4">
-                  <span className="text-sm text-slate-500">Department</span>
-                  <p className="font-semibold text-slate-800">{product.department}</p>
-                </div>
-                <div className="border border-slate-200 rounded-lg p-4">
-                  <span className="text-sm text-slate-500">Rating</span>
-                  <p className="font-semibold text-slate-800">{product.rating} / 5.0</p>
-                </div>
+
+                {/* Dynamically render specifications object keys */}
+                {product.specifications && Object.keys(product.specifications).length > 0 ? (
+                  Object.entries(product.specifications).map(([key, value]) => (
+                    <div key={key} className="border border-slate-200 rounded-lg p-4">
+                      <span className="text-sm text-slate-500">{key}</span>
+                      <p className="font-semibold text-slate-800">{value || '—'}</p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-1 sm:col-span-2 text-slate-500">No specifications provided.</div>
+                )}
               </div>
             )}
 
-            {selectedTab === 'reviews' && (
-              <div>
-                <div className="flex items-center gap-6 mb-8 p-6 bg-slate-50 rounded-xl">
-                  <div className="text-center">
-                    <div className="text-5xl font-bold text-slate-800">{product.rating}</div>
-                    <div className="flex items-center justify-center mt-2">{renderStars(product.rating)}</div>
-                    <div className="text-sm text-slate-600 mt-1">{product.reviews} reviews</div>
-                  </div>
-                  <div className="flex-1">
-                    {[5, 4, 3, 2, 1].map(star => (
-                      <div key={star} className="flex items-center gap-3 mb-2">
-                        <span className="text-sm text-slate-600 w-12">{star} star</span>
-                        <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-amber-500" style={{ width: `${star === 5 ? 70 : star === 4 ? 20 : 10}%` }}></div>
-                        </div>
+            {selectedTab === 'customization' && (
+              <div className="space-y-4 text-slate-600">
+                <p className="mb-2">Choose from the available customization options for this product. These options are set by the seller during upload.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {product.customizationOptions && Object.keys(product.customizationOptions).length > 0 ? (
+                    Object.entries(product.customizationOptions).map(([k, v]) => (
+                      <div key={k} className="border border-slate-200 rounded-lg p-4">
+                        <span className="text-sm text-slate-500">{k}</span>
+                        <p className="font-semibold text-slate-800">{typeof v === 'boolean' ? (v ? 'Available' : 'Not available') : v}</p>
                       </div>
-                    ))}
-                  </div>
+                    ))
+                  ) : (
+                    <div className="col-span-1 sm:col-span-2 text-slate-500">No customization options provided.</div>
+                  )}
                 </div>
-                <p className="text-slate-600">Customer reviews help us improve our products and service. Share your experience!</p>
               </div>
             )}
           </div>
@@ -297,30 +353,16 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
         {relatedProducts.length > 0 && (
           <div>
             <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-800 mb-6 sm:mb-8">Related Products</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
               {relatedProducts.map(relProduct => (
-                <div key={relProduct.id} onClick={() => navigate(`/product/${relProduct.id}`)} className="product-card bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-lg cursor-pointer touch-manipulation">
-                  <div className="relative">
-                    <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center product-image overflow-hidden">
-                      {relProduct.image ? (
-                        <img src={relProduct.image} alt={relProduct.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="text-4xl sm:text-5xl md:text-6xl">{relProduct.emoji}</span>
-                      )}
-                    </div>
-                    {relProduct.isNew && (
-                      <span className="absolute top-3 left-3 px-3 py-1 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-xs font-bold rounded-full">NEW</span>
-                    )}
-                  </div>
-                  <div className="p-3 sm:p-4">
-                    <h3 className="font-medium text-sm sm:text-base text-slate-800 truncate">{relProduct.name}</h3>
-                    <div className="flex items-center gap-1 sm:gap-2 mt-1">
-                      <div className="flex items-center scale-75 sm:scale-100 origin-left">{renderStars(relProduct.rating)}</div>
-                      <span className="text-xs text-slate-500">({relProduct.reviews})</span>
-                    </div>
-                    <p className="text-amber-600 font-bold text-base sm:text-lg mt-1">{formatPrice(relProduct.price)}</p>
-                  </div>
-                </div>
+                <ProductCard
+                  key={relProduct.id}
+                  product={relProduct}
+                  onAddToCart={addToCart}
+                  onToggleWishlist={toggleWishlist}
+                  isWishlisted={wishlistItems.includes(relProduct.id)}
+                  onViewDetails={(id) => navigate(`/product/${id}`)}
+                />
               ))}
             </div>
           </div>

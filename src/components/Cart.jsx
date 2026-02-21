@@ -107,7 +107,7 @@ export default function Cart({ isOpen, onClose, cartItems, updateQuantity, remov
               Checkout
             </button>
             <div className="text-center mt-4 text-xs text-slate-500 italic">
-              CRAFTED WITH CARE BY NirmanaHub
+              CRAFTED WITH CARE BY NirmanHub
             </div>
           </div>
         )}

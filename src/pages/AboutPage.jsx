@@ -4,7 +4,7 @@ export default function AboutPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24">
         {/* Hero Section */}
         <div className="text-center mb-12 sm:mb-14 md:mb-16">
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-3 sm:mb-4">About NirmanaHub</h1>
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-3 sm:mb-4">About NirmanHub</h1>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto px-4">
             Your trusted destination for quality products and exceptional shopping experience
           </p>
@@ -16,7 +16,7 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-800 mb-4 sm:mb-6">Our Story</h2>
             <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed">
               <p>
-                Founded with a vision to revolutionize online shopping, NirmanaHub has grown from a small startup to a leading e-commerce platform serving thousands of happy customers.
+                Founded with a vision to revolutionize online shopping, NirmanHub has grown from a small startup to a leading e-commerce platform serving thousands of happy customers.
               </p>
               <p>
                 We believe in providing quality products at competitive prices, backed by exceptional customer service. Our carefully curated collection spans across electronics, fashion, home decor, and accessories.
@@ -89,7 +89,7 @@ export default function AboutPage() {
 
         {/* Why Choose Us */}
         <div className="mb-20">
-          <h2 className="font-display text-3xl font-bold text-slate-800 text-center mb-12">Why Choose NirmanaHub?</h2>
+          <h2 className="font-display text-3xl font-bold text-slate-800 text-center mb-12">Why Choose NirmanHub?</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
               { icon: '🎁', title: 'Wide Selection', desc: 'Thousands of products across multiple categories' },
