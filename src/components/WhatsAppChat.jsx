@@ -41,7 +41,7 @@ export default function WhatsAppChat() {
 
   const handleDirectChat = () => {
     const message = encodeURIComponent(`Hi! I'm interested in your products. Can you help me?`);
-    window.open(`https://wa.me/919876543212?text=${message}`, '_blank');
+    window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
     setIsOpen(false);
   };
 
@@ -159,40 +159,50 @@ export default function WhatsAppChat() {
                       </svg>
                     </div>
                   </button>
-
-                  <a
-                    href="tel:+919876543212"
-                    className="w-full bg-white border-2 border-slate-200 active:border-green-400 active:bg-green-50 text-slate-700 rounded-2xl px-5 py-4 text-left transition-all shadow-sm active:shadow-md active:scale-[0.98] touch-manipulation block"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="text-3xl">📞</div>
-                        <div>
-                          <p className="font-bold text-base">Call Us</p>
-                          <p className="text-sm text-slate-500">+91 98765 43212</p>
-                        </div>
-                      </div>
-                      <svg className="w-6 h-6 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </a>
                 </div>
 
                 {/* Popular Topics */}
                 <div className="space-y-3 pb-4">
                   <p className="text-sm font-bold text-slate-700 px-1">Popular Topics</p>
                   <div className="flex flex-wrap gap-2.5">
-                    <button className="px-4 py-2.5 bg-white border-2 border-slate-200 active:border-green-400 active:bg-green-50 text-sm font-medium text-slate-700 active:text-green-600 rounded-full transition-all touch-manipulation shadow-sm">
+                    <button 
+                      onClick={() => {
+                        const message = encodeURIComponent("Hi! I'd like to know more about your 3D Printing services.");
+                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        setIsOpen(false);
+                      }}
+                      className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
+                    >
                       🖨️ 3D Printing
                     </button>
-                    <button className="px-4 py-2.5 bg-white border-2 border-slate-200 active:border-green-400 active:bg-green-50 text-sm font-medium text-slate-700 active:text-green-600 rounded-full transition-all touch-manipulation shadow-sm">
+                    <button 
+                      onClick={() => {
+                        const message = encodeURIComponent("Hi! I'm interested in placing a custom order. Can you help me?");
+                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        setIsOpen(false);
+                      }}
+                      className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
+                    >
                       🎨 Custom Orders
                     </button>
-                    <button className="px-4 py-2.5 bg-white border-2 border-slate-200 active:border-green-400 active:bg-green-50 text-sm font-medium text-slate-700 active:text-green-600 rounded-full transition-all touch-manipulation shadow-sm">
+                    <button 
+                      onClick={() => {
+                        const message = encodeURIComponent("Hi! I'd like to track my order. Can you help me with the status?");
+                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        setIsOpen(false);
+                      }}
+                      className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
+                    >
                       📦 Track Order
                     </button>
-                    <button className="px-4 py-2.5 bg-white border-2 border-slate-200 active:border-green-400 active:bg-green-50 text-sm font-medium text-slate-700 active:text-green-600 rounded-full transition-all touch-manipulation shadow-sm">
+                    <button 
+                      onClick={() => {
+                        const message = encodeURIComponent("Hi! I'm interested in bulk orders. Can you share pricing and details?");
+                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        setIsOpen(false);
+                      }}
+                      className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
+                    >
                       🏢 Bulk Orders
                     </button>
                   </div>

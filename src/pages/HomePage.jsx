@@ -288,7 +288,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                           isVideoUrl(category.image) ? (
                             <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
                           ) : (
-                            <img src={category.image} alt={category.name} className="w-8 h-8 object-contain" />
+                            <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
                           )
                         ) : (
                           <span className="text-2xl">{category.icon}</span>
@@ -392,7 +392,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                           isVideoUrl(category.image) ? (
                             <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
                           ) : (
-                            <img src={category.image} alt={category.name} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+                            <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
                           )
                         ) : (
                           <span className="text-2xl sm:text-4xl filter drop-shadow-lg">{category.icon}</span>
