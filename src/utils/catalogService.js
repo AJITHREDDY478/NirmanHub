@@ -529,32 +529,45 @@ export const findSubdepartmentId = async (userId, departmentName, subdepartmentN
 /**
  * Get the next incremental product lookup code
  * Returns codes like PROD-0001, PROD-0002, etc.
+ * Checks database for existing codes and finds the next available one
  */
 export const getNextProductLookupCode = async () => {
   try {
-    // Get the highest existing product lookup code
+    // Get all existing product lookup codes that match PROD-XXXX pattern
     const { data, error } = await supabase
       .from('catalog_entities')
       .select('lookup_code')
-      .eq('type', 'Item')
-      .like('lookup_code', 'PROD-%')
-      .order('lookup_code', { ascending: false })
-      .limit(1);
+      .like('lookup_code', 'PROD-%');
 
     if (error) throw error;
 
-    let nextNumber = 1;
+    // Build a Set of existing codes for quick lookup
+    const existingCodes = new Set();
+    let maxNumber = 0;
+    
     if (data && data.length > 0) {
-      // Extract the number from the last lookup code (e.g., PROD-0005 -> 5)
-      const lastCode = data[0].lookup_code;
-      const match = lastCode.match(/PROD-(\d+)/);
-      if (match) {
-        nextNumber = parseInt(match[1], 10) + 1;
+      for (const item of data) {
+        existingCodes.add(item.lookup_code);
+        const match = item.lookup_code.match(/PROD-(\d+)/);
+        if (match) {
+          const num = parseInt(match[1], 10);
+          if (num > maxNumber) {
+            maxNumber = num;
+          }
+        }
       }
     }
 
-    // Format with leading zeros (PROD-0001, PROD-0002, etc.)
-    const nextCode = `PROD-${String(nextNumber).padStart(4, '0')}`;
+    // Start from max + 1 and find the next available code
+    let nextNumber = maxNumber + 1;
+    let nextCode = `PROD-${String(nextNumber).padStart(4, '0')}`;
+    
+    // Keep incrementing if code already exists (handles edge cases/gaps)
+    while (existingCodes.has(nextCode)) {
+      nextNumber++;
+      nextCode = `PROD-${String(nextNumber).padStart(4, '0')}`;
+    }
+
     return { data: nextCode, error: null };
   } catch (error) {
     console.error('Error generating next product lookup code:', error);

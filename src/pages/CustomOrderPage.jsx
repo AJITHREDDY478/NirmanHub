@@ -21,6 +21,11 @@ export default function CustomOrderPage({ showToast }) {
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
 
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,

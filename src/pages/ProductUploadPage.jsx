@@ -475,11 +475,20 @@ export default function ProductUploadPage({ showToast }) {
 
   // Handle adding a new product with auto-generated lookup code
   const handleAddNewProduct = async () => {
-    const { data: nextCode } = await getNextProductLookupCode();
-    setFormData(prev => ({
-      ...prev,
+    // Generate lookup code first
+    let generatedCode = `PROD-${Date.now()}`;
+    try {
+      const result = await getNextProductLookupCode();
+      if (result && result.data) {
+        generatedCode = result.data;
+      }
+    } catch (err) {
+      console.error('Error generating lookup code:', err);
+    }
+    
+    setFormData({
       name: '',
-      lookup_code: nextCode || `PROD-${Date.now()}`,
+      lookup_code: generatedCode,
       description: '',
       type: 'Item',
       original_price: '',
@@ -502,7 +511,7 @@ export default function ProductUploadPage({ showToast }) {
       extra_members: false,
       personal_message: false,
       why_choose: ''
-    }));
+    });
     setEditingProduct(null);
     setImageFiles([]);
     setImagePreviews([]);
@@ -615,10 +624,27 @@ export default function ProductUploadPage({ showToast }) {
         data = result.data;
         error = result.error;
       } else {
-        // Create new product
-        const result = await createCatalogItem(user.id, itemData);
-        data = result.data;
-        error = result.error;
+        // Create new product with retry logic for duplicate key errors
+        let retryCount = 0;
+        const maxRetries = 3;
+        
+        while (retryCount <= maxRetries) {
+          const result = await createCatalogItem(user.id, itemData);
+          data = result.data;
+          error = result.error;
+          
+          // Check for duplicate key error (code 23505)
+          if (error?.code === '23505' && error?.details?.includes('lookup_code')) {
+            retryCount++;
+            if (retryCount <= maxRetries) {
+              // Get a new lookup code and retry
+              const { data: newCode } = await getNextProductLookupCode();
+              itemData.lookup_code = newCode || `PROD-${Date.now()}`;
+              continue;
+            }
+          }
+          break;
+        }
       }
 
       if (error) {
