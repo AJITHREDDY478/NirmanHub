@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import brandLogoLight from '../assets/brand/nirmanhub-logo-light.svg';
 
 export default function Footer() {
   return (
@@ -7,13 +8,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand Section */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-xl">🏗️</span>
-              </div>
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                NirmanHub
-              </span>
+            <Link to="/" className="inline-flex items-center">
+              <img
+                src={brandLogoLight}
+                alt="NirmanHub"
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
               Your premier destination for premium 3D printed products and custom designs. Bringing imagination to life.

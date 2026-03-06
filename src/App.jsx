@@ -23,6 +23,7 @@ import OrdersPage from './pages/OrdersPage';
 import WishlistPage from './pages/WishlistPage';
 import AddressPage from './pages/AddressPage';
 import ProductUploadPage from './pages/ProductUploadPage';
+import ScrapedProductsReviewPage from './pages/ScrapedProductsReviewPage';
 
 function AppContent() {
   const { user } = useAuth();
@@ -143,6 +144,10 @@ function AppContent() {
       navigate(`/${normalized}`, { replace: true });
     }
   }, [location.search, navigate]);
+
+  const hideFloatingActions =
+    location.pathname === '/products/upload' ||
+    location.pathname === '/products/review';
 
   const loadUserCart = async () => {
     setCartLoading(true);
@@ -342,6 +347,7 @@ function AppContent() {
       />} />
       <Route path="/address" element={<AddressPage showToast={showToast} />} />
       <Route path="/products/upload" element={<ProductUploadPage showToast={showToast} />} />
+      <Route path="/products/review" element={<ScrapedProductsReviewPage showToast={showToast} />} />
     </Routes>
 
     <Cart
@@ -383,11 +389,15 @@ function AppContent() {
     />
 
     <Toast show={toast.show} message={toast.message} />
-    <FloatingCart 
-      cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-      onOpenCart={() => setIsCartOpen(true)}
-    />
-    <WhatsAppChat />
+    {!hideFloatingActions && (
+      <>
+        <FloatingCart 
+          cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+          onOpenCart={() => setIsCartOpen(true)}
+        />
+        <WhatsAppChat />
+      </>
+    )}
   </div>
   );
 }

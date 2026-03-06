@@ -4,6 +4,19 @@ export default function Cart({ isOpen, onClose, cartItems, updateQuantity, remov
   const navigate = useNavigate();
   const total = cartItems.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0);
 
+  const getCartProductImage = (product) => {
+    if (!product) return null;
+    const primaryImage = product.image || product.image_url;
+    if (primaryImage) return primaryImage;
+
+    const additionalImages = product.additionalImages || product.item_details_data?.additionalImages;
+    if (Array.isArray(additionalImages) && additionalImages.length > 0) {
+      return additionalImages[0];
+    }
+
+    return null;
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -55,8 +68,16 @@ export default function Cart({ isOpen, onClose, cartItems, updateQuantity, remov
           ) : (
             cartItems.map(item => (
               <div key={item.id} className="cart-item-enter bg-slate-50 rounded-xl p-4 flex gap-4">
-                <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-3xl flex-shrink-0">
-                  {item.product?.emoji || '📦'}
+                <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-3xl flex-shrink-0 overflow-hidden">
+                  {getCartProductImage(item.product) ? (
+                    <img
+                      src={getCartProductImage(item.product)}
+                      alt={item.product?.name || 'Product'}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    item.product?.emoji || '📦'
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-medium text-slate-800 truncate">{item.product?.name || 'Unknown'}</h4>

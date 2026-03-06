@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../utils/supabase';
+import { getCustomOrders } from '../utils/customOrderService';
 import { 
   createCatalogItem, 
   uploadImage, 
@@ -10,23 +12,45 @@ import {
   getDepartmentHierarchy,
   findSubdepartmentId,
   updateCatalogItem,
-  getNextProductLookupCode
+  getNextProductLookupCode,
+  deleteCatalogItem
 } from '../utils/catalogService';
 import * as XLSX from 'xlsx';
+import SvgGenerator from '../components/SvgGenerator';
 
 export default function ProductUploadPage({ showToast }) {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [imageFiles, setImageFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [products, setProducts] = useState([]);
+  const [isDeletingProduct, setIsDeletingProduct] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [isDeptSubdeptEditMode, setIsDeptSubdeptEditMode] = useState(false);
+  const [isSavingDeptSubdept, setIsSavingDeptSubdept] = useState(false);
+  const [deptSubdeptEdits, setDeptSubdeptEdits] = useState({});
+  const [isPriceStockEditMode, setIsPriceStockEditMode] = useState(false);
+  const [isSavingPriceStock, setIsSavingPriceStock] = useState(false);
+  const [priceStockEdits, setPriceStockEdits] = useState({});
+  const [selectedProductIds, setSelectedProductIds] = useState(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productFilters, setProductFilters] = useState({
+    search: '',
+    department: 'all',
+    stock: 'all'
+  });
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [activeTab, setActiveTab] = useState('products'); // 'products' or 'departments'
+  const [showCustomOrdersModal, setShowCustomOrdersModal] = useState(false);
+  const [customOrders, setCustomOrders] = useState([]);
+  const [isLoadingCustomOrders, setIsLoadingCustomOrders] = useState(false);
   
   // Excel import states
   const [showExcelImport, setShowExcelImport] = useState(false);
+  const [showSvgGenerator, setShowSvgGenerator] = useState(false);
   const [excelData, setExcelData] = useState([]);
   const [validationResults, setValidationResults] = useState([]);
   const [selectedItems, setSelectedItems] = useState(new Set());
@@ -103,6 +127,30 @@ export default function ProductUploadPage({ showToast }) {
       setIsLoadingData(false);
     }
   }, [user?.id]);
+
+  const loadCustomOrders = async () => {
+    setIsLoadingCustomOrders(true);
+    const { data, error } = await getCustomOrders();
+    if (error) {
+      showToast('Failed to load customized orders');
+      setCustomOrders([]);
+      setIsLoadingCustomOrders(false);
+      return;
+    }
+    setCustomOrders(data || []);
+    setIsLoadingCustomOrders(false);
+  };
+
+  useEffect(() => {
+    if (user?.id) {
+      loadCustomOrders();
+    }
+  }, [user?.id]);
+
+  const handleOpenCustomOrdersModal = async () => {
+    await loadCustomOrders();
+    setShowCustomOrdersModal(true);
+  };
 
   const loadProducts = async () => {
     try {
@@ -473,6 +521,339 @@ export default function ProductUploadPage({ showToast }) {
     setShowForm(true);
   };
 
+  const handleDeleteProduct = async (productId, productName) => {
+    setDeleteTarget({ ids: [productId], label: productName });
+  };
+
+  const handleBulkDeleteProducts = () => {
+    if (selectedProductIds.size === 0) {
+      return;
+    }
+    setDeleteTarget({
+      ids: Array.from(selectedProductIds),
+      label: `${selectedProductIds.size} selected products`
+    });
+  };
+
+  const toggleProductSelection = (productId) => {
+    setSelectedProductIds(prev => {
+      const next = new Set(prev);
+      if (next.has(productId)) {
+        next.delete(productId);
+      } else {
+        next.add(productId);
+      }
+      return next;
+    });
+  };
+
+  const toggleSelectAllProducts = (checked, filteredProducts) => {
+    setSelectedProductIds(prev => {
+      const next = new Set(prev);
+      if (checked) {
+        filteredProducts.forEach(product => next.add(product.id));
+      } else {
+        filteredProducts.forEach(product => next.delete(product.id));
+      }
+      return next;
+    });
+  };
+
+  const clearProductFilters = () => {
+    setProductFilters({
+      search: '',
+      department: 'all',
+      stock: 'all'
+    });
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [productFilters.search, productFilters.department, productFilters.stock]);
+
+  const getProductDepartment = (product) => String(product.item_details_data?.department || '').trim() || 'Others';
+  const getProductSubdepartment = (product) => String(
+    product.item_details_data?.subcategory || product.item_details_data?.subdepartment || ''
+  ).trim() || 'Others';
+
+  const getSubdepartmentOptionsForDepartment = (departmentName) => {
+    const normalizedDepartment = String(departmentName || '').trim();
+    const matchedDepartment = departments.find(
+      dept => String(dept.name || '').trim() === normalizedDepartment
+    );
+
+    if (!matchedDepartment?.subdepartments?.length) {
+      return [];
+    }
+
+    return Array.from(
+      new Set(
+        matchedDepartment.subdepartments
+          .map(subdept => String(subdept.name || '').trim())
+          .filter(Boolean)
+      )
+    ).sort((a, b) => a.localeCompare(b));
+  };
+
+  const startDeptSubdeptEditMode = () => {
+    setIsPriceStockEditMode(false);
+    setPriceStockEdits({});
+    const draft = {};
+    products
+      .filter(product => product.type?.toLowerCase() === 'item')
+      .forEach(product => {
+        draft[product.id] = {
+          department: getProductDepartment(product),
+          subdepartment: getProductSubdepartment(product)
+        };
+      });
+    setDeptSubdeptEdits(draft);
+    setIsDeptSubdeptEditMode(true);
+  };
+
+  const cancelDeptSubdeptEditMode = () => {
+    setIsDeptSubdeptEditMode(false);
+    setDeptSubdeptEdits({});
+  };
+
+  const getProductOriginalPrice = (product) => Number(product.original_price || 0);
+  const getProductDiscountPrice = (product) => Number(product.discount_price || 0);
+  const getProductStockQuantity = (product) => Number(product.stock_quantity || 0);
+
+  const startPriceStockEditMode = () => {
+    setIsDeptSubdeptEditMode(false);
+    setDeptSubdeptEdits({});
+    const draft = {};
+    products
+      .filter(product => product.type?.toLowerCase() === 'item')
+      .forEach(product => {
+        draft[product.id] = {
+          original_price: String(getProductOriginalPrice(product)),
+          discount_price: String(getProductDiscountPrice(product)),
+          stock_quantity: String(getProductStockQuantity(product))
+        };
+      });
+    setPriceStockEdits(draft);
+    setIsPriceStockEditMode(true);
+  };
+
+  const cancelPriceStockEditMode = () => {
+    setIsPriceStockEditMode(false);
+    setPriceStockEdits({});
+  };
+
+  const handlePriceStockDraftChange = (productId, field, value) => {
+    setPriceStockEdits(prev => ({
+      ...prev,
+      [productId]: {
+        ...(prev[productId] || { original_price: '0', discount_price: '0', stock_quantity: '0' }),
+        [field]: value
+      }
+    }));
+  };
+
+  const savePriceStockUpdates = async () => {
+    if (!user?.id) {
+      showToast('Please log in to update products');
+      return;
+    }
+
+    const itemProductsToCheck = products.filter(product => product.type?.toLowerCase() === 'item');
+    const changedProducts = itemProductsToCheck.filter(product => {
+      const draft = priceStockEdits[product.id];
+      if (!draft) return false;
+
+      const nextOriginal = Number(draft.original_price || 0);
+      const nextDiscount = Number(draft.discount_price || 0);
+      const nextStock = Number(draft.stock_quantity || 0);
+
+      return (
+        nextOriginal !== getProductOriginalPrice(product) ||
+        nextDiscount !== getProductDiscountPrice(product) ||
+        nextStock !== getProductStockQuantity(product)
+      );
+    });
+
+    if (changedProducts.length === 0) {
+      showToast('No price or stock changes to update');
+      cancelPriceStockEditMode();
+      return;
+    }
+
+    try {
+      setIsSavingPriceStock(true);
+      const results = await Promise.all(
+        changedProducts.map(product => {
+          const draft = priceStockEdits[product.id] || {};
+          const nextOriginal = Math.max(0, Number(draft.original_price || 0));
+          const nextDiscount = Math.max(0, Number(draft.discount_price || 0));
+          const nextStock = Math.max(0, Number(draft.stock_quantity || 0));
+
+          return updateCatalogItem(product.id, user.id, {
+            original_price: nextOriginal,
+            discount_price: nextDiscount,
+            stock_quantity: nextStock
+          });
+        })
+      );
+
+      const failedCount = results.filter(result => result.error).length;
+      const successCount = changedProducts.length - failedCount;
+
+      if (failedCount === 0) {
+        showToast(`${successCount} products updated successfully`);
+      } else if (successCount > 0) {
+        showToast(`${successCount} updated, ${failedCount} failed`);
+      } else {
+        showToast('Failed to update price and stock');
+      }
+
+      await loadProducts();
+      cancelPriceStockEditMode();
+    } catch (error) {
+      console.error('Error updating price/stock:', error);
+      showToast('Error updating price and stock');
+    } finally {
+      setIsSavingPriceStock(false);
+    }
+  };
+
+  const handleDeptSubdeptDraftChange = (productId, field, value) => {
+    setDeptSubdeptEdits(prev => {
+      const current = prev[productId] || { department: 'Others', subdepartment: 'Others' };
+
+      if (field === 'department') {
+        const nextDepartment = String(value || '').trim() || 'Others';
+        const subdeptOptions = getSubdepartmentOptionsForDepartment(nextDepartment);
+        const nextSubdepartment = subdeptOptions.includes(current.subdepartment)
+          ? current.subdepartment
+          : 'Others';
+
+        return {
+          ...prev,
+          [productId]: {
+            ...current,
+            department: nextDepartment,
+            subdepartment: nextSubdepartment
+          }
+        };
+      }
+
+      return {
+        ...prev,
+        [productId]: {
+          ...current,
+          [field]: String(value || '').trim() || 'Others'
+        }
+      };
+    });
+  };
+
+  const saveDeptSubdeptUpdates = async () => {
+    if (!user?.id) {
+      showToast('Please log in to update products');
+      return;
+    }
+
+    const itemProductsToCheck = products.filter(product => product.type?.toLowerCase() === 'item');
+    const changedProducts = itemProductsToCheck.filter(product => {
+      const draft = deptSubdeptEdits[product.id];
+      if (!draft) return false;
+      const nextDepartment = String(draft.department || '').trim() || 'Others';
+      const nextSubdepartment = String(draft.subdepartment || '').trim() || 'Others';
+      return (
+        nextDepartment !== getProductDepartment(product) ||
+        nextSubdepartment !== getProductSubdepartment(product)
+      );
+    });
+
+    if (changedProducts.length === 0) {
+      showToast('No department changes to update');
+      cancelDeptSubdeptEditMode();
+      return;
+    }
+
+    try {
+      setIsSavingDeptSubdept(true);
+      const results = await Promise.all(
+        changedProducts.map(product => {
+          const draft = deptSubdeptEdits[product.id] || {};
+          const nextDepartment = String(draft.department || '').trim() || 'Others';
+          const nextSubdepartment = String(draft.subdepartment || '').trim() || 'Others';
+          return updateCatalogItem(product.id, user.id, {
+            item_details_data: {
+              ...(product.item_details_data || {}),
+              department: nextDepartment,
+              subcategory: nextSubdepartment,
+              subdepartment: nextSubdepartment
+            }
+          });
+        })
+      );
+
+      const failedCount = results.filter(result => result.error).length;
+      const successCount = changedProducts.length - failedCount;
+
+      if (failedCount === 0) {
+        showToast(`${successCount} products updated successfully`);
+      } else if (successCount > 0) {
+        showToast(`${successCount} updated, ${failedCount} failed`);
+      } else {
+        showToast('Failed to update department details');
+      }
+
+      await loadProducts();
+      cancelDeptSubdeptEditMode();
+    } catch (error) {
+      console.error('Error updating department/subdepartment:', error);
+      showToast('Error updating department details');
+    } finally {
+      setIsSavingDeptSubdept(false);
+    }
+  };
+
+  const confirmDeleteProduct = async () => {
+    if (!deleteTarget?.ids?.length || !user?.id) {
+      setDeleteTarget(null);
+      return;
+    }
+
+    try {
+      setIsDeletingProduct(true);
+      const deleteResults = await Promise.all(
+        deleteTarget.ids.map(productId => deleteCatalogItem(productId, user.id))
+      );
+
+      const failedCount = deleteResults.filter(result => result.error).length;
+      const deletedCount = deleteTarget.ids.length - failedCount;
+
+      if (failedCount === 0) {
+        showToast(
+          deleteTarget.ids.length > 1
+            ? `${deletedCount} products deleted successfully`
+            : 'Product deleted successfully'
+        );
+      } else if (deletedCount > 0) {
+        showToast(`${deletedCount} deleted, ${failedCount} failed`);
+      } else {
+        showToast('Failed to delete selected products');
+      }
+
+      await loadProducts();
+      setSelectedProductIds(prev => {
+        const next = new Set(prev);
+        deleteTarget.ids.forEach(productId => next.delete(productId));
+        return next;
+      });
+      setDeleteTarget(null);
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      showToast('Error deleting product');
+    } finally {
+      setIsDeletingProduct(false);
+    }
+  };
+
   // Handle adding a new product with auto-generated lookup code
   const handleAddNewProduct = async () => {
     // Generate lookup code first
@@ -699,6 +1080,41 @@ export default function ProductUploadPage({ showToast }) {
   };
 
   // Excel Import Functions
+  const readExcelCell = (row, keys, fallback = '') => {
+    for (const key of keys) {
+      if (Object.prototype.hasOwnProperty.call(row, key) && row[key] !== undefined && row[key] !== null && row[key] !== '') {
+        return row[key];
+      }
+    }
+
+    const normalizedEntries = Object.entries(row).map(([key, value]) => [String(key).trim().toLowerCase(), value]);
+    for (const key of keys) {
+      const normalizedKey = String(key).trim().toLowerCase();
+      const found = normalizedEntries.find(([entryKey]) => entryKey === normalizedKey);
+      if (found && found[1] !== undefined && found[1] !== null && found[1] !== '') {
+        return found[1];
+      }
+    }
+
+    return fallback;
+  };
+
+  const parseAdditionalImagesValue = (value) => {
+    if (Array.isArray(value)) return value.map(v => String(v || '').trim()).filter(Boolean);
+    return String(value || '')
+      .split(/\r?\n|,|;/)
+      .map(v => v.trim())
+      .filter(Boolean);
+  };
+
+  const parseBooleanExcel = (value, fallback = true) => {
+    if (typeof value === 'boolean') return value;
+    const normalized = String(value ?? '').trim().toLowerCase();
+    if (normalized === 'true' || normalized === '1' || normalized === 'yes') return true;
+    if (normalized === 'false' || normalized === '0' || normalized === 'no') return false;
+    return fallback;
+  };
+
   const handleExcelUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -715,18 +1131,24 @@ export default function ProductUploadPage({ showToast }) {
         // Validate and format the data
         const validated = jsonData.map((row, index) => {
           const errors = [];
+          const additionalImagesRaw = readExcelCell(row, ['additional_images', 'Additional Images', 'additionalImages'], '');
+          const additionalImages = parseAdditionalImagesValue(additionalImagesRaw);
+          const imageUrlCell = readExcelCell(row, ['image_url', 'Image URL', 'image'], '');
+
           const product = {
-            name: row.name || row.Name || row.NAME || '',
-            lookup_code: row.lookup_code || row['Lookup Code'] || row.code || '',
-            description: row.description || row.Description || '',
-            type: row.type || row.Type || 'Item',
-            original_price: row.original_price || row['Original Price'] || row.price || '',
-            discount_price: row.discount_price || row['Discount Price'] || '',
-            stock_quantity: row.stock_quantity || row['Stock Quantity'] || row.stock || '',
-            printing_time: row.printing_time || row['Printing Time'] || '',
-            is_active: row.is_active !== false && row.is_active !== 'false',
-            department: row.department || row.Department || '',
-            subdepartment: row.subdepartment || row.Subdepartment || row['Sub Department'] || '',
+            name: String(readExcelCell(row, ['name', 'Name', 'NAME'], '') || '').trim(),
+            lookup_code: String(readExcelCell(row, ['lookup_code', 'Lookup Code', 'code'], '') || '').trim(),
+            description: String(readExcelCell(row, ['description', 'Description'], '') || '').trim(),
+            type: String(readExcelCell(row, ['type', 'Type'], 'Item') || 'Item').trim() || 'Item',
+            original_price: readExcelCell(row, ['original_price', 'Original Price', 'price'], ''),
+            discount_price: readExcelCell(row, ['discount_price', 'Discount Price'], ''),
+            stock_quantity: readExcelCell(row, ['stock_quantity', 'Stock Quantity', 'stock'], ''),
+            printing_time: readExcelCell(row, ['printing_time', 'Printing Time'], ''),
+            is_active: parseBooleanExcel(readExcelCell(row, ['is_active', 'Is Active'], true), true),
+            department: String(readExcelCell(row, ['department', 'Department'], '') || '').trim(),
+            subdepartment: String(readExcelCell(row, ['subdepartment', 'Subdepartment', 'Sub Department'], '') || '').trim(),
+            image_url: String(imageUrlCell || '').trim() || null,
+            additional_images: additionalImages,
             rowIndex: index + 2 // +2 because Excel is 1-indexed and has header row
           };
 
@@ -821,6 +1243,11 @@ export default function ProductUploadPage({ showToast }) {
           }
         }
 
+        const additionalImages = parseAdditionalImagesValue(product.additional_images);
+        const primaryImage = (product.image_url && String(product.image_url).trim())
+          ? String(product.image_url).trim()
+          : (additionalImages[0] || null);
+
         const { error } = await createCatalogItem(user.id, {
           name: product.name,
           lookup_code: product.lookup_code,
@@ -832,7 +1259,12 @@ export default function ProductUploadPage({ showToast }) {
           stock_quantity: product.stock_quantity ? parseInt(product.stock_quantity) : null,
           printing_time: product.printing_time ? parseFloat(product.printing_time) : null,
           is_active: product.is_active,
-          image_url: null
+          image_url: primaryImage,
+          item_details_data: {
+            department: product.department || '',
+            subcategory: product.subdepartment || '',
+            additionalImages: primaryImage ? additionalImages.filter(url => url !== primaryImage) : additionalImages
+          }
         });
 
         if (!error) {
@@ -919,7 +1351,9 @@ export default function ProductUploadPage({ showToast }) {
         printing_time: 2.5,
         is_active: true,
         department: 'Electronics',
-        subdepartment: 'Mobile Accessories'
+        subdepartment: 'Mobile Accessories',
+        image_url: '/NirmanHub/Products/imported/sample-product/image-01.png',
+        additional_images: '/NirmanHub/Products/imported/sample-product/image-02.png, /NirmanHub/Products/imported/sample-product/image-03.png'
       }
     ];
 
@@ -953,20 +1387,74 @@ export default function ProductUploadPage({ showToast }) {
     );
   }
 
+  const itemProducts = products.filter(p => p.type?.toLowerCase() === 'item');
+  const productsPerPage = 10;
+  const departmentEditOptions = Array.from(
+    new Set(
+      departments
+        .map(dept => String(dept.name || '').trim())
+        .filter(Boolean)
+    )
+  ).sort((a, b) => a.localeCompare(b));
+  const departmentFilterOptions = Array.from(
+    new Set(
+      itemProducts
+        .map(product => product.item_details_data?.department)
+        .filter(Boolean)
+        .map(name => String(name).trim())
+        .filter(Boolean)
+    )
+  ).sort((a, b) => a.localeCompare(b));
+
+  const filteredItemProducts = itemProducts.filter(product => {
+    const searchText = productFilters.search.trim().toLowerCase();
+    const name = String(product.name || '').toLowerCase();
+    const description = String(product.description || '').toLowerCase();
+    const lookupCode = String(product.lookup_code || '').toLowerCase();
+    const productDepartment = String(product.item_details_data?.department || '');
+    const stockQty = Number(product.stock_quantity || 0);
+
+    const searchMatch =
+      !searchText ||
+      name.includes(searchText) ||
+      description.includes(searchText) ||
+      lookupCode.includes(searchText);
+
+    const departmentMatch =
+      productFilters.department === 'all' ||
+      productDepartment === productFilters.department;
+
+    const stockMatch =
+      productFilters.stock === 'all' ||
+      (productFilters.stock === 'in' && stockQty > 0) ||
+      (productFilters.stock === 'out' && stockQty <= 0);
+
+    return searchMatch && departmentMatch && stockMatch;
+  });
+
+  const totalPages = Math.max(1, Math.ceil(filteredItemProducts.length / productsPerPage));
+  const currentPageSafe = Math.min(currentPage, totalPages);
+  const pageStartIndex = (currentPageSafe - 1) * productsPerPage;
+  const paginatedItemProducts = filteredItemProducts.slice(pageStartIndex, pageStartIndex + productsPerPage);
+
+  const allFilteredSelected =
+    paginatedItemProducts.length > 0 &&
+    paginatedItemProducts.every(product => selectedProductIds.has(product.id));
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-20 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Page Title - Above Everything */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">Product Management</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-2">Product Management</h1>
           <p className="text-slate-600">Manage your products and departments</p>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex justify-center gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
           <button
             onClick={() => setActiveTab('products')}
-            className={`px-8 py-3 font-bold text-lg rounded-xl transition-all ${
+            className={`w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all ${
               activeTab === 'products'
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
                 : 'bg-white text-slate-600 border-2 border-slate-200 hover:border-blue-400'
@@ -981,7 +1469,7 @@ export default function ProductUploadPage({ showToast }) {
           </button>
           <button
             onClick={() => setActiveTab('departments')}
-            className={`px-8 py-3 font-bold text-lg rounded-xl transition-all ${
+            className={`w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all ${
               activeTab === 'departments'
                 ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
                 : 'bg-white text-slate-600 border-2 border-slate-200 hover:border-purple-400'
@@ -994,7 +1482,137 @@ export default function ProductUploadPage({ showToast }) {
               Departments
             </span>
           </button>
+          <button
+            onClick={() => navigate('/products/review')}
+            className="w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all bg-white text-slate-600 border-2 border-slate-200 hover:border-teal-400"
+          >
+            <span className="flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Review Products
+            </span>
+          </button>
+          <button
+            onClick={handleOpenCustomOrdersModal}
+            className="w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all bg-white text-slate-600 border-2 border-slate-200 hover:border-amber-400"
+          >
+            <span className="flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10m-11 9h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v11a2 2 0 002 2z" />
+              </svg>
+              Customized Orders ({customOrders.length})
+            </span>
+          </button>
         </div>
+
+        {showCustomOrdersModal && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[120] flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+              <div className="p-4 sm:p-6 border-b border-slate-200 flex justify-between items-start sm:items-center gap-3">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Customized Orders</h2>
+                  <p className="text-sm text-slate-600 mt-1">View customer-submitted customization details</p>
+                </div>
+                <button
+                  onClick={() => setShowCustomOrdersModal(false)}
+                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                  aria-label="Close customized orders"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50">
+                {isLoadingCustomOrders ? (
+                  <div className="bg-white border border-slate-200 rounded-xl p-8 text-center text-slate-600">
+                    Loading customized orders...
+                  </div>
+                ) : customOrders.length === 0 ? (
+                  <div className="bg-white border border-slate-200 rounded-xl p-8 text-center text-slate-600">
+                    No customized orders yet.
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {customOrders.map((order) => (
+                      <div key={order.id} className="bg-white border border-slate-200 rounded-xl p-5">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                          <p className="font-bold text-slate-900">{order.id}</p>
+                          <p className="text-sm text-slate-500">
+                            {new Date(order.createdAt).toLocaleString('en-IN', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm mb-4">
+                          <p><span className="font-semibold text-slate-700">Name:</span> {order.formData?.name || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Email:</span> {order.formData?.email || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Phone:</span> {order.formData?.phone || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Category:</span> {order.formData?.category || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Quantity:</span> {order.formData?.quantity || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Budget:</span> {order.formData?.budget || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Deadline:</span> {order.formData?.deadline || '—'}</p>
+                          <p><span className="font-semibold text-slate-700">Ref Images:</span> {order.files?.length || 0}</p>
+                        </div>
+
+                        {order.sourceProduct?.name && (
+                          <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3">
+                            Source Product: {order.sourceProduct.name}
+                          </p>
+                        )}
+
+                        <div className="space-y-2 text-sm">
+                          <div>
+                            <p className="font-semibold text-slate-700 mb-1">Description</p>
+                            <p className="text-slate-600 whitespace-pre-wrap">{order.formData?.description || '—'}</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold text-slate-700 mb-1">Additional Notes</p>
+                            <p className="text-slate-600 whitespace-pre-wrap">{order.formData?.notes || '—'}</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold text-slate-700 mb-1">Reference Files</p>
+                            {order.files?.length ? (
+                              <div className="flex flex-wrap gap-2">
+                                {order.files.map((file, fileIndex) => (
+                                  <a
+                                    key={`${order.id}-${file.path || file.name}-${fileIndex}`}
+                                    href={file.url || '#'}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+                                      file.url
+                                        ? 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100'
+                                        : 'bg-slate-50 text-slate-500 border-slate-200 cursor-not-allowed'
+                                    }`}
+                                    onClick={(event) => {
+                                      if (!file.url) event.preventDefault();
+                                    }}
+                                  >
+                                    {file.name || `File ${fileIndex + 1}`}
+                                  </a>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-slate-600">—</p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Products Tab Content */}
         {activeTab === 'products' && (
@@ -1005,7 +1623,7 @@ export default function ProductUploadPage({ showToast }) {
               <button
                 onClick={downloadExcelTemplate}
                 disabled={isDownloadingTemplate}
-                className="px-6 py-3 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full sm:w-auto px-6 py-3 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 title="Download Excel template with correct format"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1020,7 +1638,7 @@ export default function ProductUploadPage({ showToast }) {
               </button>
               
               {/* Excel Import Button */}
-              <label className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2">
+              <label className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
@@ -1037,7 +1655,7 @@ export default function ProductUploadPage({ showToast }) {
           {!showForm && (
             <button
               onClick={handleAddNewProduct}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
@@ -1045,6 +1663,77 @@ export default function ProductUploadPage({ showToast }) {
               Add Product
             </button>
           )}
+          
+          {/* SVG Generator Button */}
+          <button
+            onClick={() => setShowSvgGenerator(true)}
+            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+            title="Generate SVG from text or image"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            SVG Generator
+          </button>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
+            <div className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 font-semibold">
+              Total Products: <span className="text-blue-600">{itemProducts.length}</span>
+              <span className="text-slate-400"> • </span>
+              Showing: <span className="text-purple-600">{filteredItemProducts.length}</span>
+            </div>
+            {selectedProductIds.size > 0 && (
+              <button
+                onClick={handleBulkDeleteProducts}
+                className="px-4 py-2 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700 transition-all"
+              >
+                Delete Selected ({selectedProductIds.size})
+              </button>
+            )}
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3">
+            <input
+              type="text"
+              value={productFilters.search}
+              onChange={(e) => setProductFilters(prev => ({ ...prev, search: e.target.value }))}
+              placeholder="Search product, description, lookup code"
+              className="px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+            />
+
+            <select
+              value={productFilters.department}
+              onChange={(e) => setProductFilters(prev => ({ ...prev, department: e.target.value }))}
+              className="px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+            >
+              <option value="all">All Departments</option>
+              {departmentFilterOptions.map(departmentName => (
+                <option key={departmentName} value={departmentName}>
+                  {departmentName}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={productFilters.stock}
+              onChange={(e) => setProductFilters(prev => ({ ...prev, stock: e.target.value }))}
+              className="px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+            >
+              <option value="all">All Stock</option>
+              <option value="in">In Stock</option>
+              <option value="out">Out of Stock</option>
+            </select>
+
+            <button
+              type="button"
+              onClick={clearProductFilters}
+              className="px-4 py-2.5 border border-slate-300 rounded-lg bg-white text-slate-700 font-semibold hover:bg-slate-50 transition-all"
+            >
+              Clear Filters
+            </button>
+          </div>
         </div>
 
         {/* Excel Import Modal */}
@@ -1138,7 +1827,7 @@ export default function ProductUploadPage({ showToast }) {
               </div>
 
               {/* Products List */}
-              <div className="flex-1 overflow-y-auto p-6">
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6">
                 {(() => {
                   // Group products by department and subdepartment
                   const grouped = {};
@@ -1157,7 +1846,7 @@ export default function ProductUploadPage({ showToast }) {
                         {department}
                       </h3>
                       {Object.keys(grouped[department]).map(subdepartment => (
-                        <div key={subdepartment} className="ml-6 mb-6">
+                        <div key={subdepartment} className="ml-0 sm:ml-6 mb-6">
                           <h4 className="text-md font-semibold text-slate-700 mb-3 flex items-center gap-2">
                             <span className="text-lg">📂</span>
                             {subdepartment}
@@ -1166,7 +1855,7 @@ export default function ProductUploadPage({ showToast }) {
                             </span>
                           </h4>
                           <div className="overflow-x-auto border border-slate-200 rounded-lg bg-white">
-                            <table className="min-w-[900px] w-full text-sm">
+                            <table className="min-w-[1250px] w-full text-xs sm:text-sm">
                               <thead className="bg-slate-100 text-slate-700">
                                 <tr>
                                   <th className="p-3 text-left w-12">Select</th>
@@ -1176,6 +1865,8 @@ export default function ProductUploadPage({ showToast }) {
                                   <th className="p-3 text-left">Discount Price</th>
                                   <th className="p-3 text-left">Department</th>
                                   <th className="p-3 text-left">Subdepartment</th>
+                                  <th className="p-3 text-left">Image URL</th>
+                                  <th className="p-3 text-left">Additional Images</th>
                                   <th className="p-3 text-left">Errors</th>
                                 </tr>
                               </thead>
@@ -1228,36 +1919,40 @@ export default function ProductUploadPage({ showToast }) {
                                       />
                                     </td>
                                     <td className="p-3 align-top">
-                                      <select
+                                      <input
+                                        type="text"
                                         value={product.department || ''}
                                         onChange={(e) => updateExcelRow(product.originalIndex, 'department', e.target.value)}
                                         className="w-full min-w-[150px] px-3 py-2 border border-slate-300 rounded-lg"
-                                      >
-                                        <option value="">Select Department</option>
-                                        {departments.map((dept) => (
-                                          <option key={dept.id} value={dept.name}>
-                                            {dept.name}
-                                          </option>
-                                        ))}
-                                      </select>
+                                        placeholder="Department"
+                                      />
                                     </td>
                                     <td className="p-3 align-top">
-                                      <select
+                                      <input
+                                        type="text"
                                         value={product.subdepartment || ''}
                                         onChange={(e) => updateExcelRow(product.originalIndex, 'subdepartment', e.target.value)}
                                         className="w-full min-w-[160px] px-3 py-2 border border-slate-300 rounded-lg"
-                                        disabled={!product.department}
-                                      >
-                                        <option value="">Select Subdepartment</option>
-                                        {product.department &&
-                                          departments
-                                            .find((d) => d.name === product.department)
-                                            ?.subdepartments.map((subdept) => (
-                                              <option key={subdept.id} value={subdept.name}>
-                                                {subdept.name}
-                                              </option>
-                                            ))}
-                                      </select>
+                                        placeholder="Subdepartment"
+                                      />
+                                    </td>
+                                    <td className="p-3 align-top">
+                                      <input
+                                        type="text"
+                                        value={product.image_url || ''}
+                                        onChange={(e) => updateExcelRow(product.originalIndex, 'image_url', e.target.value)}
+                                        className="w-full min-w-[220px] px-3 py-2 border border-slate-300 rounded-lg"
+                                        placeholder="/NirmanHub/Products/... or https://..."
+                                      />
+                                    </td>
+                                    <td className="p-3 align-top">
+                                      <textarea
+                                        value={Array.isArray(product.additional_images) ? product.additional_images.join(', ') : (product.additional_images || '')}
+                                        onChange={(e) => updateExcelRow(product.originalIndex, 'additional_images', e.target.value)}
+                                        className="w-full min-w-[240px] px-3 py-2 border border-slate-300 rounded-lg"
+                                        rows={2}
+                                        placeholder="Comma-separated additional image URLs"
+                                      />
                                     </td>
                                     <td className="p-3 align-top">
                                       {product.errors.length > 0 ? (
@@ -1286,21 +1981,21 @@ export default function ProductUploadPage({ showToast }) {
               </div>
 
               {/* Footer Actions */}
-              <div className="p-6 border-t border-slate-200 flex justify-between items-center bg-slate-50">
+              <div className="p-4 sm:p-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 bg-slate-50">
                 <button
                   onClick={() => {
                     setShowExcelImport(false);
                     setValidationResults([]);
                     setSelectedItems(new Set());
                   }}
-                  className="px-6 py-3 bg-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-300 transition-all"
+                  className="w-full sm:w-auto px-6 py-3 bg-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-300 transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleBulkImport}
                   disabled={isImporting || selectedItems.size === 0 || validationResults.filter((p, i) => p.isValid && selectedItems.has(i)).length === 0}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isImporting ? 'Importing...' : `Import ${validationResults.filter((p, i) => p.isValid && selectedItems.has(i)).length} `}
                 </button>
@@ -1426,7 +2121,8 @@ export default function ProductUploadPage({ showToast }) {
                   />
                 </div>
 
-                {/* Discount Price */}
+                {/* 
+                 Price */}
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     Discount Price
@@ -1641,92 +2337,350 @@ export default function ProductUploadPage({ showToast }) {
 
         {/* Products Table */}
         {!isLoadingData && (
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="overflow-x-auto">
-            {products.filter(p => p.type?.toLowerCase() === 'item').length > 0 && (
-              <table className="w-full">
-                <thead className="bg-slate-50">
-                  <tr className="border-b border-slate-200">
-                    <th className="text-left py-3 px-4 font-semibold text-slate-700 w-16">Image</th>
-                    <th className="text-left py-3 px-4 font-semibold text-slate-700 max-w-[200px]">Product</th>
-                    <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">Original Price</th>
-                    <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">Discount Price</th>
-                    <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">Discount %</th>
-                    <th className="text-left py-3 px-4 font-semibold text-slate-700">Stock</th>
-                    <th className="text-right py-3 px-4 font-semibold text-slate-700">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.filter(p => p.type?.toLowerCase() === 'item').map(product => {
-                    const discountPercent = product.original_price > 0 && product.discount_price > 0
-                      ? Math.round(((product.original_price - product.discount_price) / product.original_price) * 100)
-                      : 0;
-                    return (
-                    <tr key={product.id} className="border-b border-slate-100 hover:bg-slate-50">
-                      <td className="py-3 px-4 w-16">
-                        {product.image_url ? (
-                          <img src={product.image_url} alt={product.name} className="w-12 h-12 object-cover rounded-lg" />
-                        ) : (
-                          <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400">
-                            📦
-                          </div>
-                        )}
-                      </td>
-                      <td className="py-3 px-4 max-w-[200px]">
-                        <div>
-                          <h3 className="font-semibold text-slate-900 truncate">{product.name}</h3>
-                          <p className="text-sm text-slate-500 line-clamp-1">{product.description}</p>
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <p className="px-4 pt-3 text-xs text-slate-500 sm:hidden">Swipe left/right to view all columns</p>
+              {itemProducts.length > 0 && (
+                <table className="min-w-[980px] w-full text-sm">
+                  <thead className="bg-slate-50">
+                    <tr className="border-b border-slate-200">
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 w-12">
+                        <input
+                          type="checkbox"
+                          checked={allFilteredSelected}
+                          onChange={(e) => toggleSelectAllProducts(e.target.checked, paginatedItemProducts)}
+                          className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                        />
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 w-16">Image</th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 max-w-[200px]">Product</th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
+                          <span>Department</span>
+                          {!isDeptSubdeptEditMode ? (
+                            <button
+                              type="button"
+                              onClick={startDeptSubdeptEditMode}
+                              className="p-1 rounded hover:bg-slate-200 text-slate-600"
+                              title="Edit department and subdepartment"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                          ) : (
+                            <>
+                              <button
+                                type="button"
+                                onClick={saveDeptSubdeptUpdates}
+                                disabled={isSavingDeptSubdept}
+                                className="px-2 py-1 text-xs rounded bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-60"
+                                title="Save department changes"
+                              >
+                                {isSavingDeptSubdept ? 'Saving...' : 'Save'}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={cancelDeptSubdeptEditMode}
+                                disabled={isSavingDeptSubdept}
+                                className="px-2 py-1 text-xs rounded border border-slate-300 text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+                                title="Cancel department changes"
+                              >
+                                Cancel
+                              </button>
+                            </>
+                          )}
                         </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="font-semibold text-slate-900">₹{product.original_price}</span>
-                      </td>
-                      <td className="py-3 px-4">
-                        {product.discount_price > 0 ? (
-                          <span className="font-semibold text-green-600">₹{product.discount_price}</span>
-                        ) : (
-                          <span className="text-slate-400">-</span>
-                        )}
-                      </td>
-                      <td className="py-3 px-4">
-                        {discountPercent > 0 ? (
-                          <span className="px-2 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
-                            {discountPercent}% OFF
-                          </span>
-                        ) : (
-                          <span className="text-slate-400">-</span>
-                        )}
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className={`font-semibold ${product.stock_quantity > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          {product.stock_quantity}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4 text-right">
-                        <div className="flex gap-2 justify-end">
-                          <button 
-                            onClick={() => handleEditProduct(product)}
-                            className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" 
-                            title="Edit"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                          </button>
-                          <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          </button>
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
+                          <span>Subdepartment</span>
+                          {!isDeptSubdeptEditMode && (
+                            <button
+                              type="button"
+                              onClick={startDeptSubdeptEditMode}
+                              className="p-1 rounded hover:bg-slate-200 text-slate-600"
+                              title="Edit department and subdepartment"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                          )}
                         </div>
-                      </td>
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
+                          <span>Original Price</span>
+                          {!isPriceStockEditMode ? (
+                            <button
+                              type="button"
+                              onClick={startPriceStockEditMode}
+                              className="p-1 rounded hover:bg-slate-200 text-slate-600"
+                              title="Edit original price, discount price, and stock"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                          ) : (
+                            <>
+                              <button
+                                type="button"
+                                onClick={savePriceStockUpdates}
+                                disabled={isSavingPriceStock}
+                                className="px-2 py-1 text-xs rounded bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-60"
+                                title="Save price and stock changes"
+                              >
+                                {isSavingPriceStock ? 'Saving...' : 'Save'}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={cancelPriceStockEditMode}
+                                disabled={isSavingPriceStock}
+                                className="px-2 py-1 text-xs rounded border border-slate-300 text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+                                title="Cancel price and stock changes"
+                              >
+                                Cancel
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
+                          <span>Discount Price</span>
+                          {!isPriceStockEditMode && (
+                            <button
+                              type="button"
+                              onClick={startPriceStockEditMode}
+                              className="p-1 rounded hover:bg-slate-200 text-slate-600"
+                              title="Edit original price, discount price, and stock"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">Discount %</th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700">
+                        <div className="flex items-center gap-2">
+                          <span>Stock</span>
+                          {!isPriceStockEditMode && (
+                            <button
+                              type="button"
+                              onClick={startPriceStockEditMode}
+                              className="p-1 rounded hover:bg-slate-200 text-slate-600"
+                              title="Edit original price, discount price, and stock"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      </th>
                     </tr>
-                  )})}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {paginatedItemProducts.map(product => {
+                      const draft = deptSubdeptEdits[product.id] || {};
+                      const productDepartment = isDeptSubdeptEditMode
+                        ? String(draft.department ?? getProductDepartment(product))
+                        : getProductDepartment(product);
+                      const productSubdepartment = isDeptSubdeptEditMode
+                        ? String(draft.subdepartment ?? getProductSubdepartment(product))
+                        : getProductSubdepartment(product);
+                      const priceStockDraft = priceStockEdits[product.id] || {};
+                      const currentOriginalPrice = isPriceStockEditMode
+                        ? String(priceStockDraft.original_price ?? getProductOriginalPrice(product))
+                        : getProductOriginalPrice(product);
+                      const currentDiscountPrice = isPriceStockEditMode
+                        ? String(priceStockDraft.discount_price ?? getProductDiscountPrice(product))
+                        : getProductDiscountPrice(product);
+                      const currentStockQuantity = isPriceStockEditMode
+                        ? String(priceStockDraft.stock_quantity ?? getProductStockQuantity(product))
+                        : getProductStockQuantity(product);
+                      const discountPercent = Number(currentOriginalPrice) > 0 && Number(currentDiscountPrice) > 0
+                        ? Math.round(((Number(currentOriginalPrice) - Number(currentDiscountPrice)) / Number(currentOriginalPrice)) * 100)
+                        : 0;
+                      return (
+                      <tr
+                        key={product.id}
+                        onDoubleClick={() => {
+                          if (!isDeptSubdeptEditMode && !isPriceStockEditMode) {
+                            handleEditProduct(product);
+                          }
+                        }}
+                        className="border-b border-slate-100 hover:bg-slate-50 cursor-pointer"
+                        title="Double click to edit product"
+                      >
+                        <td className="py-3 px-4">
+                          <input
+                            type="checkbox"
+                            checked={selectedProductIds.has(product.id)}
+                            onChange={() => toggleProductSelection(product.id)}
+                            onDoubleClick={(e) => e.stopPropagation()}
+                            className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                          />
+                        </td>
+                        <td className="py-3 px-4 w-16">
+                          {product.image_url ? (
+                            <img src={product.image_url} alt={product.name} className="w-12 h-12 object-cover rounded-lg" />
+                          ) : (
+                            <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400">
+                              📦
+                            </div>
+                          )}
+                        </td>
+                        <td className="py-3 px-4 max-w-[200px]">
+                          <div>
+                            <h3 className="font-semibold text-slate-900 truncate">{product.name}</h3>
+                            <p className="text-sm text-slate-500 line-clamp-1">{product.description}</p>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4" onDoubleClick={(e) => e.stopPropagation()}>
+                          {isDeptSubdeptEditMode ? (
+                            <select
+                              value={productDepartment}
+                              onChange={(e) => handleDeptSubdeptDraftChange(product.id, 'department', e.target.value)}
+                              className="w-full min-w-[140px] px-2 py-1.5 border border-slate-300 rounded-lg text-sm bg-white"
+                            >
+                              <option value="Others">Others</option>
+                              {departmentEditOptions.map(departmentName => (
+                                <option key={departmentName} value={departmentName}>
+                                  {departmentName}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <span className="text-slate-700 font-medium">{productDepartment}</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4" onDoubleClick={(e) => e.stopPropagation()}>
+                          {isDeptSubdeptEditMode ? (
+                            <select
+                              value={productSubdepartment}
+                              onChange={(e) => handleDeptSubdeptDraftChange(product.id, 'subdepartment', e.target.value)}
+                              className="w-full min-w-[140px] px-2 py-1.5 border border-slate-300 rounded-lg text-sm bg-white"
+                            >
+                              <option value="Others">Others</option>
+                              {getSubdepartmentOptionsForDepartment(productDepartment).map(subdepartmentName => (
+                                <option key={subdepartmentName} value={subdepartmentName}>
+                                  {subdepartmentName}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <span className="text-slate-700 font-medium">{productSubdepartment}</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4">
+                          {isPriceStockEditMode ? (
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={currentOriginalPrice}
+                              onChange={(e) => handlePriceStockDraftChange(product.id, 'original_price', e.target.value)}
+                              onDoubleClick={(e) => e.stopPropagation()}
+                              className="w-full min-w-[120px] px-2 py-1.5 border border-slate-300 rounded-lg text-sm"
+                            />
+                          ) : (
+                            <span className="font-semibold text-slate-900">₹{getProductOriginalPrice(product)}</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4">
+                          {isPriceStockEditMode ? (
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={currentDiscountPrice}
+                              onChange={(e) => handlePriceStockDraftChange(product.id, 'discount_price', e.target.value)}
+                              onDoubleClick={(e) => e.stopPropagation()}
+                              className="w-full min-w-[120px] px-2 py-1.5 border border-slate-300 rounded-lg text-sm"
+                            />
+                          ) : (
+                            <>
+                              {getProductDiscountPrice(product) > 0 ? (
+                                <span className="font-semibold text-green-600">₹{getProductDiscountPrice(product)}</span>
+                              ) : (
+                                <span className="text-slate-400">-</span>
+                              )}
+                            </>
+                          )}
+                        </td>
+                        <td className="py-3 px-4">
+                          {discountPercent > 0 ? (
+                            <span className="px-2 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
+                              {discountPercent}% OFF
+                            </span>
+                          ) : (
+                            <span className="text-slate-400">-</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4">
+                          {isPriceStockEditMode ? (
+                            <input
+                              type="number"
+                              min="0"
+                              step="1"
+                              value={currentStockQuantity}
+                              onChange={(e) => handlePriceStockDraftChange(product.id, 'stock_quantity', e.target.value)}
+                              onDoubleClick={(e) => e.stopPropagation()}
+                              className="w-full min-w-[100px] px-2 py-1.5 border border-slate-300 rounded-lg text-sm"
+                            />
+                          ) : (
+                            <span className={`font-semibold ${getProductStockQuantity(product) > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              {getProductStockQuantity(product)}
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    )})}
+                    {filteredItemProducts.length === 0 && (
+                      <tr>
+                        <td colSpan={9} className="py-10 text-center text-slate-500 font-medium">
+                          No products match the selected filters.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              )}
+            </div>
+            {filteredItemProducts.length > 0 && (
+              <div className="px-4 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p className="text-sm text-slate-600">
+                  Showing {pageStartIndex + 1} to {Math.min(pageStartIndex + paginatedItemProducts.length, filteredItemProducts.length)} of {filteredItemProducts.length} products
+                </p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPageSafe === 1}
+                    className="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Previous
+                  </button>
+                  <span className="px-3 py-1.5 text-sm font-semibold text-slate-700">
+                    Page {currentPageSafe} of {totalPages}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    disabled={currentPageSafe === totalPages}
+                    className="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
             )}
           </div>
-        </div>
         )}
 
         {/* Loading State */}
@@ -1737,7 +2691,7 @@ export default function ProductUploadPage({ showToast }) {
           </div>
         )}
 
-        {!isLoadingData && products.filter(p => p.type?.toLowerCase() === 'item').length === 0 && !showForm && (
+        {!isLoadingData && itemProducts.length === 0 && !showForm && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📦</div>
             <h2 className="text-2xl font-bold text-slate-900 mb-2">No Products Yet</h2>
@@ -1758,17 +2712,28 @@ export default function ProductUploadPage({ showToast }) {
           <>
             {/* Department Management Section */}
             <div className="mb-6 bg-white rounded-2xl shadow-lg p-6">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
                 <h2 className="text-xl font-bold text-slate-900">Department Management</h2>
-                <button
-                  onClick={() => setShowDepartmentForm(!showDepartmentForm)}
-                  className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all flex items-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-                  </svg>
-                  Add Department
-                </button>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={() => navigate('/products/review')}
+                    className="w-full sm:w-auto px-4 py-2 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Review Products
+                  </button>
+                  <button
+                    onClick={() => setShowDepartmentForm(!showDepartmentForm)}
+                    className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Add Department
+                  </button>
+                </div>
               </div>
 
               {/* Add Department Form */}
@@ -2017,6 +2982,7 @@ export default function ProductUploadPage({ showToast }) {
 
               {/* Departments Table */}
               <div className="overflow-x-auto">
+                <p className="px-4 pt-3 text-xs text-slate-500 sm:hidden">Swipe left/right to view all columns</p>
                 {isLoadingData ? (
                   <div className="text-center py-16">
                     <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
@@ -2035,7 +3001,7 @@ export default function ProductUploadPage({ showToast }) {
                     </button>
                   </div>
                 ) : (
-                  <table className="w-full">
+                  <table className="min-w-[720px] w-full text-sm">
                     <thead>
                       <tr className="border-b border-slate-200">
                         <th className="text-left py-3 px-4 font-semibold text-slate-700">Department</th>
@@ -2112,6 +3078,48 @@ export default function ProductUploadPage({ showToast }) {
           </>
         )}
       </div>
+      
+      {/* SVG Generator Modal */}
+      <SvgGenerator 
+        isOpen={showSvgGenerator} 
+        onClose={() => setShowSvgGenerator(false)} 
+        showToast={showToast}
+      />
+
+      {/* Product Delete Confirmation Modal */}
+      {deleteTarget && (
+        <div className="fixed inset-0 z-[110] bg-slate-900/45 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-200">
+            <div className="px-6 pt-6 pb-4 border-b border-slate-200">
+              <h3 className="text-xl font-bold text-slate-900">
+                {deleteTarget.ids?.length > 1 ? 'Delete Products' : 'Delete Product'}
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">
+                Are you sure you want to delete <span className="font-semibold text-slate-900">{deleteTarget.label}</span>? This action cannot be undone.
+              </p>
+            </div>
+
+            <div className="px-6 py-4 flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setDeleteTarget(null)}
+                disabled={isDeletingProduct}
+                className="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 disabled:opacity-60"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmDeleteProduct}
+                disabled={isDeletingProduct}
+                className="px-4 py-2 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 disabled:opacity-60"
+              >
+                {isDeletingProduct ? 'Deleting...' : 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

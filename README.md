@@ -83,6 +83,11 @@ src/
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
+- `npm run scrape:products` - Scrape products from a configured website into JSON
+- `npm run import:products` - Import scraped JSON products into Supabase
+- `npm run scrape-and-import` - Run scrape and import in sequence
+
+See `scripts/scraping/README.md` for full setup and usage.
 
 ## Features Implemented
 

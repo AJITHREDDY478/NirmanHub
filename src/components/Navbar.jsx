@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import brandLogo from '../assets/brand/nirmanhub-logo.svg';
 
 export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onShowAuth }) {
   const { user, profile, signOut } = useAuth();
@@ -44,19 +45,11 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 md:w-11 md:h-11 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-teal-500 flex items-center justify-center shadow-lg shadow-amber-500/25 ring-1 ring-white/80 transform group-hover:scale-110 transition-transform duration-300">
-            <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="logo-text font-display font-bold text-lg md:text-xl bg-gradient-to-r from-amber-600 via-orange-500 to-teal-600 bg-clip-text text-transparent transition-all duration-300">
-              NirmanHub
-            </span>
-            <span className="hidden md:inline text-[11px] text-slate-500/80 tracking-[0.12em] uppercase">
-              Creating Memories, Layer by Layer.
-            </span>
-          </div>
+          <img
+            src={brandLogo}
+            alt="NirmanHub"
+            className="h-9 md:h-11 w-auto transform group-hover:scale-[1.02] transition-transform duration-300"
+          />
         </Link>
 
         {/* Nav Links (Desktop) */}

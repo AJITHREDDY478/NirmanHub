@@ -1,0 +1,321 @@
+import { useMemo, useState } from 'react';
+import * as XLSX from 'xlsx';
+
+const parseFileJson = (text) => {
+  const data = JSON.parse(text);
+  if (!Array.isArray(data)) {
+    throw new Error('JSON must be an array of products');
+  }
+  return data;
+};
+
+const toNumber = (value, fallback = 0) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+};
+
+const resolveImageSrc = (rawSrc) => {
+  const src = String(rawSrc || '').trim();
+  if (!src) return '';
+  if (/^(https?:|data:|blob:)/i.test(src)) return src;
+
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+  if (src.startsWith(normalizedBase)) {
+    return src;
+  }
+
+  if (src.startsWith('/')) {
+    const withoutLeadingSlash = src.replace(/^\/+/, '');
+    return `${normalizedBase}${withoutLeadingSlash}`;
+  }
+
+  return `${normalizedBase}${src.replace(/^\/+/, '')}`;
+};
+
+export default function ScrapedProductsReviewPage({ showToast }) {
+  const [products, setProducts] = useState([]);
+  const [fileName, setFileName] = useState('');
+  const [query, setQuery] = useState('');
+  const [isLoadingDefault, setIsLoadingDefault] = useState(false);
+
+  const filteredProducts = useMemo(() => {
+    const withIndex = products.map((item, index) => ({ item, index }));
+    if (!query.trim()) return withIndex;
+    const q = query.toLowerCase();
+    return withIndex.filter(({ item }) => {
+      const name = String(item.name || '').toLowerCase();
+      const category = String(item.item_details_data?.category || '').toLowerCase();
+      const subcategory = String(item.item_details_data?.subcategory || '').toLowerCase();
+      return name.includes(q) || category.includes(q) || subcategory.includes(q);
+    });
+  }, [products, query]);
+
+  const stats = useMemo(() => {
+    const missingName = products.filter((p) => !String(p.name || '').trim()).length;
+    const zeroPrice = products.filter((p) => toNumber(p.original_price, 0) <= 0).length;
+    const withMultiImages = products.filter((p) => Array.isArray(p.image_urls) && p.image_urls.length > 1).length;
+    return {
+      total: products.length,
+      missingName,
+      zeroPrice,
+      withMultiImages
+    };
+  }, [products]);
+
+  const handleLoadFile = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const data = parseFileJson(text);
+      setProducts(data);
+      setFileName(file.name);
+      showToast(`Loaded ${data.length} products for review`);
+    } catch (error) {
+      showToast(`Invalid JSON file: ${error.message}`);
+    }
+  };
+
+  const loadDefaultReviewJson = async () => {
+    try {
+      setIsLoadingDefault(true);
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+      const defaultUrl = `${normalizedBase}data/review-products.nirmanhub.json`;
+      const response = await fetch(defaultUrl, { cache: 'no-store' });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load default review JSON (${response.status})`);
+      }
+
+      const data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error('Default review JSON is not an array');
+      }
+
+      setProducts(data);
+      setFileName('review-products.nirmanhub.json (default)');
+      showToast(`Loaded ${data.length} products from default review file`);
+    } catch (error) {
+      showToast(error.message || 'Failed to load default review JSON');
+    } finally {
+      setIsLoadingDefault(false);
+    }
+  };
+
+  const updateField = (index, key, value) => {
+    setProducts((prev) => {
+      const next = [...prev];
+      next[index] = { ...next[index], [key]: value };
+      return next;
+    });
+  };
+
+  const updateDetailsField = (index, key, value) => {
+    setProducts((prev) => {
+      const next = [...prev];
+      const current = next[index];
+      next[index] = {
+        ...current,
+        item_details_data: {
+          ...(current.item_details_data || {}),
+          [key]: value
+        }
+      };
+      return next;
+    });
+  };
+
+  const updateImageUrlsText = (index, text) => {
+    const urls = text
+      .split(/\r?\n|,/) 
+      .map((value) => value.trim())
+      .filter(Boolean);
+
+    setProducts((prev) => {
+      const next = [...prev];
+      const current = next[index];
+      next[index] = {
+        ...current,
+        image_url: urls[0] || null,
+        image_urls: urls,
+        item_details_data: {
+          ...(current.item_details_data || {}),
+          additionalImages: urls.slice(1)
+        }
+      };
+      return next;
+    });
+  };
+
+  const downloadReviewedJson = () => {
+    if (products.length === 0) {
+      showToast('Load products first');
+      return;
+    }
+
+    const blob = new Blob([JSON.stringify(products, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'review-products.nirmanhub.updated.json';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    showToast('Downloaded updated review JSON');
+  };
+
+  const downloadExcelForImport = () => {
+    if (products.length === 0) {
+      showToast('Load products first');
+      return;
+    }
+
+    const rows = products.map((item, index) => {
+      const imageUrls = Array.isArray(item.image_urls) && item.image_urls.length > 0
+        ? item.image_urls
+        : (item.image_url ? [item.image_url] : []);
+
+      return {
+        name: item.name || '',
+        lookup_code: item.lookup_code || `SCRAPE-${String(item.name || 'item').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '').slice(0, 24)}-${index + 1}`,
+        description: item.description || '',
+        type: item.type || 'Item',
+        original_price: toNumber(item.original_price, 0),
+        discount_price: toNumber(item.discount_price, 0),
+        stock_quantity: toNumber(item.stock_quantity, 0),
+        printing_time: toNumber(item.printing_time, 24),
+        is_active: item.is_active !== false,
+        department: item.item_details_data?.department || '',
+        subdepartment: item.item_details_data?.subcategory || '',
+        image_url: imageUrls[0] || '',
+        additional_images: imageUrls.slice(1).join(', ')
+      };
+    });
+
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Products');
+    XLSX.writeFile(wb, 'review-products-import-template.xlsx');
+    showToast('Downloaded Excel in import template format');
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
+      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 md:p-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Scraped Products Review</h1>
+        <p className="text-slate-600 mt-2">Load your scraped JSON, edit products visually, then export before approval/upload.</p>
+
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-5 gap-3">
+          <label className="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 transition-colors">
+            <input type="file" accept="application/json" className="hidden" onChange={handleLoadFile} />
+            <span className="text-sm font-semibold text-slate-700">Choose review JSON</span>
+            <span className="text-xs text-slate-500 truncate w-full">{fileName || 'No file selected'}</span>
+          </label>
+
+          <button
+            onClick={loadDefaultReviewJson}
+            disabled={isLoadingDefault}
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-700 font-semibold hover:bg-slate-100 disabled:opacity-60"
+          >
+            {isLoadingDefault ? 'Loading…' : 'Load Default Review JSON'}
+          </button>
+
+          <button
+            onClick={downloadReviewedJson}
+            className="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold hover:opacity-95"
+          >
+            Download Updated JSON
+          </button>
+
+          <button
+            onClick={downloadExcelForImport}
+            className="w-full px-4 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800"
+          >
+            Download Excel (Import)
+          </button>
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+          <div className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">Total: <span className="font-bold">{stats.total}</span></div>
+          <div className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">Missing name: <span className="font-bold">{stats.missingName}</span></div>
+          <div className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">Price ≤ 0: <span className="font-bold">{stats.zeroPrice}</span></div>
+          <div className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">Multi-image products: <span className="font-bold">{stats.withMultiImages}</span></div>
+        </div>
+
+        <div className="mt-4">
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search by name/category/subcategory"
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          />
+        </div>
+      </div>
+
+      <div className="mt-6 space-y-4">
+        {filteredProducts.map(({ item, index }, filteredIndex) => {
+          const imageUrls = Array.isArray(item.image_urls) && item.image_urls.length > 0
+            ? item.image_urls
+            : (item.image_url ? [item.image_url] : []);
+          return (
+            <div key={`${item.name || 'item'}-${filteredIndex}`} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 md:p-5">
+              <div className="grid md:grid-cols-12 gap-3">
+                <div className="md:col-span-2">
+                  <img
+                    src={resolveImageSrc(imageUrls[0] || '')}
+                    alt={item.name || 'Product'}
+                    className="w-full h-28 object-cover rounded-lg border border-slate-200"
+                    onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
+                  />
+                  {imageUrls.length > 1 && (
+                    <div className="grid grid-cols-4 gap-1 mt-2">
+                      {imageUrls.slice(1, 5).map((url, imageIndex) => (
+                        <img
+                          key={`${url}-${imageIndex}`}
+                          src={resolveImageSrc(url)}
+                          alt="Variant"
+                          className="w-full h-8 object-cover rounded border border-slate-200"
+                          onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="md:col-span-10 grid md:grid-cols-2 gap-3">
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.name || ''} onChange={(e) => updateField(index, 'name', e.target.value)} placeholder="Name" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.image_url || ''} onChange={(e) => updateField(index, 'image_url', e.target.value)} placeholder="Image URL" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.original_price ?? 0} onChange={(e) => updateField(index, 'original_price', toNumber(e.target.value, 0))} placeholder="Original Price" type="number" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.discount_price ?? 0} onChange={(e) => updateField(index, 'discount_price', toNumber(e.target.value, 0))} placeholder="Discount Price" type="number" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.stock_quantity ?? 0} onChange={(e) => updateField(index, 'stock_quantity', toNumber(e.target.value, 0))} placeholder="Stock" type="number" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.printing_time ?? 24} onChange={(e) => updateField(index, 'printing_time', toNumber(e.target.value, 24))} placeholder="Printing Time" type="number" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.department || ''} onChange={(e) => updateDetailsField(index, 'department', e.target.value)} placeholder="Department" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.subcategory || ''} onChange={(e) => updateDetailsField(index, 'subcategory', e.target.value)} placeholder="Subcategory" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.category || ''} onChange={(e) => updateDetailsField(index, 'category', e.target.value)} placeholder="Category" />
+                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.emoji || ''} onChange={(e) => updateDetailsField(index, 'emoji', e.target.value)} placeholder="Emoji" />
+                  <textarea
+                    className="md:col-span-2 px-3 py-2 rounded-lg border border-slate-300"
+                    rows={3}
+                    value={(Array.isArray(item.image_urls) ? item.image_urls : (item.image_url ? [item.image_url] : [])).join('\n')}
+                    onChange={(e) => updateImageUrlsText(index, e.target.value)}
+                    placeholder="Image URLs (one per line)"
+                  />
+                  <textarea className="md:col-span-2 px-3 py-2 rounded-lg border border-slate-300" rows={2} value={item.description || ''} onChange={(e) => updateField(index, 'description', e.target.value)} placeholder="Description" />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        {products.length > 0 && filteredProducts.length === 0 && (
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 text-slate-600">No products match your search.</div>
+        )}
+      </div>
+    </div>
+  );
+}

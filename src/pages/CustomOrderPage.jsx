@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { createCustomOrder } from '../utils/customOrderService';
 
 const initialForm = {
   name: '',
@@ -17,6 +18,7 @@ const initialForm = {
 };
 
 export default function CustomOrderPage({ showToast }) {
+  const location = useLocation();
   const [formData, setFormData] = useState(initialForm);
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
@@ -25,6 +27,20 @@ export default function CustomOrderPage({ showToast }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (!location.state?.prefill) return;
+
+    const allowedKeys = Object.keys(initialForm);
+    const sanitizedPrefill = Object.fromEntries(
+      Object.entries(location.state.prefill).filter(([key]) => allowedKeys.includes(key))
+    );
+
+    setFormData((prev) => ({
+      ...prev,
+      ...sanitizedPrefill
+    }));
+  }, [location.state]);
 
   const handleChange = (e) => {
     setFormData({
@@ -50,8 +66,22 @@ export default function CustomOrderPage({ showToast }) {
     };
   }, [files]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { error } = await createCustomOrder({
+      formData,
+      files,
+      sourceProduct: location.state?.sourceProduct || null
+    });
+
+    if (error) {
+      if (showToast) {
+        showToast('Failed to submit custom order. Please try again.');
+      }
+      return;
+    }
+
     if (showToast) {
       showToast('Custom order submitted! Our team will contact you shortly.');
     }
@@ -78,6 +108,11 @@ export default function CustomOrderPage({ showToast }) {
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
               Tell us about your custom order and upload reference images. Our team will review and get back with a quote.
             </p>
+            {location.state?.sourceProduct?.name && (
+              <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full text-sm font-medium text-amber-800">
+                Customizing product: {location.state.sourceProduct.name}
+              </div>
+            )}
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
@@ -86,7 +121,9 @@ export default function CustomOrderPage({ showToast }) {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-600 mb-2">Your Name</label>
+                    <label className="block text-sm font-medium text-slate-600 mb-2">
+                      Your Name <span className="text-red-500">*</span>
+                    </label>
                     <input
                       type="text"
                       name="name"
@@ -98,7 +135,9 @@ export default function CustomOrderPage({ showToast }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-600 mb-2">Email</label>
+                    <label className="block text-sm font-medium text-slate-600 mb-2">
+                      Email <span className="text-red-500">*</span>
+                    </label>
                     <input
                       type="email"
                       name="email"
@@ -124,7 +163,9 @@ export default function CustomOrderPage({ showToast }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-600 mb-2">Category</label>
+                    <label className="block text-sm font-medium text-slate-600 mb-2">
+                      Category <span className="text-red-500">*</span>
+                    </label>
                     <select
                       name="category"
                       value={formData.category}
@@ -218,7 +259,9 @@ export default function CustomOrderPage({ showToast }) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-2">Order Description</label>
+                  <label className="block text-sm font-medium text-slate-600 mb-2">
+                    Order Description <span className="text-red-500">*</span>
+                  </label>
                   <textarea
                     name="description"
                     value={formData.description}

@@ -1,5 +1,36 @@
 import { supabase } from './supabase';
 
+const APP_BASE_URL = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '/');
+
+const normalizeCatalogImageUrl = (url) => {
+  if (!url || typeof url !== 'string') return url;
+
+  const trimmedUrl = url.trim();
+  if (!trimmedUrl) return null;
+
+  if (/^(https?:)?\/\//i.test(trimmedUrl) || trimmedUrl.startsWith('data:') || trimmedUrl.startsWith('blob:')) {
+    return trimmedUrl;
+  }
+
+  if (trimmedUrl.startsWith('/NirmanHub/')) {
+    return `${APP_BASE_URL}${trimmedUrl.replace(/^\/NirmanHub\/+/, '')}`;
+  }
+
+  if (trimmedUrl.startsWith('/')) {
+    return `${APP_BASE_URL}${trimmedUrl.replace(/^\/+/, '')}`;
+  }
+
+  return trimmedUrl;
+};
+
+const normalizeCatalogImageList = (images) => {
+  if (!Array.isArray(images)) return [];
+
+  return images
+    .map(normalizeCatalogImageUrl)
+    .filter(Boolean);
+};
+
 /**
  * Get all public products (items)
  */
@@ -25,7 +56,7 @@ export const getAllProducts = async () => {
       subcategory: item.item_details_data?.subcategory || 'Other',
       category: item.item_details_data?.category || item.item_details_data?.department || 'General',
       emoji: item.item_details_data?.emoji || '📦',
-      image: item.image_url,
+      image: normalizeCatalogImageUrl(item.image_url),
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
@@ -72,8 +103,8 @@ export const getProductById = async (productId) => {
       subcategory: data.item_details_data?.subcategory || 'Other',
       category: data.item_details_data?.category || data.item_details_data?.department || 'General',
       emoji: data.item_details_data?.emoji || '📦',
-      image: data.image_url,
-      additionalImages: data.item_details_data?.additionalImages || [],
+      image: normalizeCatalogImageUrl(data.image_url),
+      additionalImages: normalizeCatalogImageList(data.item_details_data?.additionalImages),
       isNew: data.item_details_data?.isNew || false,
       rating: data.item_details_data?.rating || 4.5,
       reviews: data.item_details_data?.reviews || 0,
@@ -117,7 +148,7 @@ export const searchProducts = async (searchTerm) => {
       subcategory: item.item_details_data?.subcategory || 'Other',
       category: item.item_details_data?.category || item.item_details_data?.department || 'General',
       emoji: item.item_details_data?.emoji || '📦',
-      image: item.image_url,
+      image: normalizeCatalogImageUrl(item.image_url),
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
@@ -165,7 +196,7 @@ export const getProductsByDepartment = async (departmentName) => {
       subcategory: item.item_details_data?.subcategory || 'Other',
       category: item.item_details_data?.category || item.item_details_data?.department || 'General',
       emoji: item.item_details_data?.emoji || '📦',
-      image: item.image_url,
+      image: normalizeCatalogImageUrl(item.image_url),
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,

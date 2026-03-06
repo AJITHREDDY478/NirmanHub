@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 
 const promos = [
   'Free Shipping on Orders Over ₹999',
-  '✨ New Arrivals: 20% Off First Order',
-  '🎁 Member Exclusive: Extra 10% Off'
+  '✨ New Arrivals: 20% Off First Order'
 ];
 
 export default function PromoBanner() {

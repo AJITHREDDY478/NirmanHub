@@ -57,6 +57,30 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
     }
   };
 
+  const handleCustomizationRequest = () => {
+    const optionsSummary = product.customizationOptions && Object.keys(product.customizationOptions).length > 0
+      ? Object.entries(product.customizationOptions)
+          .map(([key, value]) => `${key}: ${typeof value === 'boolean' ? (value ? 'Available' : 'Not available') : value}`)
+          .join(', ')
+      : '';
+
+    navigate('/custom-order', {
+      state: {
+        sourceProduct: {
+          id: product.id,
+          name: product.name
+        },
+        prefill: {
+          category: '3d-printing',
+          quantity: String(quantity),
+          notes: optionsSummary
+            ? `Selected product: ${product.name}\nCustomization preferences: ${optionsSummary}`
+            : `Selected product: ${product.name}`
+        }
+      }
+    });
+  };
+
   useEffect(() => {
     setSelectedImageIndex(0); // Reset image selection when product changes
   }, [productId]);
@@ -331,7 +355,25 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
 
             {selectedTab === 'customization' && (
               <div className="space-y-4 text-slate-600">
-                <p className="mb-2">Choose from the available customization options for this product. These options are set by the seller during upload.</p>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                  <h3 className="text-base font-semibold text-slate-800 mb-2">Need more custom changes?</h3>
+                  <p className="text-sm text-slate-600 mb-3">Share extra requirements like text, logo placement, dimensions, finish, color, and quantity in a dedicated custom order request.</p>
+                  <ul className="text-sm text-slate-600 space-y-1 mb-4">
+                    <li>• Product details are auto-filled from this page</li>
+                    <li>• Upload reference images and sketches</li>
+                    <li>• Mention timeline and budget preferences</li>
+                  </ul>
+                  <button
+                    type="button"
+                    onClick={handleCustomizationRequest}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                  >
+                    Continue in Custom Order
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.customizationOptions && Object.keys(product.customizationOptions).length > 0 ? (
                     Object.entries(product.customizationOptions).map(([k, v]) => (

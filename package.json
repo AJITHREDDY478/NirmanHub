@@ -7,10 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape:products": "node ./scripts/scraping/scrape_products.mjs",
+    "prepare:products": "node ./scripts/scraping/prepare_review_file.mjs",
+    "prepare:products:local-images": "node ./scripts/scraping/prepare_review_file.mjs --download-images --images-root ./public/Products/imported --public-prefix /NirmanHub/Products/imported",
+    "import:products": "node ./scripts/scraping/import_scraped_products.mjs",
+    "scrape-and-import": "npm run scrape:products ; npm run import:products"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
+    "cheerio": "^1.1.2",
+    "dotenv": "^16.6.1",
     "framer-motion": "^12.29.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

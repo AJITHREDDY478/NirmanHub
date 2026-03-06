@@ -1,0 +1,29 @@
+{
+  "sourceUrl": "https://example.com/products",
+  "listPageUrls": [
+    "https://example.com/products"
+  ],
+  "selectors": {
+    "productCard": ".product-card",
+    "name": ".product-title",
+    "price": ".product-price",
+    "description": ".product-description",
+    "image": "img",
+    "imageAttr": "src",
+    "link": "a",
+    "linkAttr": "href"
+  },
+  "enrich": {
+    "enabled": true,
+    "concurrency": 6
+  },
+  "defaults": {
+    "department": "3D Prints",
+    "subcategory": "Imported",
+    "category": "Imported",
+    "description": "Imported via web scraping",
+    "emoji": "🧩",
+    "stock_quantity": 10,
+    "printing_time": 24
+  }
+}
