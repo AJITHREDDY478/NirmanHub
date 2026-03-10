@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import ProductImage from './ProductImage';
 
 export default function ProductCard({
   product,
@@ -52,7 +53,13 @@ export default function ProductCard({
           transition={{ duration: 0.3 }}
         >
           {product.image ? (
-            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <ProductImage
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+              containerClassName="w-full h-full"
+              fallback={<span className="text-4xl sm:text-5xl">{product.emoji || '📦'}</span>}
+            />
           ) : (
             product.emoji
           )}

@@ -3,6 +3,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getProductById, getAllProducts } from '../utils/catalogService';
 import { renderStars, formatPrice } from '../utils/helpers';
 import ProductCard from '../components/ProductCard';
+import ProductImage from '../components/ProductImage';
+import BrandLoader from '../components/BrandLoader';
 
 export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, addToRecentlyViewed }) {
   const { productId } = useParams();
@@ -108,14 +110,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
   }, [productId]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading product...</p>
-        </div>
-      </div>
-    );
+    return <BrandLoader message="Loading product..." />;
   }
 
   if (!product) {
@@ -150,11 +145,13 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
               onTouchEnd={handleTouchEnd}
             >
               {productImages.length > 0 ? (
-                <img 
-                  src={productImages[selectedImageIndex]} 
-                  alt={product.name} 
-                  className="w-full h-full object-contain select-none pointer-events-none" 
-                  draggable="false"
+                <ProductImage
+                  src={productImages[selectedImageIndex]}
+                  alt={product.name}
+                  className="w-full h-full object-contain select-none pointer-events-none"
+                  containerClassName="w-full h-full"
+                  fallback={<span className="text-6xl">{product.emoji || '📦'}</span>}
+                  loading="eager"
                 />
               ) : product.emoji ? (
                 <span className="text-6xl sm:text-7xl md:text-9xl">{product.emoji}</span>
@@ -200,7 +197,13 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
                         : 'border-slate-200 hover:border-slate-300'
                     }`}
                   >
-                    <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
+                    <ProductImage
+                      src={img}
+                      alt={`View ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      containerClassName="w-full h-full"
+                      fallback={<span className="text-xl">📦</span>}
+                    />
                   </button>
                 ))}
               </div>

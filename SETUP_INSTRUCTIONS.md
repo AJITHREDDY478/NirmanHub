@@ -2,7 +2,7 @@
 
 ## Project Setup Complete! ✅
 
-I've created the foundational structure for your NirmanaHub React + Vite project. Here's what's been set up:
+I've created the foundational structure for your AR Print Lab React + Vite project. Here's what's been set up:
 
 ### ✅ Created Files:
 1. **Configuration Files:**

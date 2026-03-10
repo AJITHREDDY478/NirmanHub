@@ -1,4 +1,4 @@
-# 📂 NirmanaHub - Complete File Structure
+# 📂 AR Print Lab - Complete File Structure
 
 ```
 NirmanaHub/

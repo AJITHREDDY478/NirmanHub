@@ -16,6 +16,15 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Prevent text selection on touch devices */
 @media (hover: none) {
   .no-select {

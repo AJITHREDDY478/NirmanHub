@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import brandLogo from '../assets/brand/nirmanhub-logo.svg';
+import brandLogo from '../assets/brand/ar-print-lab-logo.svg';
 
 export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onShowAuth }) {
   const { user, profile, signOut } = useAuth();
@@ -47,7 +47,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
         <Link to="/" className="flex items-center gap-3 group">
           <img
             src={brandLogo}
-            alt="NirmanHub"
+            alt="AR Print Lab"
             className="h-9 md:h-11 w-auto transform group-hover:scale-[1.02] transition-transform duration-300"
           />
         </Link>

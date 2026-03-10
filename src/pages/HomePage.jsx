@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getAllProducts, getAllDepartments } from '../utils/catalogService';
+import { getDepartmentIcon } from '../utils/departmentIcons';
 import ThreeBackground from '../components/ThreeBackground';
 import Product3DViewer from '../components/Product3DViewer';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
+import BrandLoader from '../components/BrandLoader';
 
 export default function HomePage({ addToCart, toggleWishlist, wishlistItems, recentlyViewed, addToRecentlyViewed }) {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isProductsLoading, setIsProductsLoading] = useState(true);
   const [modelIndex, setModelIndex] = useState(0);
   const navigate = useNavigate();
   
@@ -29,17 +32,24 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
   
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch products
-      const { data } = await getAllProducts();
-      setAllProducts(data);
-      setFeaturedProducts(data.slice(0, 8));
-      
+      try {
+        setIsProductsLoading(true);
+
+        // Fetch products
+        const { data } = await getAllProducts();
+        const productList = Array.isArray(data) ? data : [];
+        setAllProducts(productList);
+        setFeaturedProducts(productList.slice(0, 8));
+      } finally {
+        setIsProductsLoading(false);
+      }
+
       // Fetch departments for categories
       const { data: depts } = await getAllDepartments();
       const formattedCategories = (depts || []).map((dept, index) => ({
         id: dept.id,
         name: dept.name,
-        icon: dept.item_details_data?.icon || '📦',
+        icon: getDepartmentIcon(dept.name, dept.item_details_data?.icon),
         image: dept.image_url,
         color: dept.item_details_data?.color || 'from-blue-400 to-cyan-500',
         textColor: 'text-slate-600',
@@ -314,18 +324,22 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
             <p className="text-slate-600 text-base sm:text-lg px-4">Handpicked selections from our premium collection</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={addToCart}
-                onToggleWishlist={toggleWishlist}
-                isWishlisted={wishlistItems.includes(product.id)}
-                onViewDetails={handleViewProduct}
-              />
-            ))}
-          </div>
+          {isProductsLoading ? (
+            <BrandLoader message="Loading featured models..." compact />
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+              {featuredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={addToCart}
+                  onToggleWishlist={toggleWishlist}
+                  isWishlisted={wishlistItems.includes(product.id)}
+                  onViewDetails={handleViewProduct}
+                />
+              ))}
+            </div>
+          )}
 
           <div className="text-center mt-12">
             <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-purple-500/50">
@@ -363,7 +377,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
             </div>
 
           {/* Category Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-10 place-items-center max-[360px]:flex max-[360px]:overflow-x-auto max-[360px]:gap-3 max-[360px]:justify-start max-[360px]:pb-2 max-[360px]:px-1 max-[360px]:snap-x max-[360px]:snap-mandatory hide-scrollbar">
             {categories.map((category, index) => (
               <motion.div
                 key={category.id}
@@ -371,42 +385,40 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="w-full max-w-[170px] max-[360px]:w-[140px] max-[360px]:max-w-none max-[360px]:flex-shrink-0 max-[360px]:snap-start"
               >
                 <Link
                   to={`/department/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="group h-full"
+                  className="group h-full block"
                 >
                   <motion.div
-                    whileHover={{ y: -8 }}
+                    whileHover={{ y: -4 }}
                     transition={{ duration: 0.3 }}
-                    className="h-full p-5 sm:p-6 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 flex flex-col items-center text-center cursor-pointer"
+                    className="h-full flex flex-col items-center text-center cursor-pointer"
                   >
-                    {/* Icon/Image Container */}
                     <motion.div
-                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      whileHover={{ scale: 1.06 }}
                       transition={{ duration: 0.3 }}
-                      className={`w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${category.color} shadow-lg p-0.5 transform transition-all`}
+                      className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[3px] border-black p-1.5 bg-white shadow-sm"
                     >
-                      <div className="w-full h-full rounded-lg sm:rounded-xl overflow-hidden bg-white flex items-center justify-center">
-                        {category.image ? (
-                          isVideoUrl(category.image) ? (
-                            <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+                      <div className="w-full h-full rounded-full border-2 border-amber-400 p-1">
+                        <div className="w-full h-full rounded-full border border-rose-300 overflow-hidden bg-white flex items-center justify-center">
+                          {category.image ? (
+                            isVideoUrl(category.image) ? (
+                              <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+                            ) : (
+                              <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
+                            )
                           ) : (
-                            <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
-                          )
-                        ) : (
-                          <span className="text-2xl sm:text-4xl filter drop-shadow-lg">{category.icon}</span>
-                        )}
+                            <span className="text-4xl sm:text-5xl filter drop-shadow-lg">{category.icon}</span>
+                          )}
+                        </div>
                       </div>
                     </motion.div>
 
-                    {/* Title */}
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 mb-1 sm:mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all">
+                    <h3 className="mt-3 font-medium text-lg sm:text-[1.35rem] leading-tight text-slate-900 line-clamp-2">
                       {category.name}
                     </h3>
-
-                    {/* Bottom Accent */}
-                    <div className="mt-3 sm:mt-4 w-full h-1 bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-0 group-hover:opacity-100 rounded-full transition-all"></div>
                   </motion.div>
                 </Link>
               </motion.div>

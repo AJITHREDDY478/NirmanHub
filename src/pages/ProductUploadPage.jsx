@@ -15,6 +15,7 @@ import {
   getNextProductLookupCode,
   deleteCatalogItem
 } from '../utils/catalogService';
+import { getDepartmentIcon } from '../utils/departmentIcons';
 import * as XLSX from 'xlsx';
 import SvgGenerator from '../components/SvgGenerator';
 
@@ -171,17 +172,57 @@ export default function ProductUploadPage({ showToast }) {
   const loadDepartments = async () => {
     const { data, error } = await getDepartmentHierarchy(user.id);
     if (!error && data) {
-      setDepartments(data);
+      const techAccessoryNames = new Set(['tech accessories', 'tech accessory']);
+      const departmentsNeedingBackfill = data.filter((dept) => {
+        const normalizedName = String(dept.name || '').trim().toLowerCase();
+        const currentIcon = String(dept.item_details_data?.icon || '').trim();
+        return techAccessoryNames.has(normalizedName) && currentIcon !== '🔌';
+      });
+
+      if (departmentsNeedingBackfill.length > 0) {
+        await Promise.all(
+          departmentsNeedingBackfill.map((dept) =>
+            supabase
+              .from('catalog_entities')
+              .update({
+                item_details_data: {
+                  ...(dept.item_details_data || {}),
+                  icon: '🔌'
+                },
+                updated_at: new Date().toISOString()
+              })
+              .eq('id', dept.id)
+              .eq('user_id', user.id)
+          )
+        );
+      }
+
+      const normalizedDepartments = data.map((dept) => {
+        const normalizedName = String(dept.name || '').trim().toLowerCase();
+        if (!techAccessoryNames.has(normalizedName)) {
+          return dept;
+        }
+        return {
+          ...dept,
+          item_details_data: {
+            ...(dept.item_details_data || {}),
+            icon: '🔌'
+          }
+        };
+      });
+
+      setDepartments(normalizedDepartments);
     }
   };
 
   const handleEditDepartment = (dept) => {
+    const generatedIcon = getDepartmentIcon(dept.name, dept.item_details_data?.icon);
     setDepartmentFormData({
       name: dept.name,
       subdepartments: dept.subdepartments.length > 0 
         ? dept.subdepartments.map(s => s.name) 
         : [''],
-      icon: dept.item_details_data?.icon || '',
+      icon: generatedIcon,
       imageUrl: dept.image_url || '',
       color: dept.item_details_data?.color || 'from-blue-400 to-cyan-500'
     });
@@ -195,6 +236,8 @@ export default function ProductUploadPage({ showToast }) {
       return;
     }
 
+    const resolvedIcon = getDepartmentIcon(departmentFormData.name, departmentFormData.icon);
+
     setLoading(true);
 
     try {
@@ -206,7 +249,7 @@ export default function ProductUploadPage({ showToast }) {
             name: departmentFormData.name, 
             image_url: departmentFormData.imageUrl || null,
             item_details_data: { 
-              icon: departmentFormData.icon || null, 
+              icon: resolvedIcon, 
               color: departmentFormData.color || 'from-blue-400 to-cyan-500' 
             },
             updated_at: new Date().toISOString() 
@@ -251,7 +294,7 @@ export default function ProductUploadPage({ showToast }) {
           user.id,
           departmentFormData.name,
           deptLookupCode,
-          departmentFormData.icon || null,
+          resolvedIcon,
           departmentFormData.imageUrl || null,
           departmentFormData.color || 'from-blue-400 to-cyan-500'
         );
@@ -3023,7 +3066,7 @@ export default function ProductUploadPage({ showToast }) {
                                       <img src={dept.image_url} alt={dept.name} className="w-7 h-7 object-contain" />
                                     )
                                   ) : (
-                                    <span className="text-xl">{dept.item_details_data?.icon || '📁'}</span>
+                                    <span className="text-xl">{getDepartmentIcon(dept.name, dept.item_details_data?.icon)}</span>
                                   )}
                                 </div>
                               </div>

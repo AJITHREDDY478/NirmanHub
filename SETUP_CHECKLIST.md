@@ -1,4 +1,4 @@
-# ✅ Setup Checklist - NirmanaHub
+# ✅ Setup Checklist - AR Print Lab
 
 Follow these steps in order to get your project running:
 
@@ -89,7 +89,7 @@ http://localhost:5173
 ```
 
 ### ✅ You Should See:
-- NirmanaHub homepage
+- AR Print Lab homepage
 - Hero section with animated background
 - Product grid
 - Navigation bar

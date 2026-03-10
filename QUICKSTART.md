@@ -1,4 +1,4 @@
-# ⚡ Quick Start - NirmanaHub
+# ⚡ Quick Start - AR Print Lab
 
 ## 5-Minute Setup
 

@@ -1,4 +1,4 @@
-# 🚀 NirmanaHub - Complete Setup Guide
+# 🚀 AR Print Lab - Complete Setup Guide
 
 ## Prerequisites Installation
 

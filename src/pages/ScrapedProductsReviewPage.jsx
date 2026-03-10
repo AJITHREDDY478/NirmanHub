@@ -84,7 +84,7 @@ export default function ScrapedProductsReviewPage({ showToast }) {
       setIsLoadingDefault(true);
       const baseUrl = import.meta.env.BASE_URL || '/';
       const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-      const defaultUrl = `${normalizedBase}data/review-products.nirmanhub.json`;
+      const defaultUrl = `${normalizedBase}data/review-products.nirmanhub.json?t=${Date.now()}`;
       const response = await fetch(defaultUrl, { cache: 'no-store' });
 
       if (!response.ok) {

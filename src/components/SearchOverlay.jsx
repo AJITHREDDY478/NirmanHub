@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { searchProducts, getAllProducts } from '../utils/catalogService';
+import ProductImage from './ProductImage';
 
 export default function SearchOverlay({ isOpen, onClose, addToRecentlyViewed }) {
   const [query, setQuery] = useState('');
@@ -83,7 +84,13 @@ export default function SearchOverlay({ isOpen, onClose, addToRecentlyViewed }) 
                   >
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0 overflow-hidden">
                       {p.image ? (
-                        <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                        <ProductImage
+                          src={p.image}
+                          alt={p.name}
+                          className="w-full h-full object-cover"
+                          containerClassName="w-full h-full"
+                          fallback={<span>{p.emoji || '📦'}</span>}
+                        />
                       ) : (
                         p.emoji
                       )}

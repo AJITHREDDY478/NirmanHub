@@ -1,144 +1,161 @@
-# NirmanaHub - 3D Model Marketplace
+# AR Print Lab
 
-A modern, full-featured e-commerce React application built with Vite and Tailwind CSS.
+AR Print Lab is a React + Vite storefront for 3D-printed and customizable products with Supabase-powered catalog, auth, orders, and admin product management.
 
-## Features
+## Documentation
 
-- 🛍️ Complete e-commerce functionality
-- 🛒 Shopping cart with quantity management
-- ❤️ Wishlist functionality
-- 🔍 Product search
-- 📦 Product categories and departments
-- 💳 Checkout flow (Address & Payment)
-- 📱 Fully responsive design
-- 🎨 Beautiful animations and transitions
-- 💬 WhatsApp chat integration
-- 🎯 Product filtering and sorting
+- Developer onboarding: `DEVELOPER_ONBOARDING.md`
+- Quick start: `QUICKSTART.md`
+- Supabase setup: `SUPABASE_SETUP.md`
+- Scraping/import details: `scripts/scraping/README.md`
 
-## Getting Started
+## Highlights
 
-### Installation
+- Product catalog with category/department flows
+- Product detail pages with customization handoff to custom-order form
+- Custom order submission with file uploads
+- Admin product upload/review workflow (including scraped product import)
+- Supabase authentication + profile integration
+- Mobile-responsive UI, search overlay, cart, wishlist, and WhatsApp chat
+- Branded assets (logo + favicon) and imported local product media
 
-1. Install dependencies:
+## Tech Stack
+
+- React 18
+- Vite 5
+- Tailwind CSS 3
+- React Router 6
+- Supabase JS
+- Framer Motion
+- Three.js
+- XLSX + Cheerio (data import/scraping tools)
+
+## Quick Start
+
+### 1) Install
+
 ```bash
 npm install
 ```
 
-2. Start the development server:
+### 2) Configure environment
+
+Create `.env` (or copy from `.env.example`) and set:
+
+```dotenv
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+SCRAPER_USER_ID=your_user_uuid
+```
+
+### 3) Run app
+
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:3000`
+The app is configured with `base: /NirmanHub/` in `vite.config.js`.
 
-### Build for Production
+### 4) Build/preview
 
 ```bash
 npm run build
-```
-
-### Preview Production Build
-
-```bash
 npm run preview
 ```
 
+## Supabase Setup
+
+Run the SQL setup files from project root in your Supabase SQL editor:
+
+- `supabase_profiles_setup.sql`
+- `supabase_catalog_setup.sql`
+- `supabase_cart_setup.sql`
+
+Useful guide documents:
+
+- `SUPABASE_SETUP.md`
+- `SETUP_GUIDE.md`
+- `SETUP_CHECKLIST.md`
+
+## NPM Scripts
+
+### App
+
+- `npm run dev` – start Vite dev server
+- `npm run build` – production build
+- `npm run preview` – preview production build
+- `npm run lint` – run ESLint
+
+### Scraping + Catalog Import
+
+- `npm run scrape:products` – scrape products to JSON
+- `npm run prepare:products` – merge/prepare review JSON
+- `npm run prepare:products:local-images` – also download images to `public/Products/imported`
+- `npm run import:products` – import prepared products to Supabase
+- `npm run scrape-and-import` – run scrape + import sequence
+
+Detailed usage: `scripts/scraping/README.md`
+
 ## Project Structure
 
-```
-src/
-├── components/         # Reusable components
-│   ├── Navbar.jsx
-│   ├── Cart.jsx
-│   ├── ProductCard.jsx
-│   ├── SearchOverlay.jsx
-│   ├── AuthModal.jsx
-│   ├── WhatsAppChat.jsx
-│   └── ...
-├── pages/             # Page components
-│   ├── HomePage.jsx
-│   ├── ProductPage.jsx
-│   ├── CategoriesPage.jsx
-│   └── ...
-├── data/              # Static data
-│   └── products.js
-├── utils/             # Utility functions
-│   └── helpers.jsx
-├── App.jsx            # Main app component
-├── main.jsx           # Entry point
-└── index.css          # Global styles
+```text
+.
+├─ public/
+│  ├─ Products/                 # product media (including imported assets)
+│  ├─ data/                     # review/import JSON files
+│  ├─ brand/                    # logo assets
+│  └─ favicon.svg
+├─ scripts/
+│  ├─ migrations/               # SQL migration helpers
+│  └─ scraping/                 # scrape + prepare + import pipeline
+├─ src/
+│  ├─ components/               # reusable UI + feature components
+│  ├─ contexts/                 # auth context
+│  ├─ pages/                    # route-level pages
+│  ├─ utils/                    # supabase and service utilities
+│  └─ assets/brand/             # bundled logo assets
+├─ openscad_models/             # parametric model sources
+├─ blender_scripts/             # modeling/render helper scripts
+└─ stl_files/                   # generated STL outputs
 ```
 
-## Technologies Used
+## Core Workflows
 
-- **React 18** - UI library
-- **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
-- **Tailwind CSS** - Utility-first CSS framework
-- **Three.js** - 3D graphics (for hero background)
+### Product browsing
 
-## Available Scripts
+Catalog data is read from Supabase (`catalog_entities`) via `src/utils/catalogService.js`, transformed to UI shape, and rendered in cards/pages.
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run scrape:products` - Scrape products from a configured website into JSON
-- `npm run import:products` - Import scraped JSON products into Supabase
-- `npm run scrape-and-import` - Run scrape and import in sequence
+### Custom orders
 
-See `scripts/scraping/README.md` for full setup and usage.
+Users can move from product detail to custom order with prefilled context. Orders and attachments are saved via Supabase services.
 
-## Features Implemented
+### Product management
 
-### Shopping Experience
-- Browse products by category
-- View product details
-- Add items to cart
-- Manage cart quantities
-- Wishlist functionality
-- Recently viewed products
+Admin-side product upload/review pages support manual and scrape-assisted data population.
 
-### User Interface
-- Responsive navbar with search
-- Cart sidebar
-- Product cards with hover effects
-- Smooth animations
-- Glass morphism effects
-- 3D background effects
+## Deployment Notes
 
-### Pages
-- Home page with hero section
-- Categories listing
-- Department pages
-- Product detail pages
-- About page
-- Contact page
-- Wishlist page
-- Orders page (placeholder)
+- Vite base path is currently `/NirmanHub/`.
+- Use base-aware asset handling (already applied for branding and catalog image normalization).
+- If images look stale after update, hard-refresh the browser.
 
-## Customization
+## Troubleshooting
 
-### Colors
-The site uses a gradient color scheme from amber to teal. You can customize these in your Tailwind config or component files.
+- Port already in use: Vite auto-switches (e.g., 3000 → 3001)
+- Missing Supabase env vars: check `.env` keys and restart dev server
+- Broken product images: verify `image_url` values in catalog and that assets exist under `public/Products/...`
+- Auth issues: re-run profile setup SQL and confirm Email provider settings in Supabase
 
-### Products
-Edit `src/data/products.js` to add or modify products, categories, and departments.
+## Contributing
 
-### Styling
-All styles use Tailwind CSS utility classes. Custom animations are defined in `src/index.css`.
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+1. Create a feature branch
+2. Make focused changes
+3. Run lint/build locally
+4. Open pull request with testing notes
 
 ## License
 
-MIT
-
-## Author
-
-NirmanaHub Team
+Private project (AR Print Lab). Add your preferred license if needed.

@@ -2,7 +2,7 @@
 
 ## ✅ Project Status: COMPLETE
 
-All files have been successfully created for the NirmanaHub e-commerce platform!
+All files have been successfully created for the AR Print Lab e-commerce platform!
 
 ---
 
@@ -227,7 +227,7 @@ Vite will auto-select next available port
 
 ## 🎉 Congratulations!
 
-Your NirmanaHub e-commerce platform is complete and ready to run!
+Your AR Print Lab e-commerce platform is complete and ready to run!
 
 **Project Status:** ✅ Ready for Development
 

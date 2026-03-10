@@ -45,6 +45,8 @@ const isGenericBrand = (brand) => {
   return [
     'vishwakraft',
     'vishwa kraft',
+    'novelty boy',
+    'noveltyboy',
     'shopify',
     '3d printed product',
     'printed product',

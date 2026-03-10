@@ -1,6 +1,6 @@
 # Product Scraping + Import Pipeline
 
-This folder contains a 2-step pipeline to scrape product listings from a website and upload them to NirmanaHub (`catalog_entities` in Supabase).
+This folder contains a 2-step pipeline to scrape product listings from a website and upload them to AR Print Lab (`catalog_entities` in Supabase).
 
 ## Important
 

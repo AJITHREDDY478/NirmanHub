@@ -3,6 +3,9 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { departments as defaultDepartments, subcategoryEmojis } from '../data/products';
 import { getAllProducts, getAllDepartments } from '../utils/catalogService';
 import { renderStars, formatPrice } from '../utils/helpers';
+import { getDepartmentIcon } from '../utils/departmentIcons';
+import ProductImage from '../components/ProductImage';
+import BrandLoader from '../components/BrandLoader';
 
 export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItems, addToRecentlyViewed }) {
   const { departmentId } = useParams();
@@ -45,7 +48,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
         dept = {
           id: dbDept.id,
           name: dbDept.name,
-          icon: dbDept.item_details_data?.icon || getIconForDepartment(dbDept.name),
+          icon: getDepartmentIcon(dbDept.name, dbDept.item_details_data?.icon),
           subcategories: subs
         };
         
@@ -86,7 +89,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
             dept = {
               id: id,
               name: filtered[0].department || deptName,
-              icon: getIconForDepartment(deptName),
+              icon: getDepartmentIcon(deptName),
               subcategories: subs
             };
             
@@ -111,39 +114,8 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
     setSelectedSubcategory('all');
   }, [id]);
 
-  const getIconForDepartment = (name) => {
-    const icons = {
-      'electronics': '📱',
-      'fashion': '👗',
-      'home': '🏠',
-      'accessories': '💎',
-      'religious': '🙏',
-      'spiritual': '🕉️',
-      'miniatures': '🏗️',
-      'models': '🏗️',
-      'figurines': '🗿',
-      'collectibles': '🏆',
-      'keychains': '🔑',
-      'decor': '🎨',
-      'toys': '🧸',
-      'gifts': '🎁'
-    };
-    const lowerName = name.toLowerCase();
-    for (const [key, icon] of Object.entries(icons)) {
-      if (lowerName.includes(key)) return icon;
-    }
-    return '📦';
-  };
-
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading products...</p>
-        </div>
-      </div>
-    );
+    return <BrandLoader message="Loading products..." />;
   }
 
   if (!department) {
@@ -225,10 +197,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
 
         {/* Products Grid */}
         {loading ? (
-          <div className="text-center py-16">
-            <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-slate-600">Loading products...</p>
-          </div>
+          <BrandLoader message="Loading products..." compact />
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {filteredProducts.map((product, i) => (
@@ -236,7 +205,13 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
                 <div className="relative">
                   <div onClick={() => handleProductClick(product.id)} className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center product-image cursor-pointer overflow-hidden">
                     {product.image ? (
-                      <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                      <ProductImage
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                        containerClassName="w-full h-full"
+                        fallback={<span className="text-6xl">{product.emoji || '📦'}</span>}
+                      />
                     ) : (
                       <span className="text-6xl">{product.emoji}</span>
                     )}

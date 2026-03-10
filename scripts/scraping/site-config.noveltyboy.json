@@ -1,0 +1,30 @@
+{
+  "sourceUrl": "https://www.noveltyboy.com/collections/religious",
+  "listPageUrls": [
+    "https://www.noveltyboy.com/collections/religious"
+  ],
+  "_note": "noveltyboy.com is a Shopify store. Prefer the API-based scraper (scrape_noveltyboy.mjs) over this HTML config. Use this as fallback only.",
+  "selectors": {
+    "productCard": "li.grid__item",
+    "name": "h3.card__heading a, a.full-unstyled-link",
+    "price": ".price-item--regular",
+    "description": "",
+    "image": "img",
+    "imageAttr": "src",
+    "link": "h3.card__heading a, a.full-unstyled-link",
+    "linkAttr": "href"
+  },
+  "enrich": {
+    "enabled": true,
+    "concurrency": 4
+  },
+  "defaults": {
+    "department": "Name Boards",
+    "subcategory": "Novelty Boy Imported",
+    "category": "Religious",
+    "description": "Imported from Novelty Boy religious collection",
+    "emoji": "🙏",
+    "stock_quantity": 10,
+    "printing_time": 24
+  }
+}

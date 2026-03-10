@@ -3,23 +3,23 @@ $fn = 120;
 // =====================
 // COLOR VARIABLES
 // =====================
-base_color  = [0,0,0];        // Black
-ring_color  = [0,0,0];        // Red
-text_color  = [1,1,1];        // White
+base_color  = [1,1,1];        // Black
+ring_color  = [1,1,1];        // Red
+text_color  = [0,0,0];        // White
 // =====================
 
 // SETTINGS
-name = "Gururaj";
-font_name = "Liberation Serif:style=Bold";
-text_size = 10;
+name = "ರಾಯರಿದ್ದಾರೆ";
+font_name = "Noto Sans Kannada:style=Bold";
+text_size = 7;
 
 base_thickness = 2;
-text_thickness = 1.5;
+text_thickness = 1;
 
 ring_outer_d = 4;
 ring_inner_d = 2;
 
-ring_offset_x = -2;
+ring_offset_x = -1.8;
 
 
 difference() {
