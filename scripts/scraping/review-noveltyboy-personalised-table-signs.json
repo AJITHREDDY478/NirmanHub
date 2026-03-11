@@ -1,0 +1,295 @@
+[
+  {
+    "name": "Three Line Sign",
+    "description": "Celebrate love and milestones with a personalized three-line sign featuring names and special dates. Perfect for anniversaries, weddings, and romantic gifts.",
+    "original_price": 1999,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-01.png",
+    "image_urls": [
+      "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-01.png",
+      "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-02.png",
+      "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-03.png",
+      "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-04.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/three-line-sign",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/three-line-sign"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/personalised-table-signs",
+      "additionalImages": [
+        "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-02.png",
+        "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-03.png",
+        "/Products/Name Borads/Personalised Table Signs/three-line-sign/image-04.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/three-line-sign",
+      "shopifyProductId": 10779959132444,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Two Line Sign",
+    "description": "Turn your brand identity into a premium freestanding table sign. Perfect for office desks, reception counters, studios, and retail spaces. Clean finish, bold presence, and fully customized to your logo. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
+    "original_price": 1799,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Name Borads/Personalised Table Signs/two-line-sign/image-01.jpg",
+    "image_urls": [
+      "/Products/Name Borads/Personalised Table Signs/two-line-sign/image-01.jpg",
+      "/Products/Name Borads/Personalised Table Signs/two-line-sign/image-02.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/two-word-sign",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/two-word-sign"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/personalised-table-signs",
+      "additionalImages": [
+        "/Products/Name Borads/Personalised Table Signs/two-line-sign/image-02.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "Two word sign custom",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/two-word-sign",
+      "shopifyProductId": 10779944878364,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Single Line Sign",
+    "description": "Clean and minimal single-line name sign designed for modern desks and shelves. Simple, elegant, and perfect for personal spaces or gifting.",
+    "original_price": 1599,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Name Borads/Personalised Table Signs/single-line-sign/image-01.jpg",
+    "image_urls": [
+      "/Products/Name Borads/Personalised Table Signs/single-line-sign/image-01.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/single-word-sign",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/single-word-sign"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/personalised-table-signs",
+      "additionalImages": [],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "Single Word Sign",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/single-word-sign",
+      "shopifyProductId": 10779950154012,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Custom Brand Logo",
+    "description": "Turn your brand identity into a premium freestanding table sign. Perfect for office desks, reception counters, studios, and retail spaces. Clean finish, bold presence, and fully customized to your logo. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
+    "original_price": 2499,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-01.png",
+    "image_urls": [
+      "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-01.png",
+      "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-02.png",
+      "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-03.png",
+      "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-04.png",
+      "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-05.png",
+      "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-06.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/custom-brand-logo",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/custom-brand-logo"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/personalised-table-signs",
+      "additionalImages": [
+        "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-02.png",
+        "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-03.png",
+        "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-04.png",
+        "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-05.png",
+        "/Products/Name Borads/Personalised Table Signs/custom-brand-logo/image-06.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "custom brand logo-1",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/custom-brand-logo",
+      "shopifyProductId": 10779943993628,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  }
+]

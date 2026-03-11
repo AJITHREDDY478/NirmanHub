@@ -57,6 +57,7 @@ export const getAllProducts = async () => {
       category: item.item_details_data?.category || item.item_details_data?.department || 'General',
       emoji: item.item_details_data?.emoji || '📦',
       image: normalizeCatalogImageUrl(item.image_url),
+      additionalImages: normalizeCatalogImageList(item.item_details_data?.additionalImages),
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,

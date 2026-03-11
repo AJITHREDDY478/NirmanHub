@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductImage from './ProductImage';
 
@@ -11,6 +12,45 @@ export default function ProductCard({
   darkMode = false
 }) {
   const navigate = useNavigate();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  const cardImages = useMemo(() => {
+    const images = [];
+    if (product.image) images.push(product.image);
+    if (Array.isArray(product.additionalImages)) {
+      images.push(...product.additionalImages);
+    }
+    return [...new Set(images.filter(Boolean))];
+  }, [product.image, product.additionalImages]);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [product.id, cardImages.length]);
+
+  useEffect(() => {
+    if (cardImages.length <= 1) return undefined;
+
+    const timer = setInterval(() => {
+      setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
+    }, 2500);
+
+    return () => clearInterval(timer);
+  }, [cardImages.length]);
+
+  // Preload next images in carousel to eliminate loader on transitions
+  useEffect(() => {
+    if (cardImages.length <= 1) return;
+
+    const nextIndex = (activeImageIndex + 1) % cardImages.length;
+    const followingIndex = (activeImageIndex + 2) % cardImages.length;
+    const nextImages = [cardImages[nextIndex], cardImages[followingIndex]];
+
+    nextImages.forEach((url) => {
+      if (!url) return;
+      const img = new Image();
+      img.src = url;
+    });
+  }, [activeImageIndex, cardImages]);
 
   const handleCardClick = () => {
     if (typeof onViewDetails === 'function') {
@@ -52,9 +92,9 @@ export default function ProductCard({
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         >
-          {product.image ? (
+          {cardImages.length > 0 ? (
             <ProductImage
-              src={product.image}
+              src={cardImages[activeImageIndex]}
               alt={product.name}
               className="w-full h-full object-cover"
               containerClassName="w-full h-full"
@@ -64,6 +104,19 @@ export default function ProductCard({
             product.emoji
           )}
         </motion.div>
+
+        {cardImages.length > 1 && (
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-2 py-1 rounded-full bg-black/35 backdrop-blur-sm">
+            {cardImages.map((_, idx) => (
+              <span
+                key={`${product.id}-dot-${idx}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === activeImageIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/60'
+                }`}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Badges Container */}
         <div className="absolute top-3 left-0 right-0 px-3 flex items-start justify-between pointer-events-none">
@@ -76,16 +129,6 @@ export default function ProductCard({
                 className="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg"
               >
                 NEW
-              </motion.span>
-            )}
-            {discount > 0 && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.1 }}
-                className="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-600 text-white text-xs font-bold rounded-full shadow-lg"
-              >
-                -{discount}%
               </motion.span>
             )}
           </div>
@@ -114,11 +157,18 @@ export default function ProductCard({
       <div className={`flex flex-col flex-grow p-3 sm:p-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
         {/* Category */}
         {product.subcategory && (
-          <p className={`text-xs font-semibold uppercase tracking-wide mb-1.5 ${
-            darkMode ? 'text-white/60' : 'text-slate-500'
-          }`}>
-            {product.subcategory}
-          </p>
+          <div className="flex items-center justify-between gap-2 mb-1.5">
+            <p className={`text-xs font-semibold uppercase tracking-wide ${
+              darkMode ? 'text-white/60' : 'text-slate-500'
+            }`}>
+              {product.subcategory}
+            </p>
+            {product.customizationOptions && (
+              <span className="px-2.5 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold rounded-full">
+                Customizable
+              </span>
+            )}
+          </div>
         )}
 
         {/* Title */}
