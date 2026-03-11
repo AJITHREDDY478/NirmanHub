@@ -1,489 +1,24 @@
 [
   {
-    "name": "Jai Shri Ram Table Sign",
-    "description": "Invite divine blessings and positive energy into your space with this Jai Mata Di table sign. Designed in a bold, solid silhouette style, this freestanding decor piece reflects devotion, faith, and strength inspired by Maa Durga. Its thick and stable construction allows it to stand firmly on any flat surface without additional support. Whether placed in your home temple, living room, office desk, or festive setup, this piece adds a spiritual presence while maintaining a clean and minimal aesthetic. Perfect for Navratri decor, daily worship spaces, housewarming gifts, or as a meaningful present for devotees, this Jai Mata Di sign beautifully blends tradition with modern design to suit contemporary interiors. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
-    "original_price": 599,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 24,
-    "is_active": true,
-    "image_url": "/Products/Religious/jai-shri-ram-table-sign/image-01.png",
-    "image_urls": [
-      "/Products/Religious/jai-shri-ram-table-sign/image-01.png",
-      "/Products/Religious/jai-shri-ram-table-sign/image-02.jpg",
-      "/Products/Religious/jai-shri-ram-table-sign/image-03.png",
-      "/Products/Religious/jai-shri-ram-table-sign/image-04.png",
-      "/Products/Religious/jai-shri-ram-table-sign/image-05.png",
-      "/Products/Religious/jai-shri-ram-table-sign/image-06.png"
-    ],
-    "source_url": "https://www.noveltyboy.com/products/jai-shri-ram-table-sign",
-    "source_urls": [
-      "https://www.noveltyboy.com/products/jai-shri-ram-table-sign"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
-      "additionalImages": [
-        "/Products/Religious/jai-shri-ram-table-sign/image-02.jpg",
-        "/Products/Religious/jai-shri-ram-table-sign/image-03.png",
-        "/Products/Religious/jai-shri-ram-table-sign/image-04.png",
-        "/Products/Religious/jai-shri-ram-table-sign/image-05.png",
-        "/Products/Religious/jai-shri-ram-table-sign/image-06.png"
-      ],
-      "currency": "INR",
-      "availability": "In stock",
-      "sku": "jai shri ram",
-      "brand": "Novelty Boy",
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jai-shri-ram-table-sign",
-      "shopifyProductId": 10775193714972,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": "",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Shubh Labh Table Sign",
-    "description": "Bring prosperity and positive energy into your space with this Shubh Labh table sign. Symbolizing good fortune and financial growth, this freestanding decor piece is perfect for creating an auspicious atmosphere in your home or workplace. Designed in a bold, solid silhouette style, it offers a strong yet minimal presence that blends beautifully with modern interiors. Its sturdy and balanced structure allows it to stand firmly on any flat surface without support. Ideal for home temples, office desks, shop counters, entrances, festive decor, and housewarming gifts, this Shubh Labh sign represents tradition, positivity, and success in a clean and contemporary design. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
-    "original_price": 549,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 24,
-    "is_active": true,
-    "image_url": "/Products/Religious/shubh-labh-table-sign/image-01.jpg",
-    "image_urls": [
-      "/Products/Religious/shubh-labh-table-sign/image-01.jpg",
-      "/Products/Religious/shubh-labh-table-sign/image-02.png",
-      "/Products/Religious/shubh-labh-table-sign/image-03.jpg",
-      "/Products/Religious/shubh-labh-table-sign/image-04.png",
-      "/Products/Religious/shubh-labh-table-sign/image-05.png"
-    ],
-    "source_url": "https://www.noveltyboy.com/products/shubh-labh-table-sign",
-    "source_urls": [
-      "https://www.noveltyboy.com/products/shubh-labh-table-sign"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
-      "additionalImages": [
-        "/Products/Religious/shubh-labh-table-sign/image-02.png",
-        "/Products/Religious/shubh-labh-table-sign/image-03.jpg",
-        "/Products/Religious/shubh-labh-table-sign/image-04.png",
-        "/Products/Religious/shubh-labh-table-sign/image-05.png"
-      ],
-      "currency": "INR",
-      "availability": "In stock",
-      "sku": "shubh labh",
-      "brand": "Novelty Boy",
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/shubh-labh-table-sign",
-      "shopifyProductId": 10775194468636,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": "",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Jai Shree Shyam Table Sign Copy",
-    "description": "Add divine grace to your home or workspace with this beautifully crafted Jai Shree Shyam table sign. Designed in bold, elegant lettering with a strong freestanding base, it creates a peaceful and devotional atmosphere wherever placed. Made from premium hard material with a smooth matte finish, this decor piece is sturdy, lightweight, and long-lasting. The thick base ensures stable placement on desks, shelves, or mandir platforms without any additional support. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
-    "original_price": 549,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 24,
-    "is_active": true,
-    "image_url": "/Products/Religious/jai-shree-shyam-table-sign-copy/image-01.jpg",
-    "image_urls": [
-      "/Products/Religious/jai-shree-shyam-table-sign-copy/image-01.jpg",
-      "/Products/Religious/jai-shree-shyam-table-sign-copy/image-02.jpg",
-      "/Products/Religious/jai-shree-shyam-table-sign-copy/image-03.png",
-      "/Products/Religious/jai-shree-shyam-table-sign-copy/image-04.png",
-      "/Products/Religious/jai-shree-shyam-table-sign-copy/image-05.png"
-    ],
-    "source_url": "https://www.noveltyboy.com/products/jai-shree-shyam-table-sign-copy",
-    "source_urls": [
-      "https://www.noveltyboy.com/products/jai-shree-shyam-table-sign-copy"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
-      "additionalImages": [
-        "/Products/Religious/jai-shree-shyam-table-sign-copy/image-02.jpg",
-        "/Products/Religious/jai-shree-shyam-table-sign-copy/image-03.png",
-        "/Products/Religious/jai-shree-shyam-table-sign-copy/image-04.png",
-        "/Products/Religious/jai-shree-shyam-table-sign-copy/image-05.png"
-      ],
-      "currency": "INR",
-      "availability": "In stock",
-      "sku": "om namah shivay",
-      "brand": "Novelty Boy",
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jai-shree-shyam-table-sign-copy",
-      "shopifyProductId": 10775673012508,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": "",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Jai Shree Shyam Table Sign",
-    "description": "Add divine grace to your home or workspace with this beautifully crafted Jai Shree Shyam table sign. Designed in bold, elegant lettering with a strong freestanding base, it creates a peaceful and devotional atmosphere wherever placed. Made from premium hard material with a smooth matte finish, this decor piece is sturdy, lightweight, and long-lasting. The thick base ensures stable placement on desks, shelves, or mandir platforms without any additional support. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
-    "original_price": 549,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 24,
-    "is_active": true,
-    "image_url": "/Products/Religious/jai-shree-shyam-table-sign/image-01.jpg",
-    "image_urls": [
-      "/Products/Religious/jai-shree-shyam-table-sign/image-01.jpg",
-      "/Products/Religious/jai-shree-shyam-table-sign/image-02.png",
-      "/Products/Religious/jai-shree-shyam-table-sign/image-03.png",
-      "/Products/Religious/jai-shree-shyam-table-sign/image-04.png",
-      "/Products/Religious/jai-shree-shyam-table-sign/image-05.jpg"
-    ],
-    "source_url": "https://www.noveltyboy.com/products/jai-shree-shyam-table-sign",
-    "source_urls": [
-      "https://www.noveltyboy.com/products/jai-shree-shyam-table-sign"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
-      "additionalImages": [
-        "/Products/Religious/jai-shree-shyam-table-sign/image-02.png",
-        "/Products/Religious/jai-shree-shyam-table-sign/image-03.png",
-        "/Products/Religious/jai-shree-shyam-table-sign/image-04.png",
-        "/Products/Religious/jai-shree-shyam-table-sign/image-05.jpg"
-      ],
-      "currency": "INR",
-      "availability": "In stock",
-      "sku": "jay shri shyam",
-      "brand": "Novelty Boy",
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jai-shree-shyam-table-sign",
-      "shopifyProductId": 10775672652060,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": "",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Hare Ka Sahara Baba Shyam Hamara Table Sign",
-    "description": "Bring devotion and positivity into your space with this beautifully crafted “Hare Ka Sahara Baba Shyam Hamara” table sign. Designed with bold, clean lettering and a strong freestanding base, it adds a spiritual presence to your home, office desk, mandir, or gifting collection. Made from premium hard material with a smooth matte finish, this decor piece is sturdy, lightweight, and long-lasting. The thick base ensures stable placement on any flat surface without support. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
-    "original_price": 599,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 24,
-    "is_active": true,
-    "image_url": "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-01.png",
-    "image_urls": [
-      "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-01.png",
-      "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-02.png",
-      "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-03.png",
-      "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-04.png"
-    ],
-    "source_url": "https://www.noveltyboy.com/products/hare-ka-sahara-baba-shyam-hamara-table-sign",
-    "source_urls": [
-      "https://www.noveltyboy.com/products/hare-ka-sahara-baba-shyam-hamara-table-sign"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
-      "additionalImages": [
-        "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-02.png",
-        "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-03.png",
-        "/Products/Religious/hare-ka-sahara-baba-shyam-hamara-table-sign/image-04.png"
-      ],
-      "currency": "INR",
-      "availability": "In stock",
-      "sku": "haarey ka sahara",
-      "brand": "Novelty Boy",
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/hare-ka-sahara-baba-shyam-hamara-table-sign",
-      "shopifyProductId": 10775672160540,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": "",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Shri Ganeshay Namah Table Sign",
-    "description": "Invite prosperity, wisdom, and new beginnings into your space with this Shri Ganeshay Namah table sign. Inspired by the blessings of Lord Ganesha, this freestanding decor piece represents success, positivity, and auspicious energy. Designed in a bold, solid silhouette style, it offers a strong visual presence while maintaining a clean and minimal aesthetic. Its balanced and sturdy construction allows it to stand firmly on any flat surface without additional support. Ideal for home temples, office desks, entrance areas, festive setups, or as a thoughtful housewarming gift, this Shri Ganeshay Namah sign beautifully combines traditional devotion with a modern decor appeal suited for contemporary interiors. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
-    "original_price": 599,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 24,
-    "is_active": true,
-    "image_url": "/Products/Religious/shri-ganeshay-namah-table-sign/image-01.png",
-    "image_urls": [
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-01.png",
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-02.jpg",
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-03.jpg",
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-04.png",
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-05.png",
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-06.png",
-      "/Products/Religious/shri-ganeshay-namah-table-sign/image-07.png"
-    ],
-    "source_url": "https://www.noveltyboy.com/products/shri-ganeshay-namah-table-sign",
-    "source_urls": [
-      "https://www.noveltyboy.com/products/shri-ganeshay-namah-table-sign"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
-      "additionalImages": [
-        "/Products/Religious/shri-ganeshay-namah-table-sign/image-02.jpg",
-        "/Products/Religious/shri-ganeshay-namah-table-sign/image-03.jpg",
-        "/Products/Religious/shri-ganeshay-namah-table-sign/image-04.png",
-        "/Products/Religious/shri-ganeshay-namah-table-sign/image-05.png",
-        "/Products/Religious/shri-ganeshay-namah-table-sign/image-06.png",
-        "/Products/Religious/shri-ganeshay-namah-table-sign/image-07.png"
-      ],
-      "currency": "INR",
-      "availability": "In stock",
-      "sku": "shri ganeshay namah",
-      "brand": "Novelty Boy",
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/shri-ganeshay-namah-table-sign",
-      "shopifyProductId": 10775194173724,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": "",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Jai Mata Di Table Sign",
-    "description": "Invite divine blessings and positive energy into your space with this Jai Mata Di table sign. Designed in a bold, solid silhouette style, this freestanding decor piece reflects devotion, faith, and strength inspired by Maa Durga. Its thick and stable construction allows it to stand firmly on any flat surface without additional support. Whether placed in your home temple, living room, office desk, or festive setup, this piece adds a spiritual presence while maintaining a clean and minimal aesthetic. Perfect for Navratri decor, daily worship spaces, housewarming gifts, or as a meaningful present for devotees, this Jai Mata Di sign beautifully blends tradition with modern design to suit contemporary interiors. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
+    "name": "Follow Your Dreams Desk Sign | Motivational Table Decor for Home & Office 8 × 8 Inch",
+    "description": "Chase your dreams, make them reality. The Follow Your Dreams Desk Sign is an inspiring reminder to pursue your passions and never give up on what you believe in – perfect for dreamers, goal-setters, and ambitious spirits. Designed with motivational typography and an empowering message, this desk sign keeps your aspirations front and center. Whether placed in your office, study, or creative workspace, it serves as daily encouragement to take action and follow your heart. Why You'll Love It: Inspiring message – Motivational reminder to pursue your dreams Empowering design – Modern aesthetic that motivates action Perfect size – 8 × 8 inches, ideal for desks and shelves Lightweight & sturdy – Quality construction built to last Motivational energy – Keeps you focused on your goals Great gift – Perfect for graduates, entrepreneurs, and dreamers Perfect For: Office desks and workspaces Study tables and creative studios Home offices and work-from-home setups Graduation and milestone gifts Motivational home décor Dimensions: 8 × 8 inches Note: Color may slightly vary due to lighting and screen settings.",
     "original_price": 499,
     "discount_price": 0,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Religious/jai-mata-di-table-sign/image-01.jpg",
+    "image_url": "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-01.png",
     "image_urls": [
-      "/Products/Religious/jai-mata-di-table-sign/image-01.jpg",
-      "/Products/Religious/jai-mata-di-table-sign/image-02.png",
-      "/Products/Religious/jai-mata-di-table-sign/image-03.png",
-      "/Products/Religious/jai-mata-di-table-sign/image-04.png",
-      "/Products/Religious/jai-mata-di-table-sign/image-05.png"
+      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-01.png",
+      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-02.png",
+      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-03.png",
+      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-04.png",
+      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-05.jpg",
+      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-06.jpg"
     ],
-    "source_url": "https://www.noveltyboy.com/products/jai-mata-di-table-sign",
+    "source_url": "https://www.noveltyboy.com/products/follow-your-dreams-desk-sign-motivational-table-decor-for-home-office-8-8-inch",
     "source_urls": [
-      "https://www.noveltyboy.com/products/jai-mata-di-table-sign"
+      "https://www.noveltyboy.com/products/follow-your-dreams-desk-sign-motivational-table-decor-for-home-office-8-8-inch"
     ],
     "type": "Item",
     "parent_id": null,
@@ -492,21 +27,22 @@
       "subcategory": "Religious",
       "category": "Religious",
       "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
       "additionalImages": [
-        "/Products/Religious/jai-mata-di-table-sign/image-02.png",
-        "/Products/Religious/jai-mata-di-table-sign/image-03.png",
-        "/Products/Religious/jai-mata-di-table-sign/image-04.png",
-        "/Products/Religious/jai-mata-di-table-sign/image-05.png"
+        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-02.png",
+        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-03.png",
+        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-04.png",
+        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-05.jpg",
+        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-06.jpg"
       ],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "jai matadi",
+      "sku": "follow your dreams",
       "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jai-mata-di-table-sign",
-      "shopifyProductId": 10775193256220,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/follow-your-dreams-desk-sign-motivational-table-decor-for-home-office-8-8-inch",
+      "shopifyProductId": 10733842465052,
       "specifications": null,
       "customizationOptions": null,
       "whyChoose": "",
@@ -543,24 +79,27 @@
     }
   },
   {
-    "name": "Jai Jinendra Table Sign",
-    "description": "Bring peace, positivity, and spiritual grace into your space with this Jai Jinendra table sign. Designed in a bold, clean silhouette style, this freestanding decor piece reflects the essence of Jain values such as humility, respect, and inner calm. Its solid and balanced structure allows it to stand firmly on any flat surface without support. Whether placed in your home temple, living area, office desk, or reception space, this sign creates a refined spiritual presence while maintaining a modern and minimal look. Perfect for daily inspiration, festive decor, housewarming gifts, or as a thoughtful gesture for Jain families, this Jai Jinendra sign blends tradition with contemporary design to suit every interior setting. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
+    "name": "Main Apni Favourite Hoon Desk Sign | Motivational Hindi Quote Table Decor 8 × 8 Inch",
+    "description": "Main Apni Favourite Hoon – I am my own favorite. This empowering Hindi desk sign is a bold declaration of self-love and confidence – perfect for celebrating your worth and embracing who you are. Designed with modern typography and a powerful self-love message in Hindi, this desk sign serves as a daily reminder to prioritize yourself and celebrate your uniqueness. Whether placed on your desk, vanity, or bedroom shelf, it radiates confidence and self-appreciation. Why You'll Love It: Empowering Hindi message – Bold self-love statement in your language Confident design – Modern aesthetic that celebrates you Perfect size – 8 × 8 inches, ideal for desks and shelves Lightweight & durable – Quality construction built to last Self-love vibes – Creates an empowering atmosphere Meaningful gift – Perfect for confident women and self-love advocates Perfect For: Bedroom and vanity décor Office desks and workspaces Dressing rooms and personal spaces Gifts for confident women and friends Self-love and empowerment décor Dimensions: 8 × 8 inches Note: Color may slightly vary due to lighting and screen settings.",
     "original_price": 499,
     "discount_price": 0,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Religious/jai-jinendra-table-sign/image-01.jpg",
+    "image_url": "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-01.jpg",
     "image_urls": [
-      "/Products/Religious/jai-jinendra-table-sign/image-01.jpg",
-      "/Products/Religious/jai-jinendra-table-sign/image-02.png",
-      "/Products/Religious/jai-jinendra-table-sign/image-03.png",
-      "/Products/Religious/jai-jinendra-table-sign/image-04.png",
-      "/Products/Religious/jai-jinendra-table-sign/image-05.png"
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-01.jpg",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-02.png",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-03.png",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-04.png",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-05.jpg",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-06.png",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-07.png",
+      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-08.png"
     ],
-    "source_url": "https://www.noveltyboy.com/products/jai-bajrangbali-table-sign-copy",
+    "source_url": "https://www.noveltyboy.com/products/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-table-decor-8-8-inch",
     "source_urls": [
-      "https://www.noveltyboy.com/products/jai-bajrangbali-table-sign-copy"
+      "https://www.noveltyboy.com/products/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-table-decor-8-8-inch"
     ],
     "type": "Item",
     "parent_id": null,
@@ -569,21 +108,24 @@
       "subcategory": "Religious",
       "category": "Religious",
       "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
       "additionalImages": [
-        "/Products/Religious/jai-jinendra-table-sign/image-02.png",
-        "/Products/Religious/jai-jinendra-table-sign/image-03.png",
-        "/Products/Religious/jai-jinendra-table-sign/image-04.png",
-        "/Products/Religious/jai-jinendra-table-sign/image-05.png"
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-02.png",
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-03.png",
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-04.png",
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-05.jpg",
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-06.png",
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-07.png",
+        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-08.png"
       ],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "jai jinendra",
+      "sku": "main apni fav hoon",
       "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jai-bajrangbali-table-sign-copy",
-      "shopifyProductId": 10775192830236,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-table-decor-8-8-inch",
+      "shopifyProductId": 10733840400668,
       "specifications": null,
       "customizationOptions": null,
       "whyChoose": "",
@@ -620,24 +162,25 @@
     }
   },
   {
-    "name": "Jai Bajrangbali Table Sign",
-    "description": "Add strength, protection, and devotion to your space with this Jai Bajrangbali table sign. Designed in a bold and powerful silhouette style, this freestanding decor piece represents faith, courage, and positive energy inspired by Lord Hanuman. Its thick, solid construction ensures stability on any flat surface, making it perfect for mandir spaces, living rooms, office desks, or spiritual corners. The clean and minimal design blends traditional devotion with a modern aesthetic, allowing it to complement contemporary interiors beautifully. Ideal for daily inspiration, festive decoration, housewarming gifts, or as a meaningful present for Hanuman devotees, this Jai Bajrangbali sign brings spiritual presence and strength into any environment. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
+    "name": "Boss Lady Desk Sign | Motivational Table Decor for Office & Home 8 × 8 Inch",
+    "description": "Make a bold statement with this Boss Lady table sign, designed for confident, driven women who love stylish and empowering decor. Crafted with a clean white base and vibrant pink raised lettering, this modern desk sign adds personality and motivation to any space. Whether placed on an office desk, study table, shelf, or gifted to a strong woman in your life, it instantly elevates the vibe of the room. Its compact yet eye-catching size makes it perfect for everyday decor without occupying much space. ✨ PRODUCT DETAILS Text: Boss Lady Size: 8 × 8 inches Thickness: 1 inch Design: White base with pink top letters Placement: Desk, shelf, table, office, home decor 💡 WHY YOU’LL LOVE IT Modern & empowering decor piece Lightweight and easy to place Premium finish with clean edges Perfect gift for entrepreneurs, professionals & boss women Ideal for office desks, home setups & shelves 🎁 PERFECT FOR Office desk decor Home workspaces Study tables Gifting to women leaders & entrepreneurs Birthday, appreciation & motivational gifts 📦 PACKAGE INCLUDES 1 × Boss Lady Table Sign",
     "original_price": 499,
     "discount_price": 0,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Religious/jai-bajrangbali-table-sign/image-01.png",
+    "image_url": "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-01.png",
     "image_urls": [
-      "/Products/Religious/jai-bajrangbali-table-sign/image-01.png",
-      "/Products/Religious/jai-bajrangbali-table-sign/image-02.jpg",
-      "/Products/Religious/jai-bajrangbali-table-sign/image-03.png",
-      "/Products/Religious/jai-bajrangbali-table-sign/image-04.png",
-      "/Products/Religious/jai-bajrangbali-table-sign/image-05.png"
+      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-01.png",
+      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-02.jpg",
+      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-03.png",
+      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-04.png",
+      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-05.png",
+      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-06.png"
     ],
-    "source_url": "https://www.noveltyboy.com/products/jai-bajrangbali-table-sign",
+    "source_url": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch-copy",
     "source_urls": [
-      "https://www.noveltyboy.com/products/jai-bajrangbali-table-sign"
+      "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch-copy"
     ],
     "type": "Item",
     "parent_id": null,
@@ -646,21 +189,22 @@
       "subcategory": "Religious",
       "category": "Religious",
       "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
       "additionalImages": [
-        "/Products/Religious/jai-bajrangbali-table-sign/image-02.jpg",
-        "/Products/Religious/jai-bajrangbali-table-sign/image-03.png",
-        "/Products/Religious/jai-bajrangbali-table-sign/image-04.png",
-        "/Products/Religious/jai-bajrangbali-table-sign/image-05.png"
+        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-02.jpg",
+        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-03.png",
+        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-04.png",
+        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-05.png",
+        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-06.png"
       ],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "jai bajrangbali",
+      "sku": "boss lady table sign",
       "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jai-bajrangbali-table-sign",
-      "shopifyProductId": 10775192371484,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch-copy",
+      "shopifyProductId": 10733838860572,
       "specifications": null,
       "customizationOptions": null,
       "whyChoose": "",
@@ -697,25 +241,26 @@
     }
   },
   {
-    "name": "Har Har Mahadev Table Sign",
-    "description": "Bring divine energy and strength into your space with this Har Har Mahadev table sign, designed to add a powerful spiritual presence to your home or workspace. Crafted in a bold, thick silhouette style, this freestanding decor piece reflects devotion, positivity, and inner strength. Its solid build and balanced structure allow it to stand firmly on any flat surface without support. Whether placed in your living room, mandir area, office desk, or gifted to a Shiva devotee, this piece creates an immediate visual impact while maintaining a clean and minimal aesthetic. Perfect for daily inspiration, festive decor, housewarming gifts, or personal spiritual corners, this Har Har Mahadev sign blends tradition with modern design to suit contemporary interiors. Made with premium PLA (a durable 3D-printed plastic, similar in feel to PVC) for a strong, lightweight, premium finish.",
+    "name": "GYM FREAK Desk Sign | Motivational Table Decor for Gym Lovers 8 × 4 Inch",
+    "description": "Gym life, all day every day. The GYM FREAK Desk Sign is a bold statement piece for fitness enthusiasts who live and breathe the gym lifestyle – perfect for gym lovers, bodybuilders, and fitness fanatics. Designed with bold typography and a motivational message, this desk sign proudly displays your dedication to fitness. Whether placed in your home gym, office desk, or workout space, it's a constant reminder of your commitment to gains, discipline, and the grind. Why You'll Love It: Bold gym statement – Celebrates fitness dedication and lifestyle Motivational design – Modern aesthetic that inspires workouts Perfect size – 8 × 4 inches, ideal for desks and gym spaces Lightweight & durable – Quality construction built to last Fitness vibes – Adds motivation to your space Great gift – Perfect for gym rats, bodybuilders, and fitness lovers Perfect For: Home gyms and workout spaces Office desks for fitness motivation Gym lockers and personal training studios Gifts for gym enthusiasts and bodybuilders Fitness-themed home décor Dimensions: 8 × 4 inches Note: Color may slightly vary due to lighting and screen settings.",
     "original_price": 599,
     "discount_price": 0,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Religious/har-har-mahadev-table-sign/image-01.png",
+    "image_url": "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-01.jpg",
     "image_urls": [
-      "/Products/Religious/har-har-mahadev-table-sign/image-01.png",
-      "/Products/Religious/har-har-mahadev-table-sign/image-02.png",
-      "/Products/Religious/har-har-mahadev-table-sign/image-03.png",
-      "/Products/Religious/har-har-mahadev-table-sign/image-04.png",
-      "/Products/Religious/har-har-mahadev-table-sign/image-05.jpg",
-      "/Products/Religious/har-har-mahadev-table-sign/image-06.jpg"
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-01.jpg",
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-02.png",
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-03.png",
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-04.png",
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-05.png",
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-06.png",
+      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-07.png"
     ],
-    "source_url": "https://www.noveltyboy.com/products/har-har-mahadev-table-sign",
+    "source_url": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch",
     "source_urls": [
-      "https://www.noveltyboy.com/products/har-har-mahadev-table-sign"
+      "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch"
     ],
     "type": "Item",
     "parent_id": null,
@@ -724,22 +269,23 @@
       "subcategory": "Religious",
       "category": "Religious",
       "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/religious",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
       "additionalImages": [
-        "/Products/Religious/har-har-mahadev-table-sign/image-02.png",
-        "/Products/Religious/har-har-mahadev-table-sign/image-03.png",
-        "/Products/Religious/har-har-mahadev-table-sign/image-04.png",
-        "/Products/Religious/har-har-mahadev-table-sign/image-05.jpg",
-        "/Products/Religious/har-har-mahadev-table-sign/image-06.jpg"
+        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-02.png",
+        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-03.png",
+        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-04.png",
+        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-05.png",
+        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-06.png",
+        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-07.png"
       ],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "har har mahadev",
+      "sku": "gym freak table sign",
       "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/har-har-mahadev-table-sign",
-      "shopifyProductId": 10775191519516,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch",
+      "shopifyProductId": 10732290572572,
       "specifications": null,
       "customizationOptions": null,
       "whyChoose": "",
