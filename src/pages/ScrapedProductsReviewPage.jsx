@@ -1,5 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import * as XLSX from 'xlsx';
+import { useAuth } from '../contexts/AuthContext';
+import { departments as seedDepartments } from '../data/products';
+import { getDepartmentHierarchy } from '../utils/catalogService';
 
 const parseFileJson = (text) => {
   const data = JSON.parse(text);
@@ -35,10 +38,109 @@ const resolveImageSrc = (rawSrc) => {
 };
 
 export default function ScrapedProductsReviewPage({ showToast }) {
+  const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [fileName, setFileName] = useState('');
   const [query, setQuery] = useState('');
   const [isLoadingDefault, setIsLoadingDefault] = useState(false);
+  const [customFieldMode, setCustomFieldMode] = useState({});
+  const [catalogDepartments, setCatalogDepartments] = useState([]);
+
+  useEffect(() => {
+    const loadCatalogDepartments = async () => {
+      if (!user?.id) {
+        setCatalogDepartments([]);
+        return;
+      }
+
+      const { data, error } = await getDepartmentHierarchy(user.id);
+      if (error) {
+        setCatalogDepartments([]);
+        return;
+      }
+
+      setCatalogDepartments(Array.isArray(data) ? data : []);
+    };
+
+    loadCatalogDepartments();
+  }, [user?.id]);
+
+  const departmentOptions = useMemo(() => {
+    const options = new Set();
+
+    products
+      .map((item) => String(item.item_details_data?.department || '').trim())
+      .filter(Boolean)
+      .forEach((value) => options.add(value));
+
+    catalogDepartments
+      .map((department) => String(department.name || '').trim())
+      .filter(Boolean)
+      .forEach((value) => options.add(value));
+
+    seedDepartments
+      .map((department) => String(department.name || '').trim())
+      .filter(Boolean)
+      .forEach((value) => options.add(value));
+
+    return [...options].sort((a, b) => a.localeCompare(b));
+  }, [catalogDepartments, products]);
+
+  const subcategoryOptionsByDepartment = useMemo(() => {
+    const optionsMap = new Map();
+    const ensureBucket = (key) => {
+      if (!optionsMap.has(key)) {
+        optionsMap.set(key, new Set());
+      }
+      return optionsMap.get(key);
+    };
+
+    ensureBucket('__all__');
+
+    catalogDepartments.forEach((department) => {
+      const departmentName = String(department.name || '').trim();
+      if (!departmentName) return;
+
+      const bucket = ensureBucket(departmentName);
+      const subdepartments = Array.isArray(department.subdepartments) ? department.subdepartments : [];
+
+      subdepartments.forEach((subdepartment) => {
+        const subdepartmentName = String(subdepartment.name || '').trim();
+        if (!subdepartmentName) return;
+        bucket.add(subdepartmentName);
+        ensureBucket('__all__').add(subdepartmentName);
+      });
+    });
+
+    seedDepartments.forEach((department) => {
+      const departmentName = String(department.name || '').trim();
+      if (!departmentName) return;
+
+      const bucket = ensureBucket(departmentName);
+      const subdepartments = Array.isArray(department.subcategories) ? department.subcategories : [];
+
+      subdepartments.forEach((subcategory) => {
+        const subcategoryName = String(subcategory || '').trim();
+        if (!subcategoryName) return;
+        bucket.add(subcategoryName);
+        ensureBucket('__all__').add(subcategoryName);
+      });
+    });
+
+    products.forEach((item) => {
+      const department = String(item.item_details_data?.department || '').trim() || '__all__';
+      const subcategory = String(item.item_details_data?.subcategory || '').trim();
+
+      if (!subcategory) return;
+
+      ensureBucket(department).add(subcategory);
+      ensureBucket('__all__').add(subcategory);
+    });
+
+    return new Map(
+      [...optionsMap.entries()].map(([key, value]) => [key, [...value].sort((a, b) => a.localeCompare(b))])
+    );
+  }, [catalogDepartments, products]);
 
   const filteredProducts = useMemo(() => {
     const withIndex = products.map((item, index) => ({ item, index }));
@@ -127,6 +229,23 @@ export default function ScrapedProductsReviewPage({ showToast }) {
       };
       return next;
     });
+  };
+
+  const toggleCustomFieldMode = (index, key, enabled) => {
+    setCustomFieldMode((prev) => ({
+      ...prev,
+      [`${index}:${key}`]: enabled
+    }));
+  };
+
+  const handleSelectDetailsField = (index, key, value) => {
+    if (value === '__add_new__') {
+      toggleCustomFieldMode(index, key, true);
+      return;
+    }
+
+    updateDetailsField(index, key, value);
+    toggleCustomFieldMode(index, key, false);
   };
 
   const updateImageUrlsText = (index, text) => {
@@ -262,6 +381,20 @@ export default function ScrapedProductsReviewPage({ showToast }) {
           const imageUrls = Array.isArray(item.image_urls) && item.image_urls.length > 0
             ? item.image_urls
             : (item.image_url ? [item.image_url] : []);
+          const departmentValue = item.item_details_data?.department || '';
+          const subcategoryValue = item.item_details_data?.subcategory || '';
+          const departmentCustomKey = `${index}:department`;
+          const subcategoryCustomKey = `${index}:subcategory`;
+          const departmentSelectValue = customFieldMode[departmentCustomKey]
+            ? '__add_new__'
+            : (departmentValue && departmentOptions.includes(departmentValue) ? departmentValue : '');
+          const availableSubcategories = subcategoryOptionsByDepartment.get(departmentValue)
+            || subcategoryOptionsByDepartment.get('__all__')
+            || [];
+          const subcategorySelectValue = customFieldMode[subcategoryCustomKey]
+            ? '__add_new__'
+            : (subcategoryValue && availableSubcategories.includes(subcategoryValue) ? subcategoryValue : '');
+
           return (
             <div key={`${item.name || 'item'}-${filteredIndex}`} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 md:p-5">
               <div className="grid md:grid-cols-12 gap-3">
@@ -294,10 +427,48 @@ export default function ScrapedProductsReviewPage({ showToast }) {
                   <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.discount_price ?? 0} onChange={(e) => updateField(index, 'discount_price', toNumber(e.target.value, 0))} placeholder="Discount Price" type="number" />
                   <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.stock_quantity ?? 0} onChange={(e) => updateField(index, 'stock_quantity', toNumber(e.target.value, 0))} placeholder="Stock" type="number" />
                   <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.printing_time ?? 24} onChange={(e) => updateField(index, 'printing_time', toNumber(e.target.value, 24))} placeholder="Printing Time" type="number" />
-                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.department || ''} onChange={(e) => updateDetailsField(index, 'department', e.target.value)} placeholder="Department" />
-                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.subcategory || ''} onChange={(e) => updateDetailsField(index, 'subcategory', e.target.value)} placeholder="Subcategory" />
-                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.category || ''} onChange={(e) => updateDetailsField(index, 'category', e.target.value)} placeholder="Category" />
-                  <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.item_details_data?.emoji || ''} onChange={(e) => updateDetailsField(index, 'emoji', e.target.value)} placeholder="Emoji" />
+                  <div className="space-y-2">
+                    <select
+                      className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white"
+                      value={departmentSelectValue}
+                      onChange={(e) => handleSelectDetailsField(index, 'department', e.target.value)}
+                    >
+                      <option value="">Select Department</option>
+                      {departmentOptions.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                      <option value="__add_new__">Add New Department</option>
+                    </select>
+                    {customFieldMode[departmentCustomKey] && (
+                      <input
+                        className="w-full px-3 py-2 rounded-lg border border-slate-300"
+                        value={departmentValue}
+                        onChange={(e) => updateDetailsField(index, 'department', e.target.value)}
+                        placeholder="New Department"
+                      />
+                    )}
+                  </div>
+                  <div className="space-y-2">
+                    <select
+                      className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white"
+                      value={subcategorySelectValue}
+                      onChange={(e) => handleSelectDetailsField(index, 'subcategory', e.target.value)}
+                    >
+                      <option value="">Select Subdepartment</option>
+                      {availableSubcategories.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                      <option value="__add_new__">Add New Subdepartment</option>
+                    </select>
+                    {customFieldMode[subcategoryCustomKey] && (
+                      <input
+                        className="w-full px-3 py-2 rounded-lg border border-slate-300"
+                        value={subcategoryValue}
+                        onChange={(e) => updateDetailsField(index, 'subcategory', e.target.value)}
+                        placeholder="New Subdepartment"
+                      />
+                    )}
+                  </div>
                   <textarea
                     className="md:col-span-2 px-3 py-2 rounded-lg border border-slate-300"
                     rows={3}

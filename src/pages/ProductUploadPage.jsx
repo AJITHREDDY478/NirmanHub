@@ -19,6 +19,29 @@ import { getDepartmentIcon } from '../utils/departmentIcons';
 import * as XLSX from 'xlsx';
 import SvgGenerator from '../components/SvgGenerator';
 
+const resolveAssetSrc = (rawSrc) => {
+  const src = String(rawSrc || '').trim();
+  if (!src) return '';
+  if (/^(https?:|data:|blob:)/i.test(src)) return src;
+
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+  if (src.startsWith(normalizedBase)) {
+    return src;
+  }
+
+  if (src.startsWith('/NirmanHub/')) {
+    return `${normalizedBase}${src.replace(/^\/NirmanHub\/+/, '')}`;
+  }
+
+  if (src.startsWith('/')) {
+    return `${normalizedBase}${src.replace(/^\/+/, '')}`;
+  }
+
+  return `${normalizedBase}${src.replace(/^\/+/, '')}`;
+};
+
 export default function ProductUploadPage({ showToast }) {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -1395,8 +1418,8 @@ export default function ProductUploadPage({ showToast }) {
         is_active: true,
         department: 'Electronics',
         subdepartment: 'Mobile Accessories',
-        image_url: '/NirmanHub/Products/imported/sample-product/image-01.png',
-        additional_images: '/NirmanHub/Products/imported/sample-product/image-02.png, /NirmanHub/Products/imported/sample-product/image-03.png'
+        image_url: '/Products/imported/sample-product/image-01.png',
+        additional_images: '/Products/imported/sample-product/image-02.png, /Products/imported/sample-product/image-03.png'
       }
     ];
 
@@ -2309,7 +2332,7 @@ export default function ProductUploadPage({ showToast }) {
                       {imagePreviews.map((preview, index) => (
                         <div key={index} className="relative group">
                           <img 
-                            src={preview} 
+                            src={resolveAssetSrc(preview)} 
                             alt={`Preview ${index + 1}`} 
                             className="w-full aspect-square object-cover rounded-lg border border-slate-200" 
                           />
@@ -2571,7 +2594,7 @@ export default function ProductUploadPage({ showToast }) {
                         </td>
                         <td className="py-3 px-4 w-16">
                           {product.image_url ? (
-                            <img src={product.image_url} alt={product.name} className="w-12 h-12 object-cover rounded-lg" />
+                            <img src={resolveAssetSrc(product.image_url)} alt={product.name} className="w-12 h-12 object-cover rounded-lg" />
                           ) : (
                             <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400">
                               📦
