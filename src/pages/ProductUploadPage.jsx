@@ -1442,7 +1442,7 @@ export default function ProductUploadPage({ showToast }) {
   }
 
   // Check if user is admin
-  if (user.email !== 'ajithreddy478@gmail.com') {
+  if (!['ajithreddy478@gmail.com', 'reddybhagya742@gmail.com'].includes(user.email)) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">

@@ -222,7 +222,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                   </svg>
                   <span className="text-slate-700 group-hover:text-amber-600 font-medium">Address Book</span>
                 </Link>
-                {user && user.email === 'ajithreddy478@gmail.com' && (
+                {user && ['ajithreddy478@gmail.com', 'reddybhagya742@gmail.com'].includes(user.email) && (
                   <Link
                     to="/products/upload"
                     onClick={() => {
