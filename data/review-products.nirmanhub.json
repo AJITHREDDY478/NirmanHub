@@ -1,324 +1,617 @@
 [
   {
-    "name": "Follow Your Dreams Desk Sign | Motivational Table Decor for Home & Office 8 × 8 Inch",
-    "description": "Chase your dreams, make them reality. The Follow Your Dreams Desk Sign is an inspiring reminder to pursue your passions and never give up on what you believe in – perfect for dreamers, goal-setters, and ambitious spirits. Designed with motivational typography and an empowering message, this desk sign keeps your aspirations front and center. Whether placed in your office, study, or creative workspace, it serves as daily encouragement to take action and follow your heart. Why You'll Love It: Inspiring message – Motivational reminder to pursue your dreams Empowering design – Modern aesthetic that motivates action Perfect size – 8 × 8 inches, ideal for desks and shelves Lightweight & sturdy – Quality construction built to last Motivational energy – Keeps you focused on your goals Great gift – Perfect for graduates, entrepreneurs, and dreamers Perfect For: Office desks and workspaces Study tables and creative studios Home offices and work-from-home setups Graduation and milestone gifts Motivational home décor Dimensions: 8 × 8 inches Note: Color may slightly vary due to lighting and screen settings.",
-    "original_price": 499,
-    "discount_price": 0,
+    "name": "FlexiStand Keychain",
+    "description": "Sleek. Smart. Always Ready. The FlexiStand Keychain by Layerz is your pocket-sized tech sidekick. Designed to blend portability and utility, it functions as a sturdy mobile stand and a stylish keychain—all in one minimalist form. Color Variety: Available in multiple vibrant and neutral color options Whether you're watching videos, on a call, or just organizing your keys—FlexiStand is built for convenience and style, wherever you go.",
+    "original_price": 149,
+    "discount_price": 99,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-01.png",
+    "image_url": "/Products/Layerz/flexistand-keychain-sleek-mobile-stand-on-the-go/image-01.jpg",
     "image_urls": [
-      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-01.png",
-      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-02.png",
-      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-03.png",
-      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-04.png",
-      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-05.jpg",
-      "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-06.jpg"
+      "/Products/Layerz/flexistand-keychain-sleek-mobile-stand-on-the-go/image-01.jpg",
+      "/Products/Layerz/flexistand-keychain-sleek-mobile-stand-on-the-go/image-02.jpg",
+      "/Products/Layerz/flexistand-keychain-sleek-mobile-stand-on-the-go/image-03.jpg"
     ],
-    "source_url": "https://www.noveltyboy.com/products/follow-your-dreams-desk-sign-motivational-table-decor-for-home-office-8-8-inch",
+    "source_url": "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go",
     "source_urls": [
-      "https://www.noveltyboy.com/products/follow-your-dreams-desk-sign-motivational-table-decor-for-home-office-8-8-inch"
+      "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
+      "department": "Layerz Imports",
+      "subcategory": "Custom Products",
+      "category": "Layerz",
+      "emoji": "🧩",
+      "scrapedFrom": "https://www.layerz.club/",
       "additionalImages": [
-        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-02.png",
-        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-03.png",
-        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-04.png",
-        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-05.jpg",
-        "/Products/Name Borads/Motivational Table Signs/follow-your-dreams-desk-sign-motivational-table-decor-for-home-o/image-06.jpg"
+        "/Products/Layerz/flexistand-keychain-sleek-mobile-stand-on-the-go/image-02.jpg",
+        "/Products/Layerz/flexistand-keychain-sleek-mobile-stand-on-the-go/image-03.jpg"
       ],
+      "videoUrls": [],
+      "externalVideoUrls": [],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "follow your dreams",
-      "brand": "Novelty Boy",
+      "sku": null,
+      "brand": "Layerz",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/follow-your-dreams-desk-sign-motivational-table-decor-for-home-office-8-8-inch",
-      "shopifyProductId": 10733842465052,
+      "sourceCanonicalUrl": "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go",
+      "shopifyProductId": 8257355546669,
+      "customizationOptions": [
+        {
+          "name": "Color",
+          "values": [
+            "Marble",
+            "Beige",
+            "White",
+            "Pink",
+            "Orange",
+            "Brown",
+            "Green",
+            "Blue",
+            "Black"
+          ]
+        }
+      ],
       "specifications": null,
-      "customizationOptions": null,
       "whyChoose": "",
-      "variantOfferUrls": [],
+      "variantOfferUrls": [
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391606829",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391639597",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391672365",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391705133",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391737901",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391770669",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391803437",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391836205",
+        "https://www.layerz.club/products/flexistand-keychain-sleek-mobile-stand-on-the-go?variant=44411391868973"
+      ],
+      "sourceMedia": {
+        "images": [
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/IMG_0014_b4bb8f6c-94f2-477f-89a7-92930ad4e9eb.jpg?v=1756288167",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/IMG_0013_4a1b3083-3600-485e-a27f-c3abe77a811c.jpg?v=1756288167",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/IMG_0016_3b072760-57ba-45a3-969e-9931435be1a0.jpg?v=1756288167"
+        ],
+        "videos": []
+      },
       "rawProductJsonLd": null
     },
     "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
+      "media_downloaded": {
+        "images": 3,
+        "videos": 0,
+        "externalVideos": 0
+      }
     }
   },
   {
-    "name": "Main Apni Favourite Hoon Desk Sign | Motivational Hindi Quote Table Decor 8 × 8 Inch",
-    "description": "Main Apni Favourite Hoon – I am my own favorite. This empowering Hindi desk sign is a bold declaration of self-love and confidence – perfect for celebrating your worth and embracing who you are. Designed with modern typography and a powerful self-love message in Hindi, this desk sign serves as a daily reminder to prioritize yourself and celebrate your uniqueness. Whether placed on your desk, vanity, or bedroom shelf, it radiates confidence and self-appreciation. Why You'll Love It: Empowering Hindi message – Bold self-love statement in your language Confident design – Modern aesthetic that celebrates you Perfect size – 8 × 8 inches, ideal for desks and shelves Lightweight & durable – Quality construction built to last Self-love vibes – Creates an empowering atmosphere Meaningful gift – Perfect for confident women and self-love advocates Perfect For: Bedroom and vanity décor Office desks and workspaces Dressing rooms and personal spaces Gifts for confident women and friends Self-love and empowerment décor Dimensions: 8 × 8 inches Note: Color may slightly vary due to lighting and screen settings.",
-    "original_price": 499,
-    "discount_price": 0,
+    "name": "Custom Name Keychain / Bag Tag",
+    "description": "Make every key, bag, or gift extra special with our Custom Name Keychain.Designed and 3D-printed with precision, this keychain can be made in any size, shape, color, and font style — including names, initials, logos, symbols, or team branding. These durable, lightweight keychains are perfect for personal use or bulk gifting. Whether it's for friends, employees, events, or return gifts, this customizable keychain adds a personal touch that people remember. Bulk Orders Available (Discounts for 25+ pcs)",
+    "original_price": 159,
+    "discount_price": 119,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-01.jpg",
+    "image_url": "/Products/Layerz/custom-name-3d-printed-keychain/image-01.jpg",
     "image_urls": [
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-01.jpg",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-02.png",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-03.png",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-04.png",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-05.jpg",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-06.png",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-07.png",
-      "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-08.png"
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-01.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-02.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-03.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-04.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-05.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-06.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-07.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-08.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-09.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-10.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-11.jpg",
+      "/Products/Layerz/custom-name-3d-printed-keychain/image-12.jpg"
     ],
-    "source_url": "https://www.noveltyboy.com/products/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-table-decor-8-8-inch",
+    "source_url": "https://www.layerz.club/products/custom-name-3d-printed-keychain",
     "source_urls": [
-      "https://www.noveltyboy.com/products/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-table-decor-8-8-inch"
+      "https://www.layerz.club/products/custom-name-3d-printed-keychain"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
+      "department": "Layerz Imports",
+      "subcategory": "Custom Products",
+      "category": "Layerz",
+      "emoji": "🧩",
+      "scrapedFrom": "https://www.layerz.club/",
       "additionalImages": [
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-02.png",
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-03.png",
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-04.png",
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-05.jpg",
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-06.png",
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-07.png",
-        "/Products/Name Borads/Motivational Table Signs/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-tabl/image-08.png"
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-02.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-03.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-04.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-05.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-06.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-07.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-08.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-09.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-10.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-11.jpg",
+        "/Products/Layerz/custom-name-3d-printed-keychain/image-12.jpg"
       ],
+      "videoUrls": [],
+      "externalVideoUrls": [],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "main apni fav hoon",
-      "brand": "Novelty Boy",
+      "sku": null,
+      "brand": "Layerz",
       "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/main-apni-favourite-hoon-desk-sign-motivational-hindi-quote-table-decor-8-8-inch",
-      "shopifyProductId": 10733840400668,
+      "tags": [
+        "Label_Bestseller"
+      ],
+      "sourceCanonicalUrl": "https://www.layerz.club/products/custom-name-3d-printed-keychain",
+      "shopifyProductId": 8331050942509,
+      "customizationOptions": [
+        {
+          "name": "Color",
+          "values": [
+            "Beige",
+            "Pink",
+            "Orange",
+            "White",
+            "Brown",
+            "Green",
+            "Blue",
+            "Black"
+          ]
+        }
+      ],
       "specifications": null,
-      "customizationOptions": null,
       "whyChoose": "",
-      "variantOfferUrls": [],
+      "variantOfferUrls": [
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384660013",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384463405",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384496173",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384430637",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384528941",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384561709",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384594477",
+        "https://www.layerz.club/products/custom-name-3d-printed-keychain?variant=44411384627245"
+      ],
+      "sourceMedia": {
+        "images": [
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.16.16_PM_1.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.16.31_PM.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_7_13876776-d7b2-4bef-b250-7382ab4c6923.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_3_7382e166-9297-4a90-b405-297ac4502022.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_6_fb00618e-a55d-4e3b-b7c5-94dea77c9e51.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_8_6839e024-dfe4-434b-92d4-70f4b4e03514.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_5_57849bd7-ab51-4e3c-a403-a27e6aeea3c3.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_4_50ba65c8-4dcc-4a25-9318-1158acae328e.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.16.16_PM.jpg?v=1771231833",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.21.29_PM.jpg?v=1771231979",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.23.11_PM_7d0b5807-e59f-4931-bff0-47459d091103.jpg?v=1771232099",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.32.09_PM.jpg?v=1771232644"
+        ],
+        "videos": []
+      },
       "rawProductJsonLd": null
     },
     "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
+      "media_downloaded": {
+        "images": 12,
+        "videos": 0,
+        "externalVideos": 0
+      }
     }
   },
   {
-    "name": "Boss Lady Desk Sign | Motivational Table Decor for Office & Home 8 × 8 Inch",
-    "description": "Make a bold statement with this Boss Lady table sign, designed for confident, driven women who love stylish and empowering decor. Crafted with a clean white base and vibrant pink raised lettering, this modern desk sign adds personality and motivation to any space. Whether placed on an office desk, study table, shelf, or gifted to a strong woman in your life, it instantly elevates the vibe of the room. Its compact yet eye-catching size makes it perfect for everyday decor without occupying much space. ✨ PRODUCT DETAILS Text: Boss Lady Size: 8 × 8 inches Thickness: 1 inch Design: White base with pink top letters Placement: Desk, shelf, table, office, home decor 💡 WHY YOU’LL LOVE IT Modern & empowering decor piece Lightweight and easy to place Premium finish with clean edges Perfect gift for entrepreneurs, professionals & boss women Ideal for office desks, home setups & shelves 🎁 PERFECT FOR Office desk decor Home workspaces Study tables Gifting to women leaders & entrepreneurs Birthday, appreciation & motivational gifts 📦 PACKAGE INCLUDES 1 × Boss Lady Table Sign",
-    "original_price": 499,
-    "discount_price": 0,
+    "name": "Custom Fidget Keychain / Bag Tag",
+    "description": "Make every key, bag, or gift extra special with our Custom Fidget Keychain.Designed and 3D-printed with precision, this keychain can be made in any size, shape, colour, and font style — including names, initials, logos, symbols, or team branding. These durable, lightweight keychains are perfect for personal use or bulk gifting. Whether it's for friends, employees, events, or return gifts, this customizable keychain adds a personal touch that people remember. Bulk Orders Available (Discounts for 25+ pcs)",
+    "original_price": 199,
+    "discount_price": 169,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-01.png",
+    "image_url": "/Products/Layerz/custom-fidget-keychain-bag-tag/image-01.jpg",
     "image_urls": [
-      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-01.png",
-      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-02.jpg",
-      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-03.png",
-      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-04.png",
-      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-05.png",
-      "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-06.png"
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-01.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-02.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-03.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-04.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-05.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-06.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-07.png",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-08.png",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-09.png",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-10.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-11.jpg",
+      "/Products/Layerz/custom-fidget-keychain-bag-tag/image-12.jpg"
     ],
-    "source_url": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch-copy",
+    "source_url": "https://www.layerz.club/products/custom-fidget-keychain-bag-tag",
     "source_urls": [
-      "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch-copy"
+      "https://www.layerz.club/products/custom-fidget-keychain-bag-tag"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
+      "department": "Layerz Imports",
+      "subcategory": "Custom Products",
+      "category": "Layerz",
+      "emoji": "🧩",
+      "scrapedFrom": "https://www.layerz.club/",
       "additionalImages": [
-        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-02.jpg",
-        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-03.png",
-        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-04.png",
-        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-05.png",
-        "/Products/Name Borads/Motivational Table Signs/boss-lady-desk-sign-motivational-table-decor-for-office-home-8-8/image-06.png"
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-02.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-03.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-04.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-05.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-06.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-07.png",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-08.png",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-09.png",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-10.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-11.jpg",
+        "/Products/Layerz/custom-fidget-keychain-bag-tag/image-12.jpg"
       ],
+      "videoUrls": [],
+      "externalVideoUrls": [],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "boss lady table sign",
-      "brand": "Novelty Boy",
+      "sku": null,
+      "brand": "Layerz",
       "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch-copy",
-      "shopifyProductId": 10733838860572,
+      "tags": [
+        "Label_Bestseller"
+      ],
+      "sourceCanonicalUrl": "https://www.layerz.club/products/custom-fidget-keychain-bag-tag",
+      "shopifyProductId": 8350484529197,
+      "customizationOptions": [
+        {
+          "name": "Color",
+          "values": [
+            "Beige",
+            "Pink",
+            "Orange",
+            "White",
+            "Brown",
+            "Green",
+            "Blue",
+            "Black"
+          ]
+        }
+      ],
       "specifications": null,
-      "customizationOptions": null,
       "whyChoose": "",
-      "variantOfferUrls": [],
+      "variantOfferUrls": [
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414433099821",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414432903213",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414432935981",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414432870445",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414432968749",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414433001517",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414433034285",
+        "https://www.layerz.club/products/custom-fidget-keychain-bag-tag?variant=44414433067053"
+      ],
+      "sourceMedia": {
+        "images": [
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.56_PM_cfa670da-5d8b-4619-a3d6-5760b94ec47a.jpg?v=1771231266",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.12.59_PM_2.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.12.59_PM.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.56_PM_1_94d27f72-f87a-44fc-810d-b44a8038aab1.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_1_8c7ba8dc-e71c-444d-9c61-eeaf8ce4dc55.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_c4035ba9-c679-4507-9fc6-a2202e67af17.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNK_green.png?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNK_blue.png?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNK_black.png?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.01.57_PM_2_b0137f73-7aab-409e-9a7e-cbb9dd415951.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.12.59_PM_1.jpg?v=1771231487",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsApp_Image_2026-02-16_at_2.12.59_PM_3.jpg?v=1771231487"
+        ],
+        "videos": []
+      },
       "rawProductJsonLd": null
     },
     "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
+      "media_downloaded": {
+        "images": 12,
+        "videos": 0,
+        "externalVideos": 0
+      }
     }
   },
   {
-    "name": "GYM FREAK Desk Sign | Motivational Table Decor for Gym Lovers 8 × 4 Inch",
-    "description": "Gym life, all day every day. The GYM FREAK Desk Sign is a bold statement piece for fitness enthusiasts who live and breathe the gym lifestyle – perfect for gym lovers, bodybuilders, and fitness fanatics. Designed with bold typography and a motivational message, this desk sign proudly displays your dedication to fitness. Whether placed in your home gym, office desk, or workout space, it's a constant reminder of your commitment to gains, discipline, and the grind. Why You'll Love It: Bold gym statement – Celebrates fitness dedication and lifestyle Motivational design – Modern aesthetic that inspires workouts Perfect size – 8 × 4 inches, ideal for desks and gym spaces Lightweight & durable – Quality construction built to last Fitness vibes – Adds motivation to your space Great gift – Perfect for gym rats, bodybuilders, and fitness lovers Perfect For: Home gyms and workout spaces Office desks for fitness motivation Gym lockers and personal training studios Gifts for gym enthusiasts and bodybuilders Fitness-themed home décor Dimensions: 8 × 4 inches Note: Color may slightly vary due to lighting and screen settings.",
-    "original_price": 599,
-    "discount_price": 0,
+    "name": "Custom Name Pencil Topper – Personalised 3D Printed Pencil Cap",
+    "description": "Make everyday stationery special with our Custom Name Pencil Topper - a fun, personalized pencil cap designed with raised 3D letters of your chosen name. Perfect for kids, students, and gifting, this topper easily fits on standard pencils and instantly makes them unique. No more lost pencils at school! Lightweight, safe, and colorful, these name toppers add personality and excitement to writing, drawing, and studying. Each topper is custom-made to order, making it a thoughtful and practical personalized gift.",
+    "original_price": 199,
+    "discount_price": 99,
     "stock_quantity": 10,
     "printing_time": 24,
     "is_active": true,
-    "image_url": "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-01.jpg",
+    "image_url": "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-01.png",
     "image_urls": [
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-01.jpg",
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-02.png",
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-03.png",
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-04.png",
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-05.png",
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-06.png",
-      "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-07.png"
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-01.png",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-02.png",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-03.png",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-04.png",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-05.jpg",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-06.jpg",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-07.png",
+      "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-08.png"
     ],
-    "source_url": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch",
+    "source_url": "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap",
     "source_urls": [
-      "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch"
+      "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Name Boards",
-      "subcategory": "Religious",
-      "category": "Religious",
-      "emoji": "🙏",
-      "scrapedFrom": "https://www.noveltyboy.com/collections/table-sgn-motivational",
+      "department": "Layerz Imports",
+      "subcategory": "Custom Products",
+      "category": "Layerz",
+      "emoji": "🧩",
+      "scrapedFrom": "https://www.layerz.club/",
       "additionalImages": [
-        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-02.png",
-        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-03.png",
-        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-04.png",
-        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-05.png",
-        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-06.png",
-        "/Products/Name Borads/Motivational Table Signs/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-07.png"
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-02.png",
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-03.png",
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-04.png",
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-05.jpg",
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-06.jpg",
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-07.png",
+        "/Products/Layerz/custom-name-pencil-topper-personalised-3d-printed-pencil-cap/image-08.png"
       ],
+      "videoUrls": [],
+      "externalVideoUrls": [],
       "currency": "INR",
       "availability": "In stock",
-      "sku": "gym freak table sign",
-      "brand": "Novelty Boy",
+      "sku": null,
+      "brand": "Layerz",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch",
-      "shopifyProductId": 10732290572572,
+      "sourceCanonicalUrl": "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap",
+      "shopifyProductId": 8367012479021,
+      "customizationOptions": [
+        {
+          "name": "Color",
+          "values": [
+            "Pink",
+            "Blue",
+            "White",
+            "Orange",
+            "Green",
+            "Brown",
+            "Beige"
+          ]
+        }
+      ],
       "specifications": null,
-      "customizationOptions": null,
       "whyChoose": "",
-      "variantOfferUrls": [],
+      "variantOfferUrls": [
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474133839917",
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474133872685",
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474133905453",
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474133938221",
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474133970989",
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474134003757",
+        "https://www.layerz.club/products/custom-name-pencil-topper-personalised-3d-printed-pencil-cap?variant=44474134036525"
+      ],
+      "sourceMedia": {
+        "images": [
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/PT_pink.png?v=1767771207",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/PT_Blue.png?v=1767771393",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/PT_orange.png?v=1767771393",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/PT_white.png?v=1767771541",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-07at12.47.03PM_1.jpg?v=1767771541",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-07at12.47.03PM.jpg?v=1767771541",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/PT_brown.png?v=1767771541",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/PT_green.png?v=1767771442"
+        ],
+        "videos": []
+      },
       "rawProductJsonLd": null
     },
     "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
+      "media_downloaded": {
+        "images": 8,
+        "videos": 0,
+        "externalVideos": 0
+      }
+    }
+  },
+  {
+    "name": "Glow-in-the-Dark Custom Name Fridge Magnet - Personalised Luminous Magnet",
+    "description": "Make your fridge glow with personality.Our Glow-in-the-Dark Custom Name Fridge Magnet is a personalized magnet that charges in light and softly glows at night, making it both functional and eye-catching. Designed to hold photos, notes, reminders, and lists, this custom name magnet adds a unique touch to your kitchen while staying visible even in low light. Perfect for homes, kids’ rooms, gifts, and anyone who loves something a little magical. Each piece is made to order with your chosen name, ensuring a truly personal product. How the Glow Works Place magnet under light (sunlight or room light) It absorbs light energy Glows naturally in the dark (No batteries, no electricity)",
+    "original_price": 350,
+    "discount_price": 299,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-01.jpg",
+    "image_urls": [
+      "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-01.jpg",
+      "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-02.jpg",
+      "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-03.jpg",
+      "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-04.jpg",
+      "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-05.jpg",
+      "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-06.jpg"
+    ],
+    "source_url": "https://www.layerz.club/products/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet",
+    "source_urls": [
+      "https://www.layerz.club/products/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Layerz Imports",
+      "subcategory": "Custom Products",
+      "category": "Layerz",
+      "emoji": "🧩",
+      "scrapedFrom": "https://www.layerz.club/",
+      "additionalImages": [
+        "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-02.jpg",
+        "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-03.jpg",
+        "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-04.jpg",
+        "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-05.jpg",
+        "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/image-06.jpg"
       ],
-      "required": [
-        "name",
-        "original_price"
+      "videoUrls": [
+        "/Products/Layerz/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet/video-01.mp4"
       ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
+      "externalVideoUrls": [],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Layerz",
+      "productType": null,
+      "tags": [
+        "Label_Bestseller"
+      ],
+      "sourceCanonicalUrl": "https://www.layerz.club/products/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet",
+      "shopifyProductId": 8366319992877,
+      "customizationOptions": [
+        {
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "specifications": null,
+      "whyChoose": "",
+      "variantOfferUrls": [
+        "https://www.layerz.club/products/glow-in-the-dark-custom-name-fridge-magnet-personalised-luminous-magnet?variant=44470766305325"
+      ],
+      "sourceMedia": {
+        "images": [
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-06at3.47.17PM_1.jpg?v=1767694725",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-06at3.47.18PM.jpg?v=1767694758",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-06at3.47.21PM_1.jpg?v=1767694758",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-06at3.47.21PM.jpg?v=1767694758",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-06at3.47.17PM_2.jpg?v=1767694758",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2026-01-06at3.47.17PM.jpg?v=1767694758"
+        ],
+        "videos": [
+          "https://cdn.shopify.com/videos/c/vp/cad94b7056a848af9a9247c2345155ef/cad94b7056a848af9a9247c2345155ef.HD-720p-1.6Mbps-66447227.mp4"
+        ]
+      },
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "media_downloaded": {
+        "images": 6,
+        "videos": 1,
+        "externalVideos": 0
+      }
+    }
+  },
+  {
+    "name": "Custom Name Plate",
+    "description": "Add a personal touch to your workspace or home with our Custom 3D Printed Name Plate — a modern, minimal, and fully personalized name sign designed to sit perfectly on tables, desks, shelves, or home entrances. Each name plate is custom-made with your chosen name, 3D printed using high-quality material, and finished with clean edges and a solid base for stable placement. Whether it’s for your office desk, study table, shop counter, or home entrance, this name plate adds identity and style effortlessly. Perfect for personal use or as a thoughtful custom gift.",
+    "original_price": 450,
+    "discount_price": 350,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Layerz/custom-name-plate/image-01.jpg",
+    "image_urls": [
+      "/Products/Layerz/custom-name-plate/image-01.jpg",
+      "/Products/Layerz/custom-name-plate/image-02.jpg",
+      "/Products/Layerz/custom-name-plate/image-03.jpg",
+      "/Products/Layerz/custom-name-plate/image-04.jpg",
+      "/Products/Layerz/custom-name-plate/image-05.jpg",
+      "/Products/Layerz/custom-name-plate/image-06.png",
+      "/Products/Layerz/custom-name-plate/image-07.png",
+      "/Products/Layerz/custom-name-plate/image-08.png",
+      "/Products/Layerz/custom-name-plate/image-09.png",
+      "/Products/Layerz/custom-name-plate/image-10.png",
+      "/Products/Layerz/custom-name-plate/image-11.png",
+      "/Products/Layerz/custom-name-plate/image-12.png"
+    ],
+    "source_url": "https://www.layerz.club/products/custom-name-plate",
+    "source_urls": [
+      "https://www.layerz.club/products/custom-name-plate"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Layerz Imports",
+      "subcategory": "Custom Products",
+      "category": "Layerz",
+      "emoji": "🧩",
+      "scrapedFrom": "https://www.layerz.club/",
+      "additionalImages": [
+        "/Products/Layerz/custom-name-plate/image-02.jpg",
+        "/Products/Layerz/custom-name-plate/image-03.jpg",
+        "/Products/Layerz/custom-name-plate/image-04.jpg",
+        "/Products/Layerz/custom-name-plate/image-05.jpg",
+        "/Products/Layerz/custom-name-plate/image-06.png",
+        "/Products/Layerz/custom-name-plate/image-07.png",
+        "/Products/Layerz/custom-name-plate/image-08.png",
+        "/Products/Layerz/custom-name-plate/image-09.png",
+        "/Products/Layerz/custom-name-plate/image-10.png",
+        "/Products/Layerz/custom-name-plate/image-11.png",
+        "/Products/Layerz/custom-name-plate/image-12.png"
+      ],
+      "videoUrls": [],
+      "externalVideoUrls": [],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Layerz",
+      "productType": null,
+      "tags": [
+        "Label_Bestseller"
+      ],
+      "sourceCanonicalUrl": "https://www.layerz.club/products/custom-name-plate",
+      "shopifyProductId": 8361046736941,
+      "customizationOptions": [
+        {
+          "name": "Color",
+          "values": [
+            "Grey",
+            "Beige",
+            "Green",
+            "Pink",
+            "Orange",
+            "White",
+            "Brown",
+            "Blue",
+            "Black"
+          ]
+        }
+      ],
+      "specifications": null,
+      "whyChoose": "",
+      "variantOfferUrls": [
+        "https://www.layerz.club/products/custom-name-plate?variant=44451741761581",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721674797",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721838637",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721707565",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721740333",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721773101",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721805869",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721871405",
+        "https://www.layerz.club/products/custom-name-plate?variant=44451721904173"
+      ],
+      "sourceMedia": {
+        "images": [
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2025-12-29at12.05.14PM.jpg?v=1766990837",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2025-12-29at12.06.07PM.jpg?v=1766990837",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2025-12-29at12.05.14PM_2.jpg?v=1766990837",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2025-12-29at12.06.34PM.jpg?v=1766990837",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/WhatsAppImage2025-12-29at12.05.14PM_1.jpg?v=1766990837",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNP_Blue.png?v=1767003843",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/ChatGPT_Image_Dec_29_2025_03_58_45_PM.png?v=1767004184",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNP_Biege.png?v=1767004349",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNP_Pink_36f89bb6-4f84-4654-89ca-a47ee96bcdd3.png?v=1767004301",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNP_Orange.png?v=1767004275",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNP_white.png?v=1767004426",
+          "https://cdn.shopify.com/s/files/1/0701/5789/3677/files/CNP_Brown_7fe2de69-8c0e-40d2-93e8-26987739e243.png?v=1767004400"
+        ],
+        "videos": []
+      },
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "media_downloaded": {
+        "images": 12,
+        "videos": 0,
+        "externalVideos": 0
+      }
     }
   }
 ]
