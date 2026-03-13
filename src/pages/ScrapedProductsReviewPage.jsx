@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx';
 import { useAuth } from '../contexts/AuthContext';
 import { departments as seedDepartments } from '../data/products';
 import { getDepartmentHierarchy } from '../utils/catalogService';
+import { isAdminEmail } from '../utils/adminAccess';
 
 const parseFileJson = (text) => {
   const data = JSON.parse(text);
@@ -322,6 +323,15 @@ export default function ScrapedProductsReviewPage({ showToast }) {
     XLSX.writeFile(wb, 'review-products-import-template.xlsx');
     showToast('Downloaded Excel in import template format');
   };
+
+  if (!user || !isAdminEmail(user.email)) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 md:px-6 py-16 text-center">
+        <h1 className="text-3xl font-bold text-slate-900 mb-4">Access Denied</h1>
+        <p className="text-slate-600">Only authorized admin accounts can access this page.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">

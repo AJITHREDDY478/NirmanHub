@@ -16,6 +16,7 @@ import {
   deleteCatalogItem
 } from '../utils/catalogService';
 import { getDepartmentIcon } from '../utils/departmentIcons';
+import { isAdminEmail } from '../utils/adminAccess';
 import * as XLSX from 'xlsx';
 import SvgGenerator from '../components/SvgGenerator';
 
@@ -1442,7 +1443,7 @@ export default function ProductUploadPage({ showToast }) {
   }
 
   // Check if user is admin
-  if (!['ajithreddy478@gmail.com', 'reddybhagya742@gmail.com'].includes(user.email)) {
+  if (!isAdminEmail(user.email)) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">

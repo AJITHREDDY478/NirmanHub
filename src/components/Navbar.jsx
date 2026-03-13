@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import brandLogo from '../assets/brand/ar-print-lab-logo.svg';
+import { isAdminEmail } from '../utils/adminAccess';
 
 export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onShowAuth }) {
   const { user, profile, signOut } = useAuth();
@@ -222,7 +223,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                   </svg>
                   <span className="text-slate-700 group-hover:text-amber-600 font-medium">Address Book</span>
                 </Link>
-                {user && ['ajithreddy478@gmail.com', 'reddybhagya742@gmail.com'].includes(user.email) && (
+                {user && isAdminEmail(user.email) && (
                   <Link
                     to="/products/upload"
                     onClick={() => {
