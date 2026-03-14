@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { departments as defaultDepartments, subcategoryEmojis } from '../data/products';
 import { getAllProducts, getAllDepartments } from '../utils/catalogService';
-import { renderStars, formatPrice } from '../utils/helpers';
 import { getDepartmentIcon } from '../utils/departmentIcons';
-import ProductImage from '../components/ProductImage';
 import BrandLoader from '../components/BrandLoader';
+import ProductCard from '../components/ProductCard';
 
 export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItems, addToRecentlyViewed }) {
   const { departmentId } = useParams();
@@ -200,48 +199,15 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
           <BrandLoader message="Loading products..." compact />
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-            {filteredProducts.map((product, i) => (
-              <div key={product.id} className="product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg" style={{ animationDelay: `${i * 0.05}s` }}>
-                <div className="relative">
-                  <div onClick={() => handleProductClick(product.id)} className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center product-image cursor-pointer overflow-hidden">
-                    {product.image ? (
-                      <ProductImage
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                        containerClassName="w-full h-full"
-                        fallback={<span className="text-6xl">{product.emoji || '📦'}</span>}
-                      />
-                    ) : (
-                      <span className="text-6xl">{product.emoji}</span>
-                    )}
-                  </div>
-                  {product.isNew && (
-                    <span className="absolute top-2 left-2 px-2 py-0.5 bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white text-[10px] font-bold rounded-full">NEW</span>
-                  )}
-                  <button onClick={() => toggleWishlist(product.id)} className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                    <svg className={`w-4 h-4 ${wishlistItems.includes(product.id) ? 'text-red-500 fill-current' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                    </svg>
-                  </button>
-                </div>
-                <div className="p-3 sm:p-4">
-                  <h3 className="font-medium text-slate-800 text-sm sm:text-base truncate">{product.name}</h3>
-                  <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5">{product.subcategory || 'Other'}</p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <div className="flex items-center">{renderStars(product.rating)}</div>
-                    <span className="text-[10px] sm:text-xs text-slate-500">({product.reviews})</span>
-                  </div>
-                  <div className="flex items-center justify-between mt-2">
-                    <p className="text-\[#0A78D1\] font-bold text-base sm:text-lg">{formatPrice(product.price)}</p>
-                    <button onClick={() => addToCart(product.id, product)} className="w-8 h-8 sm:w-9 sm:h-9 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={addToCart}
+                onToggleWishlist={toggleWishlist}
+                isWishlisted={wishlistItems.includes(product.id)}
+                onViewDetails={handleProductClick}
+              />
             ))}
           </div>
         ) : (
