@@ -109,7 +109,7 @@ export default function CustomOrderPage({ showToast }) {
               Tell us about your custom order and upload reference images. Our team will review and get back with a quote.
             </p>
             {location.state?.sourceProduct?.name && (
-              <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full text-sm font-medium text-amber-800">
+              <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-cyan-50 border border-cyan-200 rounded-full text-sm font-medium text-amber-800">
                 Customizing product: {location.state.sourceProduct.name}
               </div>
             )}
@@ -130,7 +130,7 @@ export default function CustomOrderPage({ showToast }) {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="John Doe"
                     />
                   </div>
@@ -144,7 +144,7 @@ export default function CustomOrderPage({ showToast }) {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -158,7 +158,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="+91 98765 43210"
                     />
                   </div>
@@ -171,7 +171,7 @@ export default function CustomOrderPage({ showToast }) {
                       value={formData.category}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                     >
                       <option value="">Select Category</option>
                       <option value="3d-printing">🖨️ 3D Printing</option>
@@ -193,7 +193,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="quantity"
                       value={formData.quantity}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -203,7 +203,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="₹5,000 - ₹10,000"
                     />
                   </div>
@@ -217,7 +217,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="deadline"
                       value={formData.deadline}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -227,7 +227,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="dimensions"
                       value={formData.dimensions}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="e.g., 120mm x 80mm x 30mm"
                     />
                   </div>
@@ -241,7 +241,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="material"
                       value={formData.material}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="PLA, Resin, Wood, Metal..."
                     />
                   </div>
@@ -252,7 +252,7 @@ export default function CustomOrderPage({ showToast }) {
                       name="color"
                       value={formData.color}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                       placeholder="Black, White, Multicolor..."
                     />
                   </div>
@@ -268,7 +268,7 @@ export default function CustomOrderPage({ showToast }) {
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all resize-none"
+                    className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all resize-none"
                     placeholder="Describe your idea, use-case, and any special requirements..."
                   ></textarea>
                 </div>
@@ -280,12 +280,12 @@ export default function CustomOrderPage({ showToast }) {
                     value={formData.notes}
                     onChange={handleChange}
                     rows="3"
-                    className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all resize-none"
+                    className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all resize-none"
                     placeholder="Anything else we should know?"
                   ></textarea>
                 </div>
 
-                <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6">
+                <div className="bg-cyan-50 border-2 border-cyan-200 rounded-2xl p-6">
                   <label className="block text-base font-bold text-slate-800 mb-3 flex items-center gap-2">
                     <span className="text-2xl">📸</span>
                     Upload Your Design / Reference Images
@@ -299,7 +299,7 @@ export default function CustomOrderPage({ showToast }) {
                       accept="image/*,.jpg,.jpeg,.png,.gif,.webp"
                       multiple
                       onChange={handleFileChange}
-                      className="w-full px-4 py-3.5 bg-white border-2 border-dashed border-amber-300 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-amber-500 file:text-white hover:file:bg-amber-600"
+                      className="w-full px-4 py-3.5 bg-white border-2 border-dashed border-cyan-300 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#0A78D1] file:text-white hover:file:bg-[#0F2740]"
                     />
                   </div>
                   <div className="flex items-center gap-2 mt-3 text-xs text-slate-600">
@@ -317,7 +317,7 @@ export default function CustomOrderPage({ showToast }) {
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-yellow-400 via-green-400 to-cyan-400 text-slate-800 font-bold text-lg rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all active:scale-[0.98]"
+                  className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-bold text-lg rounded-xl hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-[1.02] transition-all active:scale-[0.98]"
                 >
                   Submit Custom Order
                 </button>
@@ -368,7 +368,7 @@ export default function CustomOrderPage({ showToast }) {
                 <h3 className="font-display text-xl font-bold text-slate-800 mb-4">What happens next?</h3>
                 <ul className="space-y-3 text-slate-600">
                   <li className="flex items-start gap-3">
-                    <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold">1</span>
+                    <span className="w-8 h-8 rounded-full bg-cyan-100 text-[#0A78D1] flex items-center justify-center font-bold">1</span>
                     <p>We review your request and validate feasibility.</p>
                   </li>
                   <li className="flex items-start gap-3">

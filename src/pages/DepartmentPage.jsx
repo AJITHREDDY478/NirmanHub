@@ -123,7 +123,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800 mb-4">Department Not Found</h2>
-          <Link to="/categories" className="text-amber-600 hover:text-amber-700">Browse Categories</Link>
+          <Link to="/categories" className="text-cyan-600 hover:text-cyan-700">Browse Categories</Link>
         </div>
       </div>
     );
@@ -145,9 +145,9 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
       <div className="max-w-7xl mx-auto px-6 py-6">
         {/* Breadcrumb */}
         <div className="mb-8 text-sm text-slate-600">
-          <Link to="/" className="hover:text-amber-600">Home</Link>
+          <Link to="/" className="hover:text-cyan-600">Home</Link>
           <span className="mx-2">/</span>
-          <Link to="/categories" className="hover:text-amber-600">Categories</Link>
+          <Link to="/categories" className="hover:text-cyan-600">Categories</Link>
           <span className="mx-2">/</span>
           <span className="text-slate-900">{department.name}</span>
         </div>
@@ -155,7 +155,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
         {/* Department Header */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-teal-500 flex items-center justify-center text-3xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-\[#0F2740\] to-\[#0A78D1\] flex items-center justify-center text-3xl">
               {department.icon}
             </div>
             <div>
@@ -172,8 +172,8 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
               onClick={() => setSelectedSubcategory('all')}
               className={`px-6 py-3 rounded-xl font-semibold transition-all ${
                 selectedSubcategory === 'all'
-                  ? 'bg-gradient-to-r from-amber-500 to-teal-500 text-white shadow-lg'
-                  : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-amber-500'
+                  ? 'bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white shadow-lg'
+                  : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-cyan-400'
               }`}
             >
               All Products
@@ -184,8 +184,8 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
                 onClick={() => setSelectedSubcategory(sub)}
                 className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
                   selectedSubcategory === sub
-                    ? 'bg-gradient-to-r from-amber-500 to-teal-500 text-white shadow-lg'
-                    : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-amber-500'
+                    ? 'bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white shadow-lg'
+                    : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-cyan-400'
                 }`}
               >
                 <span>{subcategoryEmojis[sub] || '📦'}</span>
@@ -217,7 +217,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
                     )}
                   </div>
                   {product.isNew && (
-                    <span className="absolute top-2 left-2 px-2 py-0.5 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-[10px] font-bold rounded-full">NEW</span>
+                    <span className="absolute top-2 left-2 px-2 py-0.5 bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white text-[10px] font-bold rounded-full">NEW</span>
                   )}
                   <button onClick={() => toggleWishlist(product.id)} className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                     <svg className={`w-4 h-4 ${wishlistItems.includes(product.id) ? 'text-red-500 fill-current' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -233,7 +233,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
                     <span className="text-[10px] sm:text-xs text-slate-500">({product.reviews})</span>
                   </div>
                   <div className="flex items-center justify-between mt-2">
-                    <p className="text-amber-600 font-bold text-base sm:text-lg">{formatPrice(product.price)}</p>
+                    <p className="text-\[#0A78D1\] font-bold text-base sm:text-lg">{formatPrice(product.price)}</p>
                     <button onClick={() => addToCart(product.id, product)} className="w-8 h-8 sm:w-9 sm:h-9 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center">
                       <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
@@ -249,7 +249,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-xl font-bold text-slate-800 mb-2">No Products Found</h3>
             <p className="text-slate-600 mb-6">Try selecting a different subcategory</p>
-            <button onClick={() => setSelectedSubcategory('all')} className="px-6 py-3 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
+            <button onClick={() => setSelectedSubcategory('all')} className="px-6 py-3 bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white font-semibold rounded-xl hover:shadow-lg transition-all">
               View All Products
             </button>
           </div>

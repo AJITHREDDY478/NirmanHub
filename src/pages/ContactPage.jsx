@@ -61,7 +61,7 @@ export default function ContactPage({ showToast }) {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="John Doe"
                 />
               </div>
@@ -74,7 +74,7 @@ export default function ContactPage({ showToast }) {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="john@example.com"
                 />
               </div>
@@ -86,7 +86,7 @@ export default function ContactPage({ showToast }) {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all"
+                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="+91 98765 43210"
                 />
               </div>
@@ -98,7 +98,7 @@ export default function ContactPage({ showToast }) {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all appearance-none cursor-pointer"
+                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all appearance-none cursor-pointer"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                     backgroundRepeat: 'no-repeat',
@@ -123,14 +123,14 @@ export default function ContactPage({ showToast }) {
                   onChange={handleChange}
                   required
                   rows="5"
-                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-amber-500 focus:outline-none transition-all resize-none"
+                  className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-cyan-400 focus:outline-none transition-all resize-none"
                   placeholder="Tell us about your project..."
                 ></textarea>
               </div>
               
               <button
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-yellow-400 via-green-400 to-cyan-400 text-slate-800 font-bold text-lg rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all active:scale-[0.98]"
+                className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-bold text-lg rounded-xl hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-[1.02] transition-all active:scale-[0.98]"
               >
                 Send Message
               </button>

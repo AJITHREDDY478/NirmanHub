@@ -24,7 +24,7 @@ export default function ProductImage({
     <div className={`relative ${containerClassName}`}>
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 animate-pulse">
-          <div className="w-7 h-7 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-7 h-7 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
       <img

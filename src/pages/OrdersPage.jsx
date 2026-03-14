@@ -33,7 +33,7 @@ export default function OrdersPage() {
       case 'In Transit':
         return 'bg-blue-100 text-blue-700 border-blue-200';
       case 'Processing':
-        return 'bg-amber-100 text-amber-700 border-amber-200';
+        return 'bg-cyan-100 text-cyan-700 border-cyan-200';
       default:
         return 'bg-slate-100 text-slate-700 border-slate-200';
     }
@@ -61,7 +61,7 @@ export default function OrdersPage() {
                   <p className="text-sm text-slate-600">Ordered on {new Date(order.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-amber-600">₹{order.total.toLocaleString()}</p>
+                  <p className="text-2xl font-bold text-[#0A78D1]">₹{order.total.toLocaleString()}</p>
                   <p className="text-sm text-slate-600">{order.items} {order.items === 1 ? 'item' : 'items'}</p>
                 </div>
               </div>
@@ -71,7 +71,7 @@ export default function OrdersPage() {
                   View Details
                 </button>
                 {order.status === 'Delivered' && (
-                  <button className="flex-1 py-2 px-4 bg-amber-100 text-amber-700 font-semibold rounded-lg hover:bg-amber-200 transition-colors">
+                  <button className="flex-1 py-2 px-4 bg-cyan-100 text-cyan-700 font-semibold rounded-lg hover:bg-cyan-200 transition-colors">
                     Reorder
                   </button>
                 )}
@@ -90,7 +90,7 @@ export default function OrdersPage() {
             <div className="text-8xl mb-6">📦</div>
             <h2 className="text-2xl font-bold text-slate-800 mb-3">No Orders Yet</h2>
             <p className="text-slate-600 mb-8">Start shopping to see your orders here!</p>
-            <button onClick={() => window.location.href = '/'} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-2xl transition-all transform hover:scale-105">
+            <button onClick={() => window.location.href = '/'} className="px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-2xl transition-all transform hover:scale-105">
               Start Shopping
             </button>
           </div>
