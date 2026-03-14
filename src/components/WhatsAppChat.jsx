@@ -72,7 +72,7 @@ export default function WhatsAppChat() {
       {/* Floating Chat Button - Chat Icon Instead of WhatsApp */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-full flex items-center justify-center shadow-2xl hover:shadow-green-500/50 hover:scale-110 active:scale-95 transition-all duration-300 group"
+        className="fixed bottom-6 left-6 z-50 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-full flex items-center justify-center shadow-2xl hover:shadow-green-500/50 hover:scale-110 active:scale-95 transition-all duration-300 group"
         aria-label="Open Support Chat"
       >
         {isOpen ? (
@@ -108,7 +108,7 @@ export default function WhatsAppChat() {
             bottom-0 left-0 right-0 rounded-t-3xl max-h-[80vh] animate-slideUpMobile
             
             /* Desktop: Floating Widget */
-            md:bottom-24 md:right-6 md:left-auto md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-120px)] md:rounded-3xl md:animate-slideUpDesktop
+            md:bottom-24 md:left-6 md:right-auto md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-120px)] md:rounded-3xl md:animate-slideUpDesktop
           `}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}

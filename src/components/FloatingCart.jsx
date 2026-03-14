@@ -13,7 +13,7 @@ export default function FloatingCart({ cartItemsCount, onOpenCart }) {
         onClick={onOpenCart}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className="fixed bottom-6 left-6 z-50 w-16 h-16 bg-gradient-to-br from-[#0F2740] to-[#0A78D1] hover:from-[#0A78D1] hover:to-[#29C4FF] rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-400/50 hover:scale-110 active:scale-95 transition-all duration-300 group"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-br from-[#0F2740] to-[#0A78D1] hover:from-[#0A78D1] hover:to-[#29C4FF] rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-400/50 hover:scale-110 active:scale-95 transition-all duration-300 group"
         aria-label="View Cart"
       >
         {/* Shopping Cart Icon */}
@@ -41,14 +41,14 @@ export default function FloatingCart({ cartItemsCount, onOpenCart }) {
 
       {/* Tooltip */}
       {showTooltip && (
-        <div className="fixed bottom-6 left-24 z-50 hidden md:block animate-fadeIn">
+        <div className="fixed bottom-6 right-24 z-50 hidden md:block animate-fadeIn">
           <div className="bg-slate-900 text-white px-4 py-2 rounded-lg shadow-xl whitespace-nowrap">
             <span className="text-sm font-medium">View Cart</span>
             {cartItemsCount > 0 && (
-              <span className="ml-2 text-xs text-amber-300">({cartItemsCount} {cartItemsCount === 1 ? 'item' : 'items'})</span>
+              <span className="ml-2 text-xs text-cyan-300">({cartItemsCount} {cartItemsCount === 1 ? 'item' : 'items'})</span>
             )}
             {/* Arrow */}
-            <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-slate-900"></div>
+            <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[6px] border-l-slate-900"></div>
           </div>
         </div>
       )}
