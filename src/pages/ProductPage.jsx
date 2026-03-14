@@ -186,12 +186,12 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
             
             {/* Image Thumbnails - Only show if more than 1 image */}
             {productImages.length > 1 && (
-              <div className="flex gap-2 mt-4 justify-center">
+              <div className="mt-4 flex flex-wrap justify-center gap-2 max-w-full">
                 {productImages.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
-                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
                       selectedImageIndex === index 
                         ? 'border-amber-500 ring-2 ring-amber-200' 
                         : 'border-slate-200 hover:border-slate-300'
