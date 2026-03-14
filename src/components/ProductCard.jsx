@@ -126,7 +126,7 @@ export default function ProductCard({
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg"
+                className="px-3 py-1 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white text-xs font-bold rounded-full shadow-lg"
               >
                 NEW
               </motion.span>
@@ -172,7 +172,7 @@ export default function ProductCard({
         )}
 
         {/* Title */}
-        <h3 className={`font-bold text-sm sm:text-base line-clamp-2 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all ${
+        <h3 className={`font-bold text-sm sm:text-base line-clamp-2 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#0F2740] group-hover:to-[#0A78D1] group-hover:bg-clip-text transition-all ${
           darkMode ? 'text-white' : 'text-slate-900'
         }`}>
           {product.name}
@@ -191,12 +191,12 @@ export default function ProductCard({
               <span className={`line-through ${darkMode ? 'text-white/50' : 'text-slate-400'}`}>
                 ₹{product.originalPrice.toLocaleString()}
               </span>
-              <span className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'}`}>
+              <span className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-[#0F2740] to-[#0A78D1] bg-clip-text text-transparent'}`}>
                 ₹{product.price.toLocaleString()}
               </span>
             </div>
           ) : (
-            <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'}`}>
+            <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-[#0F2740] to-[#0A78D1] bg-clip-text text-transparent'}`}>
               ₹{product.price.toLocaleString()}
             </div>
           )}

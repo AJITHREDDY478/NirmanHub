@@ -147,7 +147,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                       type="email"
                       value={loginData.email}
                       onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       placeholder="your@email.com"
                       required
                     />
@@ -159,14 +159,14 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                         type={showLoginPassword ? 'text' : 'password'}
                         value={loginData.password}
                         onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                        className="w-full px-4 py-3 pr-12 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 pr-12 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="••••••••"
                         required
                       />
                       <button
                         type="button"
                         onClick={() => setShowLoginPassword((prev) => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-amber-600 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-cyan-600 transition-colors"
                         aria-label={showLoginPassword ? 'Hide password' : 'Show password'}
                       >
                         {showLoginPassword ? (
@@ -185,7 +185,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-400/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Logging in...' : 'Login'}
                   </button>
@@ -195,7 +195,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                   <button
                     type="button"
                     onClick={() => onSwitchType('signup')}
-                    className="text-amber-600 font-semibold hover:underline"
+                    className="text-cyan-600 font-semibold hover:underline"
                   >
                     Sign Up
                   </button>
@@ -230,7 +230,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                       type="text"
                       value={signupData.name}
                       onChange={(e) => setSignupData({ ...signupData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       placeholder="John Doe"
                       required
                     />
@@ -241,7 +241,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                       type="email"
                       value={signupData.email}
                       onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       placeholder="your@email.com"
                       required
                     />
@@ -253,14 +253,14 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                         type={showSignupPassword ? 'text' : 'password'}
                         value={signupData.password}
                         onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
-                        className="w-full px-4 py-3 pr-12 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 pr-12 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="••••••••"
                         required
                       />
                       <button
                         type="button"
                         onClick={() => setShowSignupPassword((prev) => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-amber-600 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-cyan-600 transition-colors"
                         aria-label={showSignupPassword ? 'Hide password' : 'Show password'}
                       >
                         {showSignupPassword ? (
@@ -279,7 +279,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-400/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Signing up...' : 'Sign Up'}
                   </button>
@@ -289,7 +289,7 @@ export default function AuthModal({ isOpen, type, onClose, onSwitchType, showToa
                   <button
                     type="button"
                     onClick={() => onSwitchType('login')}
-                    className="text-amber-600 font-semibold hover:underline"
+                    className="text-cyan-600 font-semibold hover:underline"
                   >
                     Login
                   </button>

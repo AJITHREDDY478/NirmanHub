@@ -81,7 +81,7 @@ export default function Cart({ isOpen, onClose, cartItems, updateQuantity, remov
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-medium text-slate-800 truncate">{item.product?.name || 'Unknown'}</h4>
-                  <p className="text-amber-600 font-bold">₹{(item.product?.price || 0).toLocaleString()}</p>
+                  <p className="text-blue-700 font-bold">₹{(item.product?.price || 0).toLocaleString()}</p>
                   <div className="flex items-center gap-3 mt-2">
                     <button
                       onClick={() => updateQuantity(item.id, -1)}
@@ -123,7 +123,7 @@ export default function Cart({ isOpen, onClose, cartItems, updateQuantity, remov
             </div>
             <button
               onClick={onCheckout}
-              className="w-full py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300 transform hover:scale-[1.02]"
+              className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 transform hover:scale-[1.02]"
             >
               Checkout
             </button>

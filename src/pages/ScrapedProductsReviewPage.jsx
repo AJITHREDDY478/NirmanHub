@@ -356,7 +356,7 @@ export default function ScrapedProductsReviewPage({ showToast }) {
 
           <button
             onClick={downloadReviewedJson}
-            className="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold hover:opacity-95"
+            className="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold hover:opacity-95 hover:shadow-lg hover:shadow-cyan-400/30"
           >
             Download Updated JSON
           </button>

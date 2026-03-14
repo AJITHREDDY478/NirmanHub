@@ -56,7 +56,7 @@ export default function SearchOverlay({ isOpen, onClose, addToRecentlyViewed }) 
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for products..."
-              className="w-full px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg rounded-xl sm:rounded-2xl border-0 shadow-2xl focus:outline-none focus:ring-4 focus:ring-amber-500/30"
+              className="w-full px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg rounded-xl sm:rounded-2xl border-0 shadow-2xl focus:outline-none focus:ring-4 focus:ring-cyan-400/30"
               autoFocus
             />
             <button
@@ -99,7 +99,7 @@ export default function SearchOverlay({ isOpen, onClose, addToRecentlyViewed }) 
                       <h4 className="font-medium text-sm sm:text-base text-slate-800 truncate">{p.name}</h4>
                       <p className="text-xs sm:text-sm text-slate-500 truncate">{p.department || 'General'} / {p.subcategory || 'Other'}</p>
                     </div>
-                    <span className="font-bold text-sm sm:text-base text-amber-600 flex-shrink-0">₹{p.price?.toLocaleString() || 0}</span>
+                    <span className="font-bold text-sm sm:text-base text-blue-700 flex-shrink-0">₹{p.price?.toLocaleString() || 0}</span>
                   </div>
                 ))
               )}

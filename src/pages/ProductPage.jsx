@@ -118,7 +118,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800 mb-4">Product Not Found</h2>
-          <Link to="/" className="text-amber-600 hover:text-amber-700">Return to Home</Link>
+          <Link to="/" className="text-cyan-600 hover:text-blue-700">Return to Home</Link>
         </div>
       </div>
     );
@@ -128,9 +128,9 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <div className="mb-6 sm:mb-8 text-xs sm:text-sm text-slate-600">
-          <Link to="/" className="hover:text-amber-600">Home</Link>
+          <Link to="/" className="hover:text-cyan-600">Home</Link>
           <span className="mx-2">/</span>
-          <Link to="/categories" className="hover:text-amber-600">Categories</Link>
+          <Link to="/categories" className="hover:text-cyan-600">Categories</Link>
           <span className="mx-2">/</span>
           <span className="text-slate-900">{product.name}</span>
         </div>
@@ -193,7 +193,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
                     onClick={() => setSelectedImageIndex(index)}
                     className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
                       selectedImageIndex === index 
-                        ? 'border-amber-500 ring-2 ring-amber-200' 
+                        ? 'border-cyan-500 ring-2 ring-cyan-200' 
                         : 'border-slate-200 hover:border-slate-300'
                     }`}
                   >
@@ -210,7 +210,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
             )}
             
             {product.isNew && (
-              <span className="absolute top-6 left-6 px-4 py-2 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-sm font-bold rounded-full animate-badge-pulse">NEW</span>
+              <span className="absolute top-6 left-6 px-4 py-2 bg-gradient-to-r from-[#0F2740] to-[#29C4FF] text-white text-sm font-bold rounded-full animate-badge-pulse">NEW</span>
             )}
           </div>
 
@@ -222,7 +222,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
 
             <div className="mb-6 sm:mb-8">
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-600">{formatPrice(product.price)}</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-700">{formatPrice(product.price)}</span>
                 {product.originalPrice && (
                   <>
                     <span className="text-lg sm:text-xl text-slate-400 line-through">{formatPrice(product.originalPrice)}</span>
@@ -261,13 +261,13 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
 
             {/* Action Buttons */}
             <div className="flex flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <button onClick={() => addToCart(product.id, product, quantity)} className="flex-1 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-bold text-sm sm:text-base rounded-xl hover:shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-2 touch-manipulation">
+              <button onClick={() => addToCart(product.id, product, quantity)} className="flex-1 py-3 sm:py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-bold text-sm sm:text-base rounded-xl hover:shadow-2xl hover:shadow-cyan-400/30 transition-all transform hover:scale-105 flex items-center justify-center gap-2 touch-manipulation">
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                 </svg>
                 Add to Cart
               </button>
-              <button onClick={() => toggleWishlist(product.id)} className={`px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-xl transition-all transform hover:scale-105 touch-manipulation flex items-center justify-center ${wishlistItems.includes(product.id) ? 'bg-red-50 border-red-500 text-red-500' : 'border-slate-300 text-slate-600 hover:border-amber-500 hover:text-amber-600'}`}>
+              <button onClick={() => toggleWishlist(product.id)} className={`px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-xl transition-all transform hover:scale-105 touch-manipulation flex items-center justify-center ${wishlistItems.includes(product.id) ? 'bg-red-50 border-red-500 text-red-500' : 'border-slate-300 text-slate-600 hover:border-cyan-500 hover:text-cyan-600'}`}>
                 <svg className={`w-6 h-6 ${wishlistItems.includes(product.id) ? 'fill-current' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                 </svg>
@@ -301,17 +301,17 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
         {/* Tabs */}
         <div className="mb-12 md:mb-16">
           <div className="flex border-b border-slate-200 mb-6 sm:mb-8">
-            <button onClick={() => setSelectedTab('description')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'description' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
+            <button onClick={() => setSelectedTab('description')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'description' ? 'text-blue-700' : 'text-slate-600 hover:text-slate-800'}`}>
               Description
-              {selectedTab === 'description' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
+              {selectedTab === 'description' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0F2740] to-[#29C4FF] tab-underline"></div>}
             </button>
-            <button onClick={() => setSelectedTab('specs')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'specs' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
+            <button onClick={() => setSelectedTab('specs')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'specs' ? 'text-blue-700' : 'text-slate-600 hover:text-slate-800'}`}>
               Specification
-              {selectedTab === 'specs' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
+              {selectedTab === 'specs' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0F2740] to-[#29C4FF] tab-underline"></div>}
             </button>
-            <button onClick={() => setSelectedTab('customization')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'customization' ? 'text-amber-600' : 'text-slate-600 hover:text-slate-800'}`}>
+            <button onClick={() => setSelectedTab('customization')} className={`flex-1 pb-3 sm:pb-4 font-semibold text-sm sm:text-base text-center transition-colors relative touch-manipulation ${selectedTab === 'customization' ? 'text-blue-700' : 'text-slate-600 hover:text-slate-800'}`}>
               Customization
-              {selectedTab === 'customization' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-teal-500 tab-underline"></div>}
+              {selectedTab === 'customization' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0F2740] to-[#29C4FF] tab-underline"></div>}
             </button>
           </div>
 
@@ -369,7 +369,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
                   <button
                     type="button"
                     onClick={handleCustomizationRequest}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all"
                   >
                     Continue in Custom Order
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -94,7 +94,7 @@ export default function CategoriesPage() {
             >
               <div className="flex flex-col items-center text-center">
                 <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[3px] border-black p-1.5 bg-white shadow-sm transition-transform duration-300 group-hover:scale-105">
-                  <div className="w-full h-full rounded-full border-2 border-amber-400 p-1">
+                  <div className="w-full h-full rounded-full border-2 border-cyan-400 p-1">
                     <div className="w-full h-full rounded-full border border-rose-300 bg-white overflow-hidden flex items-center justify-center">
                       {dept.image ? (
                         <img src={dept.image} alt={dept.name} className="w-full h-full object-cover" loading="lazy" />

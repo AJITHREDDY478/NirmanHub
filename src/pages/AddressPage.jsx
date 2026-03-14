@@ -85,7 +85,7 @@ export default function AddressPage({ showToast }) {
               setEditingId(null);
               setFormData({ name: '', phone: '', address: '', city: '', state: '', pincode: '' });
             }}
-            className="px-6 py-3 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all transform hover:scale-105 flex items-center gap-2"
+            className="px-6 py-3 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-400/30 transition-all transform hover:scale-105 flex items-center gap-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"/>
@@ -110,7 +110,7 @@ export default function AddressPage({ showToast }) {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -122,7 +122,7 @@ export default function AddressPage({ showToast }) {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors"
                     placeholder="+91 98765 43210"
                   />
                 </div>
@@ -135,7 +135,7 @@ export default function AddressPage({ showToast }) {
                   onChange={handleChange}
                   required
                   rows="3"
-                  className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors resize-none"
                   placeholder="House no., Building name, Street"
                 ></textarea>
               </div>
@@ -148,7 +148,7 @@ export default function AddressPage({ showToast }) {
                     value={formData.city}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors"
                     placeholder="Mumbai"
                   />
                 </div>
@@ -160,7 +160,7 @@ export default function AddressPage({ showToast }) {
                     value={formData.state}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors"
                     placeholder="Maharashtra"
                   />
                 </div>
@@ -173,7 +173,7 @@ export default function AddressPage({ showToast }) {
                     onChange={handleChange}
                     required
                     pattern="[0-9]{6}"
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors"
                     placeholder="400001"
                   />
                 </div>
@@ -181,7 +181,7 @@ export default function AddressPage({ showToast }) {
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+                  className="flex-1 py-3 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-400/30 transition-all"
                 >
                   {editingId ? 'Update Address' : 'Add Address'}
                 </button>
@@ -206,7 +206,7 @@ export default function AddressPage({ showToast }) {
           {addresses.map(address => (
             <div key={address.id} className="bg-white rounded-2xl shadow-lg p-6 relative">
               {address.isDefault && (
-                <span className="absolute top-6 right-6 px-3 py-1 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-xs font-bold rounded-full">
+                <span className="absolute top-6 right-6 px-3 py-1 bg-gradient-to-r from-[#0F2740] to-[#29C4FF] text-white text-xs font-bold rounded-full">
                   DEFAULT
                 </span>
               )}
@@ -234,7 +234,7 @@ export default function AddressPage({ showToast }) {
                 {!address.isDefault && (
                   <button
                     onClick={() => handleSetDefault(address.id)}
-                    className="px-6 py-2 bg-amber-50 text-amber-600 font-semibold rounded-lg hover:bg-amber-100 transition-colors"
+                    className="px-6 py-2 bg-cyan-50 text-cyan-700 font-semibold rounded-lg hover:bg-cyan-100 transition-colors"
                   >
                     Set as Default
                   </button>
@@ -251,7 +251,7 @@ export default function AddressPage({ showToast }) {
             <p className="text-slate-600 mb-8">Add a delivery address to get started!</p>
             <button
               onClick={() => setShowAddForm(true)}
-              className="px-8 py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-2xl transition-all transform hover:scale-105"
+              className="px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-400/30 transition-all transform hover:scale-105"
             >
               Add Address
             </button>

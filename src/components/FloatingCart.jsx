@@ -13,7 +13,7 @@ export default function FloatingCart({ cartItemsCount, onOpenCart }) {
         onClick={onOpenCart}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className="fixed bottom-6 left-6 z-50 w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 rounded-full flex items-center justify-center shadow-2xl hover:shadow-amber-500/50 hover:scale-110 active:scale-95 transition-all duration-300 group"
+        className="fixed bottom-6 left-6 z-50 w-16 h-16 bg-gradient-to-br from-[#0F2740] to-[#0A78D1] hover:from-[#0A78D1] hover:to-[#29C4FF] rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-400/50 hover:scale-110 active:scale-95 transition-all duration-300 group"
         aria-label="View Cart"
       >
         {/* Shopping Cart Icon */}

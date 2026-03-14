@@ -26,7 +26,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="aspect-square rounded-3xl bg-gradient-to-br from-amber-500/20 to-teal-500/20 flex items-center justify-center text-9xl">
+          <div className="aspect-square rounded-3xl bg-gradient-to-br from-cyan-500/20 to-blue-700/20 flex items-center justify-center text-9xl">
             🏪
           </div>
         </div>
@@ -36,7 +36,7 @@ export default function AboutPage() {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-800 text-center mb-8 sm:mb-10 md:mb-12">Our Values</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center p-6 sm:p-8 bg-white rounded-xl md:rounded-2xl shadow-lg">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#0F2740] to-[#0A78D1] rounded-2xl flex items-center justify-center text-3xl">
                 ✨
               </div>
               <h3 className="font-bold text-xl text-slate-800 mb-3">Quality First</h3>
@@ -45,7 +45,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#0A78D1] to-[#29C4FF] rounded-2xl flex items-center justify-center text-3xl">
                 🤝
               </div>
               <h3 className="font-bold text-xl text-slate-800 mb-3">Customer Focus</h3>
@@ -54,7 +54,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#0F2740] to-[#0A78D1] rounded-2xl flex items-center justify-center text-3xl">
                 🚀
               </div>
               <h3 className="font-bold text-xl text-slate-800 mb-3">Innovation</h3>
@@ -66,7 +66,7 @@ export default function AboutPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-gradient-to-r from-amber-500 to-teal-500 rounded-2xl md:rounded-3xl p-8 sm:p-10 md:p-12 text-white text-center mb-16 sm:mb-18 md:mb-20">
+        <div className="bg-gradient-to-r from-[#0B1F35] to-[#0A78D1] rounded-2xl md:rounded-3xl p-8 sm:p-10 md:p-12 text-white text-center mb-16 sm:mb-18 md:mb-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div>
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">10K+</div>
@@ -116,7 +116,7 @@ export default function AboutPage() {
           <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers and discover amazing products at great prices
           </p>
-          <button onClick={() => window.location.href = '/'} className="px-10 py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-bold rounded-xl hover:shadow-2xl transition-all transform hover:scale-105">
+          <button onClick={() => window.location.href = '/'} className="px-10 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-bold rounded-xl hover:shadow-2xl hover:shadow-cyan-400/30 transition-all transform hover:scale-105">
             Start Shopping Now
           </button>
         </div>

@@ -264,28 +264,28 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-cyan-50 rounded-xl transition-colors font-semibold"
           >
             Home
           </Link>
           <Link
             to="/categories"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-cyan-50 rounded-xl transition-colors font-semibold"
           >
             Categories
           </Link>
           <Link
             to="/about"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-cyan-50 rounded-xl transition-colors font-semibold"
           >
             About
           </Link>
           <Link
             to="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 text-slate-700 hover:bg-amber-50 rounded-xl transition-colors font-semibold"
+            className="block px-4 py-3 text-slate-700 hover:bg-cyan-50 rounded-xl transition-colors font-semibold"
           >
             Contact
           </Link>

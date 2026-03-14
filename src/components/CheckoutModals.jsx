@@ -75,7 +75,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                         type="text"
                         value={addressData.name}
                         onChange={(e) => setAddressData({ ...addressData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="John Doe"
                         required
                       />
@@ -86,7 +86,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                         type="tel"
                         value={addressData.phone}
                         onChange={(e) => setAddressData({ ...addressData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="+91 98765 43210"
                         required
                       />
@@ -99,7 +99,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                       type="text"
                       value={addressData.line1}
                       onChange={(e) => setAddressData({ ...addressData, line1: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       placeholder="House No., Building Name"
                       required
                     />
@@ -111,7 +111,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                       type="text"
                       value={addressData.line2}
                       onChange={(e) => setAddressData({ ...addressData, line2: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       placeholder="Street, Area, Locality"
                     />
                   </div>
@@ -123,7 +123,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                         type="text"
                         value={addressData.city}
                         onChange={(e) => setAddressData({ ...addressData, city: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="Mumbai"
                         required
                       />
@@ -134,7 +134,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                         type="text"
                         value={addressData.state}
                         onChange={(e) => setAddressData({ ...addressData, state: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="Maharashtra"
                         required
                       />
@@ -145,7 +145,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                         type="text"
                         value={addressData.pincode}
                         onChange={(e) => setAddressData({ ...addressData, pincode: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         placeholder="400001"
                         pattern="[0-9]{6}"
                         required
@@ -155,7 +155,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-6"
+                    className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-6"
                   >
                     Continue to Payment
                   </button>
@@ -193,7 +193,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                     </div>
                     <div className="border-t border-slate-200 pt-2 mt-2 flex justify-between">
                       <span className="font-semibold text-slate-800">Total</span>
-                      <span className="font-bold text-xl text-amber-600">₹{total.toLocaleString()}</span>
+                      <span className="font-bold text-xl text-blue-700">₹{total.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -201,13 +201,13 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                 <div className="space-y-4">
                   <div
                     className={`border-2 rounded-2xl p-6 cursor-pointer transition-all ${
-                      paymentMethod === 'cod' ? 'border-amber-500' : 'border-slate-200 hover:border-amber-500'
+                      paymentMethod === 'cod' ? 'border-cyan-500' : 'border-slate-200 hover:border-cyan-500'
                     }`}
                     onClick={() => setPaymentMethod('cod')}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0F2740] to-[#0A78D1] flex items-center justify-center text-white">
                           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                           </svg>
@@ -222,7 +222,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
                         name="payment"
                         checked={paymentMethod === 'cod'}
                         onChange={() => setPaymentMethod('cod')}
-                        className="w-5 h-5 text-amber-500"
+                        className="w-5 h-5 text-cyan-500"
                       />
                     </div>
                   </div>
@@ -230,7 +230,7 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
 
                 <button
                   onClick={handlePaymentComplete}
-                  className="w-full py-4 bg-gradient-to-r from-amber-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-6"
+                  className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-6"
                 >
                   Place Order
                 </button>

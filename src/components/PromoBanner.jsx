@@ -22,7 +22,7 @@ export default function PromoBanner() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-teal-500 text-white py-2 px-4 text-center text-sm font-medium animate-slide-down relative overflow-hidden">
+    <div className="bg-gradient-to-r from-[#0B1F35] via-[#0A78D1] to-[#0F2740] text-white py-2 px-4 text-center text-sm font-medium animate-slide-down relative overflow-hidden">
       <div className="flex items-center justify-center gap-2">
         <span className="inline-block">✨</span>
         <span className={`relative transition-all duration-300 ${
