@@ -11,6 +11,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
   const id = departmentId;
   const navigate = useNavigate();
   const [selectedSubcategory, setSelectedSubcategory] = useState('all');
+  const [sortBy, setSortBy] = useState('default');
   const [departmentProducts, setDepartmentProducts] = useState([]);
   const [department, setDepartment] = useState(null);
   const [subcategories, setSubcategories] = useState([]);
@@ -128,9 +129,18 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
     );
   }
 
-  const filteredProducts = selectedSubcategory === 'all' 
-    ? departmentProducts 
+  const filtered = selectedSubcategory === 'all'
+    ? departmentProducts
     : departmentProducts.filter(p => p.subcategory === selectedSubcategory);
+
+  const filteredProducts = [...filtered].sort((a, b) => {
+    if (sortBy === 'price-asc')  return (a.price || 0) - (b.price || 0);
+    if (sortBy === 'price-desc') return (b.price || 0) - (a.price || 0);
+    if (sortBy === 'name-asc')   return a.name.localeCompare(b.name);
+    if (sortBy === 'name-desc')  return b.name.localeCompare(a.name);
+    if (sortBy === 'newest')     return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
+    return 0;
+  });
 
   console.log('Rendering - departmentProducts:', departmentProducts.length, 'filteredProducts:', filteredProducts.length);
 
@@ -164,34 +174,75 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
           </div>
         </div>
 
-        {/* Subcategory Filter */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => setSelectedSubcategory('all')}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all ${
-                selectedSubcategory === 'all'
-                  ? 'bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white shadow-lg'
-                  : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-cyan-400'
-              }`}
+        {/* Filter Bar */}
+        <div className="mb-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          {/* Subcategory Dropdown */}
+          <div className="relative flex-1 sm:max-w-xs">
+            <label className="sr-only">Filter by category</label>
+            <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
+              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/>
+              </svg>
+            </div>
+            <select
+              value={selectedSubcategory}
+              onChange={e => setSelectedSubcategory(e.target.value)}
+              className="w-full appearance-none pl-9 pr-10 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-700 font-semibold focus:outline-none focus:border-cyan-400 transition-colors cursor-pointer"
             >
-              All Products
-            </button>
-            {subcategories.map(sub => (
-              <button
-                key={sub}
-                onClick={() => setSelectedSubcategory(sub)}
-                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
-                  selectedSubcategory === sub
-                    ? 'bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white shadow-lg'
-                    : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-cyan-400'
-                }`}
-              >
-                <span>{subcategoryEmojis[sub] || '📦'}</span>
-                <span>{sub}</span>
-              </button>
-            ))}
+              <option value="all">All Categories ({departmentProducts.length})</option>
+              {subcategories.map(sub => {
+                const count = departmentProducts.filter(p => p.subcategory === sub).length;
+                return (
+                  <option key={sub} value={sub}>{sub} ({count})</option>
+                );
+              })}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
           </div>
+
+          {/* Sort Dropdown */}
+          <div className="relative flex-1 sm:max-w-xs">
+            <label className="sr-only">Sort products</label>
+            <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
+              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+              </svg>
+            </div>
+            <select
+              value={sortBy}
+              onChange={e => setSortBy(e.target.value)}
+              className="w-full appearance-none pl-9 pr-10 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-700 font-semibold focus:outline-none focus:border-cyan-400 transition-colors cursor-pointer"
+            >
+              <option value="default">Sort: Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A → Z</option>
+              <option value="name-desc">Name: Z → A</option>
+              <option value="newest">New Arrivals First</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+
+          {/* Result count */}
+          <p className="text-sm text-slate-500 font-medium sm:ml-auto whitespace-nowrap self-center">
+            {filteredProducts.length} result{filteredProducts.length !== 1 ? 's' : ''}
+            {selectedSubcategory !== 'all' && (
+              <button
+                onClick={() => { setSelectedSubcategory('all'); setSortBy('default'); }}
+                className="ml-2 text-cyan-600 hover:text-cyan-700 underline"
+              >
+                Clear
+              </button>
+            )}
+          </p>
         </div>
 
         {/* Products Grid */}
@@ -215,7 +266,7 @@ export default function DepartmentPage({ addToCart, toggleWishlist, wishlistItem
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-xl font-bold text-slate-800 mb-2">No Products Found</h3>
             <p className="text-slate-600 mb-6">Try selecting a different subcategory</p>
-            <button onClick={() => setSelectedSubcategory('all')} className="px-6 py-3 bg-gradient-to-r from-\[#0F2740\] to-\[#0A78D1\] text-white font-semibold rounded-xl hover:shadow-lg transition-all">
+            <button onClick={() => { setSelectedSubcategory('all'); setSortBy('default'); }} className="px-6 py-3 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg transition-all">
               View All Products
             </button>
           </div>
