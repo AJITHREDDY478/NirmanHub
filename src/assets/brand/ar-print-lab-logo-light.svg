@@ -1,32 +1,43 @@
 <svg width="390" height="72" viewBox="0 0 390 72" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="apl-grad-light" x1="8" y1="8" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F59E0B"/>
-      <stop offset="1" stop-color="#14B8A6"/>
+    <linearGradient id="tech-frame-light" x1="8" y1="8" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#162E47"/>
+      <stop offset="1" stop-color="#1D4267"/>
     </linearGradient>
-    <linearGradient id="apl-top-light" x1="36" y1="17" x2="36" y2="34" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0.96"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.78"/>
+    <linearGradient id="tech-blue-light" x1="20" y1="14" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7CE8FF"/>
+      <stop offset="1" stop-color="#2B9BFF"/>
     </linearGradient>
-    <linearGradient id="apl-left-light" x1="18" y1="28" x2="36" y2="54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0.82"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.62"/>
+    <linearGradient id="tech-metal-light" x1="15" y1="12" x2="53" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C7D5E3"/>
     </linearGradient>
-    <linearGradient id="apl-right-light" x1="54" y1="28" x2="36" y2="54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.68"/>
+    <linearGradient id="tech-line-light" x1="170" y1="50" x2="294" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2ECF8"/>
+      <stop offset="1" stop-color="#4CC8FF"/>
     </linearGradient>
   </defs>
 
-  <rect x="4" y="4" width="64" height="64" rx="18" fill="url(#apl-grad-light)"/>
-  <rect x="5" y="5" width="62" height="62" rx="17" stroke="white" stroke-opacity="0.22"/>
-  <path d="M36 17L54 27L36 37L18 27L36 17Z" fill="url(#apl-top-light)"/>
-  <path d="M18 27L36 37V56L18 46V27Z" fill="url(#apl-left-light)"/>
-  <path d="M54 27L36 37V56L54 46V27Z" fill="url(#apl-right-light)"/>
-  <path d="M36 22L47 28.2L36 34.4L25 28.2L36 22Z" stroke="white" stroke-width="1.5" stroke-opacity="0.7"/>
-  <path d="M25 28.2L36 34.4L47 28.2" stroke="white" stroke-width="1.5" stroke-opacity="0.55"/>
-  <path d="M36 34.4V51" stroke="white" stroke-width="1.5" stroke-opacity="0.55"/>
+  <rect x="4" y="4" width="64" height="64" rx="18" fill="url(#tech-frame-light)"/>
+  <rect x="5" y="5" width="62" height="62" rx="17" stroke="#E8F6FF" stroke-opacity="0.28"/>
+  <path d="M14 49C20 36 33 24 54 18" stroke="#7DE6FF" stroke-width="2.8" stroke-linecap="round" opacity="0.9"/>
+  <path d="M17 56C25 39 37 30 58 26" stroke="#9AB6D0" stroke-width="1.8" stroke-linecap="round" opacity="0.78"/>
+  <text x="15" y="46" fill="url(#tech-metal-light)" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="900">A</text>
+  <text x="34" y="46" fill="url(#tech-blue-light)" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="900">R</text>
+  <text x="15" y="46" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="0.9" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="900">A</text>
+  <text x="34" y="46" fill="none" stroke="#D8F6FF" stroke-opacity="0.9" stroke-width="0.9" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="900">R</text>
+  <g transform="translate(27 30)">
+    <polygon points="9,0 18,5 9,10 0,5" fill="#9BEFFF"/>
+    <polygon points="0,5 9,10 9,21 0,16" fill="#34AEFF"/>
+    <polygon points="18,5 9,10 9,21 18,16" fill="#1E83E8"/>
+  </g>
+  <path d="M58 18V11" stroke="#5ED9FF" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="58" cy="9" r="1.9" fill="#5ED9FF"/>
 
-  <text x="82" y="35" fill="white" font-family="Outfit, Arial, sans-serif" font-size="31" font-weight="700" letter-spacing="0.2">AR Print Lab</text>
-  <text x="83" y="53" fill="#CBD5E1" font-family="Outfit, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="2.4">DESIGN • PRINT • CUSTOM</text>
+  <text x="82" y="33" fill="#FFFFFF" font-family="Outfit, Arial, sans-serif" font-size="29" font-style="italic" font-weight="800" letter-spacing="0.2">AR PRINT <tspan fill="#67DFFF">LAB</tspan></text>
+  <text x="82" y="52" fill="#C9D9EA" font-family="Outfit, Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing="2.5">3D PRINTING PRODUCTS</text>
+  <path d="M82 57H304" stroke="url(#tech-line-light)" stroke-width="2.2" stroke-linecap="round" opacity="0.35"/>
+  <rect x="313" y="18" width="9" height="9" rx="2" fill="#6CE7FF" opacity="0.98"/>
+  <rect x="327" y="26" width="11" height="11" rx="2.5" fill="#46C7FF" opacity="0.95"/>
+  <rect x="343" y="36" width="13" height="13" rx="3" fill="#249DFF" opacity="0.92"/>
 </svg>

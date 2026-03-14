@@ -164,7 +164,7 @@ export default function ProductCard({
               {product.subcategory}
             </p>
             {product.customizationOptions && (
-              <span className="px-2.5 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold rounded-full">
+              <span className="px-2.5 py-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-bold rounded-full">
                 Customizable
               </span>
             )}

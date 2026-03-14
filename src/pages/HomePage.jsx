@@ -88,8 +88,8 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
         <div className="absolute inset-0 hero-soft-gradient"></div>
         <div className="hero-grid-overlay"></div>
 
-        <div className="absolute -top-24 -left-10 w-72 h-72 bg-gradient-to-br from-amber-200/60 to-teal-200/40 rounded-full blur-3xl float-slow"></div>
-        <div className="absolute bottom-6 right-0 w-80 h-80 bg-gradient-to-br from-emerald-200/50 to-orange-200/40 rounded-full blur-3xl float-medium"></div>
+        <div className="absolute -top-24 -left-10 w-72 h-72 bg-gradient-to-br from-cyan-200/50 to-blue-200/40 rounded-full blur-3xl float-slow"></div>
+        <div className="absolute bottom-6 right-0 w-80 h-80 bg-gradient-to-br from-blue-200/40 to-cyan-100/30 rounded-full blur-3xl float-medium"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -126,10 +126,10 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
               >
                 <Link
                   to="/products"
-                  className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-lg rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 touch-manipulation overflow-hidden"
+                  className="group relative px-10 py-5 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold text-lg rounded-full shadow-2xl hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-105 touch-manipulation overflow-hidden"
                 >
                   <span className="relative z-10">Explore 3D Products</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0A78D1] to-[#29C4FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 
                 <Link
@@ -184,7 +184,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.5 }}
-                      className="text-xs font-bold text-teal-600 uppercase tracking-widest mb-2"
+                      className="text-xs font-bold text-cyan-600 uppercase tracking-widest mb-2"
                     >
                       Features
                     </motion.p>
@@ -270,7 +270,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 0.8, delay: 1.2 }}
-                    className="mt-6 h-1 bg-gradient-to-r from-teal-400 via-orange-400 to-teal-400 rounded-full opacity-60"
+                    className="mt-6 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-[#0F2740] rounded-full opacity-60"
                     style={{ transformOrigin: "left" }}
                   ></motion.div>
                 </div>
@@ -291,7 +291,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 className="flex-shrink-0 group cursor-pointer"
               >
                 <Link to={`/department/${category.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <div className="flex items-center gap-4 px-6 py-4 bg-slate-50 rounded-2xl border border-slate-200 group-hover:border-blue-300 group-hover:shadow-lg transition-all">
+                  <div className="flex items-center gap-4 px-6 py-4 bg-slate-50 rounded-2xl border border-slate-200 group-hover:border-cyan-400 group-hover:shadow-lg group-hover:shadow-cyan-100/60 transition-all">
                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} p-0.5`}>
                       <div className="w-full h-full rounded-lg overflow-hidden bg-white flex items-center justify-center">
                         {category.image ? (
@@ -342,7 +342,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
           )}
 
           <div className="text-center mt-12">
-            <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-purple-500/50">
+            <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-cyan-400/50">
               View All Products
             </Link>
           </div>
@@ -361,7 +361,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
               >
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#0F2740] via-[#0A78D1] to-[#29C4FF] bg-clip-text text-transparent">
                   Shop by Category
                 </span>
               </motion.h2>
@@ -401,8 +401,8 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                       transition={{ duration: 0.3 }}
                       className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[3px] border-black p-1.5 bg-white shadow-sm"
                     >
-                      <div className="w-full h-full rounded-full border-2 border-amber-400 p-1">
-                        <div className="w-full h-full rounded-full border border-rose-300 overflow-hidden bg-white flex items-center justify-center">
+                      <div className="w-full h-full rounded-full border-2 border-cyan-400 p-1">
+                        <div className="w-full h-full rounded-full border border-blue-200 overflow-hidden bg-white flex items-center justify-center">
                           {category.image ? (
                             isVideoUrl(category.image) ? (
                               <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
@@ -435,7 +435,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
           >
             <Link
               to="/categories"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl hover:shadow-purple-500/50"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl hover:shadow-cyan-400/50"
             >
               View All Categories
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -504,7 +504,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                         className="flex-shrink-0 w-56 snap-start group/card"
                       >
                         {/* Card Wrapper with Backdrop */}
-                        <div className="h-full bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-white/50 hover:border-purple-200/50 hover:scale-105 hover:-translate-y-1">
+                        <div className="h-full bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-white/50 hover:border-cyan-200/60 hover:scale-105 hover:-translate-y-1">
                           {/* Product Card Content */}
                           <div className="relative h-full">
                             <ProductCard
@@ -546,14 +546,14 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
       )}
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-r from-[#0B1F35] to-[#0F2740] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-4">Ready to Create Something Unique?</h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 px-4">
             Our custom 3D printing service brings your imagination to life. From concept to creation, we're here to help!
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <Link to="/custom-order" className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-2xl hover:shadow-yellow-500/50 text-slate-900">
+            <Link to="/custom-order" className="px-8 py-4 bg-gradient-to-r from-[#29C4FF] to-[#67E1FF] rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-2xl hover:shadow-cyan-400/50 text-[#0B1F35]">
               Start Custom Order
             </Link>
             <Link to="/about" className="px-8 py-4 bg-white/10 backdrop-blur-md rounded-full font-bold text-lg hover:bg-white/20 transition-all border-2 border-white/30">
@@ -575,7 +575,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
               transition={{ duration: 0.6, delay: 0.1 }}
               className="flex flex-col items-center text-center group"
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform shadow-lg">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform shadow-lg">
                 <svg className="w-8 h-8 sm:w-9 sm:h-9 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                 </svg>
@@ -592,7 +592,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col items-center text-center group"
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform shadow-lg">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform shadow-lg">
                 <svg className="w-8 h-8 sm:w-9 sm:h-9 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>

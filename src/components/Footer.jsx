@@ -3,7 +3,7 @@ import brandLogoLight from '../assets/brand/ar-print-lab-logo-light.svg';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-[#0B1F35] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand Section */}
@@ -80,7 +80,7 @@ export default function Footer() {
                 placeholder="Your email"
                 className="px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-white placeholder-slate-500"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg font-semibold transition-all hover:scale-105">
+              <button className="px-6 py-3 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] hover:from-[#0A78D1] hover:to-[#29C4FF] rounded-lg font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/30">
                 Subscribe
               </button>
             </div>
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-800">
+          <div className="mt-12 pt-8 border-t border-[#183A5A]">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-400">
             <p>&copy; 2026 AR Print Lab. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-6">

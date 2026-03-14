@@ -42,7 +42,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
 
   return (
     <nav className={`sticky top-0 z-50 transition-all duration-300 px-4 md:px-6 ${isShrunk ? 'py-2 md:py-3' : 'py-3 md:py-4'} bg-white/70 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_10px_30px_rgba(15,23,42,0.08)]`}>
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-amber-400/40 via-teal-400/40 to-amber-400/40"></div>
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-cyan-400/50 via-blue-500/40 to-cyan-400/50"></div>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
@@ -55,10 +55,10 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
 
         {/* Nav Links (Desktop) */}
         <div className="hidden md:flex items-center gap-3">
-          <Link to="/" className="px-4 py-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-amber-100/60 transition-all font-semibold">
+          <Link to="/" className="px-4 py-2 rounded-full text-slate-700 hover:text-blue-700 hover:bg-cyan-100/60 transition-all font-semibold">
             Home
           </Link>
-          <Link to="/categories" className="px-4 py-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-amber-100/60 transition-all font-semibold">
+          <Link to="/categories" className="px-4 py-2 rounded-full text-slate-700 hover:text-blue-700 hover:bg-cyan-100/60 transition-all font-semibold">
             Categories
           </Link>
           <div 
@@ -66,7 +66,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
             onMouseEnter={() => setShowGiftsMenu(true)}
             onMouseLeave={() => setShowGiftsMenu(false)}
           >
-            <button className="px-4 py-2 rounded-full text-slate-700 hover:text-slate-900 hover:bg-amber-100/60 transition-all font-semibold flex items-center gap-1">
+            <button className="px-4 py-2 rounded-full text-slate-700 hover:text-blue-700 hover:bg-cyan-100/60 transition-all font-semibold flex items-center gap-1">
               Gifts
               <svg className={`w-4 h-4 transition-transform ${showGiftsMenu ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
@@ -83,14 +83,14 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     Shop By Occasion
                   </h3>
                   <div className="space-y-2">
-                    <a href="#festive" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Festive</a>
-                    <a href="#housewarming" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Housewarming</a>
-                    <a href="#birthday" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Birthday</a>
-                    <a href="#corporate" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Corporate Gifts</a>
-                    <a href="#wedding" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Wedding</a>
-                    <a href="#bridesmaid" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">For Bridesmaid</a>
-                    <a href="#return-gifts" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Return Gifts</a>
-                    <a href="#newly-weds" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">For Newly Weds</a>
+                    <a href="#festive" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Festive</a>
+                    <a href="#housewarming" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Housewarming</a>
+                    <a href="#birthday" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Birthday</a>
+                    <a href="#corporate" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Corporate Gifts</a>
+                    <a href="#wedding" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Wedding</a>
+                    <a href="#bridesmaid" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">For Bridesmaid</a>
+                    <a href="#return-gifts" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Return Gifts</a>
+                    <a href="#newly-weds" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">For Newly Weds</a>
                   </div>
                 </div>
                 
@@ -101,13 +101,13 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     Gift Shop
                   </h3>
                   <div className="space-y-2">
-                    <a href="#hostess" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Hostess</a>
-                    <a href="#fashion-girl" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Fashion Girl</a>
-                    <a href="#decor" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Decor Enthusiast</a>
-                    <a href="#souvenir" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Souvenir Lover</a>
-                    <a href="#travel" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Travel Bug</a>
-                    <a href="#accessories" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">Gift Accessories</a>
-                    <a href="#egift" className="block px-3 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm">E-Gift Cards</a>
+                    <a href="#hostess" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Hostess</a>
+                    <a href="#fashion-girl" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Fashion Girl</a>
+                    <a href="#decor" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Decor Enthusiast</a>
+                    <a href="#souvenir" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Souvenir Lover</a>
+                    <a href="#travel" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Travel Bug</a>
+                    <a href="#accessories" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">Gift Accessories</a>
+                    <a href="#egift" className="block px-3 py-2 text-slate-600 hover:text-blue-600 hover:bg-cyan-50 rounded-lg transition-colors text-sm">E-Gift Cards</a>
                   </div>
                 </div>
               </div>
@@ -121,9 +121,9 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           <div className="relative group">
             <button
               onClick={onOpenSearch}
-              className="p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-amber-50 transition-all duration-300 ripple-effect touch-manipulation shadow-sm"
+              className="p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-cyan-50 transition-all duration-300 ripple-effect touch-manipulation shadow-sm"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 group-hover:text-amber-600 transform group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 group-hover:text-cyan-600 transform group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
@@ -133,9 +133,9 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           <div className="relative account-menu-container">
             <button
               onClick={() => setShowAccountMenu(!showAccountMenu)}
-              className="p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-amber-50 transition-all duration-300 ripple-effect touch-manipulation group shadow-sm"
+              className="p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-cyan-50 transition-all duration-300 ripple-effect touch-manipulation group shadow-sm"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 group-hover:text-amber-600 transform group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 group-hover:text-cyan-600 transform group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </button>
@@ -151,7 +151,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     <p className="text-xs text-slate-500 truncate mb-3">{user.email}</p>
                     <button
                       onClick={handleSignOut}
-                      className="w-full px-4 py-2 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all"
+                      className="w-full px-4 py-2 bg-gradient-to-r from-blue-700 to-cyan-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-200/60 transition-all"
                     >
                       Sign Out
                     </button>
@@ -165,7 +165,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                           onShowAuth('login');
                           setShowAccountMenu(false);
                         }}
-                        className="flex-1 px-4 py-2 bg-gradient-to-r from-amber-500 to-teal-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all"
+                        className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-700 to-cyan-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-200/60 transition-all"
                       >
                         Login
                       </button>
@@ -174,7 +174,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                           onShowAuth('signup');
                           setShowAccountMenu(false);
                         }}
-                        className="flex-1 px-4 py-2 border-2 border-slate-300 text-slate-700 text-sm font-semibold rounded-lg hover:border-amber-500 transition-all"
+                        className="flex-1 px-4 py-2 border-2 border-slate-300 text-slate-700 text-sm font-semibold rounded-lg hover:border-cyan-400 transition-all"
                       >
                         Sign Up
                       </button>
@@ -189,12 +189,12 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     setShowAccountMenu(false);
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-cyan-50 transition-colors group"
                 >
-                  <svg className="w-5 h-5 text-slate-600 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-slate-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
-                  <span className="text-slate-700 group-hover:text-amber-600 font-medium">My Orders</span>
+                  <span className="text-slate-700 group-hover:text-cyan-600 font-medium">My Orders</span>
                 </Link>
                 <Link
                   to="/wishlist"
@@ -202,12 +202,12 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     setShowAccountMenu(false);
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-cyan-50 transition-colors group"
                 >
-                  <svg className="w-5 h-5 text-slate-600 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-slate-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
-                  <span className="text-slate-700 group-hover:text-amber-600 font-medium">Wishlist</span>
+                  <span className="text-slate-700 group-hover:text-cyan-600 font-medium">Wishlist</span>
                 </Link>
                 <Link
                   to="/address"
@@ -215,13 +215,13 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                     setShowAccountMenu(false);
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-cyan-50 transition-colors group"
                 >
-                  <svg className="w-5 h-5 text-slate-600 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-slate-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-slate-700 group-hover:text-amber-600 font-medium">Address Book</span>
+                  <span className="text-slate-700 group-hover:text-cyan-600 font-medium">Address Book</span>
                 </Link>
                 {user && isAdminEmail(user.email) && (
                   <Link
@@ -230,12 +230,12 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
                       setShowAccountMenu(false);
                       setMobileMenuOpen(false);
                     }}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-cyan-50 transition-colors group"
                   >
-                    <svg className="w-5 h-5 text-slate-600 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-slate-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    <span className="text-slate-700 group-hover:text-amber-600 font-medium">Upload Products</span>
+                    <span className="text-slate-700 group-hover:text-cyan-600 font-medium">Upload Products</span>
                   </Link>
                 )}
               </div>
@@ -245,7 +245,7 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-amber-50 transition-all touch-manipulation mobile-menu-button shadow-sm"
+            className="md:hidden p-2 rounded-full bg-white/80 border border-slate-200/70 hover:bg-cyan-50 transition-all touch-manipulation mobile-menu-button shadow-sm"
           >
             <svg className="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
