@@ -1,123 +1,510 @@
 [
   {
-    "name": "Best Gift For Couples Personalized Multi 3D Moon 16 light",
-    "description": "PRODUCT DETAILS: Moon Lamp is made up of Non-Toxic PLA material with 3D printing technology. Diameter Width - Available in 10cm, 12cm, 15cm, 18cm options. Light color: Single colour/3colour/Multi Color It will be looking like Real Moon glowing in your own room. Touch Sensor: You can tap to change the color Remote is provided with only 16 colour(Multi Colour) light moon and You can change color also with remote along with touch system. Upload a High-quality photograph that will be featured on Moon. A wooden stand will be provided It takes 7-10 days to deliver the product. Free Shipping Throughout India",
+    "name": "Rack for Powerlifting Personal Records – Mini Gym With Custom Name | Desk Display",
+    "description": "Customisable mini gym rack with your name and gym name (up to 3 words) Rack includes 3 stands for Squat, Bench Press, and Deadlift Comes with 3 Olympic-style barbells Realistic weight plates from 5 kg to 25 kg Plate set includes: 1 Customised 1 word base plate 3 Olympic barbell 10 × 25 kg plates 11 × 20 kg plates 10 × 15 kg plates 10 × 10 kg plates 22 × 5 kg plates 5 plate holders to hold different plates Total 62 plates in different colors Made using eco-friendly, hard PLA (PVC-type) Strong, durable, and detailed finish Perfect desk accessory for gym lovers and athletes Ideal as a personal record holder or motivational display Suitable for office desks, gym counters, and home setups",
+    "original_price": 1999,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-01.png",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-02.png",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-03.jpg",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-04.png",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-05.png",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-06.heic",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-07.png",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-08.heic",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-09.heic",
+      "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-10.heic"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/rack-for-powerlifting-personal-records-mini-gym-with-custom-name-desk-display",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/rack-for-powerlifting-personal-records-mini-gym-with-custom-name-desk-display"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-02.png",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-03.jpg",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-04.png",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-05.png",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-06.heic",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-07.png",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-08.heic",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-09.heic",
+        "/Products/Keychain/Gym/rack-for-powerlifting-personal-records-mini-gym-with-custom-name/image-10.heic"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "GYM RACK MINI SET",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/rack-for-powerlifting-personal-records-mini-gym-with-custom-name-desk-display",
+      "shopifyProductId": 10667457642780,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Custom Gym Branding Pack – Plates, Keychains & Table Sign | Gym Merchandise Combo",
+    "description": "Build a strong brand identity inside your gym with our Custom Gym Branding Pack – a complete merchandise and display combo designed specially for gyms, fitness studios, and personal trainers. This premium set includes custom gym plate coasters, keychains, and a table sign, all personalised with your gym name, logo, or slogan. Ideal for front desks, workout zones, giveaways, and member merchandise. 📦 What’s Included in the Pack • 6 Gym Plate Coasters with Stand– Plate size: 3 × 3 inches– Comes with a matching stand for neat desk or counter display • 1 Gym Plate Keychain– Size: 2 × 2 inches– Compact, durable, and premium look • 1 Custom Text Keychain– Max width: 3 inches– Gym name, slogan, or short text • 1 Custom Table Sign– Max 2 words– Max width: 8 inches– Perfect for reception desks or shelves ✨ Why Gyms Love This Pack • Premium hard material with clean finish• Lightweight & durable• Fully customisable with gym branding• Professional look for gym interiors• Great for branding, gifting & merchandise• Made to order with attention to detail 🎨 Customisation Details After placing your order, we’ll contact you on WhatsApp for:• Gym name / logo• Text for keychains & table sign• Colour preferences You’ll receive a demo design for approval before production. 📌 Best For • Gyms & fitness studios• Personal trainers• New gym launches• Member welcome kits• Gym merchandise & giveaways ⏱️ Production & Dispatch • Made to order• Dispatch in 3–5 working days after design approval 📞 Need Help? For custom queries or bulk orders, WhatsApp us directly or call us on 9602273791.",
+    "original_price": 1999,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-01.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-02.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-03.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-04.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-05.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-06.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-07.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-08.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-09.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-10.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-11.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-12.png",
+      "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-13.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchandise-combo",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchandise-combo"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-02.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-03.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-04.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-05.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-06.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-07.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-08.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-09.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-10.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-11.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-12.png",
+        "/Products/Keychain/Gym/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchan/image-13.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "gym branding pack@1999",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/custom-gym-branding-pack-plates-keychains-table-sign-gym-merchandise-combo",
+      "shopifyProductId": 10736746561820,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Custom Gym Plate Keychain – Your Words, Your Style",
+    "description": "Make a bold statement with our Custom Gym Plate Keychain – perfect for fitness lovers who want to carry motivation wherever they go. 🔹 Personalization Options: Add up to 4 words – split across the top and bottom of the plate Ideal for names, slogans, workout phrases, or important dates 🔹 Design & Colors: Base Colors: Many options to select from Text Color: Fully customizable Material: Premium-quality PLA plastic Includes: Durable metal chain, fully assembled and ready to use 🎁 Perfect For: Gym freaks Fitness coaches Motivational gifts for workout partners Gym merchandise & giveaways 💪 Carry your passion for fitness everywhere — order your custom keychain today!",
+    "original_price": 299,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-01.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-02.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-03.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-04.png",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-05.png",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-06.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-07.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-08.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-09.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-10.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-11.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-12.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-13.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-14.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-15.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-16.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-17.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-18.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-19.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-20.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-21.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-22.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-23.png",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-24.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/custom-gym-plate-keychain-your-words-your-style",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/custom-gym-plate-keychain-your-words-your-style"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-02.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-03.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-04.png",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-05.png",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-06.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-07.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-08.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-09.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-10.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-11.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-12.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-13.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-14.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-15.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-16.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-17.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-18.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-19.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-20.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-21.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-22.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-23.png",
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-your-words-your-style/image-24.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "1 gym custom red",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/custom-gym-plate-keychain-your-words-your-style",
+      "shopifyProductId": 10518727557404,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "GYM FREAK Desk Sign | Motivational Table Decor for Gym Lovers 8 × 4 Inch",
+    "description": "Gym life, all day every day. The GYM FREAK Desk Sign is a bold statement piece for fitness enthusiasts who live and breathe the gym lifestyle – perfect for gym lovers, bodybuilders, and fitness fanatics. Designed with bold typography and a motivational message, this desk sign proudly displays your dedication to fitness. Whether placed in your home gym, office desk, or workout space, it's a constant reminder of your commitment to gains, discipline, and the grind. Why You'll Love It: Bold gym statement – Celebrates fitness dedication and lifestyle Motivational design – Modern aesthetic that inspires workouts Perfect size – 8 × 4 inches, ideal for desks and gym spaces Lightweight & durable – Quality construction built to last Fitness vibes – Adds motivation to your space Great gift – Perfect for gym rats, bodybuilders, and fitness lovers Perfect For: Home gyms and workout spaces Office desks for fitness motivation Gym lockers and personal training studios Gifts for gym enthusiasts and bodybuilders Fitness-themed home décor Dimensions: 8 × 4 inches Note: Color may slightly vary due to lighting and screen settings.",
+    "original_price": 599,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-01.jpg",
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-02.png",
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-03.png",
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-04.png",
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-05.png",
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-06.png",
+      "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-07.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-02.png",
+        "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-03.png",
+        "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-04.png",
+        "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-05.png",
+        "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-06.png",
+        "/Products/Keychain/Gym/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-/image-07.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "gym freak table sign",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-freak-desk-sign-motivational-table-decor-for-gym-lovers-8-4-inch",
+      "shopifyProductId": 10732290572572,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Gym Plate Coaster Set 6 Pcs, 4x4 Inches with Stand",
+    "description": "Add a bold gym vibe to your space with this set of 6 custom-designed gym plate coasters!✔️ Made to look like real weight plates✔️ Size: 4x4 inches each✔️ Comes with a sturdy display stand (Plain black or white color)✔️ Any 6 random colors will be included in the set✔️ Durable, lightweight & easy to clean Perfect for fitness lovers, gym-themed gifts, or your personal desk setup.",
+    "original_price": 699,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-01.png",
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-02.jpg",
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-03.jpg",
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-04.png",
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-05.jpg",
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-06.heic",
+      "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-07.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/custom-gym-plate-coaster-set-6-pcs-4x4-inches-with-stand",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/custom-gym-plate-coaster-set-6-pcs-4x4-inches-with-stand"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-02.jpg",
+        "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-03.jpg",
+        "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-04.png",
+        "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-05.jpg",
+        "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-06.heic",
+        "/Products/Keychain/Gym/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand/image-07.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "6coasterset",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/custom-gym-plate-coaster-set-6-pcs-4x4-inches-with-stand",
+      "shopifyProductId": 10524163014940,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Custom 2-Word Table Sign – Personalized Desk Nameplate",
+    "description": "Add a unique touch to your workspace, event, or home décor with our Custom 2-Name Table Sign. Perfect for weddings, offices, gifts, or personal use, this stylish nameplate is tailored to your needs. Features: Two Names: Each word can have up to 8 letters Size: 2 inches in height × 1 inch thick × up to 10 inches wide Colors Available: You can choose from 9 different color options Made with premium quality for a sturdy and lasting finish Perfect for desk décor, reception tables, event displays, or as a thoughtful gift How to Order: Enter your two names (max 8 letters each) in the customization box. Choose your preferred color (White or Black). Place your order and we’ll create your one-of-a-kind table sign.",
     "original_price": 799,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/best-gift-for-couples-personalized-multi-3d-moon-16-light/image-01.png",
+    "image_url": "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-01.heic",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/best-gift-for-couples-personalized-multi-3d-moon-16-light/image-01.png"
+      "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-01.heic",
+      "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-02.heic",
+      "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-03.jpg",
+      "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-04.heic",
+      "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-05.heic",
+      "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-06.heic"
     ],
-    "source_url": "https://3dgalaxy.co/products/personalized-multi-color-3d-moon",
+    "source_url": "https://www.noveltyboy.com/products/custom-2-word-table-sign-personalized-desk-nameplate",
     "source_urls": [
-      "https://3dgalaxy.co/products/personalized-multi-color-3d-moon"
+      "https://www.noveltyboy.com/products/custom-2-word-table-sign-personalized-desk-nameplate"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
-      "additionalImages": [],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-multi-color-3d-moon",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": ""
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Personalised Couple Full body 3D Miniature Best Anniversary Gift For Husband",
-    "description": "Bring Your Vision to Life with Our Custom 3D Miniatures! Crafted with precision and care, our 3D miniatures are made from durable, eco-friendly plastic that ensures longevity and sustainability. We use advanced 3D printing technology to bring intricate designs to life with remarkable accuracy. Choose from Multiple available sizes: to perfectly match your preferences. Here's how it works: We’ll create a custom 3D design, which will be shared with you for approval. You can request modifications during the design phase to make sure your miniature is exactly how you envisioned it. With 85-90% precision, we ensure a high level of detail that’s truly lifelike. The entire process, from design to doorstep, takes just 2 to 3 weeks—and enjoy free shipping across India!Note: These miniatures are not 100% realistic. We incorporate a slight caricature style for a more artistic touch. You will receive a digital 3D design for approval in the first stage, where you can request modifications. Once the design is finalized and printed, no further changes can be made. Please keep in mind that the product is non-refundable and non-returnable. Introducing our enchanting Personalized Couple Full Body 3D Miniature—a truly unique and heartfelt gift that captures the essence of love and togetherness in stunning detail. Are you searching for the best couple's gift that will leave a lasting impression? Our Personalized Couple Full Body 3D Miniature is the perfect choice for weddings, anniversaries, or any special occasion where you want to celebrate the beautiful bond shared between two people. Imagine the joy and surprise on their faces as they unwrap this exquisite Full Body 3D Miniature—a true testament to their love story. Crafted with precision and care, each miniature is specially designed to replicate the couple in stunning 3D detail, from their outfits to their expressions, ensuring a truly personalized touch. It's the ideal gift for the wedding couple—a cherished keepsake that symbolizes the beginning of their journey together. It's also the perfect anniversary present for husbands, allowing them to relive precious moments and celebrate their unconditional love. With our Personalized Couple Full Body 3D Miniature, you're not just giving a gift; you're giving a piece of art that captures the essence of their relationship—a reminder of the love, laughter, and memories they share. Make their special day even more memorable with this thoughtful and heartfelt gift. Order yours today and create a cherished memento that will be treasured for years to come. Best couple gift | Gift items for wedding couple | Anniversary present for husband",
-    "original_price": 5799,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 72,
-    "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-01.png",
-    "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-01.png",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-02.png",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-03.png",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-04.png",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-05.jpg",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-06.jpg",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-07.jpg",
-      "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-08.jpg"
-    ],
-    "source_url": "https://3dgalaxy.co/products/personalized-couple-full-body-3d-miniature",
-    "source_urls": [
-      "https://3dgalaxy.co/products/personalized-couple-full-body-3d-miniature"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-02.png",
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-03.png",
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-04.png",
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-05.jpg",
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-06.jpg",
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-07.jpg",
-        "/NirmanHub/Products/imported/couple-gift/personalised-couple-full-body-3d-miniature-best-anniversary-gift/image-08.jpg"
+        "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-02.heic",
+        "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-03.jpg",
+        "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-04.heic",
+        "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-05.heic",
+        "/Products/Keychain/Gym/custom-2-word-table-sign-personalized-desk-nameplate/image-06.heic"
       ],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "double name sign-1",
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-couple-full-body-3d-miniature",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/custom-2-word-table-sign-personalized-desk-nameplate",
+      "shopifyProductId": 10569388359964,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
@@ -149,276 +536,170 @@
     }
   },
   {
-    "name": "Best Aniversary Gifts For wife Personalised Single Light 3D Moon",
-    "description": "PRODUCT DETAILS: Moon Lamp is made up of Non-Toxic PLA material with 3D printing technology Diameter Width - Available in 10 CM, 12CM, 15 CM options Light colour: White/ Orange It will be looking like Real Moon glowing in your own room. Upload a High quality photograph that will be featured on Moon. A wooden stand will be provided. It takes 7-10 days to deliver the product. Free Shipping Throughout India",
-    "original_price": 799,
+    "name": "Gym Plate Coasters – Set of 4 Plates with Stand",
+    "description": "Add some gym vibes to your table! 💪This set of 4 Gym Plate Coasters is designed to look just like weight plates – perfect for fitness lovers. Comes with a sleek stand for easy storage. Features: Set of 4 coasters in mixed colors Realistic gym plate design Includes holder stand for organization Durable, easy-to-clean material Perfect gift for gym enthusiasts Bring your love for lifting to your coffee table, office desk, or home bar!",
+    "original_price": 599,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/best-aniversary-gifts-for-wife-personalised-single-light-3d-moon/image-01.png",
+    "image_url": "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-01.jpg",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/best-aniversary-gifts-for-wife-personalised-single-light-3d-moon/image-01.png"
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-01.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-02.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-03.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-04.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-05.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-06.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-07.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-08.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-09.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-10.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-11.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-12.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-13.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-14.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-15.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-16.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-17.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-18.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-19.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-20.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-21.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-22.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-23.jpg"
     ],
-    "source_url": "https://3dgalaxy.co/products/personalized-3d-moon",
+    "source_url": "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-4-plates-with-stand",
     "source_urls": [
-      "https://3dgalaxy.co/products/personalized-3d-moon"
+      "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-4-plates-with-stand",
+      "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-4-plates-with-stand-1"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
-      "additionalImages": [],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-3d-moon",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": ""
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Gifts For Girlfriend Personalized Mini 3D Moon Key-chain",
-    "description": "Moon Lamp is made up of Non-Toxic PLA material with 3D printing technology. Diameter Width - Available in 6CM Light colour: White/ Orange/ Multicolor It will be looking like Real Moon glowing in your own hands. Upload a High-quality photograph that will be featured on Moon. It takes 7-10 days to deliver the product. Free Shipping Throughout India",
-    "original_price": 449,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 72,
-    "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/gifts-for-girlfriend-personalized-mini-3d-moon-key-chain/image-01.png",
-    "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/gifts-for-girlfriend-personalized-mini-3d-moon-key-chain/image-01.png"
-    ],
-    "source_url": "https://3dgalaxy.co/products/personalized-mini-3d-moon-key-chain",
-    "source_urls": [
-      "https://3dgalaxy.co/products/personalized-mini-3d-moon-key-chain"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
-      "additionalImages": [],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-mini-3d-moon-key-chain",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": ""
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Personalized Heart Socket Night Lamp",
-    "description": "PRODUCT DETAILS: Lamp is made up of Non-Toxic PLA material with 3D printing technology. Diameter Width - Available in 6CM Light colour: White It will be looking like Real Moon glowing in your own room. Upload a High-quality photograph that will be featured on lamp. It takes 7-10 days to deliver the product. Free Shipping Throughout India",
-    "original_price": 449,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 72,
-    "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/personalized-heart-socket-night-lamp/image-01.jpg",
-    "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/personalized-heart-socket-night-lamp/image-01.jpg",
-      "/NirmanHub/Products/imported/couple-gift/personalized-heart-socket-night-lamp/image-02.png"
-    ],
-    "source_url": "https://3dgalaxy.co/products/personalized-heart-socket-night-lamp",
-    "source_urls": [
-      "https://3dgalaxy.co/products/personalized-heart-socket-night-lamp"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Gift Giving",
-      "category": "Gift Giving",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/personalized-heart-socket-night-lamp/image-02.png"
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-02.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-03.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-04.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-05.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-06.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-07.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-08.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-09.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-10.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-11.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-12.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-13.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-14.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-15.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-16.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-17.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-18.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-19.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-20.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-21.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-22.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-4-plates-with-stand/image-23.jpg"
       ],
       "currency": "INR",
       "availability": "In stock",
       "sku": null,
-      "brand": "3dgalaxy.in",
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-heart-socket-night-lamp",
-      "variantOfferUrls": [
-        "https://3dgalaxy.co/products/personalized-heart-socket-night-lamp?variant=40602360578241"
-      ],
-      "rawProductJsonLd": {
-        "@context": "http://schema.org/",
-        "@id": "/products/personalized-heart-socket-night-lamp#product",
-        "@type": "Product",
-        "brand": {
-          "@type": "Brand",
-          "name": "3dgalaxy.in"
-        },
-        "category": "Gift Giving",
-        "description": "PRODUCT DETAILS:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Lamp is made up of Non-Toxic PLA material with 3D printing technology.\nDiameter Width - Available in  6CM\nLight colour: White\nIt will be looking like Real Moon glowing in your own room.\nUpload a High-quality photograph that will be featured on lamp.\nIt takes 7-10 days  to deliver the product.\nFree Shipping Throughout India\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-        "image": "https://3dgalaxy.co/cdn/shop/products/heartpolycab.jpg?v=1642253079&width=1920",
-        "name": "Personalized Heart Socket Night Lamp",
-        "offers": {
-          "@id": "/products/personalized-heart-socket-night-lamp?variant=40602360578241#offer",
-          "@type": "Offer",
-          "availability": "http://schema.org/InStock",
-          "price": "449.00",
-          "priceCurrency": "INR",
-          "url": "https://3dgalaxy.co/products/personalized-heart-socket-night-lamp?variant=40602360578241"
-        },
-        "url": "https://3dgalaxy.co/products/personalized-heart-socket-night-lamp"
-      },
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-4-plates-with-stand-1",
+      "shopifyProductId": 10599556448540,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "3d Miniature Couple Half Bust Best Gift For Couple.",
-    "description": "Bring Your Vision to Life with Our Custom 3D Miniatures! Crafted with precision and care, our 3D miniatures are made from durable, eco-friendly plastic that ensures longevity and sustainability. We use advanced 3D printing technology to bring intricate designs to life with remarkable accuracy. Choose from Multiple available sizes: to perfectly match your preferences. Here's how it works: We’ll create a custom 3D design, which will be shared with you for approval. You can request modifications during the design phase to make sure your miniature is exactly how you envisioned it. With 85-90% precision, we ensure a high level of detail that’s truly lifelike. The entire process, from design to doorstep, takes just 2 to 3 weeks—and enjoy free shipping across India!Note: These miniatures are not 100% realistic. We incorporate a slight caricature style for a more artistic touch. You will receive a digital 3D design for approval in the first stage, where you can request modifications. Once the design is finalized and printed, no further changes can be made. Please keep in mind that the product is non-refundable and non-returnable.",
-    "original_price": 4799,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 72,
-    "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-01.png",
-    "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-01.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-02.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-03.heic",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-04.jpg"
-    ],
-    "source_url": "https://3dgalaxy.co/products/personalized-couple-half-bust-3d-miniature",
-    "source_urls": [
-      "https://3dgalaxy.co/products/personalized-couple-half-bust-3d-miniature"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
-      "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-02.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-03.heic",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple/image-04.jpg"
-      ],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-couple-half-bust-3d-miniature",
+      "whyChoose": "",
       "variantOfferUrls": [],
-      "rawProductJsonLd": null,
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 2,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "No Pain No Gain – Hard Plastic Gym Theme Fridge Magnet",
+    "description": "Stay pumped, even in the kitchen 💪Our \"No Pain No Gain\" fridge magnet is a daily dose of motivation—whether you’re meal prepping or grabbing that protein shake. ✅ Made with durable hard plastic✅ Strong internal magnet – sticks firm✅ Two bold styles:• Grey with Neon Green Text• White with Red Text 🎯 Perfect for fitness lovers, gym bros, or as a quirky fridge upgrade. Stick it. See it. Stay motivated.",
+    "original_price": 199,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-01.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-02.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-03.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-04.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-05.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-06.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-07.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory-copy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-02.jpg",
+        "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-03.jpg",
+        "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-04.jpg",
+        "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-05.jpg",
+        "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-06.jpg",
+        "/Products/Keychain/Gym/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet/image-07.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "NoPainMagnet Red",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory-copy",
+      "shopifyProductId": 10539148706076,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
@@ -450,68 +731,325 @@
     }
   },
   {
-    "name": "Customised Dual Name Keychain",
-    "description": "Customised Dual Name 3D Flip name keychain shows one name when seen from left and another name when seen from the right side PLA Material is used to create these flip names Ideal for anniversary, Christmas, Birthday and valentine's Day Gifts Combine 2 names to make a single beautiful name Color Available - Red , Black ,White ,Grey ,Blue ,Pink, Yellow, Green Maximum - 7 letters Size : Each letter will be 1 Inche in height & width Will depend on the number of letters Note :- Both names should be of same letter / length ,else we will add heart symbol at the end of the name which has fewer letter /length",
-    "original_price": 400,
+    "name": "Gym Plate Coasters – Set of 5 with Stand | Mixed Colors",
+    "description": "Add some gym vibes to your table! 💪This set of 5 Gym Plate Coasters is designed to look just like weight plates – perfect for fitness lovers. Comes with a sleek stand for easy storage. Features: Set of 5 coasters in mixed colors Realistic gym plate design Includes holder stand for organization Durable, easy-to-clean material Perfect gift for gym enthusiasts Bring your love for lifting to your coffee table, office desk, or home bar!",
+    "original_price": 699,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/customised-dual-name-keychain/image-01.jpg",
+    "image_url": "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-01.jpg",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/customised-dual-name-keychain/image-01.jpg",
-      "/NirmanHub/Products/imported/couple-gift/customised-dual-name-keychain/image-02.png"
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-01.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-02.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-03.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-04.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-05.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-06.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-07.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-08.jpg",
+      "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-09.jpg"
     ],
-    "source_url": "https://3dgalaxy.co/products/customised-dual-name-1",
+    "source_url": "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-5-with-stand-mixed-colors",
     "source_urls": [
-      "https://3dgalaxy.co/products/customised-dual-name-1"
+      "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-5-with-stand-mixed-colors"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Gift Giving",
-      "category": "Gift Giving",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/customised-dual-name-keychain/image-02.png"
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-02.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-03.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-04.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-05.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-06.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-07.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-08.jpg",
+        "/Products/Keychain/Gym/gym-plate-coasters-set-of-5-with-stand-mixed-colors/image-09.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "rogue5pcs",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-plate-coasters-set-of-5-with-stand-mixed-colors",
+      "shopifyProductId": 10541580026140,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Custom Gym Plate 4x4\" Fridge Magnet",
+    "description": "Level up your fridge game with this bold 4x4 inch Gym Plate Magnet 💪Designed like a mini weight plate, this hard plastic magnet adds fitness vibes to your home, office, or locker. 🛠️ Made with durable plastic🧲 Strong built-in magnet – sticks perfectly to any metal surface🎨 Custom branding available – add your gym’s name or logo!📏 Size: 4x4 inches (perfectly palm-sized) Great as gifts for gym members, fitness giveaways, or your own motivation wall!Stick it. See it. Lift it (not really, but it looks cool 😎)",
+    "original_price": 199,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-01.png",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-02.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-03.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-04.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-05.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-06.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-07.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-08.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-09.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-10.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-11.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-12.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-13.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-14.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-15.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/dont-quit-motivational-gym-fridge-magnet-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/dont-quit-motivational-gym-fridge-magnet-copy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-02.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-03.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-04.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-05.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-06.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-07.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-08.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-09.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-10.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-11.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-12.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-13.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-14.jpg",
+        "/Products/Keychain/Gym/custom-gym-plate-4x4-fridge-magnet/image-15.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "FridgeMagnetRedPlate",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/dont-quit-motivational-gym-fridge-magnet-copy",
+      "shopifyProductId": 10539155063068,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "5-Plate Gym Coaster Set with Stand – Suspended Effect",
+    "description": "Add a fitness inspired touch to your table with this gym plate coaster set. Designed like real barbell weight plates, these coasters are perfect for gym lovers and fitness enthusiasts. Each coaster measures 4 x 4 inches and fits all regular cups, mugs and glasses. The set includes 5 gym plate coasters and a matching stand that keeps your table organized when not in use. The sturdy material helps protect surfaces from water rings, heat marks and spills while adding a stylish gym themed look. Ideal for use at home, office desks, workstations or gym counters. This coaster set also makes a unique and thoughtful gift for fitness lovers, gym trainers and workout enthusiasts. Compact, lightweight and easy to maintain, this gym plate coaster set combines functionality with a bold fitness inspired design.",
+    "original_price": 699,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-01.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-02.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-03.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-04.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-05.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-06.jpg",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-07.jpg",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-08.jpg",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-09.jpg",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-10.jpg",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-11.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-12.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-13.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-14.png",
+      "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-15.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand-copy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-02.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-03.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-04.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-05.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-06.jpg",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-07.jpg",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-08.jpg",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-09.jpg",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-10.jpg",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-11.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-12.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-13.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-14.png",
+        "/Products/Keychain/Gym/5-plate-gym-coaster-set-with-stand-suspended-effect/image-15.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "standing5plate",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/gym-plate-coaster-set-6-pcs-4x4-inches-with-stand-copy",
+      "shopifyProductId": 10579250675996,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Custom Gym Plate Keychain – Double Text",
+    "description": "Carry your hustle with you!This Custom Gym Plate Keychain lets you personalize both the top and bottom—perfect for names, gym slang, dates, or short motivational words. 🔹 Design: Dumbbell-style plate🔹 Customization:• Top Text: 1 word (max 6 letters)• Bottom Text: 1 word (max 6 letters)🔹 Base Color: Black🔹 Text Color: Customizable🔹 Material: Durable, lightweight PLA plastic🔹 Includes: Premium metal chain – ready to use! 💪 Ideal for fitness lovers, trainers, gym partners, or as a unique gift.",
+    "original_price": 249,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/custom-gym-plate-keychain-double-text/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-double-text/image-01.jpg",
+      "/Products/Keychain/Gym/custom-gym-plate-keychain-double-text/image-02.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/ustom-gym-plate-keychain-double-text",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/ustom-gym-plate-keychain-double-text"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/custom-gym-plate-keychain-double-text/image-02.jpg"
       ],
       "currency": "INR",
       "availability": "In stock",
       "sku": null,
-      "brand": "3dgalaxy.in",
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/customised-dual-name-1",
-      "variantOfferUrls": [
-        "https://3dgalaxy.co/products/customised-dual-name-1?variant=40602507313345"
-      ],
-      "rawProductJsonLd": {
-        "@context": "http://schema.org/",
-        "@id": "/products/customised-dual-name-1#product",
-        "@type": "Product",
-        "brand": {
-          "@type": "Brand",
-          "name": "3dgalaxy.in"
-        },
-        "category": "Gift Giving",
-        "description": "Customised Dual Name 3D Flip name keychain shows one name when seen from left and another name when seen from the right side\n\nPLA Material is used to create these flip names\nIdeal for anniversary, Christmas, Birthday and valentine's Day Gifts\nCombine 2 names to make a single beautiful name\nColor Available - Red , Black ,White ,Grey ,Blue ,Pink, Yellow, Green\nMaximum - 7 letters\nSize : Each letter will be 1 Inche in height &amp; width Will depend on the number of letters\n\nNote :- Both names should be of same letter / length ,else we will add heart symbol at the end of the name which has fewer letter /length",
-        "image": "https://3dgalaxy.co/cdn/shop/products/WhatsAppImage2021-09-15at5.14.53PM.jpg?v=1644915125&width=1920",
-        "name": "Customised Dual Name Keychain",
-        "offers": {
-          "@id": "/products/customised-dual-name-1?variant=40602507313345#offer",
-          "@type": "Offer",
-          "availability": "http://schema.org/InStock",
-          "price": "400.00",
-          "priceCurrency": "INR",
-          "url": "https://3dgalaxy.co/products/customised-dual-name-1?variant=40602507313345"
-        },
-        "url": "https://3dgalaxy.co/products/customised-dual-name-1"
-      },
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/ustom-gym-plate-keychain-double-text",
+      "shopifyProductId": 10518726705436,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
@@ -543,45 +1081,46 @@
     }
   },
   {
-    "name": "Personalized Midget Wooden Doll",
-    "description": "Custom Midget Dolls Height: 7 inches Material: Wooden Fully handmade Made from photographs – Submit 3-4 pictures Package Contents: Custom Midget Dolls",
-    "original_price": 899,
+    "name": "Do You Even Lift Bro – Gym Plate Rearview Mirror Accessory",
+    "description": "Turn heads at every red light with our “Do You Even Lift Bro” gym plate accessory – designed for the rearview mirror, made for the lifter lifestyle 💪 🏋️♂️ Bold, eye-catching, and guaranteed to get a smirk from fellow gym rats.🚗 Perfect for cars, bikes, or even gym bags!💥 Lightweight, durable, and made to flex your gym vibe without saying a word.🎁 Great gift for your swole squad or gym owner friends! Dimensions: Compact, approx. 3-4 inches wideMaterial: High-quality, 3D look & premium finishInstallation: Just hang and ride! Add personality to your ride – because yes, you do lift, bro.",
+    "original_price": 99,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/personalized-midget-wooden-doll/image-01.png",
+    "image_url": "/Products/Keychain/Gym/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory/image-01.jpg",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/personalized-midget-wooden-doll/image-01.png",
-      "/NirmanHub/Products/imported/couple-gift/personalized-midget-wooden-doll/image-02.jpg"
+      "/Products/Keychain/Gym/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory/image-01.jpg",
+      "/Products/Keychain/Gym/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory/image-02.jpg"
     ],
-    "source_url": "https://3dgalaxy.co/products/personalised-midget-doll",
+    "source_url": "https://www.noveltyboy.com/products/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory",
     "source_urls": [
-      "https://3dgalaxy.co/products/personalised-midget-doll"
+      "https://www.noveltyboy.com/products/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/personalized-midget-wooden-doll/image-02.jpg"
+        "/Products/Keychain/Gym/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory/image-02.jpg"
       ],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "RedCar Doyou",
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalised-midget-doll",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/do-you-even-lift-bro-gym-plate-rearview-mirror-accessory",
+      "shopifyProductId": 10539147690268,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
@@ -613,150 +1152,58 @@
     }
   },
   {
-    "name": "Personalized Heart Lamp",
-    "description": "PRODUCT DETAILS: Lamp is made up of Non-Toxic PLA material with 3D printing technology. Diameter Width - Available in 10 CM, 12CM, 15 CM , 18CMoptions Light colour: White/ Orange It will be looking like Real Heart glowing in your own room. Upload a High-quality photograph that will be featured on lamp. A wooden stand with Ac supply Adapter will be provided. It takes 7-10 days to deliver the product. Free Shipping Throughout India Once your order is placed we will be contacting you for the order confirmation & details.",
-    "original_price": 799,
+    "name": "Discipline – Hard Plastic Gym Theme Fridge Magnet",
+    "description": "Discipline > Motivation 💥This bold \"Discipline\" fridge magnet is your no-excuses reminder every time you open the fridge. ✅ Made from durable hard plastic✅ Strong magnet inside – sticks securely✅ Clean, bold typography that pops Whether you're into fitness, self-growth, or just love powerful words — this magnet’s made to keep you focused. Stick it where it matters. Stay locked in. 🧲",
+    "original_price": 199,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/personalized-heart-lamp/image-01.png",
+    "image_url": "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-01.jpg",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/personalized-heart-lamp/image-01.png"
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-01.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-02.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-03.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-04.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-05.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-06.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-07.jpg",
+      "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-08.jpg"
     ],
-    "source_url": "https://3dgalaxy.co/products/personalized-heart-lamp",
+    "source_url": "https://www.noveltyboy.com/products/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet-copy",
     "source_urls": [
-      "https://3dgalaxy.co/products/personalized-heart-lamp"
+      "https://www.noveltyboy.com/products/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet-copy"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
-      "additionalImages": [],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/personalized-heart-lamp",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": ""
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "3d Miniature Couple Full Body",
-    "description": "Bring Your Vision to Life with Our Custom 3D Miniatures! Crafted with precision and care, our 3D miniatures are made from durable, eco-friendly plastic that ensures longevity and sustainability. We use advanced 3D printing technology to bring intricate designs to life with remarkable accuracy. Choose from Multiple available sizes: to perfectly match your preferences. Here's how it works: We’ll create a custom 3D design, which will be shared with you for approval. You can request modifications during the design phase to make sure your miniature is exactly how you envisioned it. With 85-90% precision, we ensure a high level of detail that’s truly lifelike. The entire process, from design to doorstep, takes just 2 to 3 weeks—and enjoy free shipping across India!Note: These miniatures are not 100% realistic. We incorporate a slight caricature style for a more artistic touch. You will receive a digital 3D design for approval in the first stage, where you can request modifications. Once the design is finalized and printed, no further changes can be made. Please keep in mind that the product is non-refundable and non-returnable.",
-    "original_price": 5799,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 72,
-    "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-01.png",
-    "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-01.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-02.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-03.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-04.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-05.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-06.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-07.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-08.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-09.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-10.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-11.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-12.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-13.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-14.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-15.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-16.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-17.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-18.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-19.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-20.jpg",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-21.jpg"
-    ],
-    "source_url": "https://3dgalaxy.co/products/couple-full-body-3d-miniature",
-    "source_urls": [
-      "https://3dgalaxy.co/products/couple-full-body-3d-miniature"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-02.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-03.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-04.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-05.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-06.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-07.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-08.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-09.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-10.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-11.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-12.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-13.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-14.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-15.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-16.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-17.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-18.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-19.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-20.jpg",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-full-body/image-21.jpg"
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-02.jpg",
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-03.jpg",
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-04.jpg",
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-05.jpg",
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-06.jpg",
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-07.jpg",
+        "/Products/Keychain/Gym/discipline-hard-plastic-gym-theme-fridge-magnet/image-08.jpg"
       ],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "Discipline Red",
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/couple-full-body-3d-miniature",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet-copy",
+      "shopifyProductId": 10539150246172,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
@@ -788,128 +1235,52 @@
     }
   },
   {
-    "name": "Personalized Bluetooth 3D Moon Wireless with Speaker",
-    "description": "The perfect personalized gift for all occasions! The 3D printed moon lamp is made according to NASA satellite images to accurately reproduce the moons actual surface and craters. With an image on one side and text on the other, the moon lamp is a perfectly crafted piece of interior to decorate your bedroom. PRODUCT DETAILS: Moon Lamp is made up of Non-Toxic PLA material with 3D printing technology. Diameter Width - Available in 15CM, 18 CM options Light color: Multicolour It will be looking like Real Moon glowing in your own room. Upload a High-quality photograph that will be featured on Moon. A wooden stand with Ac supply Adapter will be provided. Inbuilt Bluetooth With the Moonlamp It takes 7-10 days to deliver the product. Free Shipping Throughout India.",
-    "original_price": 1500,
+    "name": "Don't Quit – Motivational Gym Fridge Magnet",
+    "description": "Fuel your fitness grind with this bold “Eat Sleep Gym Repeat” magnet 💪Perfect for gym lovers and goal-chasers, it’s a small but powerful reminder of your daily hustle. ✅ Durable hard plastic build✅ Strong magnet – sticks tight✅ Available in white with black text and black with neon text Stick it on your fridge, locker, or workspace – and keep the gains mindset alive 🏋️♂️",
+    "original_price": 199,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/personalized-bluetooth-3d-moon-wireless-with-speaker/image-01.png",
+    "image_url": "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-01.jpg",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/personalized-bluetooth-3d-moon-wireless-with-speaker/image-01.png"
+      "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-01.jpg",
+      "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-02.jpg",
+      "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-03.jpg",
+      "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-04.jpg",
+      "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-05.jpg"
     ],
-    "source_url": "https://3dgalaxy.co/products/bluetooth-moon-wireless-speaker",
+    "source_url": "https://www.noveltyboy.com/products/dont-quit-motivational-gym-fridge-magnet",
     "source_urls": [
-      "https://3dgalaxy.co/products/bluetooth-moon-wireless-speaker"
+      "https://www.noveltyboy.com/products/dont-quit-motivational-gym-fridge-magnet"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
-      "additionalImages": [],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
-      "productType": null,
-      "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/bluetooth-moon-wireless-speaker",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
-      "specifications": null,
-      "customizationOptions": null,
-      "whyChoose": ""
-    },
-    "_notes": {
-      "merged_variants_count": 1,
-      "editable": [
-        "name",
-        "description",
-        "original_price",
-        "discount_price",
-        "stock_quantity",
-        "printing_time",
-        "image_url",
-        "image_urls[]",
-        "item_details_data.department",
-        "item_details_data.subcategory",
-        "item_details_data.category",
-        "item_details_data.emoji"
-      ],
-      "required": [
-        "name",
-        "original_price"
-      ],
-      "optional": [
-        "discount_price",
-        "description",
-        "image_url",
-        "image_urls",
-        "parent_id"
-      ]
-    }
-  },
-  {
-    "name": "Best Anniversary Gift For Parents 3d Miniature Couple Half Bust",
-    "description": "Bring Your Vision to Life with Our Custom 3D Miniatures! Crafted with precision and care, our 3D miniatures are made from durable, eco-friendly plastic that ensures longevity and sustainability. We use advanced 3D printing technology to bring intricate designs to life with remarkable accuracy. Choose from Multiple available sizes: to perfectly match your preferences. Here's how it works: We’ll create a custom 3D design, which will be shared with you for approval. You can request modifications during the design phase to make sure your miniature is exactly how you envisioned it. With 85-90% precision, we ensure a high level of detail that’s truly lifelike. The entire process, from design to doorstep, takes just 2 to 3 weeks—and enjoy free shipping across India!Note: These miniatures are not 100% realistic. We incorporate a slight caricature style for a more artistic touch. You will receive a digital 3D design for approval in the first stage, where you can request modifications. Once the design is finalized and printed, no further changes can be made. Please keep in mind that the product is non-refundable and non-returnable.",
-    "original_price": 4799,
-    "discount_price": 0,
-    "stock_quantity": 10,
-    "printing_time": 72,
-    "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-01.png",
-    "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-01.png",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-02.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-03.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-04.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-05.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-06.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-07.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-08.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-09.jpg",
-      "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-10.jpg"
-    ],
-    "source_url": "https://3dgalaxy.co/products/3d-miniature-couple-half-bust-best-anniversary-gift",
-    "source_urls": [
-      "https://3dgalaxy.co/products/3d-miniature-couple-half-bust-best-anniversary-gift"
-    ],
-    "type": "Item",
-    "parent_id": null,
-    "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-02.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-03.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-04.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-05.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-06.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-07.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-08.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-09.jpg",
-        "/NirmanHub/Products/imported/couple-gift/best-anniversary-gift-for-parents-3d-miniature-couple-half-bust/image-10.jpg"
+        "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-02.jpg",
+        "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-03.jpg",
+        "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-04.jpg",
+        "/Products/Keychain/Gym/don-t-quit-motivational-gym-fridge-magnet/image-05.jpg"
       ],
-      "currency": null,
-      "availability": null,
-      "sku": null,
-      "brand": null,
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "RedDontQuit",
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/3d-miniature-couple-half-bust-best-anniversary-gift",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/dont-quit-motivational-gym-fridge-magnet",
+      "shopifyProductId": 10539151229212,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
@@ -941,64 +1312,875 @@
     }
   },
   {
-    "name": "3d Miniature Couple Half Bust Best Gift For Couple. Copy",
-    "description": "Bring Your Vision to Life with Our Custom 3D Miniatures! Crafted with precision and care, our 3D miniatures are made from durable, eco-friendly plastic that ensures longevity and sustainability. We use advanced 3D printing technology to bring intricate designs to life with remarkable accuracy. Choose from Multiple available sizes: to perfectly match your preferences. Here's how it works: We’ll create a custom 3D design, which will be shared with you for approval. You can request modifications during the design phase to make sure your miniature is exactly how you envisioned it. With 85-90% precision, we ensure a high level of detail that’s truly lifelike. The entire process, from design to doorstep, takes just 2 to 3 weeks—and enjoy free shipping across India!Note: These miniatures are not 100% realistic. We incorporate a slight caricature style for a more artistic touch. You will receive a digital 3D design for approval in the first stage, where you can request modifications. Once the design is finalized and printed, no further changes can be made. Please keep in mind that the product is non-refundable and non-returnable.",
-    "original_price": 4799,
+    "name": "No Pain No Gain",
+    "description": "Carry your motivation everywhere with this premium-quality “No Pain No Gain” Gym Plate Keychain. Designed to resemble a miniature weight plate, this rugged and stylish keychain is perfect for fitness enthusiasts, gym-goers, or as a gift for your workout buddy. Durable & lightweight Ideal for keys, gym bags, or gifting Premium finish with motivational print Diameter: ~2 inches 🔥 Lift your spirits along with your weights!",
+    "original_price": 299,
     "discount_price": 0,
     "stock_quantity": 10,
-    "printing_time": 72,
+    "printing_time": 24,
     "is_active": true,
-    "image_url": "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-01.png",
+    "image_url": "/Products/Keychain/Gym/no-pain-no-gain/image-01.jpg",
     "image_urls": [
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-01.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-02.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-03.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-04.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-05.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-06.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-07.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-08.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-09.png",
-      "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-10.jpg"
+      "/Products/Keychain/Gym/no-pain-no-gain/image-01.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain/image-02.jpg",
+      "/Products/Keychain/Gym/no-pain-no-gain/image-03.jpg"
     ],
-    "source_url": "https://3dgalaxy.co/products/3d-miniature-couple-half-bust-best-gift-for-couple-copy",
+    "source_url": "https://www.noveltyboy.com/products/no-pain-no-gain-gym-plate-keychain-for-fitness-lovers",
     "source_urls": [
-      "https://3dgalaxy.co/products/3d-miniature-couple-half-bust-best-gift-for-couple-copy"
+      "https://www.noveltyboy.com/products/no-pain-no-gain-gym-plate-keychain-for-fitness-lovers"
     ],
     "type": "Item",
     "parent_id": null,
     "item_details_data": {
-      "department": "Couple Gift",
-      "subcategory": "Customized Gifts",
-      "category": "Customized Gifts",
-      "emoji": "💑",
-      "scrapedFrom": "https://3dgalaxy.co/collections/customised-couple-gift",
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
       "additionalImages": [
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-02.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-03.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-04.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-05.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-06.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-07.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-08.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-09.png",
-        "/NirmanHub/Products/imported/couple-gift/3d-miniature-couple-half-bust-best-gift-for-couple-copy/image-10.jpg"
+        "/Products/Keychain/Gym/no-pain-no-gain/image-02.jpg",
+        "/Products/Keychain/Gym/no-pain-no-gain/image-03.jpg"
       ],
-      "currency": null,
-      "availability": null,
+      "currency": "INR",
+      "availability": "In stock",
       "sku": null,
-      "brand": null,
+      "brand": "Novelty Boy",
       "productType": null,
       "tags": [],
-      "sourceCanonicalUrl": "https://3dgalaxy.co/products/3d-miniature-couple-half-bust-best-gift-for-couple-copy",
-      "variantOfferUrls": [],
-      "rawProductJsonLd": null,
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/no-pain-no-gain-gym-plate-keychain-for-fitness-lovers",
+      "shopifyProductId": 10517529198876,
       "specifications": null,
       "customizationOptions": null,
-      "whyChoose": ""
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
     },
     "_notes": {
       "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Beast Mode On",
+    "description": "Switch on your inner beast every time you grab your keys. This bold “Beast Mode On” gym plate keychain is perfect for lifters, athletes, and fitness lovers who train hard and live harder.",
+    "original_price": 249,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/beast-mode-on/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/beast-mode-on/image-01.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-02.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-03.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-04.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-05.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-06.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-07.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-08.jpg",
+      "/Products/Keychain/Gym/beast-mode-on/image-09.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/beast-mode-on",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/beast-mode-on"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/beast-mode-on/image-02.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-03.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-04.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-05.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-06.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-07.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-08.jpg",
+        "/Products/Keychain/Gym/beast-mode-on/image-09.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/beast-mode-on",
+      "shopifyProductId": 10573194133788,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Eat Sleep Gym Repeat – Motivational Gym Themed Fridge Magnet",
+    "description": "Fuel your fitness grind with this bold “Eat Sleep Gym Repeat” magnet 💪Perfect for gym lovers and goal-chasers, it’s a small but powerful reminder of your daily hustle. ✅ Durable hard plastic build✅ Strong magnet – sticks tight✅ Available in white with black text and black with neon text Stick it on your fridge, locker, or workspace – and keep the gains mindset alive 🏋️♂️",
+    "original_price": 199,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-01.jpg",
+      "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-02.jpg",
+      "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-03.jpg",
+      "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-04.jpg",
+      "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-05.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet-copy-1",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet-copy-1"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-02.jpg",
+        "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-03.jpg",
+        "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-04.jpg",
+        "/Products/Keychain/Gym/eat-sleep-gym-repeat-motivational-gym-themed-fridge-magnet/image-05.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "RedMagnetEatSleep",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/no-pain-no-gain-hard-plastic-gym-theme-fridge-magnet-copy-1",
+      "shopifyProductId": 10539151032604,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Protein Over Problems",
+    "description": "When life gets tough, grab a shake and lift it off. This “Protein Over Problems” keychain is for the fitness lover who knows gains come first. Fun, relatable, and built to last, it’s the perfect daily reminder that there’s no issue a good workout and some protein can’t fix.",
+    "original_price": 249,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/protein-over-problems/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/protein-over-problems/image-01.jpg",
+      "/Products/Keychain/Gym/protein-over-problems/image-02.jpg",
+      "/Products/Keychain/Gym/protein-over-problems/image-03.jpg",
+      "/Products/Keychain/Gym/protein-over-problems/image-04.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/light-weight-baby-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/light-weight-baby-copy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/protein-over-problems/image-02.jpg",
+        "/Products/Keychain/Gym/protein-over-problems/image-03.jpg",
+        "/Products/Keychain/Gym/protein-over-problems/image-04.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/light-weight-baby-copy",
+      "shopifyProductId": 10573203112220,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Light Weight Baby",
+    "description": "Carry the legendary energy of Ronnie Coleman wherever you go. This iconic phrase is every lifter’s battle cry when the weight feels heavy but the mindset says otherwise. Perfect for hardcore gym-goers, bodybuilders, and fitness fans who live for the iron. Durable, bold, and built to motivate — just like your training. Ideal For: Gym bags, car keys, gifting to fitness buddies, or daily motivation.",
+    "original_price": 299,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/light-weight-baby/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/light-weight-baby/image-01.jpg",
+      "/Products/Keychain/Gym/light-weight-baby/image-02.jpg",
+      "/Products/Keychain/Gym/light-weight-baby/image-03.jpg",
+      "/Products/Keychain/Gym/light-weight-baby/image-04.jpg",
+      "/Products/Keychain/Gym/light-weight-baby/image-05.jpg",
+      "/Products/Keychain/Gym/light-weight-baby/image-06.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/light-weight-baby",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/light-weight-baby"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/light-weight-baby/image-02.jpg",
+        "/Products/Keychain/Gym/light-weight-baby/image-03.jpg",
+        "/Products/Keychain/Gym/light-weight-baby/image-04.jpg",
+        "/Products/Keychain/Gym/light-weight-baby/image-05.jpg",
+        "/Products/Keychain/Gym/light-weight-baby/image-06.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/light-weight-baby",
+      "shopifyProductId": 10573169459484,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Earn Your Rest",
+    "description": "Recovery feels better when you’ve truly earned it. This “Earn Your Rest” keychain is a daily reminder to push hard, give your best, and enjoy your downtime guilt-free. Perfect for lifters, athletes, and anyone who believes in the grind before the rest.",
+    "original_price": 249,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/earn-your-rest/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/earn-your-rest/image-01.jpg",
+      "/Products/Keychain/Gym/earn-your-rest/image-02.jpg",
+      "/Products/Keychain/Gym/earn-your-rest/image-03.jpg",
+      "/Products/Keychain/Gym/earn-your-rest/image-04.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/protein-over-problems-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/protein-over-problems-copy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/earn-your-rest/image-02.jpg",
+        "/Products/Keychain/Gym/earn-your-rest/image-03.jpg",
+        "/Products/Keychain/Gym/earn-your-rest/image-04.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/protein-over-problems-copy",
+      "shopifyProductId": 10573203833116,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Heavy Metal Therapy",
+    "description": "Unwind the only way lifters know how – with some Heavy Metal Therapy. This gym plate keychain is a tribute to those who find peace under the bar and strength in every rep. Durable, bold, and built for the grind, it’s perfect for keys, gym bags, or as a gift for your iron-loving crew.",
+    "original_price": 249,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/heavy-metal-therapy/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/heavy-metal-therapy/image-01.jpg",
+      "/Products/Keychain/Gym/heavy-metal-therapy/image-02.jpg",
+      "/Products/Keychain/Gym/heavy-metal-therapy/image-03.jpg",
+      "/Products/Keychain/Gym/heavy-metal-therapy/image-04.jpg",
+      "/Products/Keychain/Gym/heavy-metal-therapy/image-05.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/heavy-metal-therapy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/heavy-metal-therapy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/heavy-metal-therapy/image-02.jpg",
+        "/Products/Keychain/Gym/heavy-metal-therapy/image-03.jpg",
+        "/Products/Keychain/Gym/heavy-metal-therapy/image-04.jpg",
+        "/Products/Keychain/Gym/heavy-metal-therapy/image-05.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/heavy-metal-therapy",
+      "shopifyProductId": 10573200851228,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "Built Not Bought",
+    "description": "Unwind the only way lifters know how – with someBUILT NOT BOUGHT. This gym plate keychain is a tribute to those who find peace under the bar and strength in every rep. Durable, bold, and built for the grind, it’s perfect for keys, gym bags, or as a gift for your iron-loving crew.",
+    "original_price": 249,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/built-not-bought/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/built-not-bought/image-01.jpg",
+      "/Products/Keychain/Gym/built-not-bought/image-02.jpg",
+      "/Products/Keychain/Gym/built-not-bought/image-03.jpg",
+      "/Products/Keychain/Gym/built-not-bought/image-04.jpg",
+      "/Products/Keychain/Gym/built-not-bought/image-05.jpg"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/heavy-metal-therapy-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/heavy-metal-therapy-copy"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/built-not-bought/image-02.jpg",
+        "/Products/Keychain/Gym/built-not-bought/image-03.jpg",
+        "/Products/Keychain/Gym/built-not-bought/image-04.jpg",
+        "/Products/Keychain/Gym/built-not-bought/image-05.jpg"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": null,
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/heavy-metal-therapy-copy",
+      "shopifyProductId": 10573205504284,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "NB-1 Designer Table Lamp – Modern Ambient Lighting",
+    "description": "Bring a soft, modern glow to your space with the NB-1 Designer Table Lamp. Crafted with a sculptural wavy design, this lamp adds warmth and elegance to any interior while blending seamlessly with contemporary decor. The NB-1 lamp comes ready to use with all essential components included. Choose between warm light for a cozy ambiance or white light for a clean, modern look. Its compact size makes it ideal for bedside tables, work desks, shelves, studios, and living spaces. Designed for both style and practicality, this lamp offers a soothing light output while acting as a statement decor piece for modern homes. Key Features Modern sculptural wavy design Soft ambient lighting for everyday use Available in warm light or white light options Compact and space-saving form factor Plug and play, easy to use Package Includes 1 × NB-1 Designer Lamp Wire with switch and bulb holder Bulb (warm or white as selected) Dimensions Height: 240 mm Width: 130 mm",
+    "original_price": 1799,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-01.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-02.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-03.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-04.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-05.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-06.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-07.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-08.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-09.png",
+      "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-10.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/nb-1-designer-table-lamp-modern-ambient-lighting",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/nb-1-designer-table-lamp-modern-ambient-lighting"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-02.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-03.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-04.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-05.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-06.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-07.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-08.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-09.png",
+        "/Products/Keychain/Gym/nb-1-designer-table-lamp-modern-ambient-lighting/image-10.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "NB2",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/nb-1-designer-table-lamp-modern-ambient-lighting",
+      "shopifyProductId": 10748772679964,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 1,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "BLOOM Lamp – Modern Ambient Table Lamp | Minimal Decorative Desk Light",
+    "description": "The BLOOM Lamp is a modern decorative table lamp designed to bring soft ambient lighting and elegant style to your home. Inspired by the shape of a blooming flower, this lamp adds a calming and artistic touch to desks, bedside tables, and living spaces. Its sculptural design diffuses light beautifully, creating a warm and relaxing atmosphere. The BLOOM Lamp works perfectly as a bedside lamp, desk decor piece, or accent light for modern interiors. With a clean and minimal design, it complements a wide range of interior styles including modern, aesthetic, Scandinavian, and contemporary spaces. What’s Included in the Box • BLOOM Lamp Top Shade• Lamp Base Stand• Electrical Wire with Switch• LED Bulb (Included) Key Features Elegant bloom inspired design that enhances home decorSoft ambient lighting for a warm and relaxing atmosphereMinimal modern style suitable for bedrooms and workspacesLightweight yet durable constructionPremium quality material with smooth textured finishPerfect decorative lamp for desks, bedside tables, and shelves Ideal For Bedroom bedside lightingDesk decor and workspace lightingLiving room accent lightingModern home interiorsGift for home decor lovers Product Details Product Name: BLOOM Decorative Table LampStyle: Modern Minimal Decor LampPlacement: Desk, Bedside Table, Living Room, Shelf The BLOOM Lamp combines modern design with warm ambient lighting, making it a stylish addition to any contemporary home.",
+    "original_price": 1799,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-01.jpg",
+    "image_urls": [
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-01.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-02.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-03.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-04.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-05.png",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-06.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-07.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-08.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-09.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-10.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-11.png",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-12.png",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-13.jpg",
+      "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-14.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-light",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-light",
+      "https://www.noveltyboy.com/products/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-light-1"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-02.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-03.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-04.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-05.png",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-06.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-07.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-08.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-09.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-10.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-11.png",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-12.png",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-13.jpg",
+        "/Products/Keychain/Gym/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-lig/image-14.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "bloom blue",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-light-1",
+      "shopifyProductId": 10788967153948,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 2,
+      "editable": [
+        "name",
+        "description",
+        "original_price",
+        "discount_price",
+        "stock_quantity",
+        "printing_time",
+        "image_url",
+        "image_urls[]",
+        "item_details_data.department",
+        "item_details_data.subcategory",
+        "item_details_data.category",
+        "item_details_data.emoji"
+      ],
+      "required": [
+        "name",
+        "original_price"
+      ],
+      "optional": [
+        "discount_price",
+        "description",
+        "image_url",
+        "image_urls",
+        "parent_id"
+      ]
+    }
+  },
+  {
+    "name": "JYA Wavy Mood Lamp – Aesthetic Bedside Table Light for Bedroom, Desk & Home Decor",
+    "description": "The JYA Pink Wavy Lamp adds a soft aesthetic glow to your space with its modern ribbed wave design. Perfect for bedside tables, desks, or cozy corners, it creates a relaxing ambient light that instantly enhances the mood of any room. Key Features • Unique Wavy Design – Elegant ripple pattern creates beautiful light diffusion• Soft Ambient Glow – Perfect mood lighting for bedrooms and relaxing spaces• Modern Aesthetic Decor – Stylish lamp for desks, bedside tables and shelves• Compact & Lightweight – Easy to place anywhere in your home• Plug & Play Setup – Simple to use with included bulb and wire",
+    "original_price": 1499,
+    "discount_price": 0,
+    "stock_quantity": 10,
+    "printing_time": 24,
+    "is_active": true,
+    "image_url": "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-01.png",
+    "image_urls": [
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-01.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-02.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-03.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-04.jpg",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-05.jpg",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-06.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-07.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-08.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-09.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-10.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-11.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-12.png",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-13.jpg",
+      "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-14.png"
+    ],
+    "source_url": "https://www.noveltyboy.com/products/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-light-copy",
+    "source_urls": [
+      "https://www.noveltyboy.com/products/bloom-lamp-modern-ambient-table-lamp-minimal-decorative-desk-light-copy",
+      "https://www.noveltyboy.com/products/jya-yellow-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-desk-home-decor"
+    ],
+    "type": "Item",
+    "parent_id": null,
+    "item_details_data": {
+      "department": "Name Boards",
+      "subcategory": "Religious",
+      "category": "Religious",
+      "emoji": "🙏",
+      "scrapedFrom": "https://www.noveltyboy.com/collections/gym-inspired-keychains",
+      "additionalImages": [
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-02.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-03.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-04.jpg",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-05.jpg",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-06.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-07.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-08.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-09.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-10.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-11.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-12.png",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-13.jpg",
+        "/Products/Keychain/Gym/jya-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-des/image-14.png"
+      ],
+      "currency": "INR",
+      "availability": "In stock",
+      "sku": "JYA WAVY YELLOW",
+      "brand": "Novelty Boy",
+      "productType": null,
+      "tags": [],
+      "sourceCanonicalUrl": "https://www.noveltyboy.com/products/jya-yellow-wavy-mood-lamp-aesthetic-bedside-table-light-for-bedroom-desk-home-decor",
+      "shopifyProductId": 10789127553308,
+      "specifications": null,
+      "customizationOptions": null,
+      "whyChoose": "",
+      "variantOfferUrls": [],
+      "rawProductJsonLd": null
+    },
+    "_notes": {
+      "merged_variants_count": 2,
       "editable": [
         "name",
         "description",
