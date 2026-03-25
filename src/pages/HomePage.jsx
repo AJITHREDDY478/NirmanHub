@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getAllProducts, getAllDepartments } from '../utils/catalogService';
 import { getDepartmentIcon } from '../utils/departmentIcons';
+import { departments as seedDepartments } from '../data/products';
 import ThreeBackground from '../components/ThreeBackground';
-import Product3DViewer from '../components/Product3DViewer';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import BrandLoader from '../components/BrandLoader';
@@ -32,28 +32,58 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
   
   useEffect(() => {
     const fetchData = async () => {
+      let productList = [];
       try {
         setIsProductsLoading(true);
 
         // Fetch products
         const { data } = await getAllProducts();
-        const productList = Array.isArray(data) ? data : [];
+        productList = Array.isArray(data) ? data : [];
         setAllProducts(productList);
-        setFeaturedProducts(productList.slice(0, 8));
+        const flaggedFeaturedProducts = productList.filter((product) => product.featuredModel);
+        setFeaturedProducts(flaggedFeaturedProducts.slice(0, 8));
       } finally {
         setIsProductsLoading(false);
       }
 
       // Fetch departments for categories
       const { data: depts } = await getAllDepartments();
-      const formattedCategories = (depts || []).map((dept, index) => ({
+      const fallbackDepartments = Array.from(
+        new Map(
+          productList
+            .map((product) => String(product.department || '').trim())
+            .filter(Boolean)
+            .map((name) => [
+              name.toLowerCase(),
+              {
+                id: name.toLowerCase().replace(/\s+/g, '-'),
+                name,
+                item_details_data: {},
+                image_url: ''
+              }
+            ])
+        ).values()
+      );
+
+      const sourceDepartments =
+        Array.isArray(depts) && depts.length > 0
+          ? depts
+          : (fallbackDepartments.length > 0 ? fallbackDepartments : seedDepartments);
+
+      const formattedCategories = sourceDepartments.map((dept) => ({
         id: dept.id,
         name: dept.name,
         icon: getDepartmentIcon(dept.name, dept.item_details_data?.icon),
-        image: dept.image_url,
+        image:
+          dept.image_url ||
+          productList.find((product) => product.department?.toLowerCase() === dept.name?.toLowerCase())?.image ||
+          '',
         color: dept.item_details_data?.color || 'from-blue-400 to-cyan-500',
         textColor: 'text-slate-600',
-        count: 0 // Can be computed from products if needed
+        tagline:
+          dept.item_details_data?.tagline ||
+          seedDepartments.find((seedDepartment) => seedDepartment.name?.toLowerCase() === dept.name?.toLowerCase())?.description ||
+          'Crafted collection'
       }));
       setCategories(formattedCategories);
     };
@@ -79,6 +109,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
   }, [modelSpotlights.length]);
 
   const currentModel = modelSpotlights[modelIndex];
+  const processImage = `${import.meta.env.BASE_URL || '/'}Products/Meesho/how_its_made.webp`;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -92,21 +123,30 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
         <div className="absolute bottom-6 right-0 w-80 h-80 bg-gradient-to-br from-blue-200/40 to-cyan-100/30 rounded-full blur-3xl float-medium"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-4xl">
             {/* Left: Text Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="text-slate-900 order-2 lg:order-1"
+              className="text-slate-900"
             >
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="inline-flex items-center rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-cyan-700 shadow-sm backdrop-blur"
+              >
+                Custom 3D Printed Products
+              </motion.p>
+
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+                className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               >
-                Experience Products in 3D Before You Buy
+                3D printed gifts and custom models, made with care by one creator.
               </motion.h1>
               
               <motion.p
@@ -115,7 +155,16 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="mt-6 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-2xl leading-relaxed"
               >
-                Rotate. Customize. Explore. See every detail with immersive 3D previews.
+                I create physical 3D printed products from photos, ideas, and ready designs. Browse the collection, order a custom piece, and get something made just for you.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mt-4 max-w-xl text-sm sm:text-base font-medium text-slate-500"
+              >
+                Personalized figurines, devotional models, gifts, event pieces, and made-to-order prints.
               </motion.p>
               
               <motion.div
@@ -128,7 +177,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                   to="/products"
                   className="group relative px-10 py-5 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold text-lg rounded-full shadow-2xl hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-105 touch-manipulation overflow-hidden"
                 >
-                  <span className="relative z-10">Explore 3D Products</span>
+                  <span className="relative z-10">Shop 3D Products</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#0A78D1] to-[#29C4FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 
@@ -136,146 +185,105 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                   to="/custom-order"
                   className="px-10 py-5 bg-white/80 backdrop-blur-sm text-slate-800 font-semibold text-lg rounded-full border-2 border-slate-200 hover:border-slate-300 hover:bg-white transition-all duration-300 hover:scale-105 touch-manipulation shadow-lg"
                 >
-                  Upload Your Design
+                  Start Custom Order
                 </Link>
               </motion.div>
 
             </motion.div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right: 3D Service Box */}
-            <motion.div 
-              className="order-1 lg:order-2 relative h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center pr-4 lg:pr-0"
-              initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              style={{ perspective: "1200px" }}
-            >
-              {/* 3D Box Container with depth */}
+      {/* Featured Products */}
+      <section className="py-10 sm:py-16 px-4 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Featured Models</h2>
+            <p className="text-slate-600 text-base sm:text-lg px-4">Handpicked selections from our premium collection</p>
+          </div>
+
+          {isProductsLoading ? (
+            <BrandLoader message="Loading featured models..." compact />
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+              {featuredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={addToCart}
+                  onToggleWishlist={toggleWishlist}
+                  isWishlisted={wishlistItems.includes(product.id)}
+                  onViewDetails={handleViewProduct}
+                />
+              ))}
+            </div>
+          )}
+
+          <div className="text-center mt-12">
+            <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-cyan-400/50">
+              View All Products
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="rounded-[2rem] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 sm:p-8 shadow-[0_20px_60px_rgba(15,39,64,0.08)]">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan-700">How It’s Made</p>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">From your photo to a finished 3D keepsake</h2>
+              <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+                Upload a clear reference photo, we sculpt the model digitally, prepare it for printing, and finish it into a polished custom piece.
+              </p>
+
               <motion.div
-                className="relative w-80 h-96 rounded-3xl overflow-hidden shadow-2xl"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.6)",
-                  boxShadow: "0 8px 32px rgba(20, 184, 166, 0.1), inset 0 1px 0 rgba(255,255,255,0.8), 0 20px 60px rgba(0,0,0,0.15)",
-                }}
-                animate={{
-                  y: [0, -12, 0],
-                  rotateX: [2, -2, 2],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="relative mt-6"
               >
-                {/* 3D Depth Effect - Left Shadow */}
-                <div className="absolute -left-8 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900/10 to-transparent rounded-full blur-xl"></div>
-                {/* 3D Depth Effect - Right Shadow */}
-                <div className="absolute -right-8 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-900/10 to-transparent rounded-full blur-xl"></div>
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-blue-500/0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-
-                {/* Content inside box */}
-                <div className="h-full flex flex-col justify-center px-8 py-10">
-                  {/* Header */}
-                  <div className="mb-8">
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.5 }}
-                      className="text-xs font-bold text-cyan-600 uppercase tracking-widest mb-2"
-                    >
-                      Features
-                    </motion.p>
-                    <motion.h3
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.6 }}
-                      className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent"
-                    >
-                      What We Offer
-                    </motion.h3>
-                  </div>
-
-                  {/* Service Items - Stacked */}
-                  <div className="space-y-4 flex-1">
-                    {/* Item 1 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.7 }}
-                      className="group flex items-center gap-3 p-3 rounded-lg hover:bg-white/40 transition-all"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0F2740] to-[#0A78D1] flex items-center justify-center text-lg flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                        🔍
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-slate-900 text-sm">Explore 3D</p>
-                        <p className="text-xs text-slate-500 truncate">Browse collection</p>
-                      </div>
-                    </motion.div>
-
-                    {/* Item 2 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.8 }}
-                      className="group flex items-center gap-3 p-3 rounded-lg hover:bg-white/40 transition-all"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0A78D1] to-[#29C4FF] flex items-center justify-center text-lg flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                        📤
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-slate-900 text-sm">Upload Design</p>
-                        <p className="text-xs text-slate-500 truncate">Custom orders</p>
-                      </div>
-                    </motion.div>
-
-                    {/* Item 3 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.9 }}
-                      className="group flex items-center gap-3 p-3 rounded-lg hover:bg-white/40 transition-all"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#183A5A] to-[#0A78D1] flex items-center justify-center text-lg flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                        🎨
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-slate-900 text-sm">Customize</p>
-                        <p className="text-xs text-slate-500 truncate">Your product</p>
-                      </div>
-                    </motion.div>
-
-                    {/* Item 4 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 1 }}
-                      className="group flex items-center gap-3 p-3 rounded-lg hover:bg-white/40 transition-all"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#29C4FF] to-[#0A78D1] flex items-center justify-center text-lg flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                        🛒
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-slate-900 text-sm">Buy Online</p>
-                        <p className="text-xs text-slate-500 truncate">Easy checkout</p>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Bottom accent line */}
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                    className="mt-6 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-[#0F2740] rounded-full opacity-60"
-                    style={{ transformOrigin: "left" }}
-                  ></motion.div>
+                <div className="absolute -inset-4 rounded-[2rem] bg-[radial-gradient(circle,_rgba(41,196,255,0.16),_transparent_70%)] blur-2xl" />
+                <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-2xl">
+                  <img
+                    src={processImage}
+                    alt="Custom 3D model creation process from photo to completed figure"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
                 </div>
               </motion.div>
-            </motion.div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {[
+                  'Upload photo',
+                  'We sculpt it',
+                  'Print and finish',
+                  'Packed and delivered'
+                ].map((step) => (
+                  <div key={step} className="flex items-center gap-3 rounded-xl bg-slate-50 px-4 py-3 border border-slate-200">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white text-sm font-bold">✓</span>
+                    <span className="text-sm sm:text-base font-medium text-slate-800">{step}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/custom-order"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold hover:scale-[1.02] transition-transform shadow-lg"
+                >
+                  Start Your Custom Order
+                </Link>
+                <Link
+                  to="/products"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-slate-300 bg-white text-slate-800 font-semibold hover:bg-slate-50 transition-colors"
+                >
+                  Browse Ready Models
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -316,135 +324,111 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
         </section>
       )}
 
-      {/* Featured Products */}
-      <section className="py-10 sm:py-16 px-4 bg-gradient-to-b from-white to-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Featured Models</h2>
-            <p className="text-slate-600 text-base sm:text-lg px-4">Handpicked selections from our premium collection</p>
-          </div>
-
-          {isProductsLoading ? (
-            <BrandLoader message="Loading featured models..." compact />
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-              {featuredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onAddToCart={addToCart}
-                  onToggleWishlist={toggleWishlist}
-                  isWishlisted={wishlistItems.includes(product.id)}
-                  onViewDetails={handleViewProduct}
-                />
-              ))}
-            </div>
-          )}
-
-          <div className="text-center mt-12">
-            <Link to="/products" className="inline-block px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-xl hover:shadow-cyan-400/50">
-              View All Products
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories - Modern Redesign */}
+      {/* Categories - Studio Originals Style */}
       {categories.length > 0 && (
-        <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-slate-50 to-white">
+        <section className="py-16 sm:py-20 px-4 bg-[radial-gradient(circle_at_top,_rgba(255,244,220,0.95),_rgba(255,251,244,0.98)_38%,_#ffffff_100%)]">
           <div className="max-w-7xl mx-auto">
-            {/* Header */}
             <div className="text-center mb-12 sm:mb-16">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[#4d3d1f]"
               >
-                <span className="bg-gradient-to-r from-[#0F2740] via-[#0A78D1] to-[#29C4FF] bg-clip-text text-transparent">
-                  Shop by Category
-                </span>
+                Shop by Category
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto"
+                className="text-[#8a7b66] text-base sm:text-lg max-w-2xl mx-auto"
               >
-                Explore our premium collection of 3D printed products across diverse categories
+                Discover our curated department collections through bold visual previews
               </motion.p>
             </div>
 
-          {/* Category Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-10 place-items-center max-[360px]:flex max-[360px]:overflow-x-auto max-[360px]:gap-3 max-[360px]:justify-start max-[360px]:pb-2 max-[360px]:px-1 max-[360px]:snap-x max-[360px]:snap-mandatory hide-scrollbar">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="w-full max-w-[170px] max-[360px]:w-[140px] max-[360px]:max-w-none max-[360px]:flex-shrink-0 max-[360px]:snap-start"
-              >
-                <Link
-                  to={`/department/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="group h-full block"
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+              {categories.map((category, index) => (
+                <motion.div
+                  key={category.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
                 >
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.3 }}
-                    className="h-full flex flex-col items-center text-center cursor-pointer"
+                  <Link
+                    to={`/department/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="group block h-full"
                   >
                     <motion.div
-                      whileHover={{ scale: 1.06 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[3px] border-black p-1.5 bg-white shadow-sm"
+                      whileHover={{ y: -4, scale: 1.01 }}
+                      transition={{ duration: 0.25 }}
+                      className="relative h-full rounded-[1.75rem] bg-[#fbf5ec]/95 p-3 sm:p-4 shadow-[0_14px_34px_rgba(122,96,49,0.11)] ring-1 ring-[#efe0c8] overflow-hidden"
                     >
-                      <div className="w-full h-full rounded-full border-2 border-cyan-400 p-1">
-                        <div className="w-full h-full rounded-full border border-blue-200 overflow-hidden bg-white flex items-center justify-center">
+                      <div className="absolute inset-x-6 top-0 h-20 rounded-full bg-[radial-gradient(circle,_rgba(226,197,145,0.22),_transparent_70%)] blur-2xl opacity-80" />
+
+                      <div className="relative">
+                        <div className="relative overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-[#b99369] via-[#d4a077] to-[#f0dfc7] aspect-[4/3]">
                           {category.image ? (
                             isVideoUrl(category.image) ? (
-                              <video src={category.image} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+                              <video
+                                src={category.image}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
                             ) : (
-                              <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
+                              <img
+                                src={category.image}
+                                alt={category.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
                             )
                           ) : (
-                            <span className="text-4xl sm:text-5xl filter drop-shadow-lg">{category.icon}</span>
+                            <div className="w-full h-full flex items-center justify-center text-6xl bg-[linear-gradient(180deg,_rgba(134,144,89,0.92),_rgba(238,221,193,0.85))]">
+                              {category.icon}
+                            </div>
                           )}
+                          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(52,39,18,0.05),transparent_45%,rgba(52,39,18,0.14))]" />
+                        </div>
+
+                        <div className="px-2 pt-4 pb-2 text-center">
+                          <h3 className="text-lg sm:text-xl md:text-2xl leading-tight font-bold text-[#4d3d1f]">
+                            {category.name}
+                          </h3>
+                          <p className="mt-2 text-sm sm:text-base text-[#8f7d67] line-clamp-2">
+                            {category.tagline}
+                          </p>
                         </div>
                       </div>
                     </motion.div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
 
-                    <h3 className="mt-3 font-medium text-lg sm:text-[1.35rem] leading-tight text-slate-900 line-clamp-2">
-                      {category.name}
-                    </h3>
-                  </motion.div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* View All Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="text-center mt-12 sm:mt-16"
-          >
-            <Link
-              to="/categories"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl hover:shadow-cyan-400/50"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-center mt-12 sm:mt-16"
             >
-              View All Categories
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-              </svg>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+              <Link
+                to="/categories"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#4d3d1f] to-[#7a6336] text-white rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl hover:shadow-amber-200/70"
+              >
+                View All Categories
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+              </Link>
+            </motion.div>
+          </div>
+        </section>
       )}
 
       {/* Recently Viewed - Premium Section */}
@@ -501,7 +485,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.5, delay: index * 0.05 }}
-                        className="flex-shrink-0 w-56 snap-start group/card"
+                        className="flex-shrink-0 w-52 snap-start group/card"
                       >
                         {/* Card Wrapper with Backdrop */}
                         <div className="h-full bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-white/50 hover:border-cyan-200/60 hover:scale-105 hover:-translate-y-1">
@@ -514,6 +498,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                               isWishlisted={wishlistItems.includes(product.id)}
                               onViewDetails={handleViewProduct}
                               darkMode={false}
+                              compact={true}
                             />
                           </div>
 

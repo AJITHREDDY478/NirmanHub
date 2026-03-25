@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductImage from './ProductImage';
 
@@ -9,10 +9,10 @@ export default function ProductCard({
   onToggleWishlist,
   isWishlisted,
   onViewDetails,
-  darkMode = false
+  darkMode = false,
+  compact = false
 }) {
   const navigate = useNavigate();
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const cardImages = useMemo(() => {
     const images = [];
@@ -22,35 +22,6 @@ export default function ProductCard({
     }
     return [...new Set(images.filter(Boolean))];
   }, [product.image, product.additionalImages]);
-
-  useEffect(() => {
-    setActiveImageIndex(0);
-  }, [product.id, cardImages.length]);
-
-  useEffect(() => {
-    if (cardImages.length <= 1) return undefined;
-
-    const timer = setInterval(() => {
-      setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
-    }, 2500);
-
-    return () => clearInterval(timer);
-  }, [cardImages.length]);
-
-  // Preload next images in carousel to eliminate loader on transitions
-  useEffect(() => {
-    if (cardImages.length <= 1) return;
-
-    const nextIndex = (activeImageIndex + 1) % cardImages.length;
-    const followingIndex = (activeImageIndex + 2) % cardImages.length;
-    const nextImages = [cardImages[nextIndex], cardImages[followingIndex]];
-
-    nextImages.forEach((url) => {
-      if (!url) return;
-      const img = new Image();
-      img.src = url;
-    });
-  }, [activeImageIndex, cardImages]);
 
   const handleCardClick = () => {
     if (typeof onViewDetails === 'function') {
@@ -94,7 +65,7 @@ export default function ProductCard({
         >
           {cardImages.length > 0 ? (
             <ProductImage
-              src={cardImages[activeImageIndex]}
+              src={cardImages[0]}
               alt={product.name}
               className="w-full h-full object-cover"
               containerClassName="w-full h-full"
@@ -104,19 +75,6 @@ export default function ProductCard({
             product.emoji
           )}
         </motion.div>
-
-        {cardImages.length > 1 && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-2 py-1 rounded-full bg-black/35 backdrop-blur-sm">
-            {cardImages.map((_, idx) => (
-              <span
-                key={`${product.id}-dot-${idx}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === activeImageIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/60'
-                }`}
-              />
-            ))}
-          </div>
-        )}
 
         {/* Badges Container */}
         <div className="absolute top-3 left-0 right-0 px-3 flex items-start justify-between pointer-events-none">
@@ -154,17 +112,17 @@ export default function ProductCard({
       </div>
 
       {/* Content Container */}
-      <div className={`flex flex-col flex-grow p-3 sm:p-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+      <div className={`flex flex-col flex-grow ${compact ? 'p-2.5 sm:p-3' : 'p-3 sm:p-4'} ${darkMode ? 'text-white' : 'text-slate-900'}`}>
         {/* Category */}
         {product.subcategory && (
-          <div className="flex items-center justify-between gap-2 mb-1.5">
+          <div className={`flex items-center justify-between gap-1.5 flex-wrap ${compact ? 'mb-1' : 'mb-1.5'}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide ${
               darkMode ? 'text-white/60' : 'text-slate-500'
             }`}>
               {product.subcategory}
             </p>
             {product.customizationOptions && (
-              <span className="px-2.5 py-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-bold rounded-full">
+              <span className="shrink-0 px-2 py-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-[10px] sm:text-xs font-bold rounded-full leading-tight whitespace-nowrap">
                 Customizable
               </span>
             )}
@@ -172,16 +130,16 @@ export default function ProductCard({
         )}
 
         {/* Title */}
-        <h3 className={`font-bold text-sm sm:text-base line-clamp-2 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#0F2740] group-hover:to-[#0A78D1] group-hover:bg-clip-text transition-all ${
+        <h3 className={`font-bold ${compact ? 'text-sm' : 'text-sm sm:text-base'} line-clamp-2 ${compact ? 'mb-1.5' : 'mb-2'} group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#0F2740] group-hover:to-[#0A78D1] group-hover:bg-clip-text transition-all ${
           darkMode ? 'text-white' : 'text-slate-900'
         }`}>
           {product.name}
         </h3>
 
         {/* Pricing */}
-        <div className="mb-2">
+        <div className={compact ? 'mb-1.5' : 'mb-2'}>
           {product.originalPrice && discount > 0 ? (
-            <div className="flex items-center gap-1.5 text-sm font-semibold flex-wrap">
+            <div className={`flex items-center gap-1.5 ${compact ? 'text-xs' : 'text-sm'} font-semibold flex-wrap`}>
               <span className="text-green-600 flex items-center">
                 <svg className="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -191,12 +149,12 @@ export default function ProductCard({
               <span className={`line-through ${darkMode ? 'text-white/50' : 'text-slate-400'}`}>
                 ₹{product.originalPrice.toLocaleString()}
               </span>
-              <span className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-[#0F2740] to-[#0A78D1] bg-clip-text text-transparent'}`}>
+              <span className={`${compact ? 'text-base' : 'text-lg'} font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-[#0F2740] to-[#0A78D1] bg-clip-text text-transparent'}`}>
                 ₹{product.price.toLocaleString()}
               </span>
             </div>
           ) : (
-            <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-[#0F2740] to-[#0A78D1] bg-clip-text text-transparent'}`}>
+            <div className={`${compact ? 'text-base' : 'text-lg'} font-bold ${darkMode ? 'text-white' : 'bg-gradient-to-r from-[#0F2740] to-[#0A78D1] bg-clip-text text-transparent'}`}>
               ₹{product.price.toLocaleString()}
             </div>
           )}
@@ -207,13 +165,13 @@ export default function ProductCard({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={handleAddToCart}
-          className={`w-full mt-auto py-2.5 px-4 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
+          className={`w-full mt-auto ${compact ? 'py-2 px-3 text-xs' : 'py-2.5 px-4 text-sm'} rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
             darkMode
               ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30'
               : 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg'
           }`}
         >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={compact ? 'w-4 h-4' : 'w-4 h-4 sm:w-5 sm:h-5'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           Add to Cart
