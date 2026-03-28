@@ -59,7 +59,20 @@ export default function ProductUploadPage({ showToast }) {
   const [isPriceStockEditMode, setIsPriceStockEditMode] = useState(false);
   const [isSavingPriceStock, setIsSavingPriceStock] = useState(false);
   const [priceStockEdits, setPriceStockEdits] = useState({});
+  const [isFeaturedEditMode, setIsFeaturedEditMode] = useState(false);
+  const [isSavingFeatured, setIsSavingFeatured] = useState(false);
+  const [featuredEdits, setFeaturedEdits] = useState({});
   const [selectedProductIds, setSelectedProductIds] = useState(new Set());
+  const [isApplyingBulkUpdate, setIsApplyingBulkUpdate] = useState(false);
+  const [bulkUpdateValues, setBulkUpdateValues] = useState({
+    is_active: '',
+    department: '',
+    subdepartment: '',
+    original_price: '',
+    discount_price: '',
+    stock_quantity: ''
+  });
+  const [activeUpdateLoadingIds, setActiveUpdateLoadingIds] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const [productFilters, setProductFilters] = useState({
     search: '',
@@ -107,6 +120,7 @@ export default function ProductUploadPage({ showToast }) {
     stock_quantity: '',
     printing_time: '',
     is_active: true,
+    featured_model: false,
     department: '',
     subdepartment: '',
     // Specifications (structured) - these keys will be saved under item_details_data.specifications
@@ -498,6 +512,7 @@ export default function ProductUploadPage({ showToast }) {
       printing_time: '',
       is_active: true
       ,
+      featured_model: false,
       department: '',
       subdepartment: '',
       spec_material: '',
@@ -536,6 +551,7 @@ export default function ProductUploadPage({ showToast }) {
       stock_quantity: product.stock_quantity || '',
       printing_time: product.printing_time || '',
       is_active: product.is_active ?? true,
+      featured_model: product.featured_model ?? itemDetails.featuredModel ?? false,
       department: itemDetails.department || '',
       subdepartment: itemDetails.subcategory || '',
       spec_material: specs.material || '',
@@ -626,6 +642,24 @@ export default function ProductUploadPage({ showToast }) {
     });
   };
 
+  const handleBulkUpdateFieldChange = (field, value) => {
+    setBulkUpdateValues(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const resetBulkUpdateValues = () => {
+    setBulkUpdateValues({
+      is_active: '',
+      department: '',
+      subdepartment: '',
+      original_price: '',
+      discount_price: '',
+      stock_quantity: ''
+    });
+  };
+
   const clearProductFilters = () => {
     setProductFilters({
       search: '',
@@ -665,6 +699,8 @@ export default function ProductUploadPage({ showToast }) {
   const startDeptSubdeptEditMode = () => {
     setIsPriceStockEditMode(false);
     setPriceStockEdits({});
+    setIsFeaturedEditMode(false);
+    setFeaturedEdits({});
     const draft = {};
     products
       .filter(product => product.type?.toLowerCase() === 'item')
@@ -686,10 +722,152 @@ export default function ProductUploadPage({ showToast }) {
   const getProductOriginalPrice = (product) => Number(product.original_price || 0);
   const getProductDiscountPrice = (product) => Number(product.discount_price || 0);
   const getProductStockQuantity = (product) => Number(product.stock_quantity || 0);
+  const getProductIsActive = (product) => product.is_active !== false;
+  const getProductFeatured = (product) => Boolean(
+    product.featured_model ?? product.item_details_data?.featuredModel ?? false
+  );
+
+  const handleToggleSingleProductActive = async (product, nextActive) => {
+    if (!user?.id) {
+      showToast('Please log in to update products');
+      return;
+    }
+
+    setActiveUpdateLoadingIds(prev => {
+      const next = new Set(prev);
+      next.add(product.id);
+      return next;
+    });
+
+    try {
+      const { error } = await updateCatalogItem(product.id, user.id, {
+        is_active: nextActive
+      });
+
+      if (error) {
+        showToast(`Failed to update "${product.name}"`);
+        return;
+      }
+
+      setProducts(prev => prev.map(item => (
+        item.id === product.id ? { ...item, is_active: nextActive } : item
+      )));
+    } catch (error) {
+      console.error('Error updating active status:', error);
+      showToast('Error updating active status');
+    } finally {
+      setActiveUpdateLoadingIds(prev => {
+        const next = new Set(prev);
+        next.delete(product.id);
+        return next;
+      });
+    }
+  };
+
+  const handleBulkUpdateSelectedProducts = async () => {
+    if (!user?.id) {
+      showToast('Please log in to update products');
+      return;
+    }
+
+    const selectedItems = products.filter(
+      product => product.type?.toLowerCase() === 'item' && selectedProductIds.has(product.id)
+    );
+
+    if (selectedItems.length === 0) {
+      showToast('Select products first');
+      return;
+    }
+
+    const hasActiveChange = bulkUpdateValues.is_active === 'active' || bulkUpdateValues.is_active === 'inactive';
+    const hasDepartmentChange = String(bulkUpdateValues.department || '').trim().length > 0;
+    const hasSubdepartmentChange = String(bulkUpdateValues.subdepartment || '').trim().length > 0;
+    const hasOriginalPriceChange = String(bulkUpdateValues.original_price).trim() !== '';
+    const hasDiscountPriceChange = String(bulkUpdateValues.discount_price).trim() !== '';
+    const hasStockChange = String(bulkUpdateValues.stock_quantity).trim() !== '';
+
+    if (
+      !hasActiveChange &&
+      !hasDepartmentChange &&
+      !hasSubdepartmentChange &&
+      !hasOriginalPriceChange &&
+      !hasDiscountPriceChange &&
+      !hasStockChange
+    ) {
+      showToast('Choose at least one bulk field to update');
+      return;
+    }
+
+    try {
+      setIsApplyingBulkUpdate(true);
+
+      const results = await Promise.all(
+        selectedItems.map(product => {
+          const updates = {};
+
+          if (hasActiveChange) {
+            updates.is_active = bulkUpdateValues.is_active === 'active';
+          }
+
+          if (hasOriginalPriceChange) {
+            updates.original_price = Math.max(0, Number(bulkUpdateValues.original_price || 0));
+          }
+
+          if (hasDiscountPriceChange) {
+            updates.discount_price = Math.max(0, Number(bulkUpdateValues.discount_price || 0));
+          }
+
+          if (hasStockChange) {
+            updates.stock_quantity = Math.max(0, Number(bulkUpdateValues.stock_quantity || 0));
+          }
+
+          if (hasDepartmentChange || hasSubdepartmentChange) {
+            const nextDepartment = hasDepartmentChange
+              ? String(bulkUpdateValues.department).trim()
+              : getProductDepartment(product);
+            const nextSubdepartment = hasSubdepartmentChange
+              ? String(bulkUpdateValues.subdepartment).trim()
+              : getProductSubdepartment(product);
+
+            updates.item_details_data = {
+              ...(product.item_details_data || {}),
+              department: nextDepartment || 'Others',
+              subcategory: nextSubdepartment || 'Others',
+              subdepartment: nextSubdepartment || 'Others'
+            };
+          }
+
+          return updateCatalogItem(product.id, user.id, updates);
+        })
+      );
+
+      const failedCount = results.filter(result => result.error).length;
+      const successCount = selectedItems.length - failedCount;
+
+      if (failedCount === 0) {
+        showToast(`${successCount} selected products updated successfully`);
+      } else if (successCount > 0) {
+        showToast(`${successCount} updated, ${failedCount} failed`);
+      } else {
+        showToast('Failed to update selected products');
+      }
+
+      await loadProducts();
+      resetBulkUpdateValues();
+      setSelectedProductIds(new Set());
+    } catch (error) {
+      console.error('Error applying bulk update:', error);
+      showToast('Error applying bulk update');
+    } finally {
+      setIsApplyingBulkUpdate(false);
+    }
+  };
 
   const startPriceStockEditMode = () => {
     setIsDeptSubdeptEditMode(false);
     setDeptSubdeptEdits({});
+    setIsFeaturedEditMode(false);
+    setFeaturedEdits({});
     const draft = {};
     products
       .filter(product => product.type?.toLowerCase() === 'item')
@@ -707,6 +885,82 @@ export default function ProductUploadPage({ showToast }) {
   const cancelPriceStockEditMode = () => {
     setIsPriceStockEditMode(false);
     setPriceStockEdits({});
+  };
+
+  const startFeaturedEditMode = () => {
+    setIsDeptSubdeptEditMode(false);
+    setDeptSubdeptEdits({});
+    setIsPriceStockEditMode(false);
+    setPriceStockEdits({});
+    const draft = {};
+    products
+      .filter(product => product.type?.toLowerCase() === 'item')
+      .forEach(product => {
+        draft[product.id] = getProductFeatured(product);
+      });
+    setFeaturedEdits(draft);
+    setIsFeaturedEditMode(true);
+  };
+
+  const cancelFeaturedEditMode = () => {
+    setIsFeaturedEditMode(false);
+    setFeaturedEdits({});
+  };
+
+  const handleFeaturedDraftChange = (productId, value) => {
+    setFeaturedEdits(prev => ({
+      ...prev,
+      [productId]: value
+    }));
+  };
+
+  const saveFeaturedUpdates = async () => {
+    if (!user?.id) {
+      showToast('Please log in to update products');
+      return;
+    }
+
+    const itemProductsToCheck = products.filter(product => product.type?.toLowerCase() === 'item');
+    const changedProducts = itemProductsToCheck.filter(product => {
+      const nextValue = Boolean(featuredEdits[product.id]);
+      return nextValue !== getProductFeatured(product);
+    });
+
+    if (changedProducts.length === 0) {
+      showToast('No featured changes to update');
+      cancelFeaturedEditMode();
+      return;
+    }
+
+    try {
+      setIsSavingFeatured(true);
+      const results = await Promise.all(
+        changedProducts.map(product =>
+          updateCatalogItem(product.id, user.id, {
+            featured_model: Boolean(featuredEdits[product.id])
+          })
+        )
+      );
+
+      const failedCount = results.filter(result => result.error).length;
+      const successCount = changedProducts.length - failedCount;
+
+      if (failedCount === 0) {
+        showToast(`${successCount} products updated successfully`);
+      } else if (successCount > 0) {
+        showToast(`${successCount} updated, ${failedCount} failed`);
+      } else {
+        showToast('Failed to update featured products');
+      }
+
+      await loadProducts();
+      cancelFeaturedEditMode();
+    } catch (error) {
+      console.error('Error updating featured products:', error);
+      showToast('Error updating featured products');
+    } finally {
+      setIsSavingFeatured(false);
+    }
   };
 
   const handlePriceStockDraftChange = (productId, field, value) => {
@@ -944,6 +1198,7 @@ export default function ProductUploadPage({ showToast }) {
       stock_quantity: '',
       printing_time: '',
       is_active: true,
+      featured_model: false,
       department: '',
       subdepartment: '',
       spec_material: '',
@@ -1053,6 +1308,7 @@ export default function ProductUploadPage({ showToast }) {
         stock_quantity: formData.stock_quantity,
         printing_time: formData.printing_time,
         is_active: formData.is_active,
+        featured_model: formData.featured_model === true,
         image_url: imageUrl || (editingProduct?.image_url || null),
         item_details_data: {
           department: formData.department,
@@ -1116,6 +1372,7 @@ export default function ProductUploadPage({ showToast }) {
         stock_quantity: '',
         printing_time: '',
         is_active: true,
+        featured_model: false,
         department: '',
         subdepartment: '',
         spec_material: '',
@@ -1212,6 +1469,7 @@ export default function ProductUploadPage({ showToast }) {
             stock_quantity: readExcelCell(row, ['stock_quantity', 'Stock Quantity', 'stock'], ''),
             printing_time: readExcelCell(row, ['printing_time', 'Printing Time'], ''),
             is_active: parseBooleanExcel(readExcelCell(row, ['is_active', 'Is Active'], true), true),
+            featured_model: parseBooleanExcel(readExcelCell(row, ['featured_model', 'Featured Model', 'featured'], false), false),
             department: String(readExcelCell(row, ['department', 'Department'], '') || '').trim(),
             subdepartment: String(readExcelCell(row, ['subdepartment', 'Subdepartment', 'Sub Department'], '') || '').trim(),
             image_url: String(imageUrlCell || '').trim() || null,
@@ -1315,7 +1573,7 @@ export default function ProductUploadPage({ showToast }) {
           ? String(product.image_url).trim()
           : (additionalImages[0] || null);
 
-        const { error } = await createCatalogItem(user.id, {
+        const itemData = {
           name: product.name,
           lookup_code: product.lookup_code,
           description: product.description,
@@ -1326,13 +1584,33 @@ export default function ProductUploadPage({ showToast }) {
           stock_quantity: product.stock_quantity ? parseInt(product.stock_quantity) : null,
           printing_time: product.printing_time ? parseFloat(product.printing_time) : null,
           is_active: product.is_active,
+          featured_model: product.featured_model === true,
           image_url: primaryImage,
           item_details_data: {
             department: product.department || '',
             subcategory: product.subdepartment || '',
             additionalImages: primaryImage ? additionalImages.filter(url => url !== primaryImage) : additionalImages
           }
-        });
+        };
+
+        let error = null;
+        let retryCount = 0;
+        const maxRetries = 3;
+
+        while (retryCount <= maxRetries) {
+          const result = await createCatalogItem(user.id, itemData);
+          error = result.error;
+
+          if (error?.code === '23505' && error?.details?.includes('lookup_code')) {
+            retryCount += 1;
+            if (retryCount <= maxRetries) {
+              const { data: newCode } = await getNextProductLookupCode();
+              itemData.lookup_code = newCode || `PROD-${Date.now()}`;
+              continue;
+            }
+          }
+          break;
+        }
 
         if (!error) {
           successCount++;
@@ -1417,6 +1695,7 @@ export default function ProductUploadPage({ showToast }) {
         stock_quantity: 100,
         printing_time: 2.5,
         is_active: true,
+        featured_model: false,
         department: 'Electronics',
         subdepartment: 'Mobile Accessories',
         image_url: '/Products/imported/sample-product/image-01.png',
@@ -1760,6 +2039,113 @@ export default function ProductUploadPage({ showToast }) {
               </button>
             )}
           </div>
+
+          {selectedProductIds.size > 0 && (
+            <div className="mt-4 p-4 rounded-2xl border border-blue-200 bg-blue-50/60">
+              <p className="text-sm font-semibold text-blue-900 mb-3">
+                Bulk update selected products ({selectedProductIds.size})
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <select
+                  value={bulkUpdateValues.is_active}
+                  onChange={(e) => handleBulkUpdateFieldChange('is_active', e.target.value)}
+                  className="px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                >
+                  <option value="">Active Status (No change)</option>
+                  <option value="active">Set Active</option>
+                  <option value="inactive">Set Inactive</option>
+                </select>
+
+                <select
+                  value={bulkUpdateValues.department}
+                  onChange={(e) => {
+                    handleBulkUpdateFieldChange('department', e.target.value);
+                    handleBulkUpdateFieldChange('subdepartment', '');
+                  }}
+                  className="px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                >
+                  <option value="">Department (No change)</option>
+                  {departmentEditOptions.map(departmentName => (
+                    <option key={departmentName} value={departmentName}>
+                      {departmentName}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={bulkUpdateValues.subdepartment}
+                  onChange={(e) => handleBulkUpdateFieldChange('subdepartment', e.target.value)}
+                  className="px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                >
+                  <option value="">Subdepartment (No change)</option>
+                  {(bulkUpdateValues.department
+                    ? getSubdepartmentOptionsForDepartment(bulkUpdateValues.department)
+                    : Array.from(
+                        new Set(
+                          departments.flatMap(dept =>
+                            (dept.subdepartments || [])
+                              .map(subdept => String(subdept.name || '').trim())
+                              .filter(Boolean)
+                          )
+                        )
+                      ).sort((a, b) => a.localeCompare(b))
+                  ).map(subdepartmentName => (
+                    <option key={subdepartmentName} value={subdepartmentName}>
+                      {subdepartmentName}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={bulkUpdateValues.original_price}
+                  onChange={(e) => handleBulkUpdateFieldChange('original_price', e.target.value)}
+                  placeholder="Original Price (No change)"
+                  className="px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                />
+
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={bulkUpdateValues.discount_price}
+                  onChange={(e) => handleBulkUpdateFieldChange('discount_price', e.target.value)}
+                  placeholder="Discount Price (No change)"
+                  className="px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                />
+
+                <input
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={bulkUpdateValues.stock_quantity}
+                  onChange={(e) => handleBulkUpdateFieldChange('stock_quantity', e.target.value)}
+                  placeholder="Stock (No change)"
+                  className="px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                />
+
+                <button
+                  type="button"
+                  onClick={handleBulkUpdateSelectedProducts}
+                  disabled={isApplyingBulkUpdate}
+                  className="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 disabled:opacity-60"
+                >
+                  {isApplyingBulkUpdate ? 'Applying...' : 'Apply Bulk Update'}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={resetBulkUpdateValues}
+                  disabled={isApplyingBulkUpdate}
+                  className="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-50 disabled:opacity-60"
+                >
+                  Reset Bulk Fields
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3">
             <input
@@ -2238,8 +2624,8 @@ export default function ProductUploadPage({ showToast }) {
                   />
                 </div>
 
-                {/* Active Status */}
-                <div className="flex items-center">
+                {/* Active / Featured Status */}
+                <div className="space-y-3">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
@@ -2249,6 +2635,16 @@ export default function ProductUploadPage({ showToast }) {
                       className="w-5 h-5 rounded border-slate-300"
                     />
                     <span className="text-sm font-semibold text-slate-700">Active</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="featured_model"
+                      checked={formData.featured_model}
+                      onChange={handleInputChange}
+                      className="w-5 h-5 rounded border-slate-300"
+                    />
+                    <span className="text-sm font-semibold text-slate-700">Show in Featured Models</span>
                   </label>
                 </div>
               </div>
@@ -2408,7 +2804,7 @@ export default function ProductUploadPage({ showToast }) {
             <div className="overflow-x-auto">
               <p className="px-4 pt-3 text-xs text-slate-500 sm:hidden">Swipe left/right to view all columns</p>
               {itemProducts.length > 0 && (
-                <table className="min-w-[980px] w-full text-sm">
+                <table className="min-w-[1080px] w-full text-sm">
                   <thead className="bg-slate-50">
                     <tr className="border-b border-slate-200">
                       <th className="text-left py-3 px-4 font-semibold text-slate-700 w-12">
@@ -2421,6 +2817,45 @@ export default function ProductUploadPage({ showToast }) {
                       </th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700 w-16">Image</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700 max-w-[200px]">Product</th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
+                          <span>Featured</span>
+                          {!isFeaturedEditMode ? (
+                            <button
+                              type="button"
+                              onClick={startFeaturedEditMode}
+                              className="p-1 rounded hover:bg-slate-200 text-slate-600"
+                              title="Edit featured products"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                          ) : (
+                            <>
+                              <button
+                                type="button"
+                                onClick={saveFeaturedUpdates}
+                                disabled={isSavingFeatured}
+                                className="px-2 py-1 text-xs rounded bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-60"
+                                title="Save featured changes"
+                              >
+                                {isSavingFeatured ? 'Saving...' : 'Save'}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={cancelFeaturedEditMode}
+                                disabled={isSavingFeatured}
+                                className="px-2 py-1 text-xs rounded border border-slate-300 text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+                                title="Cancel featured changes"
+                              >
+                                Cancel
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">Active</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <span>Department</span>
@@ -2573,11 +3008,14 @@ export default function ProductUploadPage({ showToast }) {
                       const discountPercent = Number(currentOriginalPrice) > 0 && Number(currentDiscountPrice) > 0
                         ? Math.round(((Number(currentOriginalPrice) - Number(currentDiscountPrice)) / Number(currentOriginalPrice)) * 100)
                         : 0;
+                      const currentFeatured = isFeaturedEditMode
+                        ? Boolean(featuredEdits[product.id])
+                        : getProductFeatured(product);
                       return (
                       <tr
                         key={product.id}
                         onDoubleClick={() => {
-                          if (!isDeptSubdeptEditMode && !isPriceStockEditMode) {
+                          if (!isDeptSubdeptEditMode && !isPriceStockEditMode && !isFeaturedEditMode) {
                             handleEditProduct(product);
                           }
                         }}
@@ -2607,6 +3045,39 @@ export default function ProductUploadPage({ showToast }) {
                             <h3 className="font-semibold text-slate-900 truncate">{product.name}</h3>
                             <p className="text-sm text-slate-500 line-clamp-1">{product.description}</p>
                           </div>
+                        </td>
+                        <td className="py-3 px-4" onDoubleClick={(e) => e.stopPropagation()}>
+                          {isFeaturedEditMode ? (
+                            <label className="inline-flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                checked={currentFeatured}
+                                onChange={(e) => handleFeaturedDraftChange(product.id, e.target.checked)}
+                                className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                              />
+                              <span className="text-sm text-slate-700">Featured</span>
+                            </label>
+                          ) : currentFeatured ? (
+                            <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">
+                              Featured
+                            </span>
+                          ) : (
+                            <span className="text-slate-400">-</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4" onDoubleClick={(e) => e.stopPropagation()}>
+                          <label className="inline-flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              checked={getProductIsActive(product)}
+                              onChange={(e) => handleToggleSingleProductActive(product, e.target.checked)}
+                              disabled={activeUpdateLoadingIds.has(product.id)}
+                              className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500 disabled:opacity-60"
+                            />
+                            <span className={`text-xs font-semibold ${getProductIsActive(product) ? 'text-emerald-700' : 'text-slate-500'}`}>
+                              {getProductIsActive(product) ? 'Active' : 'Inactive'}
+                            </span>
+                          </label>
                         </td>
                         <td className="py-3 px-4" onDoubleClick={(e) => e.stopPropagation()}>
                           {isDeptSubdeptEditMode ? (
@@ -2710,7 +3181,7 @@ export default function ProductUploadPage({ showToast }) {
                     )})}
                     {filteredItemProducts.length === 0 && (
                       <tr>
-                        <td colSpan={9} className="py-10 text-center text-slate-500 font-medium">
+                        <td colSpan={11} className="py-10 text-center text-slate-500 font-medium">
                           No products match the selected filters.
                         </td>
                       </tr>
