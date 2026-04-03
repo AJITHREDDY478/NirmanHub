@@ -9,7 +9,7 @@ export const getUserProfile = async (userId) => {
       .from('profiles')
       .select('*')
       .eq('id', userId)
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
     return { data, error: null };

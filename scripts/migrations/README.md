@@ -1,9 +1,25 @@
-Backfill migration: populate `item_details_data`
-===============================================
+Migrations
+==========
+
+1) `2026-02-18-backfill-item_details_data.sql`
+----------------------------------------------
 
 This folder contains a defensive SQL migration to populate the `item_details_data`
 jsonb column for existing rows in the `catalog_entities` table using legacy
 flat columns (if present) such as `spec_material`, `custom_names`, `why_choose`, etc.
+
+2) `2026-03-26-add-featured-model-column.sql`
+---------------------------------------------
+
+Adds `featured_model boolean` to `catalog_entities`, backfills from
+`item_details_data.featuredModel`, and enforces `DEFAULT false NOT NULL`.
+
+3) `2026-03-28-add-is-active-column.sql`
+----------------------------------------
+
+Adds `is_active boolean` to `catalog_entities`, backfills product rows from
+`item_details_data.is_active` / `item_details_data.isActive`, and enforces
+`DEFAULT true NOT NULL`.
 
 How to run
 ----------
@@ -21,7 +37,7 @@ psql "postgresql://<DB_USER>:<DB_PASS>@<DB_HOST>:<DB_PORT>/<DB_NAME>" \
 
    - Open your project in the Supabase dashboard.
    - Go to "SQL Editor" → "New query".
-   - Paste the contents of `2026-02-18-backfill-item_details_data.sql` and run.
+   - Paste the contents of the migration SQL file you want and run.
 
 3) Run via supabase CLI (if available)
 

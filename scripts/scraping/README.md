@@ -80,6 +80,33 @@ npm run import:products -- --input ./scripts/scraping/scraped-products.json --dr
 npm run import:products -- --input ./scripts/scraping/review-products.nirmanhub.json
 ```
 
+## 8) Migrate local image paths to Supabase Storage URLs
+
+If existing product rows use local paths like `/Products/...` or `/NirmanHub/Products/...`,
+this script uploads those files from `public/Products/...` into Supabase Storage bucket
+`NirmanHub` and rewrites `image_url` / `item_details_data.additionalImages` to public
+Supabase URLs.
+
+Dry run:
+
+```bash
+npm run migrate:images:supabase -- --dry-run
+```
+
+Apply changes:
+
+```bash
+npm run migrate:images:supabase
+```
+
+Optional flags:
+- `--bucket <name>` (default: `NirmanHub`)
+- `--limit <n>` to process only first `n` candidate rows
+
+Required env:
+- `SUPABASE_URL` (or `VITE_SUPABASE_URL`)
+- `SUPABASE_SERVICE_ROLE_KEY`
+
 ## Optional one-command run
 
 ```bash

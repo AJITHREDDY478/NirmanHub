@@ -10,7 +10,10 @@ const parseFileJson = (text) => {
   if (!Array.isArray(data)) {
     throw new Error('JSON must be an array of products');
   }
-  return data;
+  return data.map((item) => ({
+    ...item,
+    is_active: item?.is_active !== false
+  }));
 };
 
 const toNumber = (value, fallback = 0) => {
@@ -437,6 +440,14 @@ export default function ScrapedProductsReviewPage({ showToast }) {
                   <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.discount_price ?? 0} onChange={(e) => updateField(index, 'discount_price', toNumber(e.target.value, 0))} placeholder="Discount Price" type="number" />
                   <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.stock_quantity ?? 0} onChange={(e) => updateField(index, 'stock_quantity', toNumber(e.target.value, 0))} placeholder="Stock" type="number" />
                   <input className="px-3 py-2 rounded-lg border border-slate-300" value={item.printing_time ?? 24} onChange={(e) => updateField(index, 'printing_time', toNumber(e.target.value, 24))} placeholder="Printing Time" type="number" />
+                  <label className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-300 bg-slate-50 text-slate-700">
+                    <input
+                      type="checkbox"
+                      checked={item.is_active !== false}
+                      onChange={(e) => updateField(index, 'is_active', e.target.checked)}
+                    />
+                    <span className="text-sm font-medium">Active</span>
+                  </label>
                   <div className="space-y-2">
                     <select
                       className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white"

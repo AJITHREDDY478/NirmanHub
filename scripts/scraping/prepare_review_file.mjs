@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const parseArgs = () => {
   const args = process.argv.slice(2);
-  const out = { downloadImages: false };
+  const out = { downloadImages: false, syncDefaultReview: true };
 
   for (let index = 0; index < args.length; index += 1) {
     const key = args[index];
@@ -27,6 +27,8 @@ const parseArgs = () => {
       index += 1;
     } else if (key === '--download-images') {
       out.downloadImages = true;
+    } else if (key === '--no-sync-default-review') {
+      out.syncDefaultReview = false;
     }
   }
 
@@ -304,8 +306,21 @@ const main = async () => {
 
   await fs.writeFile(outputPath, JSON.stringify(transformed, null, 2), 'utf8');
 
+  let syncedDefaultPath = null;
+  if (args.syncDefaultReview) {
+    const defaultReviewPath = path.resolve(process.cwd(), 'public', 'data', 'review-products.nirmanhub.json');
+    await fs.mkdir(path.dirname(defaultReviewPath), { recursive: true });
+    await fs.writeFile(defaultReviewPath, JSON.stringify(transformed, null, 2), 'utf8');
+    syncedDefaultPath = defaultReviewPath;
+  }
+
   console.log(`Input: ${inputPath}`);
   console.log(`Output: ${outputPath}`);
+  if (syncedDefaultPath) {
+    console.log(`Synced default review JSON: ${syncedDefaultPath}`);
+  } else {
+    console.log('Default review JSON sync: disabled (--no-sync-default-review)');
+  }
   console.log(`Products prepared for review: ${transformed.length}`);
   console.log(`Products merged from source rows: ${cleaned.length} -> ${transformed.length}`);
   if (downloadResult) {

@@ -11,6 +11,7 @@
     "scrape:products": "node ./scripts/scraping/scrape_products.mjs",
     "prepare:products": "node ./scripts/scraping/prepare_review_file.mjs",
     "prepare:products:local-images": "node ./scripts/scraping/prepare_review_file.mjs --download-images --images-root ./public/Products/imported --public-prefix /NirmanHub/Products/imported",
+    "migrate:images:supabase": "node ./scripts/scraping/migrate_local_images_to_supabase.mjs",
     "import:products": "node ./scripts/scraping/import_scraped_products.mjs",
     "scrape-and-import": "npm run scrape:products ; npm run import:products"
   },

@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, isSupabaseConfigured } from './supabase';
 
 const APP_BASE_URL = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '/');
 
@@ -31,10 +31,19 @@ const normalizeCatalogImageList = (images) => {
     .filter(Boolean);
 };
 
+const getMissingConfigResponse = (emptyData) => ({
+  data: emptyData,
+  error: new Error('Supabase environment variables are not configured')
+});
+
 /**
  * Get all public products (items)
  */
 export const getAllProducts = async () => {
+  if (!isSupabaseConfigured || !supabase) {
+    return getMissingConfigResponse([]);
+  }
+
   try {
     const { data, error } = await supabase
       .from('catalog_entities')
@@ -58,6 +67,7 @@ export const getAllProducts = async () => {
       emoji: item.item_details_data?.emoji || '📦',
       image: normalizeCatalogImageUrl(item.image_url),
       additionalImages: normalizeCatalogImageList(item.item_details_data?.additionalImages),
+      featuredModel: item.featured_model ?? item.item_details_data?.featuredModel ?? false,
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
@@ -80,6 +90,10 @@ export const getAllProducts = async () => {
  * Get product by ID
  */
 export const getProductById = async (productId) => {
+  if (!isSupabaseConfigured || !supabase) {
+    return getMissingConfigResponse(null);
+  }
+
   try {
     const { data, error } = await supabase
       .from('catalog_entities')
@@ -106,6 +120,7 @@ export const getProductById = async (productId) => {
       emoji: data.item_details_data?.emoji || '📦',
       image: normalizeCatalogImageUrl(data.image_url),
       additionalImages: normalizeCatalogImageList(data.item_details_data?.additionalImages),
+      featuredModel: data.featured_model ?? data.item_details_data?.featuredModel ?? false,
       isNew: data.item_details_data?.isNew || false,
       rating: data.item_details_data?.rating || 4.5,
       reviews: data.item_details_data?.reviews || 0,
@@ -127,6 +142,10 @@ export const getProductById = async (productId) => {
  * Search products by name or description
  */
 export const searchProducts = async (searchTerm) => {
+  if (!isSupabaseConfigured || !supabase) {
+    return getMissingConfigResponse([]);
+  }
+
   try {
     const { data, error } = await supabase
       .from('catalog_entities')
@@ -150,6 +169,7 @@ export const searchProducts = async (searchTerm) => {
       category: item.item_details_data?.category || item.item_details_data?.department || 'General',
       emoji: item.item_details_data?.emoji || '📦',
       image: normalizeCatalogImageUrl(item.image_url),
+      featuredModel: item.featured_model ?? item.item_details_data?.featuredModel ?? false,
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
@@ -171,6 +191,10 @@ export const searchProducts = async (searchTerm) => {
  * Get products by department
  */
 export const getProductsByDepartment = async (departmentName) => {
+  if (!isSupabaseConfigured || !supabase) {
+    return getMissingConfigResponse([]);
+  }
+
   try {
     const { data, error } = await supabase
       .from('catalog_entities')
@@ -198,6 +222,7 @@ export const getProductsByDepartment = async (departmentName) => {
       category: item.item_details_data?.category || item.item_details_data?.department || 'General',
       emoji: item.item_details_data?.emoji || '📦',
       image: normalizeCatalogImageUrl(item.image_url),
+      featuredModel: item.featured_model ?? item.item_details_data?.featuredModel ?? false,
       isNew: item.item_details_data?.isNew || false,
       rating: item.item_details_data?.rating || 4.5,
       reviews: item.item_details_data?.reviews || 0,
@@ -216,6 +241,10 @@ export const getProductsByDepartment = async (departmentName) => {
  * Get all departments
  */
 export const getAllDepartments = async () => {
+  if (!isSupabaseConfigured || !supabase) {
+    return getMissingConfigResponse([]);
+  }
+
   try {
     const { data, error } = await supabase
       .from('catalog_entities')
@@ -280,6 +309,7 @@ export const createCatalogItem = async (userId, itemData) => {
         stock_quantity: parseInt(itemData.stock_quantity) || 0,
         reserved_quantity: 0,
         is_active: itemData.is_active !== false,
+        featured_model: itemData.featured_model === true,
         image_url: itemData.image_url || null,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
@@ -535,7 +565,7 @@ export const findSubdepartmentId = async (userId, departmentName, subdepartmentN
       .eq('type', 'DepartmentGroup')
       .eq('name', departmentName)
       .is('parent_id', null)
-      .single();
+      .maybeSingle();
 
     if (deptError || !dept) return { data: null, error: deptError };
 
@@ -547,7 +577,7 @@ export const findSubdepartmentId = async (userId, departmentName, subdepartmentN
       .eq('type', 'DepartmentGroup')
       .eq('name', subdepartmentName)
       .eq('parent_id', dept.id)
-      .single();
+      .maybeSingle();
 
     if (subError) return { data: null, error: subError };
 
