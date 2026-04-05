@@ -61,6 +61,10 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
           <Link to="/categories" className="px-4 py-2 rounded-full text-slate-700 hover:text-blue-700 hover:bg-cyan-100/60 transition-all font-semibold">
             Categories
           </Link>
+          <Link to="/lithophane" className="px-4 py-2 rounded-full text-slate-700 hover:text-blue-700 hover:bg-cyan-100/60 transition-all font-semibold flex items-center gap-1.5">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            Lithophane
+          </Link>
           <div 
             className="relative"
             onMouseEnter={() => setShowGiftsMenu(true)}
@@ -274,6 +278,14 @@ export default function Navbar({ cartItemsCount, onOpenCart, onOpenSearch, onSho
             className="block px-4 py-3 text-slate-700 hover:bg-cyan-50 rounded-xl transition-colors font-semibold"
           >
             Categories
+          </Link>
+          <Link
+            to="/lithophane"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-4 py-3 text-slate-700 hover:bg-cyan-50 rounded-xl transition-colors font-semibold flex items-center justify-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            Lithophane
           </Link>
           <Link
             to="/about"

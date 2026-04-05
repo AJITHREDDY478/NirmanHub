@@ -24,6 +24,7 @@ import WishlistPage from './pages/WishlistPage';
 import AddressPage from './pages/AddressPage';
 import ProductUploadPage from './pages/ProductUploadPage';
 import ScrapedProductsReviewPage from './pages/ScrapedProductsReviewPage';
+import LithophanePage from './pages/LithophanePage';
 
 function AppContent() {
   const { user } = useAuth();
@@ -348,6 +349,7 @@ function AppContent() {
       <Route path="/address" element={<AddressPage showToast={showToast} />} />
       <Route path="/products/upload" element={<ProductUploadPage showToast={showToast} />} />
       <Route path="/products/review" element={<ScrapedProductsReviewPage showToast={showToast} />} />
+      <Route path="/lithophane" element={<LithophanePage showToast={showToast} />} />
     </Routes>
 
     <Cart
