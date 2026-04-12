@@ -1235,24 +1235,34 @@ export default function ProductUploadPage({ showToast }) {
     setLoading(true);
 
     try {
-      let imageUrl = null;
-      let additionalImages = [];
+      // Upload new image files and map their positions in imagePreviews
+      const uploadedUrls = [];
+      for (let i = 0; i < imageFiles.length; i++) {
+        const { url, error } = await uploadImage(user.id, imageFiles[i]);
+        if (error) {
+          showToast(`Failed to upload image ${i + 1}`);
+          uploadedUrls.push(null);
+          continue;
+        }
+        uploadedUrls.push(url);
+      }
 
-      // Upload images if provided
-      if (imageFiles.length > 0) {
-        for (let i = 0; i < imageFiles.length; i++) {
-          const { url, error } = await uploadImage(user.id, imageFiles[i]);
-          if (error) {
-            showToast(`Failed to upload image ${i + 1}`);
-            continue;
-          }
-          if (i === 0) {
-            imageUrl = url; // First image is the main image
-          } else {
-            additionalImages.push(url);
-          }
+      // Build final image list from imagePreviews (respects removals).
+      // Existing URL strings are kept as-is; data/blob URL placeholders are
+      // replaced with their corresponding newly-uploaded URLs in order.
+      let newUploadIdx = 0;
+      const finalImageUrls = [];
+      for (const preview of imagePreviews) {
+        if (String(preview).startsWith('data:') || String(preview).startsWith('blob:')) {
+          const uploaded = uploadedUrls[newUploadIdx++];
+          if (uploaded) finalImageUrls.push(uploaded);
+        } else {
+          finalImageUrls.push(preview);
         }
       }
+
+      let imageUrl = finalImageUrls[0] || null;
+      let additionalImages = finalImageUrls.slice(1);
 
       // Find subdepartment ID if department and subdepartment are selected
       let parentId = null;
@@ -1313,7 +1323,7 @@ export default function ProductUploadPage({ showToast }) {
         item_details_data: {
           department: formData.department,
           subcategory: formData.subdepartment,
-          additionalImages: additionalImages.length > 0 ? additionalImages : (editingProduct?.item_details_data?.additionalImages || []),
+          additionalImages: additionalImages,
           specifications,
           customizationOptions,
           whyChoose: formData.why_choose

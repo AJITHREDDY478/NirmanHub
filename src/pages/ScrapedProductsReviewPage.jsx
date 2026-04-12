@@ -188,25 +188,58 @@ export default function ScrapedProductsReviewPage({ showToast }) {
   const loadDefaultReviewJson = async () => {
     try {
       setIsLoadingDefault(true);
+      
+      // Try multiple URL patterns to handle different deployment scenarios
       const baseUrl = import.meta.env.BASE_URL || '/';
       const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-      const defaultUrl = `${normalizedBase}data/review-products.nirmanhub.json?t=${Date.now()}`;
-      const response = await fetch(defaultUrl, { cache: 'no-store' });
+      
+      // Try these URLs in order - Load Lithophane products by default
+      const urlsToTry = [
+        // First try: with BASE_URL (for production builds)
+        `${normalizedBase}data/memorable-gifts-lithophane.json?t=${Date.now()}`,
+        // Second try: absolute path from root (for dev/localhost)
+        `/data/memorable-gifts-lithophane.json?t=${Date.now()}`,
+        // Third try: without cache buster
+        `${normalizedBase}data/memorable-gifts-lithophane.json`,
+      ];
 
-      if (!response.ok) {
-        throw new Error(`Failed to load default review JSON (${response.status})`);
+      let response;
+      let lastError;
+
+      for (const url of urlsToTry) {
+        try {
+          response = await fetch(url, { 
+            cache: 'no-store',
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            console.log(`Successfully loaded from: ${url}`);
+            break;
+          }
+        } catch (err) {
+          lastError = err;
+          console.debug(`Failed to load from ${url}:`, err.message);
+        }
+      }
+
+      if (!response || !response.ok) {
+        throw new Error(
+          `Failed to load Lithophane products (${response?.status || 'no response'})` +
+          (lastError ? ` - ${lastError.message}` : '')
+        );
       }
 
       const data = await response.json();
       if (!Array.isArray(data)) {
-        throw new Error('Default review JSON is not an array');
+        throw new Error('Lithophane JSON is not an array');
       }
 
       setProducts(data);
-      setFileName('review-products.nirmanhub.json (default)');
-      showToast(`Loaded ${data.length} products from default review file`);
+      setFileName('memorable-gifts-lithophane.json (default)');
+      showToast(`Loaded ${data.length} Lithophane products for review`);
     } catch (error) {
-      showToast(error.message || 'Failed to load default review JSON');
+      console.error('Error loading Lithophane products:', error);
+      showToast(error.message || 'Failed to load Lithophane products');
     } finally {
       setIsLoadingDefault(false);
     }
@@ -250,6 +283,25 @@ export default function ScrapedProductsReviewPage({ showToast }) {
 
     updateDetailsField(index, key, value);
     toggleCustomFieldMode(index, key, false);
+  };
+
+  const removeImageUrl = (index, imageIndex) => {
+    setProducts((prev) => {
+      const next = [...prev];
+      const current = next[index];
+      const updatedUrls = (Array.isArray(current.image_urls) ? current.image_urls : (current.image_url ? [current.image_url] : []))
+        .filter((_, i) => i !== imageIndex);
+      next[index] = {
+        ...current,
+        image_url: updatedUrls[0] || null,
+        image_urls: updatedUrls,
+        item_details_data: {
+          ...(current.item_details_data || {}),
+          additionalImages: updatedUrls.slice(1)
+        }
+      };
+      return next;
+    });
   };
 
   const updateImageUrlsText = (index, text) => {
@@ -412,24 +464,44 @@ export default function ScrapedProductsReviewPage({ showToast }) {
             <div key={`${item.name || 'item'}-${filteredIndex}`} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 md:p-5">
               <div className="grid md:grid-cols-12 gap-3">
                 <div className="md:col-span-2">
-                  <img
-                    src={resolveImageSrc(imageUrls[0] || '')}
-                    alt={item.name || 'Product'}
-                    className="w-full h-28 object-cover rounded-lg border border-slate-200"
-                    onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
-                  />
+                  <div className="relative group">
+                    <img
+                      src={resolveImageSrc(imageUrls[0] || '')}
+                      alt={item.name || 'Product'}
+                      className="w-full h-28 object-cover rounded-lg border border-slate-200"
+                      onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
+                    />
+                    {imageUrls[0] && (
+                      <button
+                        type="button"
+                        onClick={() => removeImageUrl(index, 0)}
+                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                        title="Remove image"
+                      >×</button>
+                    )}
+                  </div>
                   {imageUrls.length > 1 && (
                     <div className="grid grid-cols-4 gap-1 mt-2">
                       {imageUrls.slice(1, 5).map((url, imageIndex) => (
-                        <img
-                          key={`${url}-${imageIndex}`}
-                          src={resolveImageSrc(url)}
-                          alt="Variant"
-                          className="w-full h-8 object-cover rounded border border-slate-200"
-                          onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
-                        />
+                        <div key={`${url}-${imageIndex}`} className="relative group">
+                          <img
+                            src={resolveImageSrc(url)}
+                            alt="Variant"
+                            className="w-full h-8 object-cover rounded border border-slate-200"
+                            onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImageUrl(index, imageIndex + 1)}
+                            className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 leading-none"
+                            title="Remove image"
+                          >×</button>
+                        </div>
                       ))}
                     </div>
+                  )}
+                  {imageUrls.length > 5 && (
+                    <p className="text-xs text-slate-400 mt-1 text-center">{imageUrls.length - 5} more (edit textarea)</p>
                   )}
                 </div>
 
