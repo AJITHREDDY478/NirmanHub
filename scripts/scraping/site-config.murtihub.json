@@ -1,0 +1,28 @@
+{
+  "sourceUrl": "https://www.murtihub.com/collections/all",
+  "listPageUrls": [
+    "https://www.murtihub.com/collections/all"
+  ],
+  "selectors": {
+    "productCard": ".product-card",
+    "name": ".product-title",
+    "price": "sale-price",
+    "compareAtPrice": "compare-at-price",
+    "description": null,
+    "image": "img.product-card__image--primary",
+    "imageAttr": "src",
+    "link": "a.product-title",
+    "linkAttr": "href"
+  },
+  "enrich": {
+    "enabled": true,
+    "concurrency": 3
+  },
+  "defaults": {
+    "department": "Devotional",
+    "category": "Devotional",
+    "subcategory": "Idols",
+    "stock_quantity": 50,
+    "printing_time": 1
+  }
+}

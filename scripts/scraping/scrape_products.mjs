@@ -51,7 +51,8 @@ const normalizeUrl = (href, pageUrl) => {
 
 const parsePrice = (value) => {
   if (!value) return 0;
-  const normalized = String(value).replace(/,/g, ' ');
+  // Remove commas (thousand separators like "1,299.00") before parsing
+  const normalized = String(value).replace(/,/g, '');
   const matches = normalized.match(/\d+(?:\.\d+)?/g);
   if (!matches || matches.length === 0) return 0;
   const numeric = Number.parseFloat(matches[0]);
@@ -194,8 +195,17 @@ const extractProductPageDetails = async (productUrl) => {
     title,
     canonicalUrl,
     description: pageDescription,
-    price: primaryOffer?.price ? parsePrice(primaryOffer.price) : null,
-    currency: cleanText(primaryOffer?.priceCurrency, null),
+    price: (() => {
+      const ldPrice = primaryOffer?.price ? parsePrice(primaryOffer.price) : null;
+      if (ldPrice && ldPrice > 0) return ldPrice;
+      const ogPriceText = cleanText(
+        $('meta[property="og:price:amount"]').attr('content')
+          || $('meta[property="product:price:amount"]').attr('content'),
+        null
+      );
+      return ogPriceText ? parsePrice(ogPriceText) : null;
+    })(),
+    currency: cleanText(primaryOffer?.priceCurrency || $('meta[property="og:price:currency"]').attr('content') || $('meta[property="product:price:currency"]').attr('content'), null),
     availability: inferredAvailability,
     sku: cleanText(productLd?.sku, null),
     brand: cleanText(productLd?.brand?.name || productLd?.brand, null),

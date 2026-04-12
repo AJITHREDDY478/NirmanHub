@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, useNavigationType } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation, useNavigationType } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { isAdminEmail } from './utils/adminAccess';
 import Navbar from './components/Navbar';
 import PromoBanner from './components/PromoBanner';
 import Cart from './components/Cart';
@@ -349,7 +350,7 @@ function AppContent() {
       <Route path="/address" element={<AddressPage showToast={showToast} />} />
       <Route path="/products/upload" element={<ProductUploadPage showToast={showToast} />} />
       <Route path="/products/review" element={<ScrapedProductsReviewPage showToast={showToast} />} />
-      <Route path="/lithophane" element={<LithophanePage showToast={showToast} />} />
+      <Route path="/lithophane" element={user && isAdminEmail(user.email) ? <LithophanePage showToast={showToast} /> : <Navigate to="/" replace />} />
     </Routes>
 
     <Cart
@@ -378,14 +379,16 @@ function AppContent() {
     <CheckoutModals
       step={checkoutStep}
       onClose={() => setCheckoutStep(null)}
+      onStepChange={setCheckoutStep}
       cartItems={cartItems}
-      onComplete={async () => {
+      userId={user?.id}
+      onComplete={async (order) => {
         setCheckoutStep(null);
         if (user?.id) {
           await clearUserCart(user.id);
         }
         setCartItems([]);
-        showToast('Order placed successfully!');
+        showToast(order?.invoice_number ? `Order ${order.invoice_number} placed!` : 'Order placed successfully!');
       }}
       showToast={showToast}
     />

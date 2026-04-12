@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { placeOrder } from '../utils/orderService';
 
-export default function CheckoutModals({ step, onClose, cartItems, onComplete, showToast }) {
+export default function CheckoutModals({ step, onClose, onStepChange, cartItems, userId, onComplete, showToast }) {
   const [addressData, setAddressData] = useState({
     name: '',
     phone: '',
@@ -23,14 +24,18 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
       showToast('Please fill in all required fields');
       return;
     }
-    onClose();
-    setTimeout(() => {
-      const paymentStep = document.getElementById('payment-modal');
-      if (paymentStep) paymentStep.classList.remove('hidden');
-    }, 300);
+
+    if (typeof onStepChange === 'function') {
+      onStepChange('payment');
+      return;
+    }
+
+    showToast('Unable to continue to payment. Please try again.');
   };
 
-  const handlePaymentComplete = () => {
+  const [placingOrder, setPlacingOrder] = useState(false);
+
+  const handlePaymentComplete = async () => {
     if (!paymentMethod) {
       showToast('Please select a payment method');
       return;
@@ -46,7 +51,21 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
       return;
     }
 
-    onComplete();
+    setPlacingOrder(true);
+    const { data: order, error } = await placeOrder(userId, {
+      addressData,
+      paymentMethod,
+      cartItems
+    });
+    setPlacingOrder(false);
+
+    if (error) {
+      console.error('Order placement error:', error);
+      showToast('Failed to place order. Please try again.');
+      return;
+    }
+
+    onComplete(order);
   };
 
   if (!step) return null;
@@ -230,9 +249,10 @@ export default function CheckoutModals({ step, onClose, cartItems, onComplete, s
 
                 <button
                   onClick={handlePaymentComplete}
-                  className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-6"
+                  disabled={placingOrder}
+                  className="w-full py-4 bg-gradient-to-r from-[#0F2740] to-[#0A78D1] text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-6 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Place Order
+                  {placingOrder ? 'Placing Order...' : 'Place Order'}
                 </button>
               </div>
             </div>

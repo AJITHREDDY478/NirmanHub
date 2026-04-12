@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getProductById, getAllProducts } from '../utils/catalogService';
 import { renderStars, formatPrice } from '../utils/helpers';
+import { CONFIG, getWhatsAppUrl } from '../utils/config';
 import ProductCard from '../components/ProductCard';
 import ProductImage from '../components/ProductImage';
 import BrandLoader from '../components/BrandLoader';
@@ -102,7 +103,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
     const sizePart = selectedSize ? `Size: ${selectedSize}` : '';
     const photoPart = uploadedPhoto ? `Photo: ${uploadedPhoto.name}` : '';
     const lines = [
-      `Hi AR PrintLab! I want to order:`,
+      `Hi ${CONFIG.businessName}! I want to order:`,
       `*${product.name}*`,
       sizePart,
       photoPart,
@@ -111,7 +112,7 @@ export default function ProductPage({ addToCart, toggleWishlist, wishlistItems, 
       `\nPlease share sample preview before printing.`
     ].filter(Boolean);
     const msg = encodeURIComponent(lines.join('\n'));
-    window.open(`https://wa.me/919632038829?text=${msg}`, '_blank');
+    window.open(getWhatsAppUrl(msg), '_blank');
   };
 
   const handleCustomizationRequest = () => {

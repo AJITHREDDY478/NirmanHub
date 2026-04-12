@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../utils/supabase';
-import { getCustomOrders } from '../utils/customOrderService';
 import { 
   createCatalogItem, 
   uploadImage, 
@@ -82,10 +81,6 @@ export default function ProductUploadPage({ showToast }) {
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [activeTab, setActiveTab] = useState('products'); // 'products' or 'departments'
-  const [showCustomOrdersModal, setShowCustomOrdersModal] = useState(false);
-  const [customOrders, setCustomOrders] = useState([]);
-  const [isLoadingCustomOrders, setIsLoadingCustomOrders] = useState(false);
-  
   // Excel import states
   const [showExcelImport, setShowExcelImport] = useState(false);
   const [showSvgGenerator, setShowSvgGenerator] = useState(false);
@@ -166,30 +161,6 @@ export default function ProductUploadPage({ showToast }) {
       setIsLoadingData(false);
     }
   }, [user?.id]);
-
-  const loadCustomOrders = async () => {
-    setIsLoadingCustomOrders(true);
-    const { data, error } = await getCustomOrders();
-    if (error) {
-      showToast('Failed to load customized orders');
-      setCustomOrders([]);
-      setIsLoadingCustomOrders(false);
-      return;
-    }
-    setCustomOrders(data || []);
-    setIsLoadingCustomOrders(false);
-  };
-
-  useEffect(() => {
-    if (user?.id) {
-      loadCustomOrders();
-    }
-  }, [user?.id]);
-
-  const handleOpenCustomOrdersModal = async () => {
-    await loadCustomOrders();
-    setShowCustomOrdersModal(true);
-  };
 
   const loadProducts = async () => {
     try {
@@ -1807,7 +1778,7 @@ export default function ProductUploadPage({ showToast }) {
         </div>
 
         {/* Tab Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-8">
           <button
             onClick={() => setActiveTab('products')}
             className={`w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all ${
@@ -1850,125 +1821,17 @@ export default function ProductUploadPage({ showToast }) {
             </span>
           </button>
           <button
-            onClick={handleOpenCustomOrdersModal}
-            className="w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all bg-white text-slate-600 border-2 border-slate-200 hover:border-amber-400"
+            onClick={() => navigate('/orders')}
+            className="w-full px-4 sm:px-6 py-3 font-bold text-base sm:text-lg rounded-xl transition-all bg-white text-slate-600 border-2 border-slate-200 hover:border-green-400"
           >
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10m-11 9h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v11a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
               </svg>
-              Customized Orders ({customOrders.length})
+              Orders
             </span>
           </button>
         </div>
-
-        {showCustomOrdersModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[120] flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-              <div className="p-4 sm:p-6 border-b border-slate-200 flex justify-between items-start sm:items-center gap-3">
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Customized Orders</h2>
-                  <p className="text-sm text-slate-600 mt-1">View customer-submitted customization details</p>
-                </div>
-                <button
-                  onClick={() => setShowCustomOrdersModal(false)}
-                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
-                  aria-label="Close customized orders"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50">
-                {isLoadingCustomOrders ? (
-                  <div className="bg-white border border-slate-200 rounded-xl p-8 text-center text-slate-600">
-                    Loading customized orders...
-                  </div>
-                ) : customOrders.length === 0 ? (
-                  <div className="bg-white border border-slate-200 rounded-xl p-8 text-center text-slate-600">
-                    No customized orders yet.
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {customOrders.map((order) => (
-                      <div key={order.id} className="bg-white border border-slate-200 rounded-xl p-5">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-                          <p className="font-bold text-slate-900">{order.id}</p>
-                          <p className="text-sm text-slate-500">
-                            {new Date(order.createdAt).toLocaleString('en-IN', {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit'
-                            })}
-                          </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm mb-4">
-                          <p><span className="font-semibold text-slate-700">Name:</span> {order.formData?.name || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Email:</span> {order.formData?.email || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Phone:</span> {order.formData?.phone || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Category:</span> {order.formData?.category || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Quantity:</span> {order.formData?.quantity || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Budget:</span> {order.formData?.budget || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Deadline:</span> {order.formData?.deadline || '—'}</p>
-                          <p><span className="font-semibold text-slate-700">Ref Images:</span> {order.files?.length || 0}</p>
-                        </div>
-
-                        {order.sourceProduct?.name && (
-                          <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3">
-                            Source Product: {order.sourceProduct.name}
-                          </p>
-                        )}
-
-                        <div className="space-y-2 text-sm">
-                          <div>
-                            <p className="font-semibold text-slate-700 mb-1">Description</p>
-                            <p className="text-slate-600 whitespace-pre-wrap">{order.formData?.description || '—'}</p>
-                          </div>
-                          <div>
-                            <p className="font-semibold text-slate-700 mb-1">Additional Notes</p>
-                            <p className="text-slate-600 whitespace-pre-wrap">{order.formData?.notes || '—'}</p>
-                          </div>
-                          <div>
-                            <p className="font-semibold text-slate-700 mb-1">Reference Files</p>
-                            {order.files?.length ? (
-                              <div className="flex flex-wrap gap-2">
-                                {order.files.map((file, fileIndex) => (
-                                  <a
-                                    key={`${order.id}-${file.path || file.name}-${fileIndex}`}
-                                    href={file.url || '#'}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
-                                      file.url
-                                        ? 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100'
-                                        : 'bg-slate-50 text-slate-500 border-slate-200 cursor-not-allowed'
-                                    }`}
-                                    onClick={(event) => {
-                                      if (!file.url) event.preventDefault();
-                                    }}
-                                  >
-                                    {file.name || `File ${fileIndex + 1}`}
-                                  </a>
-                                ))}
-                              </div>
-                            ) : (
-                              <p className="text-slate-600">—</p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Products Tab Content */}
         {activeTab === 'products' && (

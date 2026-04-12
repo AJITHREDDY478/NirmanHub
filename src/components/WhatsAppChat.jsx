@@ -1,4 +1,5 @@
 ﻿import { useState, useEffect, useRef } from 'react';
+import { CONFIG, getWhatsAppUrl } from '../utils/config';
 
 export default function WhatsAppChat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,8 +63,8 @@ export default function WhatsAppChat() {
   };
 
   const handleDirectChat = () => {
-    const message = encodeURIComponent(`Hi! I'm interested in your products. Can you help me?`);
-    window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+    const message = `Hi! I'm interested in your products. Can you help me?`;
+    window.open(getWhatsAppUrl(message), '_blank');
     setIsOpen(false);
   };
 
@@ -165,7 +166,7 @@ export default function WhatsAppChat() {
                     <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3 inline-block max-w-[90%]">
                       <p className="text-slate-800 text-base mb-1.5">👋 Hello!</p>
                       <p className="text-slate-600 text-sm leading-relaxed">
-                        Welcome to <span className="font-semibold text-green-600">AR Print Lab</span>! How can we help you today?
+                        Welcome to <span className="font-semibold text-green-600">{CONFIG.businessName}</span>! How can we help you today?
                       </p>
                     </div>
                     <p className="text-xs text-slate-400 mt-1.5 ml-1">Just now</p>
@@ -199,10 +200,10 @@ export default function WhatsAppChat() {
                 <div className="space-y-3 pb-4">
                   <p className="text-sm font-bold text-slate-700 px-1">Popular Topics</p>
                   <div className="flex flex-wrap gap-2.5">
-                    <button 
+                    <button
                       onClick={() => {
-                        const message = encodeURIComponent("Hi! I'd like to know more about your 3D Printing services.");
-                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        const message = "Hi! I'd like to know more about your 3D Printing services.";
+                        window.open(getWhatsAppUrl(message), '_blank');
                         setIsOpen(false);
                       }}
                       className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
@@ -211,8 +212,8 @@ export default function WhatsAppChat() {
                     </button>
                     <button 
                       onClick={() => {
-                        const message = encodeURIComponent("Hi! I'm interested in placing a custom order. Can you help me?");
-                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        const message = "Hi! I'm interested in placing a custom order. Can you help me?";
+                        window.open(getWhatsAppUrl(message), '_blank');
                         setIsOpen(false);
                       }}
                       className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
@@ -221,8 +222,8 @@ export default function WhatsAppChat() {
                     </button>
                     <button 
                       onClick={() => {
-                        const message = encodeURIComponent("Hi! I'd like to track my order. Can you help me with the status?");
-                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        const message = "Hi! I'd like to track my order. Can you help me with the status?";
+                        window.open(getWhatsAppUrl(message), '_blank');
                         setIsOpen(false);
                       }}
                       className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
@@ -231,8 +232,8 @@ export default function WhatsAppChat() {
                     </button>
                     <button 
                       onClick={() => {
-                        const message = encodeURIComponent("Hi! I'm interested in bulk orders. Can you share pricing and details?");
-                        window.open(`https://wa.me/919632038829?text=${message}`, '_blank');
+                        const message = "Hi! I'm interested in bulk orders. Can you share pricing and details?";
+                        window.open(getWhatsAppUrl(message), '_blank');
                         setIsOpen(false);
                       }}
                       className="px-4 py-2.5 bg-white border-2 border-slate-200 hover:border-green-400 hover:bg-green-50 active:border-green-500 active:bg-green-100 text-sm font-medium text-slate-700 hover:text-green-600 rounded-full transition-all touch-manipulation shadow-sm"
