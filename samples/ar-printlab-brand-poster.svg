@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-labelledby="title desc">
+  <title id="title">AR PrintLab brand poster</title>
+  <desc id="desc">Promotional poster for AR PrintLab and Nirmana Hub with product collage and QR code.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="45%" stop-color="#0f2740"/>
+      <stop offset="100%" stop-color="#0a6f86"/>
+    </linearGradient>
+    <linearGradient id="cardGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7ef3ff"/>
+      <stop offset="100%" stop-color="#7dff9f"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#04111c" flood-opacity="0.45"/>
+    </filter>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <clipPath id="qrClip">
+      <rect x="0" y="0" width="210" height="210" rx="22" ry="22"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <circle cx="165" cy="170" r="150" fill="#44d6ff" fill-opacity="0.16" filter="url(#softGlow)"/>
+  <circle cx="965" cy="180" r="170" fill="#8dffb1" fill-opacity="0.14" filter="url(#softGlow)"/>
+  <circle cx="860" cy="910" r="220" fill="#ffffff" fill-opacity="0.08" filter="url(#softGlow)"/>
+
+  <g opacity="0.12">
+    <path d="M0 835 C120 780 220 760 360 790 S640 900 1080 790" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M0 875 C200 840 310 820 480 850 S830 925 1080 860" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M0 915 C160 885 300 865 480 900 S850 980 1080 915" fill="none" stroke="#ffffff" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(78 72)">
+    <rect x="0" y="0" width="924" height="936" rx="44" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.12"/>
+
+    <g transform="translate(54 42)">
+      <image href="../brand/ar-print-lab-logo-tech.svg" x="0" y="0" width="240" height="72" preserveAspectRatio="xMinYMid meet"/>
+      <image href="../brand/nirmanhub-logo-light.svg" x="678" y="4" width="150" height="60" preserveAspectRatio="xMaxYMid meet"/>
+
+      <text x="0" y="132" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">Bring Your Ideas To Life</text>
+      <text x="0" y="185" fill="#cbf9ff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="500">Custom 3D prints, personalised gifts, decor pieces and standout prototypes for every story.</text>
+
+      <rect x="0" y="214" width="244" height="46" rx="23" fill="url(#accent)"/>
+      <text x="24" y="245" fill="#042032" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">CUSTOM ORDERS OPEN NOW</text>
+
+      <text x="0" y="318" fill="#dffaff" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Featured Products</text>
+    </g>
+
+    <g filter="url(#shadow)">
+      <g transform="translate(92 334) rotate(-7 150 170)">
+        <rect x="0" y="0" width="300" height="340" rx="28" fill="#102338"/>
+        <rect x="12" y="12" width="276" height="316" rx="22" fill="#0d1723" stroke="url(#cardGlow)"/>
+        <image href="../Products/custom girl sculpt.jpg" x="24" y="24" width="252" height="212" preserveAspectRatio="xMidYMid slice"/>
+        <rect x="24" y="250" width="252" height="54" rx="16" fill="#ffffff" fill-opacity="0.1"/>
+        <text x="36" y="283" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Custom 3D Sculpture</text>
+        <text x="36" y="314" fill="#b6ebf6" font-family="Arial, Helvetica, sans-serif" font-size="17">Personalised prints for gifts and memories</text>
+      </g>
+
+      <g transform="translate(364 390) rotate(4 140 150)">
+        <rect x="0" y="0" width="280" height="310" rx="28" fill="#102338"/>
+        <rect x="12" y="12" width="256" height="286" rx="22" fill="#0d1723" stroke="url(#cardGlow)"/>
+        <image href="../Products/Home-Key Chain.webp" x="24" y="24" width="232" height="180" preserveAspectRatio="xMidYMid slice"/>
+        <text x="30" y="240" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Custom Keychains</text>
+        <text x="30" y="270" fill="#b6ebf6" font-family="Arial, Helvetica, sans-serif" font-size="17">Branding, gifting and event keepsakes</text>
+      </g>
+
+      <g transform="translate(614 322) rotate(8 145 165)">
+        <rect x="0" y="0" width="290" height="330" rx="28" fill="#102338"/>
+        <rect x="12" y="12" width="266" height="306" rx="22" fill="#0d1723" stroke="url(#cardGlow)"/>
+        <image href="../Products/Hanging Planters1.png" x="20" y="18" width="250" height="222" preserveAspectRatio="xMidYMid slice"/>
+        <text x="30" y="270" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Modern Planters</text>
+        <text x="30" y="300" fill="#b6ebf6" font-family="Arial, Helvetica, sans-serif" font-size="17">Home decor with printable design freedom</text>
+      </g>
+
+      <g transform="translate(650 612) rotate(-5 132 146)">
+        <rect x="0" y="0" width="264" height="292" rx="28" fill="#102338"/>
+        <rect x="12" y="12" width="240" height="268" rx="22" fill="#0d1723" stroke="url(#cardGlow)"/>
+        <image href="../Products/om.jpg" x="20" y="18" width="224" height="174" preserveAspectRatio="xMidYMid slice"/>
+        <text x="28" y="228" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Religious Decor</text>
+        <text x="28" y="257" fill="#b6ebf6" font-family="Arial, Helvetica, sans-serif" font-size="16">Meaningful pieces crafted with detail</text>
+      </g>
+    </g>
+
+    <g transform="translate(78 736)">
+      <rect x="0" y="0" width="520" height="208" rx="30" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.12"/>
+      <text x="34" y="46" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Why brands & creators choose us</text>
+
+      <g fill="#d9fbff" font-family="Arial, Helvetica, sans-serif" font-size="21">
+        <circle cx="40" cy="85" r="6" fill="#7ef3ff"/>
+        <text x="58" y="92">Fast customisation for one-off and bulk orders</text>
+        <circle cx="40" cy="123" r="6" fill="#7ef3ff"/>
+        <text x="58" y="130">From concept visualisation to final print</text>
+        <circle cx="40" cy="161" r="6" fill="#7ef3ff"/>
+        <text x="58" y="168">Perfect for events, gifting, decor and branding</text>
+      </g>
+    </g>
+
+    <g transform="translate(650 730)">
+      <rect x="0" y="0" width="274" height="214" rx="30" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.14"/>
+      <text x="28" y="40" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Scan to Explore</text>
+      <text x="28" y="70" fill="#c9f8ff" font-family="Arial, Helvetica, sans-serif" font-size="18">Open AR PrintLab instantly</text>
+
+      <g transform="translate(28 92)">
+        <rect x="0" y="0" width="210" height="210" rx="22" fill="#ffffff"/>
+        <image
+          href="https://api.qrserver.com/v1/create-qr-code/?size=210x210&amp;data=https%3A%2F%2Farprintlab.com"
+          x="0"
+          y="0"
+          width="210"
+          height="210"
+          preserveAspectRatio="xMidYMid meet"
+          clip-path="url(#qrClip)"
+        />
+      </g>
+    </g>
+
+    <text x="78" y="972" fill="#b9eff7" font-family="Arial, Helvetica, sans-serif" font-size="18">Design • Print • Personalise • Deliver</text>
+    <text x="642" y="972" fill="#b9eff7" font-family="Arial, Helvetica, sans-serif" font-size="18">www.arprintlab.com</text>
+  </g>
+</svg>

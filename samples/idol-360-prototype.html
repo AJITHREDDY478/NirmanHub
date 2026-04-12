@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Idol 360 Prototype</title>
+  <style>
+    :root {
+      --bg-a: #f4efe6;
+      --bg-b: #e7ddd1;
+      --ink: #2f251e;
+      --card: rgba(255, 255, 255, 0.72);
+      --line: rgba(47, 37, 30, 0.15);
+      --accent: #b85a30;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 15% -10%, #fff7ef 0%, transparent 65%),
+        radial-gradient(1000px 500px at 90% 110%, #f1e6da 0%, transparent 60%),
+        linear-gradient(135deg, var(--bg-a), var(--bg-b));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .panel {
+      width: min(980px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 16px 50px rgba(47, 37, 30, 0.14);
+      overflow: hidden;
+    }
+
+    .head {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(18px, 3vw, 24px);
+      letter-spacing: 0.4px;
+    }
+
+    .sub {
+      margin: 3px 0 0;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .tools {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:hover { border-color: var(--accent); }
+
+    .viewer-wrap {
+      padding: 14px;
+    }
+
+    .viewer {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(180deg, #fffaf2, #e9dbc8);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      user-select: none;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    .viewer:active { cursor: grabbing; }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hint {
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--line);
+      padding: 5px 8px;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .foot {
+      padding: 10px 16px 16px;
+      font-size: 13px;
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <section class="panel">
+    <header class="head">
+      <div>
+        <h1 class="title">360 Product Prototype</h1>
+        <p class="sub" id="meta"></p>
+      </div>
+      <div class="tools">
+        <button id="playBtn" type="button">Pause Auto Rotate</button>
+        <button id="resetBtn" type="button">Reset</button>
+      </div>
+    </header>
+
+    <div class="viewer-wrap">
+      <div class="viewer" id="viewer">
+        <canvas id="canvas"></canvas>
+        <div class="hint">Drag left/right to rotate</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Query params: <code>?image=Products/shiva%20lamp%20360%20degree.png&frames=4&speed=0.03</code>
+    </div>
+  </section>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const rawImagePath = params.get("image") || "Products/shiva%20lamp%20360%20degree.png";
+    const frameCount = Math.max(2, Number(params.get("frames") || 4));
+    const speed = Math.max(0.005, Number(params.get("speed") || 0.03));
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const viewer = document.getElementById("viewer");
+    const playBtn = document.getElementById("playBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const meta = document.getElementById("meta");
+
+    let img = new Image();
+    let frame = 0;
+    let auto = true;
+    let drag = false;
+    let lastX = 0;
+    let raf = 0;
+    let activeImageUrl = "";
+
+    function getBasePrefix() {
+      const marker = "/samples/";
+      const idx = window.location.pathname.indexOf(marker);
+      if (idx <= 0) return "";
+      return window.location.pathname.slice(0, idx);
+    }
+
+    function makeImageCandidates(path) {
+      if (/^https?:\/\//i.test(path) || path.startsWith("data:")) {
+        return [path];
+      }
+
+      const clean = path.replace(/^\/+/, "");
+      const base = getBasePrefix();
+      const candidates = [];
+
+      if (base) candidates.push(`${base}/${clean}`);
+      candidates.push(`/${clean}`);
+
+      return [...new Set(candidates)];
+    }
+
+    function loadWithFallback(candidates, idx = 0) {
+      if (idx >= candidates.length) {
+        meta.textContent = "Could not load image. Check ?image= path in URL.";
+        const rect = viewer.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
+        ctx.fillStyle = "#7a2e20";
+        ctx.font = "600 16px Trebuchet MS, sans-serif";
+        ctx.fillText("Image not found", 22, 40);
+        return;
+      }
+
+      activeImageUrl = candidates[idx];
+      img.src = activeImageUrl;
+      meta.textContent = `Loading: ${activeImageUrl}`;
+    }
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = viewer.getBoundingClientRect();
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawFrame(Math.round(frame));
+    }
+
+    function drawFrame(index) {
+      if (!img.naturalWidth) return;
+      const rect = viewer.getBoundingClientRect();
+      const frameWidth = img.naturalWidth / frameCount;
+      const frameHeight = img.naturalHeight;
+
+      const sx = (index % frameCount + frameCount) % frameCount * frameWidth;
+      const sy = 0;
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      const scale = Math.min(rect.width / frameWidth, rect.height / frameHeight) * 0.95;
+      const dw = frameWidth * scale;
+      const dh = frameHeight * scale;
+      const dx = (rect.width - dw) / 2;
+      const dy = (rect.height - dh) / 2;
+
+      ctx.drawImage(img, sx, sy, frameWidth, frameHeight, dx, dy, dw, dh);
+    }
+
+    function tick() {
+      if (auto && !drag) frame += speed;
+      drawFrame(Math.round(frame));
+      raf = requestAnimationFrame(tick);
+    }
+
+    viewer.addEventListener("pointerdown", (ev) => {
+      drag = true;
+      lastX = ev.clientX;
+      viewer.setPointerCapture(ev.pointerId);
+    });
+
+    viewer.addEventListener("pointermove", (ev) => {
+      if (!drag) return;
+      const dx = ev.clientX - lastX;
+      lastX = ev.clientX;
+      frame += dx * 0.08;
+      drawFrame(Math.round(frame));
+    });
+
+    viewer.addEventListener("pointerup", (ev) => {
+      drag = false;
+      viewer.releasePointerCapture(ev.pointerId);
+    });
+
+    viewer.addEventListener("pointercancel", (ev) => {
+      drag = false;
+      viewer.releasePointerCapture(ev.pointerId);
+    });
+
+    playBtn.addEventListener("click", () => {
+      auto = !auto;
+      playBtn.textContent = auto ? "Pause Auto Rotate" : "Play Auto Rotate";
+    });
+
+    resetBtn.addEventListener("click", () => {
+      frame = 0;
+      drawFrame(0);
+    });
+
+    window.addEventListener("resize", resizeCanvas);
+
+    img.addEventListener("load", () => {
+      meta.textContent = `Image: ${activeImageUrl} | Frames: ${frameCount}`;
+      resizeCanvas();
+      cancelAnimationFrame(raf);
+      tick();
+    });
+
+    const candidates = makeImageCandidates(rawImagePath);
+    let attempt = 0;
+    img.addEventListener("error", () => {
+      attempt += 1;
+      loadWithFallback(candidates, attempt);
+    });
+
+    loadWithFallback(candidates, attempt);
+  </script>
+</body>
+</html>
