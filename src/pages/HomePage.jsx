@@ -146,7 +146,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               >
-                3D printed gifts and custom models, made with care by one creator.
+                3D printed gifts and custom models.
               </motion.h1>
               
               <motion.p
@@ -155,7 +155,7 @@ export default function HomePage({ addToCart, toggleWishlist, wishlistItems, rec
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="mt-6 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-2xl leading-relaxed"
               >
-                I create physical 3D printed products from photos, ideas, and ready designs. Browse the collection, order a custom piece, and get something made just for you.
+                3D printed products from photos, ideas, and ready designs. Browse the collection, order a custom piece, and get something made just for you.
               </motion.p>
 
               <motion.p
